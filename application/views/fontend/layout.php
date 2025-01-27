@@ -1,4 +1,5 @@
 <?php $this->load->view('fontend/inc/header'); ?>
+<?php $this->load->view('fontend/inc/menu'); ?>
 
 <?php
 if (isset($front_content)) {

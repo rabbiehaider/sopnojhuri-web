@@ -1,851 +1,1270 @@
-<div id="websiteHome">
-<main>
-    <div class="Toastify"></div>
-        <div class="content">
-            <div>
-                <div class="bannerSection">
-                    <div class="homeSlider" style="border-radius:4px;border:1px solid #ddd;overflow:hidden">
-                        <div class="carousel-root">
-                            <div class="carousel carousel-slider" style="width:100%">
-                                <ul class="control-dots">
-                                    <li class="dot selected" value="0" role="button" tabindex="0"
-                                        aria-label="slide item 1"></li>
-                                    <li class="dot" value="1" role="button" tabindex="0"
-                                        aria-label="slide item 2"></li>
-                                    <li class="dot" value="2" role="button" tabindex="0"
-                                        aria-label="slide item 3"></li>
-                                    <li class="dot" value="3" role="button" tabindex="0"
-                                        aria-label="slide item 4"></li>
-                                    <li class="dot" value="4" role="button" tabindex="0"
-                                        aria-label="slide item 5"></li>
-                                </ul><button type="button" aria-label="previous slide / item"
-                                    class="control-arrow control-prev"></button>
-                                <div class="slider-wrapper axis-horizontal">
-                                    <ul class="slider animated"
-                                        style="-webkit-transform:translate3d(-100%,0,0);-ms-transform:translate3d(-100%,0,0);-o-transform:translate3d(-100%,0,0);transform:translate3d(-100%,0,0);-webkit-transition-duration:350ms;-moz-transition-duration:350ms;-o-transition-duration:350ms;transition-duration:350ms;-ms-transition-duration:350ms">
-                                        <li class="slide">
-                                            <div style="cursor:pointer"><img class="bannerImage"
-                                                    src="<?php echo base_url('assets/website/') ?>media/banner2.be864aa1.jpg" alt=""
-                                                    style="object-fit:cover" /></div>
-                                        </li>
-                                        <li class="slide selected previous">
-                                            <div style="cursor:pointer"><img class="bannerImage"
-                                                    src="<?php echo base_url('assets/website/') ?>media/banner001.24edcc28.png" alt=""
-                                                    style="object-fit:cover" /></div>
-                                        </li>
-                                        <li class="slide">
-                                            <div style="cursor:pointer"><img class="bannerImage"
-                                                    src="<?php echo base_url('assets/website/') ?>media/banner01.c41032fd.png" alt=""
-                                                    style="object-fit:cover" /></div>
-                                        </li>
-                                        <li class="slide">
-                                            <div style="cursor:pointer"><img class="bannerImage"
-                                                    src="<?php echo base_url('assets/website/') ?>media/banner02.6f4c4ff7.png" alt=""
-                                                    style="object-fit:cover" /></div>
-                                        </li>
-                                        <li class="slide">
-                                            <div style="cursor:pointer"><img class="bannerImage"
-                                                    src="<?php echo base_url('assets/website/') ?>media/banner1.5083d11c.jpg" alt=""
-                                                    style="object-fit:cover" /></div>
-                                        </li>
-                                        <li class="slide">
-                                            <div style="cursor:pointer"><img class="bannerImage"
-                                                    src="<?php echo base_url('assets/website/') ?>media/banner2.be864aa1.jpg" alt=""
-                                                    style="object-fit:cover" /></div>
-                                        </li>
-                                        <li class="slide selected previous">
-                                            <div style="cursor:pointer"><img class="bannerImage"
-                                                    src="<?php echo base_url('assets/website/') ?>media/banner001.24edcc28.png" alt=""
-                                                    style="object-fit:cover" /></div>
-                                        </li>
-                                    </ul>
-                                </div><button type="button" aria-label="next slide / item"
-                                    class="control-arrow control-next"></button>
+<div id="content">
+    <section class="slider-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="home-slider-container">
+                        <div class="main_slider owl-carousel">
+                            <div class="slider-item">
+                                <img src="<?php echo base_url('assets/fontend/') ?>uploads/banner/1737353259Banner%201%20copy_Original.jpg" alt="" />
                             </div>
-                        </div>
-                    </div>
-                    <div class="bannerPromotions hideOnPhone"
-                        style="background-image:url(<?php echo base_url('assets/website/') ?>media/promotion0.baeb4875.png);background-size:cover;background-position:center center">
-                        <div class="carousel-root">
-                            <div class="carousel carousel-slider" style="width:100%">
-                                <ul class="control-dots">
-                                    <li class="dot selected" value="0" role="button" tabindex="0"
-                                        aria-label="slide item 1"></li>
-                                    <li class="dot" value="1" role="button" tabindex="0"
-                                        aria-label="slide item 2"></li>
-                                    <li class="dot" value="2" role="button" tabindex="0"
-                                        aria-label="slide item 3"></li>
-                                    <li class="dot" value="3" role="button" tabindex="0"
-                                        aria-label="slide item 4"></li>
-                                </ul><button type="button" aria-label="previous slide / item"
-                                    class="control-arrow control-prev control-disabled"></button>
-                                <div class="slider-wrapper axis-vertical" style="height:1px">
-                                    <ul class="slider animated"
-                                        style="-webkit-transform:translate3d(0,-100%,0);-ms-transform:translate3d(0,-100%,0);-o-transform:translate3d(0,-100%,0);transform:translate3d(0,-100%,0);-webkit-transition-duration:350ms;-moz-transition-duration:350ms;-o-transition-duration:350ms;transition-duration:350ms;-ms-transition-duration:350ms;height:1px">
-                                        <li class="slide">
-                                            <div style="cursor:pointer"><img class="bannerImage"
-                                                    src="<?php echo base_url('assets/website/') ?>media/promotion3.263f9653.jpg"
-                                                    loading="lazy" defer="" alt="" style="object-fit:cover" />
-                                            </div>
-                                        </li>
-                                        <li class="slide selected previous">
-                                            <div style="cursor:pointer"><img class="bannerImage"
-                                                    src="<?php echo base_url('assets/website/') ?>media/promotion0.baeb4875.png"
-                                                    loading="lazy" defer="" alt="" style="object-fit:cover" />
-                                            </div>
-                                        </li>
-                                        <li class="slide">
-                                            <div style="cursor:pointer"><img class="bannerImage"
-                                                    src="<?php echo base_url('assets/website/') ?>media/promotion1.9b9070bd.png"
-                                                    loading="lazy" defer="" alt="" style="object-fit:cover" />
-                                            </div>
-                                        </li>
-                                        <li class="slide">
-                                            <div style="cursor:pointer"><img class="bannerImage"
-                                                    src="<?php echo base_url('assets/website/') ?>media/promotion2.1a95daec.png"
-                                                    loading="lazy" defer="" alt="" style="object-fit:cover" />
-                                            </div>
-                                        </li>
-                                        <li class="slide">
-                                            <div style="cursor:pointer"><img class="bannerImage"
-                                                    src="<?php echo base_url('assets/website/') ?>media/promotion3.263f9653.jpg"
-                                                    loading="lazy" defer="" alt="" style="object-fit:cover" />
-                                            </div>
-                                        </li>
-                                        <li class="slide selected previous">
-                                            <div style="cursor:pointer"><img class="bannerImage"
-                                                    src="<?php echo base_url('assets/website/') ?>media/promotion0.baeb4875.png"
-                                                    loading="lazy" defer="" alt="" style="object-fit:cover" />
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div><button type="button" aria-label="next slide / item"
-                                    class="control-arrow control-next control-disabled"></button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="hideOnPc">
-                    <div style="background-color:#fff;padding:8px;width:100%">
-                        <p
-                            style="padding:16px;padding-bottom:12px;text-transform:uppercase;text-align:center;font-weight:500;font-size:15px">
-                            শুধুমাত্র শিপিং সার্ভিস নিতে ভিজিট করুন SKYSHIP এ<!-- --> </p>
-                        <div>
-                            <div style="display:flex;justify-content:center;margin-bottom:8px">
-                                <button class="bt" style="height:36px">Visit SkyShip
-                                    <svg stroke="currentColor"
-                                        fill="currentColor" stroke-width="0" viewBox="0 0 512 512"
-                                        style="margin-left:6px" height="16" width="16"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path fill="none" stroke-linecap="round" stroke-linejoin="round"
-                                            stroke-width="48" d="M268 112l144 144-144 144m124-144H100"></path>
-                                    </svg>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card mt05 categoryHome" style="position:relative">
-                    <div style="width:100%;display:flex;overflow:auto" class="responsiveOverflow"><img
-                            src="<?php echo base_url('assets/website/') ?>media/arrow_white.8ec7211f.svg"
-                            style="width:28px;height:28px;padding:6px;align-items:center;background-color:#128282;border-radius:16px;transform:rotate(180deg);justify-content:center;cursor:pointer;position:absolute;left:12px;top:54px"
-                            alt="" class="arrow" /><img src="<?php echo base_url('assets/website/') ?>media/arrow_white.8ec7211f.svg"
-                            style="width:28px;height:28px;padding:6px;align-items:center;background-color:#128282;border-radius:16px;transform:rotate(0deg);justify-content:center;cursor:pointer;margin-left:0.5rem;position:absolute;right:12px;top:54px"
-                            alt="" class="arrow" />
-                        <div class="sellerCategoryContainer" title="Category">
-
-                        {{ categories }}
-
-                            <a v-for="category in categories" href="shop/bags.html">
-                                <div style="display:flex;align-items:center;flex-direction:column;justify-content:center;height:100%;padding:1rem;cursor:pointer"
-                                    class="category"><img src="<?php echo base_url('assets/website/') ?>media/handbag.2ef168de.svg"
-                                        alt="" /><span
-                                        style="text-align:center;font-size:13px;text-transform:capitalize;font-weight:500">Bags</span>
-                                </div>
-                            </a>
-
-                            <!-- <a href="shop/jewelry.html">
-                                <div style="display:flex;align-items:center;flex-direction:column;justify-content:center;height:100%;padding:1rem;cursor:pointer"
-                                    class="category"><img src="<?php echo base_url('assets/website/') ?>media/necklace.3cf98284.svg"
-                                        alt="" /><span
-                                        style="text-align:center;font-size:13px;text-transform:capitalize;font-weight:500">Jewelry</span>
-                                </div>
-                            </a><a href="shop/shoes.html">
-                                <div style="display:flex;align-items:center;flex-direction:column;justify-content:center;height:100%;padding:1rem;cursor:pointer"
-                                    class="category"><img src="<?php echo base_url('assets/website/') ?>media/shoes.089eac13.svg"
-                                        alt="" /><span
-                                        style="text-align:center;font-size:13px;text-transform:capitalize;font-weight:500">Shoes</span>
-                                </div>
-                            </a><a href="shop/beauty.html">
-                                <div style="display:flex;align-items:center;flex-direction:column;justify-content:center;height:100%;padding:1rem;cursor:pointer"
-                                    class="category"><img src="<?php echo base_url('assets/website/') ?>media/beauty_product.d03025de.svg"
-                                        alt="" /><span
-                                        style="text-align:center;font-size:13px;text-transform:capitalize;font-weight:500">Beauty
-                                        Products</span></div>
-                            </a><a href="shop/clothing-men.html">
-                                <div style="display:flex;align-items:center;flex-direction:column;justify-content:center;height:100%;padding:1rem;cursor:pointer"
-                                    class="category"><img src="<?php echo base_url('assets/website/') ?>media/mens_clothing.9b301c9b.svg"
-                                        alt="" /><span
-                                        style="text-align:center;font-size:13px;text-transform:capitalize;font-weight:500">Mens
-                                        Clothing</span></div>
-                            </a><a href="shop/womens-clothing.html">
-                                <div style="display:flex;align-items:center;flex-direction:column;justify-content:center;height:100%;padding:1rem;cursor:pointer"
-                                    class="category"><img src="<?php echo base_url('assets/website/') ?>media/clothing.e8eb6793.svg"
-                                        alt="" /><span
-                                        style="text-align:center;font-size:13px;text-transform:capitalize;font-weight:500">Womens
-                                        Clothing</span></div>
-                            </a><a href="shop/baby.html">
-                                <div style="display:flex;align-items:center;flex-direction:column;justify-content:center;height:100%;padding:1rem;cursor:pointer"
-                                    class="category"><img src="<?php echo base_url('assets/website/') ?>media/child-shoe.1bba89ca.svg"
-                                        alt="" /><span
-                                        style="text-align:center;font-size:13px;text-transform:capitalize;font-weight:500">Baby
-                                        Items</span></div>
-                            </a><a href="shop/eyewear.html">
-                                <div style="display:flex;align-items:center;flex-direction:column;justify-content:center;height:100%;padding:1rem;cursor:pointer"
-                                    class="category"><img src="<?php echo base_url('assets/website/') ?>media/sunglass.838db5be.svg"
-                                        alt="" /><span
-                                        style="text-align:center;font-size:13px;text-transform:capitalize;font-weight:500">Eyewear</span>
-                                </div>
-                            </a><a href="shop/phone-accessories.html">
-                                <div style="display:flex;align-items:center;flex-direction:column;justify-content:center;height:100%;padding:1rem;cursor:pointer"
-                                    class="category"><img src="<?php echo base_url('assets/website/') ?>media/mobile.258e8d8e.svg"
-                                        alt="" /><span
-                                        style="text-align:center;font-size:13px;text-transform:capitalize;font-weight:500">Phone
-                                        accessories</span></div>
-                            </a><a href="shop/watches.html">
-                                <div style="display:flex;align-items:center;flex-direction:column;justify-content:center;height:100%;padding:1rem;cursor:pointer"
-                                    class="category"><img src="<?php echo base_url('assets/website/') ?>media/watch.dbfbe8af.svg"
-                                        alt="" /><span
-                                        style="text-align:center;font-size:13px;text-transform:capitalize;font-weight:500">Watches</span>
-                                </div>
-                            </a><a href="shop/groceries.html">
-                                <div style="display:flex;align-items:center;flex-direction:column;justify-content:center;height:100%;padding:1rem;cursor:pointer"
-                                    class="category"><img src="<?php echo base_url('assets/website/') ?>media/grocery.df2ce098.svg"
-                                        alt="" /><span
-                                        style="text-align:center;font-size:13px;text-transform:capitalize;font-weight:500">Groceries</span>
-                                </div>
-                            </a><a href="shop/electronics.html">
-                                <div style="display:flex;align-items:center;flex-direction:column;justify-content:center;height:100%;padding:1rem;cursor:pointer"
-                                    class="category"><img src="<?php echo base_url('assets/website/') ?>media/electronics.64e56e72.svg"
-                                        alt="" /><span
-                                        style="text-align:center;font-size:13px;text-transform:capitalize;font-weight:500">Electronics</span>
-                                </div>
-                            </a> -->
-                        </div>
-                    </div>
-                </div>
-                <div></div>
-                <div class="card mt05 phoneMtLow">
-                    <div class="flexRow align-center flexSpaceBetween bottom-border"
-                        style="padding:1rem 1.5rem">
-                        <h4 class="bold" style="font-size:15px">BAGS</h4><button
-                            style="height:30px;padding:0 0.65rem" class="bt ripple">View More</button>
-                    </div>
-                    <div class="p05">
-                        <div>
-                            <div class="productSkeleton productList" style="margin-top:0">
-                                <div class="product">
-                                    <div class="dummyImage" style="height:220px;width:100%"></div>
-                                    <div class="mt1" style="width:100%">
-                                        <p class="dummyName mb1"></p>
-                                        <p class="dummyPrice mb1"></p>
-                                    </div>
-                                </div>
-                                <div class="product">
-                                    <div class="dummyImage" style="height:220px;width:100%"></div>
-                                    <div class="mt1" style="width:100%">
-                                        <p class="dummyName mb1"></p>
-                                        <p class="dummyPrice mb1"></p>
-                                    </div>
-                                </div>
-                                <div class="product">
-                                    <div class="dummyImage" style="height:220px;width:100%"></div>
-                                    <div class="mt1" style="width:100%">
-                                        <p class="dummyName mb1"></p>
-                                        <p class="dummyPrice mb1"></p>
-                                    </div>
-                                </div>
-                                <div class="product">
-                                    <div class="dummyImage" style="height:220px;width:100%"></div>
-                                    <div class="mt1" style="width:100%">
-                                        <p class="dummyName mb1"></p>
-                                        <p class="dummyPrice mb1"></p>
-                                    </div>
-                                </div>
-                                <div class="product">
-                                    <div class="dummyImage" style="height:220px;width:100%"></div>
-                                    <div class="mt1" style="width:100%">
-                                        <p class="dummyName mb1"></p>
-                                        <p class="dummyPrice mb1"></p>
-                                    </div>
-                                </div>
-                                <div class="product">
-                                    <div class="dummyImage" style="height:220px;width:100%"></div>
-                                    <div class="mt1" style="width:100%">
-                                        <p class="dummyName mb1"></p>
-                                        <p class="dummyPrice mb1"></p>
-                                    </div>
-                                </div>
-                                <div class="product">
-                                    <div class="dummyImage" style="height:220px;width:100%"></div>
-                                    <div class="mt1" style="width:100%">
-                                        <p class="dummyName mb1"></p>
-                                        <p class="dummyPrice mb1"></p>
-                                    </div>
-                                </div>
-                                <div class="product">
-                                    <div class="dummyImage" style="height:220px;width:100%"></div>
-                                    <div class="mt1" style="width:100%">
-                                        <p class="dummyName mb1"></p>
-                                        <p class="dummyPrice mb1"></p>
-                                    </div>
-                                </div>
-                                <div class="product">
-                                    <div class="dummyImage" style="height:220px;width:100%"></div>
-                                    <div class="mt1" style="width:100%">
-                                        <p class="dummyName mb1"></p>
-                                        <p class="dummyPrice mb1"></p>
-                                    </div>
-                                </div>
-                                <div class="product">
-                                    <div class="dummyImage" style="height:220px;width:100%"></div>
-                                    <div class="mt1" style="width:100%">
-                                        <p class="dummyName mb1"></p>
-                                        <p class="dummyPrice mb1"></p>
-                                    </div>
-                                </div>
-                                <div class="product">
-                                    <div class="dummyImage" style="height:220px;width:100%"></div>
-                                    <div class="mt1" style="width:100%">
-                                        <p class="dummyName mb1"></p>
-                                        <p class="dummyPrice mb1"></p>
-                                    </div>
-                                </div>
-                                <div class="product">
-                                    <div class="dummyImage" style="height:220px;width:100%"></div>
-                                    <div class="mt1" style="width:100%">
-                                        <p class="dummyName mb1"></p>
-                                        <p class="dummyPrice mb1"></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card mt05 phoneMtLow">
-                    <div class="flexRow align-center flexSpaceBetween bottom-border"
-                        style="padding:1rem 1.5rem">
-                        <h4 class="bold" style="font-size:15px">JEWELRY</h4><button
-                            style="height:30px;padding:0 0.65rem" class="bt ripple">View More</button>
-                    </div>
-                    <div class="p05">
-                        <div>
-                            <div class="productSkeleton productList" style="margin-top:0">
-                                <div class="product">
-                                    <div class="dummyImage" style="height:220px;width:100%"></div>
-                                    <div class="mt1" style="width:100%">
-                                        <p class="dummyName mb1"></p>
-                                        <p class="dummyPrice mb1"></p>
-                                    </div>
-                                </div>
-                                <div class="product">
-                                    <div class="dummyImage" style="height:220px;width:100%"></div>
-                                    <div class="mt1" style="width:100%">
-                                        <p class="dummyName mb1"></p>
-                                        <p class="dummyPrice mb1"></p>
-                                    </div>
-                                </div>
-                                <div class="product">
-                                    <div class="dummyImage" style="height:220px;width:100%"></div>
-                                    <div class="mt1" style="width:100%">
-                                        <p class="dummyName mb1"></p>
-                                        <p class="dummyPrice mb1"></p>
-                                    </div>
-                                </div>
-                                <div class="product">
-                                    <div class="dummyImage" style="height:220px;width:100%"></div>
-                                    <div class="mt1" style="width:100%">
-                                        <p class="dummyName mb1"></p>
-                                        <p class="dummyPrice mb1"></p>
-                                    </div>
-                                </div>
-                                <div class="product">
-                                    <div class="dummyImage" style="height:220px;width:100%"></div>
-                                    <div class="mt1" style="width:100%">
-                                        <p class="dummyName mb1"></p>
-                                        <p class="dummyPrice mb1"></p>
-                                    </div>
-                                </div>
-                                <div class="product">
-                                    <div class="dummyImage" style="height:220px;width:100%"></div>
-                                    <div class="mt1" style="width:100%">
-                                        <p class="dummyName mb1"></p>
-                                        <p class="dummyPrice mb1"></p>
-                                    </div>
-                                </div>
-                                <div class="product">
-                                    <div class="dummyImage" style="height:220px;width:100%"></div>
-                                    <div class="mt1" style="width:100%">
-                                        <p class="dummyName mb1"></p>
-                                        <p class="dummyPrice mb1"></p>
-                                    </div>
-                                </div>
-                                <div class="product">
-                                    <div class="dummyImage" style="height:220px;width:100%"></div>
-                                    <div class="mt1" style="width:100%">
-                                        <p class="dummyName mb1"></p>
-                                        <p class="dummyPrice mb1"></p>
-                                    </div>
-                                </div>
-                                <div class="product">
-                                    <div class="dummyImage" style="height:220px;width:100%"></div>
-                                    <div class="mt1" style="width:100%">
-                                        <p class="dummyName mb1"></p>
-                                        <p class="dummyPrice mb1"></p>
-                                    </div>
-                                </div>
-                                <div class="product">
-                                    <div class="dummyImage" style="height:220px;width:100%"></div>
-                                    <div class="mt1" style="width:100%">
-                                        <p class="dummyName mb1"></p>
-                                        <p class="dummyPrice mb1"></p>
-                                    </div>
-                                </div>
-                                <div class="product">
-                                    <div class="dummyImage" style="height:220px;width:100%"></div>
-                                    <div class="mt1" style="width:100%">
-                                        <p class="dummyName mb1"></p>
-                                        <p class="dummyPrice mb1"></p>
-                                    </div>
-                                </div>
-                                <div class="product">
-                                    <div class="dummyImage" style="height:220px;width:100%"></div>
-                                    <div class="mt1" style="width:100%">
-                                        <p class="dummyName mb1"></p>
-                                        <p class="dummyPrice mb1"></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card mt05 phoneMtLow">
-                    <div class="flexRow align-center flexSpaceBetween bottom-border"
-                        style="padding:1rem 1.5rem">
-                        <h4 class="bold" style="font-size:15px">SHOES</h4><button
-                            style="height:30px;padding:0 0.65rem" class="bt ripple">View More</button>
-                    </div>
-                    <div class="p05">
-                        <div>
-                            <div class="productSkeleton productList" style="margin-top:0">
-                                <div class="product">
-                                    <div class="dummyImage" style="height:220px;width:100%"></div>
-                                    <div class="mt1" style="width:100%">
-                                        <p class="dummyName mb1"></p>
-                                        <p class="dummyPrice mb1"></p>
-                                    </div>
-                                </div>
-                                <div class="product">
-                                    <div class="dummyImage" style="height:220px;width:100%"></div>
-                                    <div class="mt1" style="width:100%">
-                                        <p class="dummyName mb1"></p>
-                                        <p class="dummyPrice mb1"></p>
-                                    </div>
-                                </div>
-                                <div class="product">
-                                    <div class="dummyImage" style="height:220px;width:100%"></div>
-                                    <div class="mt1" style="width:100%">
-                                        <p class="dummyName mb1"></p>
-                                        <p class="dummyPrice mb1"></p>
-                                    </div>
-                                </div>
-                                <div class="product">
-                                    <div class="dummyImage" style="height:220px;width:100%"></div>
-                                    <div class="mt1" style="width:100%">
-                                        <p class="dummyName mb1"></p>
-                                        <p class="dummyPrice mb1"></p>
-                                    </div>
-                                </div>
-                                <div class="product">
-                                    <div class="dummyImage" style="height:220px;width:100%"></div>
-                                    <div class="mt1" style="width:100%">
-                                        <p class="dummyName mb1"></p>
-                                        <p class="dummyPrice mb1"></p>
-                                    </div>
-                                </div>
-                                <div class="product">
-                                    <div class="dummyImage" style="height:220px;width:100%"></div>
-                                    <div class="mt1" style="width:100%">
-                                        <p class="dummyName mb1"></p>
-                                        <p class="dummyPrice mb1"></p>
-                                    </div>
-                                </div>
-                                <div class="product">
-                                    <div class="dummyImage" style="height:220px;width:100%"></div>
-                                    <div class="mt1" style="width:100%">
-                                        <p class="dummyName mb1"></p>
-                                        <p class="dummyPrice mb1"></p>
-                                    </div>
-                                </div>
-                                <div class="product">
-                                    <div class="dummyImage" style="height:220px;width:100%"></div>
-                                    <div class="mt1" style="width:100%">
-                                        <p class="dummyName mb1"></p>
-                                        <p class="dummyPrice mb1"></p>
-                                    </div>
-                                </div>
-                                <div class="product">
-                                    <div class="dummyImage" style="height:220px;width:100%"></div>
-                                    <div class="mt1" style="width:100%">
-                                        <p class="dummyName mb1"></p>
-                                        <p class="dummyPrice mb1"></p>
-                                    </div>
-                                </div>
-                                <div class="product">
-                                    <div class="dummyImage" style="height:220px;width:100%"></div>
-                                    <div class="mt1" style="width:100%">
-                                        <p class="dummyName mb1"></p>
-                                        <p class="dummyPrice mb1"></p>
-                                    </div>
-                                </div>
-                                <div class="product">
-                                    <div class="dummyImage" style="height:220px;width:100%"></div>
-                                    <div class="mt1" style="width:100%">
-                                        <p class="dummyName mb1"></p>
-                                        <p class="dummyPrice mb1"></p>
-                                    </div>
-                                </div>
-                                <div class="product">
-                                    <div class="dummyImage" style="height:220px;width:100%"></div>
-                                    <div class="mt1" style="width:100%">
-                                        <p class="dummyName mb1"></p>
-                                        <p class="dummyPrice mb1"></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card mt05 phoneMtLow">
-                    <div class="flexRow align-center flexSpaceBetween bottom-border"
-                        style="padding:1rem 1.5rem">
-                        <h4 class="bold" style="font-size:15px">WATCH</h4><button
-                            style="height:30px;padding:0 0.65rem" class="bt ripple">View More</button>
-                    </div>
-                    <div class="p05">
-                        <div>
-                            <div class="productSkeleton productList" style="margin-top:0">
-                                <div class="product">
-                                    <div class="dummyImage" style="height:220px;width:100%"></div>
-                                    <div class="mt1" style="width:100%">
-                                        <p class="dummyName mb1"></p>
-                                        <p class="dummyPrice mb1"></p>
-                                    </div>
-                                </div>
-                                <div class="product">
-                                    <div class="dummyImage" style="height:220px;width:100%"></div>
-                                    <div class="mt1" style="width:100%">
-                                        <p class="dummyName mb1"></p>
-                                        <p class="dummyPrice mb1"></p>
-                                    </div>
-                                </div>
-                                <div class="product">
-                                    <div class="dummyImage" style="height:220px;width:100%"></div>
-                                    <div class="mt1" style="width:100%">
-                                        <p class="dummyName mb1"></p>
-                                        <p class="dummyPrice mb1"></p>
-                                    </div>
-                                </div>
-                                <div class="product">
-                                    <div class="dummyImage" style="height:220px;width:100%"></div>
-                                    <div class="mt1" style="width:100%">
-                                        <p class="dummyName mb1"></p>
-                                        <p class="dummyPrice mb1"></p>
-                                    </div>
-                                </div>
-                                <div class="product">
-                                    <div class="dummyImage" style="height:220px;width:100%"></div>
-                                    <div class="mt1" style="width:100%">
-                                        <p class="dummyName mb1"></p>
-                                        <p class="dummyPrice mb1"></p>
-                                    </div>
-                                </div>
-                                <div class="product">
-                                    <div class="dummyImage" style="height:220px;width:100%"></div>
-                                    <div class="mt1" style="width:100%">
-                                        <p class="dummyName mb1"></p>
-                                        <p class="dummyPrice mb1"></p>
-                                    </div>
-                                </div>
-                                <div class="product">
-                                    <div class="dummyImage" style="height:220px;width:100%"></div>
-                                    <div class="mt1" style="width:100%">
-                                        <p class="dummyName mb1"></p>
-                                        <p class="dummyPrice mb1"></p>
-                                    </div>
-                                </div>
-                                <div class="product">
-                                    <div class="dummyImage" style="height:220px;width:100%"></div>
-                                    <div class="mt1" style="width:100%">
-                                        <p class="dummyName mb1"></p>
-                                        <p class="dummyPrice mb1"></p>
-                                    </div>
-                                </div>
-                                <div class="product">
-                                    <div class="dummyImage" style="height:220px;width:100%"></div>
-                                    <div class="mt1" style="width:100%">
-                                        <p class="dummyName mb1"></p>
-                                        <p class="dummyPrice mb1"></p>
-                                    </div>
-                                </div>
-                                <div class="product">
-                                    <div class="dummyImage" style="height:220px;width:100%"></div>
-                                    <div class="mt1" style="width:100%">
-                                        <p class="dummyName mb1"></p>
-                                        <p class="dummyPrice mb1"></p>
-                                    </div>
-                                </div>
-                                <div class="product">
-                                    <div class="dummyImage" style="height:220px;width:100%"></div>
-                                    <div class="mt1" style="width:100%">
-                                        <p class="dummyName mb1"></p>
-                                        <p class="dummyPrice mb1"></p>
-                                    </div>
-                                </div>
-                                <div class="product">
-                                    <div class="dummyImage" style="height:220px;width:100%"></div>
-                                    <div class="mt1" style="width:100%">
-                                        <p class="dummyName mb1"></p>
-                                        <p class="dummyPrice mb1"></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card mt05 phoneMtLow">
-                    <div class="flexRow align-center flexSpaceBetween bottom-border"
-                        style="padding:1rem 1.5rem">
-                        <h4 class="bold" style="font-size:15px">SUNGLASS</h4><button
-                            style="height:30px;padding:0 0.65rem" class="bt ripple">View More</button>
-                    </div>
-                    <div class="p05">
-                        <div>
-                            <div class="productSkeleton productList" style="margin-top:0">
-                                <div class="product">
-                                    <div class="dummyImage" style="height:220px;width:100%"></div>
-                                    <div class="mt1" style="width:100%">
-                                        <p class="dummyName mb1"></p>
-                                        <p class="dummyPrice mb1"></p>
-                                    </div>
-                                </div>
-                                <div class="product">
-                                    <div class="dummyImage" style="height:220px;width:100%"></div>
-                                    <div class="mt1" style="width:100%">
-                                        <p class="dummyName mb1"></p>
-                                        <p class="dummyPrice mb1"></p>
-                                    </div>
-                                </div>
-                                <div class="product">
-                                    <div class="dummyImage" style="height:220px;width:100%"></div>
-                                    <div class="mt1" style="width:100%">
-                                        <p class="dummyName mb1"></p>
-                                        <p class="dummyPrice mb1"></p>
-                                    </div>
-                                </div>
-                                <div class="product">
-                                    <div class="dummyImage" style="height:220px;width:100%"></div>
-                                    <div class="mt1" style="width:100%">
-                                        <p class="dummyName mb1"></p>
-                                        <p class="dummyPrice mb1"></p>
-                                    </div>
-                                </div>
-                                <div class="product">
-                                    <div class="dummyImage" style="height:220px;width:100%"></div>
-                                    <div class="mt1" style="width:100%">
-                                        <p class="dummyName mb1"></p>
-                                        <p class="dummyPrice mb1"></p>
-                                    </div>
-                                </div>
-                                <div class="product">
-                                    <div class="dummyImage" style="height:220px;width:100%"></div>
-                                    <div class="mt1" style="width:100%">
-                                        <p class="dummyName mb1"></p>
-                                        <p class="dummyPrice mb1"></p>
-                                    </div>
-                                </div>
-                                <div class="product">
-                                    <div class="dummyImage" style="height:220px;width:100%"></div>
-                                    <div class="mt1" style="width:100%">
-                                        <p class="dummyName mb1"></p>
-                                        <p class="dummyPrice mb1"></p>
-                                    </div>
-                                </div>
-                                <div class="product">
-                                    <div class="dummyImage" style="height:220px;width:100%"></div>
-                                    <div class="mt1" style="width:100%">
-                                        <p class="dummyName mb1"></p>
-                                        <p class="dummyPrice mb1"></p>
-                                    </div>
-                                </div>
-                                <div class="product">
-                                    <div class="dummyImage" style="height:220px;width:100%"></div>
-                                    <div class="mt1" style="width:100%">
-                                        <p class="dummyName mb1"></p>
-                                        <p class="dummyPrice mb1"></p>
-                                    </div>
-                                </div>
-                                <div class="product">
-                                    <div class="dummyImage" style="height:220px;width:100%"></div>
-                                    <div class="mt1" style="width:100%">
-                                        <p class="dummyName mb1"></p>
-                                        <p class="dummyPrice mb1"></p>
-                                    </div>
-                                </div>
-                                <div class="product">
-                                    <div class="dummyImage" style="height:220px;width:100%"></div>
-                                    <div class="mt1" style="width:100%">
-                                        <p class="dummyName mb1"></p>
-                                        <p class="dummyPrice mb1"></p>
-                                    </div>
-                                </div>
-                                <div class="product">
-                                    <div class="dummyImage" style="height:220px;width:100%"></div>
-                                    <div class="mt1" style="width:100%">
-                                        <p class="dummyName mb1"></p>
-                                        <p class="dummyPrice mb1"></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="productContainerMargin nomtphone">
-                    <div>
-                        <div class="flexRow align-center card mt1 nombphone"
-                            style="padding:0.75rem 1rem;text-align:center">
-                            <h4 class="text-center" style="width:100%;font-size:20px;font-weight:bold">Trending
-                                Products</h4>
-                        </div>
-                        <div class="skeletonProdCon">
-                            <div>
-                                <div class="productSkeleton productList" style="margin-top:0">
-                                    <div class="product">
-                                        <div class="dummyImage" style="height:220px;width:100%"></div>
-                                        <div class="mt1" style="width:100%">
-                                            <p class="dummyName mb1"></p>
-                                            <p class="dummyPrice mb1"></p>
-                                        </div>
-                                    </div>
-                                    <div class="product">
-                                        <div class="dummyImage" style="height:220px;width:100%"></div>
-                                        <div class="mt1" style="width:100%">
-                                            <p class="dummyName mb1"></p>
-                                            <p class="dummyPrice mb1"></p>
-                                        </div>
-                                    </div>
-                                    <div class="product">
-                                        <div class="dummyImage" style="height:220px;width:100%"></div>
-                                        <div class="mt1" style="width:100%">
-                                            <p class="dummyName mb1"></p>
-                                            <p class="dummyPrice mb1"></p>
-                                        </div>
-                                    </div>
-                                    <div class="product">
-                                        <div class="dummyImage" style="height:220px;width:100%"></div>
-                                        <div class="mt1" style="width:100%">
-                                            <p class="dummyName mb1"></p>
-                                            <p class="dummyPrice mb1"></p>
-                                        </div>
-                                    </div>
-                                    <div class="product">
-                                        <div class="dummyImage" style="height:220px;width:100%"></div>
-                                        <div class="mt1" style="width:100%">
-                                            <p class="dummyName mb1"></p>
-                                            <p class="dummyPrice mb1"></p>
-                                        </div>
-                                    </div>
-                                    <div class="product">
-                                        <div class="dummyImage" style="height:220px;width:100%"></div>
-                                        <div class="mt1" style="width:100%">
-                                            <p class="dummyName mb1"></p>
-                                            <p class="dummyPrice mb1"></p>
-                                        </div>
-                                    </div>
-                                    <div class="product">
-                                        <div class="dummyImage" style="height:220px;width:100%"></div>
-                                        <div class="mt1" style="width:100%">
-                                            <p class="dummyName mb1"></p>
-                                            <p class="dummyPrice mb1"></p>
-                                        </div>
-                                    </div>
-                                    <div class="product">
-                                        <div class="dummyImage" style="height:220px;width:100%"></div>
-                                        <div class="mt1" style="width:100%">
-                                            <p class="dummyName mb1"></p>
-                                            <p class="dummyPrice mb1"></p>
-                                        </div>
-                                    </div>
-                                    <div class="product">
-                                        <div class="dummyImage" style="height:220px;width:100%"></div>
-                                        <div class="mt1" style="width:100%">
-                                            <p class="dummyName mb1"></p>
-                                            <p class="dummyPrice mb1"></p>
-                                        </div>
-                                    </div>
-                                    <div class="product">
-                                        <div class="dummyImage" style="height:220px;width:100%"></div>
-                                        <div class="mt1" style="width:100%">
-                                            <p class="dummyName mb1"></p>
-                                            <p class="dummyPrice mb1"></p>
-                                        </div>
-                                    </div>
-                                    <div class="product">
-                                        <div class="dummyImage" style="height:220px;width:100%"></div>
-                                        <div class="mt1" style="width:100%">
-                                            <p class="dummyName mb1"></p>
-                                            <p class="dummyPrice mb1"></p>
-                                        </div>
-                                    </div>
-                                    <div class="product">
-                                        <div class="dummyImage" style="height:220px;width:100%"></div>
-                                        <div class="mt1" style="width:100%">
-                                            <p class="dummyName mb1"></p>
-                                            <p class="dummyPrice mb1"></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <!-- slider item -->
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </main>
-</div>
+    </section>
+    <!-- slider end -->
 
-<script src="<?php echo base_url('assets/website/js/') ?>vue/vue.min.js"></script>
-<script src="<?php echo base_url('assets/website/js/') ?>vue/axios.min.js"></script>
-<script src="<?php echo base_url('assets/website/js/') ?>moment.min.js"></script>
-<script>
-    new Vue({
-        el: '#websiteHome',
-        data() {
-            return {
-                categories: [],
-            }
-        },
-        created() {
-            this.getCategories();
-        },
-        methods: {
-            getCategories() {
-                axios.post('/get_categories', {
-                    isDisplayed: 'yes'
-                }).then(res => {
-                    this.categories = res.data;
-                })
-            }
-        }
-    })
-</script>
+    <!-- scroll bar end -->
+
+    <section class="homeproduct">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="sec_title">
+                        <h3 class="section-title-header">
+                            <div class="timer_inner">
+                                <div class="">
+                                    <span class="section-title-name"> Top Categories </span>
+                                </div>
+                            </div>
+                        </h3>
+                    </div>
+                </div>
+
+                <div class="col-sm-12">
+                    <div class="topcategory owl-carousel">
+                        <div class="cat_item">
+                            <div class="cat_img">
+                                <a href="category/hand-bag.html">
+                                    <img src="<?php echo base_url('assets/fontend/') ?>uploads/category/1724687913-img_0627.jpg" alt="" />
+                                </a>
+                            </div>
+                            <div class="cat_name">
+                                <a href="category/hand-bag.html">
+                                    Hand bag
+                                </a>
+                            </div>
+                        </div>
+                        <div class="cat_item">
+                            <div class="cat_img">
+                                <a href="category/tote-bag.html">
+                                    <img src="<?php echo base_url('assets/fontend/') ?>uploads/category/1736686627-46.webp" alt="" />
+                                </a>
+                            </div>
+                            <div class="cat_name">
+                                <a href="category/tote-bag.html">
+                                    Tote bag
+                                </a>
+                            </div>
+                        </div>
+                        <div class="cat_item">
+                            <div class="cat_img">
+                                <a href="category/backpack.html">
+                                    <img src="<?php echo base_url('assets/fontend/') ?>uploads/category/1724687794-img_0949.jpg" alt="" />
+                                </a>
+                            </div>
+                            <div class="cat_name">
+                                <a href="category/backpack.html">
+                                    Backpack
+                                </a>
+                            </div>
+                        </div>
+                        <div class="cat_item">
+                            <div class="cat_img">
+                                <a href="category/crossbody-bags.html">
+                                    <img src="<?php echo base_url('assets/fontend/') ?>uploads/category/1736686671-29.webp" alt="" />
+                                </a>
+                            </div>
+                            <div class="cat_name">
+                                <a href="category/crossbody-bags.html">
+                                    Crossbody bags
+                                </a>
+                            </div>
+                        </div>
+                        <div class="cat_item">
+                            <div class="cat_img">
+                                <a href="category/shoulder-bag.html">
+                                    <img src="<?php echo base_url('assets/fontend/') ?>uploads/category/1724692609-img_8466.png" alt="" />
+                                </a>
+                            </div>
+                            <div class="cat_name">
+                                <a href="category/shoulder-bag.html">
+                                    Shoulder Bag
+                                </a>
+                            </div>
+                        </div>
+                        <div class="cat_item">
+                            <div class="cat_img">
+                                <a href="category/chest-bag.html">
+                                    <img src="<?php echo base_url('assets/fontend/') ?>uploads/category/1724687566-img_9950.jpg" alt="" />
+                                </a>
+                            </div>
+                            <div class="cat_name">
+                                <a href="category/chest-bag.html">
+                                    Chest Bag
+                                </a>
+                            </div>
+                        </div>
+                        <div class="cat_item">
+                            <div class="cat_img">
+                                <a href="category/winter-shawl-%26-cardigan.html">
+                                    <img src="<?php echo base_url('assets/fontend/') ?>uploads/category/1731389573-8.webp" alt="" />
+                                </a>
+                            </div>
+                            <div class="cat_name">
+                                <a href="category/winter-shawl-%26-cardigan.html">
+                                    Winter Shawl &amp; Cardigan
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="homeproduct">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="sec_title">
+                        <h3 class="section-title-header">
+                            <div class="timer_inner">
+                                <div class="">
+                                    <span class="section-title-name"> Hot Deal </span>
+                                </div>
+                                <div class="">
+                                    <div class="offer_timer" id="simple_timer"></div>
+                                </div>
+                            </div>
+                        </h3>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="product_slider owl-carousel">
+                        <div class="product_item wist_item">
+                            <div class="product_item_inner">
+
+                                <div class="sale-badge">
+                                    <div class="sale-badge-inner">
+                                        <div class="sale-badge-box">
+                                            <span class="sale-badge-text">
+                                                <p> 18%</p>
+                                                Of
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pro_img">
+                                    <a href="product/oz-special-premium-hand-bag-106.html">
+                                        <img src="<?php echo base_url('assets/fontend/') ?>uploads/product/1737714550-22.webp"
+                                            alt="OZ-Special Premium Hand bag" />
+                                    </a>
+                                </div>
+                                <div class="pro_des">
+                                    <div class="pro_name">
+                                        <a href="product/oz-special-premium-hand-bag-106.html">OZ-Special Premium
+                                            Hand bag</a>
+                                    </div>
+                                    <div class="pro_price">
+                                        <p>
+                                            <del>৳ 2499</del>
+
+                                            ৳ 2050
+
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="pro_btn">
+                                <div class="cart_btn order_button">
+                                    <button class="addcartbutton" data-id="106">Quick Add </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product_item wist_item">
+                            <div class="product_item_inner">
+
+                                <div class="sale-badge">
+                                    <div class="sale-badge-inner">
+                                        <div class="sale-badge-box">
+                                            <span class="sale-badge-text">
+                                                <p> 20%</p>
+                                                Of
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pro_img">
+                                    <a href="product/women%27s-stylish-shoulder-bag-105.html">
+                                        <img src="<?php echo base_url('assets/fontend/') ?>uploads/product/1737538770-19.webp"
+                                            alt="Women&#039;s Stylish Shoulder Bag" />
+                                    </a>
+                                </div>
+                                <div class="pro_des">
+                                    <div class="pro_name">
+                                        <a href="product/women%27s-stylish-shoulder-bag-105.html">Women&#039;s
+                                            Stylish Shoulder Bag</a>
+                                    </div>
+                                    <div class="pro_price">
+                                        <p>
+                                            <del>৳ 2499</del>
+
+                                            ৳ 1999
+
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="pro_btn">
+
+                                <div class="cart_btn order_button">
+                                    <a href="product/women%27s-stylish-shoulder-bag-105.html"
+                                        class="addcartbutton">Quick Add
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product_item wist_item">
+                            <div class="product_item_inner">
+
+                                <div class="sale-badge">
+                                    <div class="sale-badge-inner">
+                                        <div class="sale-badge-box">
+                                            <span class="sale-badge-text">
+                                                <p> 18%</p>
+                                                Of
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pro_img">
+                                    <a href="product/casual-shoulder-bag-100.html">
+                                        <img src="<?php echo base_url('assets/fontend/') ?>uploads/product/1737538793-15.webp"
+                                            alt="Casual Shoulder Bag" />
+                                    </a>
+                                </div>
+                                <div class="pro_des">
+                                    <div class="pro_name">
+                                        <a href="product/casual-shoulder-bag-100.html">Casual Shoulder Bag</a>
+                                    </div>
+                                    <div class="pro_price">
+                                        <p>
+                                            <del>৳ 2199</del>
+
+                                            ৳ 1799
+
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="pro_btn">
+
+                                <div class="cart_btn order_button">
+                                    <a href="product/casual-shoulder-bag-100.html" class="addcartbutton">Quick Add
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product_item wist_item">
+                            <div class="product_item_inner">
+
+                                <div class="pro_img">
+                                    <a href="product/fragrance-crossbody-bag-99.html">
+                                        <img src="<?php echo base_url('assets/fontend/') ?>uploads/product/1737556029-10.webp"
+                                            alt="Fragrance Crossbody Bag" />
+                                    </a>
+                                </div>
+                                <div class="pro_des">
+                                    <div class="pro_name">
+                                        <a href="product/fragrance-crossbody-bag-99.html">Fragrance Crossbody
+                                            Bag</a>
+                                    </div>
+                                    <div class="pro_price">
+                                        <p>
+
+                                            ৳ 1599
+
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="pro_btn">
+
+                                <div class="cart_btn order_button">
+                                    <a href="product/fragrance-crossbody-bag-99.html" class="addcartbutton">Quick
+                                        Add
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product_item wist_item">
+                            <div class="product_item_inner">
+
+                                <div class="sale-badge">
+                                    <div class="sale-badge-inner">
+                                        <div class="sale-badge-box">
+                                            <span class="sale-badge-text">
+                                                <p> 20%</p>
+                                                Of
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pro_img">
+                                    <a href="product/fashionble-crossbody-bag-97.html">
+                                        <img src="<?php echo base_url('assets/fontend/') ?>uploads/product/1737558330-2.webp"
+                                            alt="Fashionble Crossbody Bag" />
+                                    </a>
+                                </div>
+                                <div class="pro_des">
+                                    <div class="pro_name">
+                                        <a href="product/fashionble-crossbody-bag-97.html">Fashionble Crossbody
+                                            Bag</a>
+                                    </div>
+                                    <div class="pro_price">
+                                        <p>
+                                            <del>৳ 1999</del>
+
+                                            ৳ 1599
+
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="pro_btn">
+
+                                <div class="cart_btn order_button">
+                                    <a href="product/fashionble-crossbody-bag-97.html" class="addcartbutton">Quick
+                                        Add
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product_item wist_item">
+                            <div class="product_item_inner">
+
+                                <div class="sale-badge">
+                                    <div class="sale-badge-inner">
+                                        <div class="sale-badge-box">
+                                            <span class="sale-badge-text">
+                                                <p> 25%</p>
+                                                Of
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pro_img">
+                                    <a href="product/versatile-fashion-shoulder-bag-96.html">
+                                        <img src="<?php echo base_url('assets/fontend/') ?>uploads/product/1737558410-27.webp"
+                                            alt="Versatile Fashion Shoulder Bag" />
+                                    </a>
+                                </div>
+                                <div class="pro_des">
+                                    <div class="pro_name">
+                                        <a href="product/versatile-fashion-shoulder-bag-96.html">Versatile Fashion
+                                            Shoulder Bag</a>
+                                    </div>
+                                    <div class="pro_price">
+                                        <p>
+                                            <del>৳ 1599</del>
+
+                                            ৳ 1199
+
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="pro_btn">
+
+                                <div class="cart_btn order_button">
+                                    <a href="product/versatile-fashion-shoulder-bag-96.html"
+                                        class="addcartbutton">Quick Add
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product_item wist_item">
+                            <div class="product_item_inner">
+
+                                <div class="sale-badge">
+                                    <div class="sale-badge-inner">
+                                        <div class="sale-badge-box">
+                                            <span class="sale-badge-text">
+                                                <p> 24%</p>
+                                                Of
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pro_img">
+                                    <a href="product/premium-shoulder-bag-with-teddy-charm-95.html">
+                                        <img src="<?php echo base_url('assets/fontend/') ?>uploads/product/1737558456-17.webp"
+                                            alt="Premium Shoulder Bag with Teddy Charm" />
+                                    </a>
+                                </div>
+                                <div class="pro_des">
+                                    <div class="pro_name">
+                                        <a href="product/premium-shoulder-bag-with-teddy-charm-95.html">Premium
+                                            Shoulder Bag with Teddy Charm</a>
+                                    </div>
+                                    <div class="pro_price">
+                                        <p>
+                                            <del>৳ 2499</del>
+
+                                            ৳ 1899
+
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="pro_btn">
+
+                                <div class="cart_btn order_button">
+                                    <a href="product/premium-shoulder-bag-with-teddy-charm-95.html"
+                                        class="addcartbutton">Quick Add
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product_item wist_item">
+                            <div class="product_item_inner">
+
+                                <div class="sale-badge">
+                                    <div class="sale-badge-inner">
+                                        <div class="sale-badge-box">
+                                            <span class="sale-badge-text">
+                                                <p> 42%</p>
+                                                Of
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pro_img">
+                                    <a href="product/new-large-capacity-portable-tote-bag-94.html">
+                                        <img src="<?php echo base_url('assets/fontend/') ?>uploads/product/1737563750-1.webp"
+                                            alt="New Large Capacity Portable Tote Bag" />
+                                    </a>
+                                </div>
+                                <div class="pro_des">
+                                    <div class="pro_name">
+                                        <a href="product/new-large-capacity-portable-tote-bag-94.html">New Large
+                                            Capacity Portable Tote Bag</a>
+                                    </div>
+                                    <div class="pro_price">
+                                        <p>
+                                            <del>৳ 3599</del>
+
+                                            ৳ 2100
+
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="pro_btn">
+
+                                <div class="cart_btn order_button">
+                                    <a href="product/new-large-capacity-portable-tote-bag-94.html"
+                                        class="addcartbutton">Quick Add
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product_item wist_item">
+                            <div class="product_item_inner">
+
+                                <div class="sale-badge">
+                                    <div class="sale-badge-inner">
+                                        <div class="sale-badge-box">
+                                            <span class="sale-badge-text">
+                                                <p> 15%</p>
+                                                Of
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pro_img">
+                                    <a href="product/woven-crossbody-bag-93.html">
+                                        <img src="<?php echo base_url('assets/fontend/') ?>uploads/product/1736690408-2.jpg"
+                                            alt="Woven Crossbody Bag" />
+                                    </a>
+                                </div>
+                                <div class="pro_des">
+                                    <div class="pro_name">
+                                        <a href="product/woven-crossbody-bag-93.html">Woven Crossbody Bag</a>
+                                    </div>
+                                    <div class="pro_price">
+                                        <p>
+                                            <del>৳ 1590</del>
+
+                                            ৳ 1350
+
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="pro_btn">
+
+                                <div class="cart_btn order_button">
+                                    <a href="product/woven-crossbody-bag-93.html" class="addcartbutton">Quick Add
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product_item wist_item">
+                            <div class="product_item_inner">
+
+                                <div class="pro_img">
+                                    <a href="product/oz-cross-border-knitted-tassel-shawl-92.html">
+                                        <img src="<?php echo base_url('assets/fontend/') ?>uploads/product/1731401850-2.jpg"
+                                            alt="OZ Cross-Border Knitted Tassel Shawl" />
+                                    </a>
+                                </div>
+                                <div class="pro_des">
+                                    <div class="pro_name">
+                                        <a href="product/oz-cross-border-knitted-tassel-shawl-92.html">OZ
+                                            Cross-Border Knitted Tassel Shawl</a>
+                                    </div>
+                                    <div class="pro_price">
+                                        <p>
+
+                                            ৳ 1799
+
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="pro_btn">
+
+                                <div class="cart_btn order_button">
+                                    <a href="product/oz-cross-border-knitted-tassel-shawl-92.html"
+                                        class="addcartbutton">Quick Add
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product_item wist_item">
+                            <div class="product_item_inner">
+
+                                <div class="sale-badge">
+                                    <div class="sale-badge-inner">
+                                        <div class="sale-badge-box">
+                                            <span class="sale-badge-text">
+                                                <p> 15%</p>
+                                                Of
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pro_img">
+                                    <a href="product/fashion-women%27s-wool-shawl-coat-91.html">
+                                        <img src="<?php echo base_url('assets/fontend/') ?>uploads/product/1733375327-14.jpg"
+                                            alt="Fashion Women&#039;s Wool Shawl Coat" />
+                                    </a>
+                                </div>
+                                <div class="pro_des">
+                                    <div class="pro_name">
+                                        <a href="product/fashion-women%27s-wool-shawl-coat-91.html">Fashion
+                                            Women&#039;s Wool Shawl Coat</a>
+                                    </div>
+                                    <div class="pro_price">
+                                        <p>
+                                            <del>৳ 1590</del>
+
+                                            ৳ 1350
+
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="pro_btn">
+
+                                <div class="cart_btn order_button">
+                                    <a href="product/fashion-women%27s-wool-shawl-coat-91.html"
+                                        class="addcartbutton">Quick Add
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product_item wist_item">
+                            <div class="product_item_inner">
+
+                                <div class="sale-badge">
+                                    <div class="sale-badge-inner">
+                                        <div class="sale-badge-box">
+                                            <span class="sale-badge-text">
+                                                <p> 30%</p>
+                                                Of
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pro_img">
+                                    <a href="product/geniune-pu-leather-crossbody-bag-35.html">
+                                        <img src="<?php echo base_url('assets/fontend/') ?>uploads/product/1724172814-img_0625.jpg"
+                                            alt="Geniune PU-Leather Crossbody bag" />
+                                    </a>
+                                </div>
+                                <div class="pro_des">
+                                    <div class="pro_name">
+                                        <a href="product/geniune-pu-leather-crossbody-bag-35.html">Geniune
+                                            PU-Leather Crossbody bag</a>
+                                    </div>
+                                    <div class="pro_price">
+                                        <p>
+                                            <del>৳ 2285</del>
+
+                                            ৳ 1600
+
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="pro_btn">
+                                <div class="cart_btn order_button">
+                                    <button class="addcartbutton" data-id="35">Quick Add </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="view__more_btn">
+                        <a href="hot-deals.html" class="view_more_btn">View More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="homeproduct">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-sm-12">
+                    <div class="sec_title">
+                        <h3 class="section-title-header">
+                            <span class="section-title-name">Hand bag</span>
+
+                        </h3>
+                    </div>
+                </div>
+
+
+
+                <div class="col-sm-12">
+                    <div class="product_sliders">
+                        <div class="product_item wist_item">
+                            <div class="product_item_inner">
+
+                                <div class="sale-badge">
+                                    <div class="sale-badge-inner">
+                                        <div class="sale-badge-box">
+                                            <span class="sale-badge-text">
+                                                <p> 18%</p>
+                                                Of
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pro_img">
+                                    <a href="product/oz-special-premium-hand-bag-106.html">
+                                        <img src="<?php echo base_url('assets/fontend/') ?>uploads/product/1737714550-22.webp"
+                                            alt="OZ-Special Premium Hand bag" />
+                                    </a>
+                                </div>
+                                <div class="pro_des">
+                                    <div class="pro_name">
+                                        <a href="product/oz-special-premium-hand-bag-106.html">OZ-Special Premium
+                                            Hand bag</a>
+                                    </div>
+                                    <div class="pro_price">
+                                        <p>
+                                            <del>৳ 2499</del>
+
+                                            ৳ 2050
+
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="pro_btn">
+                                <div class="cart_btn order_button">
+                                    <button class="addcartbutton" data-id="106">Quick Add </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product_item wist_item">
+                            <div class="product_item_inner">
+
+                                <div class="sale-badge">
+                                    <div class="sale-badge-inner">
+                                        <div class="sale-badge-box">
+                                            <span class="sale-badge-text">
+                                                <p> 24%</p>
+                                                Of
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pro_img">
+                                    <a href="product/elegant-premium-crocodile-pattern-handbag-101.html">
+                                        <img src="<?php echo base_url('assets/fontend/') ?>uploads/product/1737560163-40.webp"
+                                            alt="Elegant Premium Crocodile Pattern Handbag" />
+                                    </a>
+                                </div>
+                                <div class="pro_des">
+                                    <div class="pro_name">
+                                        <a href="product/elegant-premium-crocodile-pattern-handbag-101.html">Elegant
+                                            Premium Crocodile Pattern Handbag</a>
+                                    </div>
+                                    <div class="pro_price">
+                                        <p>
+                                            <del>৳ 4199</del>
+
+                                            ৳ 3199
+
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="pro_btn">
+
+                                <div class="cart_btn order_button">
+                                    <a href="product/elegant-premium-crocodile-pattern-handbag-101.html"
+                                        class="addcartbutton">Quick Add
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-12">
+                    <div class="show_more_btn">
+                        <a href="category/hand-bag.html" class="view_more_btn">View More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="homeproduct">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-sm-12">
+                    <div class="sec_title">
+                        <h3 class="section-title-header">
+                            <span class="section-title-name">Tote bag</span>
+
+                        </h3>
+                    </div>
+                </div>
+
+
+
+                <div class="col-sm-12">
+                    <div class="product_sliders">
+                        <div class="product_item wist_item">
+                            <div class="product_item_inner">
+
+                                <div class="sale-badge">
+                                    <div class="sale-badge-inner">
+                                        <div class="sale-badge-box">
+                                            <span class="sale-badge-text">
+                                                <p> 20%</p>
+                                                Of
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pro_img">
+                                    <a href="product/signature-classic-totebag-104.html">
+                                        <img src="<?php echo base_url('assets/fontend/') ?>uploads/product/1737558220-34.webp"
+                                            alt="Signature Classic Totebag" />
+                                    </a>
+                                </div>
+                                <div class="pro_des">
+                                    <div class="pro_name">
+                                        <a href="product/signature-classic-totebag-104.html">Signature Classic
+                                            Totebag</a>
+                                    </div>
+                                    <div class="pro_price">
+                                        <p>
+                                            <del>৳ 1999</del>
+
+                                            ৳ 1599
+
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="pro_btn">
+
+                                <div class="cart_btn order_button">
+                                    <a href="product/signature-classic-totebag-104.html" class="addcartbutton">Quick
+                                        Add
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product_item wist_item">
+                            <div class="product_item_inner">
+
+                                <div class="sale-badge">
+                                    <div class="sale-badge-inner">
+                                        <div class="sale-badge-box">
+                                            <span class="sale-badge-text">
+                                                <p> 25%</p>
+                                                Of
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pro_img">
+                                    <a href="product/oz-premium-oxford-totebag-olive-102.html">
+                                        <img src="<?php echo base_url('assets/fontend/') ?>uploads/product/1737558829-37.webp"
+                                            alt="OZ Premium Oxford Totebag Olive" />
+                                    </a>
+                                </div>
+                                <div class="pro_des">
+                                    <div class="pro_name">
+                                        <a href="product/oz-premium-oxford-totebag-olive-102.html">OZ Premium Oxford
+                                            Totebag Olive</a>
+                                    </div>
+                                    <div class="pro_price">
+                                        <p>
+                                            <del>৳ 1599</del>
+
+                                            ৳ 1199
+
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="pro_btn">
+
+                                <div class="cart_btn order_button">
+                                    <a href="product/oz-premium-oxford-totebag-olive-102.html"
+                                        class="addcartbutton">Quick Add
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product_item wist_item">
+                            <div class="product_item_inner">
+
+                                <div class="sale-badge">
+                                    <div class="sale-badge-inner">
+                                        <div class="sale-badge-box">
+                                            <span class="sale-badge-text">
+                                                <p> 42%</p>
+                                                Of
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pro_img">
+                                    <a href="product/new-large-capacity-portable-tote-bag-94.html">
+                                        <img src="<?php echo base_url('assets/fontend/') ?>uploads/product/1737563750-1.webp"
+                                            alt="New Large Capacity Portable Tote Bag" />
+                                    </a>
+                                </div>
+                                <div class="pro_des">
+                                    <div class="pro_name">
+                                        <a href="product/new-large-capacity-portable-tote-bag-94.html">New Large
+                                            Capacity Portable Tote Bag</a>
+                                    </div>
+                                    <div class="pro_price">
+                                        <p>
+                                            <del>৳ 3599</del>
+
+                                            ৳ 2100
+
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="pro_btn">
+
+                                <div class="cart_btn order_button">
+                                    <a href="product/new-large-capacity-portable-tote-bag-94.html"
+                                        class="addcartbutton">Quick Add
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-12">
+                    <div class="show_more_btn">
+                        <a href="category/tote-bag.html" class="view_more_btn">View More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="homeproduct">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-sm-12">
+                    <div class="sec_title">
+                        <h3 class="section-title-header">
+                            <span class="section-title-name">Shoulder Bag</span>
+
+                        </h3>
+                    </div>
+                </div>
+
+
+
+                <div class="col-sm-12">
+                    <div class="product_sliders">
+                        <div class="product_item wist_item">
+                            <div class="product_item_inner">
+
+                                <div class="sale-badge">
+                                    <div class="sale-badge-inner">
+                                        <div class="sale-badge-box">
+                                            <span class="sale-badge-text">
+                                                <p> 20%</p>
+                                                Of
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pro_img">
+                                    <a href="product/women%27s-stylish-shoulder-bag-105.html">
+                                        <img src="<?php echo base_url('assets/fontend/') ?>uploads/product/1737538770-19.webp"
+                                            alt="Women&#039;s Stylish Shoulder Bag" />
+                                    </a>
+                                </div>
+                                <div class="pro_des">
+                                    <div class="pro_name">
+                                        <a href="product/women%27s-stylish-shoulder-bag-105.html">Women&#039;s
+                                            Stylish Shoulder Bag</a>
+                                    </div>
+                                    <div class="pro_price">
+                                        <p>
+                                            <del>৳ 2499</del>
+
+                                            ৳ 1999
+
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="pro_btn">
+
+                                <div class="cart_btn order_button">
+                                    <a href="product/women%27s-stylish-shoulder-bag-105.html"
+                                        class="addcartbutton">Quick Add
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product_item wist_item">
+                            <div class="product_item_inner">
+
+                                <div class="sale-badge">
+                                    <div class="sale-badge-inner">
+                                        <div class="sale-badge-box">
+                                            <span class="sale-badge-text">
+                                                <p> 19%</p>
+                                                Of
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pro_img">
+                                    <a href="product/elegance-shoulder-bag-103.html">
+                                        <img src="<?php echo base_url('assets/fontend/') ?>uploads/product/1737558251-30.webp"
+                                            alt="Elegance Shoulder Bag" />
+                                    </a>
+                                </div>
+                                <div class="pro_des">
+                                    <div class="pro_name">
+                                        <a href="product/elegance-shoulder-bag-103.html">Elegance Shoulder Bag</a>
+                                    </div>
+                                    <div class="pro_price">
+                                        <p>
+                                            <del>৳ 1799</del>
+
+                                            ৳ 1450
+
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="pro_btn">
+
+                                <div class="cart_btn order_button">
+                                    <a href="product/elegance-shoulder-bag-103.html" class="addcartbutton">Quick Add
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product_item wist_item">
+                            <div class="product_item_inner">
+
+                                <div class="sale-badge">
+                                    <div class="sale-badge-inner">
+                                        <div class="sale-badge-box">
+                                            <span class="sale-badge-text">
+                                                <p> 18%</p>
+                                                Of
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pro_img">
+                                    <a href="product/casual-shoulder-bag-100.html">
+                                        <img src="<?php echo base_url('assets/fontend/') ?>uploads/product/1737538793-15.webp"
+                                            alt="Casual Shoulder Bag" />
+                                    </a>
+                                </div>
+                                <div class="pro_des">
+                                    <div class="pro_name">
+                                        <a href="product/casual-shoulder-bag-100.html">Casual Shoulder Bag</a>
+                                    </div>
+                                    <div class="pro_price">
+                                        <p>
+                                            <del>৳ 2199</del>
+
+                                            ৳ 1799
+
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="pro_btn">
+
+                                <div class="cart_btn order_button">
+                                    <a href="product/casual-shoulder-bag-100.html" class="addcartbutton">Quick Add
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product_item wist_item">
+                            <div class="product_item_inner">
+
+                                <div class="sale-badge">
+                                    <div class="sale-badge-inner">
+                                        <div class="sale-badge-box">
+                                            <span class="sale-badge-text">
+                                                <p> 25%</p>
+                                                Of
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pro_img">
+                                    <a href="product/versatile-fashion-shoulder-bag-96.html">
+                                        <img src="<?php echo base_url('assets/fontend/') ?>uploads/product/1737558410-27.webp"
+                                            alt="Versatile Fashion Shoulder Bag" />
+                                    </a>
+                                </div>
+                                <div class="pro_des">
+                                    <div class="pro_name">
+                                        <a href="product/versatile-fashion-shoulder-bag-96.html">Versatile Fashion
+                                            Shoulder Bag</a>
+                                    </div>
+                                    <div class="pro_price">
+                                        <p>
+                                            <del>৳ 1599</del>
+
+                                            ৳ 1199
+
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="pro_btn">
+
+                                <div class="cart_btn order_button">
+                                    <a href="product/versatile-fashion-shoulder-bag-96.html"
+                                        class="addcartbutton">Quick Add
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product_item wist_item">
+                            <div class="product_item_inner">
+
+                                <div class="sale-badge">
+                                    <div class="sale-badge-inner">
+                                        <div class="sale-badge-box">
+                                            <span class="sale-badge-text">
+                                                <p> 24%</p>
+                                                Of
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pro_img">
+                                    <a href="product/premium-shoulder-bag-with-teddy-charm-95.html">
+                                        <img src="<?php echo base_url('assets/fontend/') ?>uploads/product/1737558456-17.webp"
+                                            alt="Premium Shoulder Bag with Teddy Charm" />
+                                    </a>
+                                </div>
+                                <div class="pro_des">
+                                    <div class="pro_name">
+                                        <a href="product/premium-shoulder-bag-with-teddy-charm-95.html">Premium
+                                            Shoulder Bag with Teddy Charm</a>
+                                    </div>
+                                    <div class="pro_price">
+                                        <p>
+                                            <del>৳ 2499</del>
+
+                                            ৳ 1899
+
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="pro_btn">
+
+                                <div class="cart_btn order_button">
+                                    <a href="product/premium-shoulder-bag-with-teddy-charm-95.html"
+                                        class="addcartbutton">Quick Add
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-12">
+                    <div class="show_more_btn">
+                        <a href="category/shoulder-bag.html" class="view_more_btn">View More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="homeproduct">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-sm-12">
+                    <div class="sec_title">
+                        <h3 class="section-title-header">
+                            <span class="section-title-name">Winter Shawl &amp; Cardigan</span>
+
+                        </h3>
+                    </div>
+                </div>
+
+
+
+                <div class="col-sm-12">
+                    <div class="product_sliders">
+                        <div class="product_item wist_item">
+                            <div class="product_item_inner">
+
+                                <div class="pro_img">
+                                    <a href="product/oz-cross-border-knitted-tassel-shawl-92.html">
+                                        <img src="<?php echo base_url('assets/fontend/') ?>uploads/product/1731401850-2.jpg"
+                                            alt="OZ Cross-Border Knitted Tassel Shawl" />
+                                    </a>
+                                </div>
+                                <div class="pro_des">
+                                    <div class="pro_name">
+                                        <a href="product/oz-cross-border-knitted-tassel-shawl-92.html">OZ
+                                            Cross-Border Knitted Tassel Shawl</a>
+                                    </div>
+                                    <div class="pro_price">
+                                        <p>
+
+                                            ৳ 1799
+
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="pro_btn">
+
+                                <div class="cart_btn order_button">
+                                    <a href="product/oz-cross-border-knitted-tassel-shawl-92.html"
+                                        class="addcartbutton">Quick Add
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product_item wist_item">
+                            <div class="product_item_inner">
+
+                                <div class="sale-badge">
+                                    <div class="sale-badge-inner">
+                                        <div class="sale-badge-box">
+                                            <span class="sale-badge-text">
+                                                <p> 15%</p>
+                                                Of
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pro_img">
+                                    <a href="product/fashion-women%27s-wool-shawl-coat-91.html">
+                                        <img src="<?php echo base_url('assets/fontend/') ?>uploads/product/1733375327-14.jpg"
+                                            alt="Fashion Women&#039;s Wool Shawl Coat" />
+                                    </a>
+                                </div>
+                                <div class="pro_des">
+                                    <div class="pro_name">
+                                        <a href="product/fashion-women%27s-wool-shawl-coat-91.html">Fashion
+                                            Women&#039;s Wool Shawl Coat</a>
+                                    </div>
+                                    <div class="pro_price">
+                                        <p>
+                                            <del>৳ 1590</del>
+
+                                            ৳ 1350
+
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="pro_btn">
+
+                                <div class="cart_btn order_button">
+                                    <a href="product/fashion-women%27s-wool-shawl-coat-91.html"
+                                        class="addcartbutton">Quick Add
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-12">
+                    <div class="show_more_btn">
+                        <a href="category/winter-shawl-%26-cardigan.html" class="view_more_btn">View More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

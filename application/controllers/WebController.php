@@ -25,6 +25,14 @@ class WebController extends CI_Controller
 		$this->load->view('fontend/layout', $data);
 	}
 
+	public function contactUs()
+	{
+		$data['title'] = 'Contact Us';
+		// $data['company'] = $this->db->query("select * from tbl_content")->row();
+		$data['front_content'] = 'page/contact';
+		$this->load->view('fontend/layout', $data);
+	}
+
 	// Product Category 
 	public function getCategories()
 	{
@@ -238,14 +246,6 @@ class WebController extends CI_Controller
 	// 	$data['front_content'] = 'page/product_by_category';
 	// 	$this->load->view('fontend/layout', $data);
 	// }
-
-	public function contact()
-	{
-		$data['title'] = 'Contact Us';
-		$data['company'] = $this->db->query("select * from tbl_content")->row();
-		$data['front_content'] = 'page/contact';
-		$this->load->view('fontend/layout', $data);
-	}
 
 	public function search()
 	{

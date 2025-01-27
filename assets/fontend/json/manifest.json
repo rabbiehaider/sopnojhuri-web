@@ -1,0 +1,20 @@
+{
+    "name": "SopnoJhuri",
+    "short_name": "SopnoJhuri",
+    "icons": [
+        {
+            "src": "ixt.webp",
+            "sizes": "192x192",
+            "type": "image/png/webp"
+        },
+        {
+            "src": "ixt.webp",
+            "sizes": "512x512",
+            "type": "image/png/webp"
+        }
+    ],
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#ff6d33"
+}
