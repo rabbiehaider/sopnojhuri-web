@@ -1,918 +1,910 @@
+<!-- content end -->
+<footer>
+    <div class="footer-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4 mb-3 mb-sm-0">
+                    <div class="footer-about">
+                        <a href="/">
+                            <img src="<?php echo base_url('assets/fontend/') ?>uploads/settings/sopnojhuri-sidebar-logo.png" alt="" />
+                        </a>
+                        <p style="margin:0 !important;"><a href="#" class="footer-hotlint">Shop. Smile. Repeat.</a></p>
+                        <p>K-85/3,Bhai Bhai Road,Khilkhet, Dhaka 1229</p>
+                        <p><a href="mailto:sopnojhuribd@gmail.com" class="footer-hotlint">sopnojhuribd@gmail.com</a></p>
+                        <p><a href="tel:01870977634" class="footer-hotlint">01870977634</a></p>
+                    </div>
+                </div>
+                <!-- col end -->
+                <div class="col-sm-3 mb-3 col-6">
+                    <div class="footer-menu">
+                        <ul>
+                            <li class="title"><a>Customer</a></li>
+                            <li> <a href="site/contact-us.html"> <a href="site/contact-us.html">Account</a></a> </li>
+                            <li><a href="page/order-procedure.html">Cart</a> </li>
+                            <li><a href="page/delivery-rules.html">Wishlist</a> </li>
+                            <li><a href="page/return-policy.html">Shipping Charge</a> </li>
+                            <li><a href="page/return-policy.html">Retail Purchase</a> </li>
+                            <li><a href="page/return-policy.html">FAQ</a> </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- col end -->
+                <div class="col-sm-2 mb-3 col-6">
+                    <div class="footer-menu">
+                        <ul>
+                            <li class="title"><a>Information</a></li>
+                            <li><a href="page/terms-%26-conditions.html">About us</a></li>
+                            <li><a href="page/privacy-policy.html">Contact Us</a></li>
+                            <li><a href="page/about-us.html">Privacy Policy</a></li>
+                            <li><a href="page/about-us.html">Returns & Refund</a></li>
+                            <li><a href="page/about-us.html">Terms & Conditions</a></li>
+                            <li><a href="page/about-us.html">Secured Payment</a></li>
+                        </ul>
+                    </div>
+                </div>
 
-    <!-- content end -->
-    <footer>
-        <div class="footer-top">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-4 mb-3 mb-sm-0">
-                        <div class="footer-about">
-                            <a href="/">
-                                <img src="<?php echo base_url('assets/fontend/') ?>uploads/settings/1737269216-ozy-logo-ggg.webp" alt="" />
+                <!-- col end -->
+                <div class="col-sm-3 mb-3 mb-sm-0">
+                    <div class="footer-menu">
+                        <ul>
+                            <li class="title stay_conn"><a>Stay Connected</a></li>
+                        </ul>
+                        <ul class="social_link">
+                            <li class="social_list">
+                                <a class="mobile-social-link" href="https://www.facebook.com/ozybdofficial/"><i
+                                        class="fab fa-facebook-f"></i></a>
+                            </li>
+                            <li class="social_list">
+                                <a class="mobile-social-link" href="#"><i class="fab fa-google"></i></a>
+                            </li>
+                            <li class="social_list">
+                                <a class="mobile-social-link" href="#"><i class="fa-brands fa-youtube"></i></a>
+                            </li>
+                            <li class="social_list">
+                                <a class="mobile-social-link" href="http://www.instagram.com/ozy.bd/"><i
+                                        class="fa-brands fa-instagram"></i></a>
+                            </li>
+                        </ul>
+                        <div class="d_app">
+                            <h2>Download App</h2>
+                            <a href="#">
+                                <img src="<?php echo base_url('assets/fontend/') ?>images/app-download.png" alt="" />
                             </a>
-                            <p>K-85/3,Bhai Bhai Road,Khilkhet, Dhaka 1229</p>
-                            <p><a href="tel:01877702077" class="footer-hotlint">01877702077</a></p>
-                            <!--<p><a href="mailto:info.ozybd@gmail.com" class="footer-hotlint">info.ozybd@gmail.com</a></p>-->
                         </div>
                     </div>
-                    <!-- col end -->
-                    <div class="col-sm-3 mb-3 col-6">
-                        <div class="footer-menu">
-                            <ul>
-                                <li class="title"><a>Useful Link</a></li>
-                                <li>
-                                    <a href="site/contact-us.html"> <a href="site/contact-us.html">Contact
-                                            Us</a></a>
-                                </li>
-                                <li><a href="page/order-procedure.html">Order procedure</a>
-                                </li>
-                                <li><a href="page/delivery-rules.html">Delivery Rules</a>
-                                </li>
-                                <li><a href="page/return-policy.html">Return Policy</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <!-- col end -->
-                    <div class="col-sm-2 mb-3 col-6">
-                        <div class="footer-menu">
-                            <ul>
-                                <li class="title"><a>Link</a></li>
-                                <li>
-                                    <a href="page/terms-%26-conditions.html">Terms &amp; Conditions</a>
-                                </li>
-                                <li>
-                                    <a href="page/privacy-policy.html">Privacy Policy</a>
-                                </li>
-                                <li>
-                                    <a href="page/about-us.html">About Us</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- col end -->
-                    <div class="col-sm-3 mb-3 mb-sm-0">
-                        <div class="footer-menu">
-                            <ul>
-                                <li class="title stay_conn"><a>Stay Connected</a></li>
-                            </ul>
-                            <ul class="social_link">
-                                <li class="social_list">
-                                    <a class="mobile-social-link" href="https://www.facebook.com/ozybdofficial/"><i
-                                            class="fab fa-facebook-f"></i></a>
-                                </li>
-                                <li class="social_list">
-                                    <a class="mobile-social-link" href="#"><i class="fab fa-google"></i></a>
-                                </li>
-                                <li class="social_list">
-                                    <a class="mobile-social-link" href="#"><i class="fa-brands fa-youtube"></i></a>
-                                </li>
-                                <li class="social_list">
-                                    <a class="mobile-social-link" href="http://www.instagram.com/ozy.bd/"><i
-                                            class="fa-brands fa-instagram"></i></a>
-                                </li>
-                            </ul>
-                            <div class="d_app">
-                                <h2>Download App</h2>
-                                <a href="#">
-                                    <img src="<?php echo base_url('assets/fontend/') ?>images/app-download.png" alt="" />
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- col end -->
                 </div>
+                <!-- col end -->
             </div>
         </div>
-        <div class="footer-bottom">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="copyright">
-                            <p>Copyright © <?php echo date('Y');?> SopnoJhuri. All rights reserved.
-                                Design & Developed By <a href="https://mlalonhossain.com/" target="_blank">FARABiE
-                                    IT</a></p>
-                        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="copyright">
+                        <p>Copyright © <?php echo date('Y'); ?> SopnoJhuri. All Rights Reserved. Design & Developed By <a href="https://mlalonhossain.com/" target="_blank">FARABiE IT</a></p>
                     </div>
                 </div>
             </div>
         </div>
-    </footer>
-    <!--=====-->
-
-    <!--=========-->
-    <div class="footer_nav">
-        <ul>
-            <li>
-                <a class="toggle">
-                    <span>
-                        <i class="fa-solid fa-bars"></i>
-                    </span>
-                    <span>Category</span>
-                </a>
-            </li>
-
-            <li>
-                <a href="https://www.facebook.com/share/g/19tBYq7Lyw/?mibextid=wwXIfr" target="_blank">
-                    <span>
-                        <i class="fa-solid fa-message"></i>
-                    </span>
-                    <span>Review</span>
-                </a>
-            </li>
-
-            <li class="mobile_home">
-                <a href="/">
-                    <span><i class="fa-solid fa-home"></i></span> <span>Home</span>
-                </a>
-            </li>
-
-            <li>
-                <button class="cart-toggle-button">
-                    <span>
-                        <i class="fa-solid fa-cart-shopping"></i>
-                    </span>
-                    <span>Cart (<b class="mobilecart-qty">0</b>)</span>
-                </button>
-            </li>
-            <li>
-                <a href="customer/login.html">
-                    <span>
-                        <i class="fa-solid fa-user"></i>
-                    </span>
-                    <span>Login</span>
-                </a>
-            </li>
-        </ul>
     </div>
+</footer>
+<!--=====-->
 
-    <div class="scrolltop" style="">
-        <div class="scroll">
-            <i class="fa fa-angle-up"></i>
-        </div>
-    </div>
+<!--=========-->
+<div class="footer_nav">
+    <ul>
+        <li>
+            <a class="toggle">
+                <span>
+                    <i class="fa-solid fa-bars"></i>
+                </span>
+                <span>Category</span>
+            </a>
+        </li>
 
-    <!-- cart sidebar button-->
-    <div class="fixed_whats">
-        <a href="https://api.whatsapp.com/send/?phone=8801877702077" target="_blank"><i
-                class="fa-brands fa-whatsapp"></i></a>
-    </div>
+        <li>
+            <a href="https://www.facebook.com/share/g/19tBYq7Lyw/?mibextid=wwXIfr" target="_blank">
+                <span>
+                    <i class="fa-solid fa-message"></i>
+                </span>
+                <span>Review</span>
+            </a>
+        </li>
 
-    <!-- /. fixed sidebar -->
+        <li class="mobile_home">
+            <a href="/">
+                <img src="<?php echo base_url('assets/fontend/') ?>uploads/settings/sj-fav.png"
+                    alt="" />
+                <!-- <span><i class="fa-solid fa-home"></i></span> <span>Home</span> -->
+            </a>
+        </li>
 
-    <div id="custom-modal"></div>
-    <div id="page-overlay"></div>
-    <div id="loading">
-        <div class="custom-loader"></div>
-    </div>
-
-    <!-- cart sidebar -->
-    <div class="mini-cart-wrapper">
-        <div class="mini-cart-header">
-            <p>
-                <i class="fa-solid fa-shopping-cart"></i>
-                0 items - (0 TK)
-            </p>
-            <button class="mini-close-button mini-close-cart">
-                <i class="fa-solid fa-times"></i>
+        <li>
+            <button class="cart-toggle-button">
+                <span>
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </span>
+                <span>Cart (<b class="mobilecart-qty">0</b>)</span>
             </button>
-        </div>
-        <button class="mini-close-button floating-close-button"><i class="fa-solid fa-angle-right"></i></button>
+        </li>
+        <li>
+            <a href="customer/login.html">
+                <span>
+                    <i class="fa-solid fa-user"></i>
+                </span>
+                <span>Login</span>
+            </a>
+        </li>
+    </ul>
+</div>
 
-        <div class="empty-cart">
-            <div class="empty-img">
-                <img src="<?php echo base_url('assets/fontend/') ?>images/empty-cart.webp" alt="">
-            </div>
-        </div>
-        <script></script>
+<div class="scrolltop" style="">
+    <div class="scroll">
+        <i class="fa fa-angle-up"></i>
     </div>
-    <!-- cart sidebar -->
+</div>
 
-    <script src="<?php echo base_url('assets/fontend/') ?>js/bootstrap.min.js"></script>
-    <script src="<?php echo base_url('assets/fontend/') ?>js/owl.carousel.min.js"></script>
-    <script src="<?php echo base_url('assets/fontend/') ?>js/mobile-menu.js"></script>
-    <script src="<?php echo base_url('assets/fontend/') ?>js/wsit-menu.js"></script>
-    <script src="<?php echo base_url('assets/fontend/') ?>js/mobile-menu-init.js"></script>
-    <script src="<?php echo base_url('assets/fontend/') ?>js/wow.min.js"></script>
-    <script src="<?php echo base_url('assets/fontend/') ?>js/lightbox-plus-jquery.min.js"></script>
-    <script>
-        new WOW().init();
-    </script>
-    <link rel="stylesheet" href="../cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<!-- cart sidebar button-->
+<div class="fixed_whats">
+    <a href="https://api.whatsapp.com/send/?phone=8801870977634" target="_blank"><i
+            class="fa-brands fa-whatsapp"></i></a>
+</div>
 
-    <!-- feather icon -->
-    <script src="../cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js"></script>
-    <script>
-        feather.replace();
-    </script>
-    <script src="<?php echo base_url('assets/fontend/') ?>js/toastr.min.js"></script>
-    <script type="text/javascript"></script>
-    <script src="<?php echo base_url('assets/fontend/') ?>js/owl.carousel.min.js"></script>
-    <script src="<?php echo base_url('assets/fontend/') ?>js/jquery.syotimer.min.js"></script>
+<!-- /. fixed sidebar -->
 
-    <script>
-        $(document).ready(function () {
-            $(".main_slider").owlCarousel({
-                items: 1,
-                loop: true,
-                dots: false,
-                autoplay: true,
-                nav: true,
-                autoplayHoverPause: false,
-                margin: 0,
-                mouseDrag: true,
-                smartSpeed: 8000,
-                autoplayTimeout: 3000,
-                animateOut: "fadeOutDown",
-                animateIn: "slideInDown",
+<div id="custom-modal"></div>
+<div id="page-overlay"></div>
+<div id="loading">
+    <div class="custom-loader"></div>
+</div>
 
-                navText: ["<i class='fa-solid fa-angle-left'></i>",
-                    "<i class='fa-solid fa-angle-right'></i>"
-                ],
-            });
+<!-- cart sidebar -->
+<div class="mini-cart-wrapper">
+    <div class="mini-cart-header">
+        <p>
+            <i class="fa-solid fa-shopping-cart"></i>
+            0 items - (0 TK)
+        </p>
+        <button class="mini-close-button mini-close-cart">
+            <i class="fa-solid fa-times"></i>
+        </button>
+    </div>
+    <button class="mini-close-button floating-close-button"><i class="fa-solid fa-angle-right"></i></button>
+
+    <div class="empty-cart">
+        <div class="empty-img">
+            <img src="<?php echo base_url('assets/fontend/') ?>images/empty-cart.webp" alt="">
+        </div>
+    </div>
+    <script></script>
+</div>
+<!-- cart sidebar -->
+
+<script src="<?php echo base_url('assets/fontend/') ?>js/bootstrap.min.js"></script>
+<script src="<?php echo base_url('assets/fontend/') ?>js/owl.carousel.min.js"></script>
+<script src="<?php echo base_url('assets/fontend/') ?>js/mobile-menu.js"></script>
+<!-- <script src="<?php echo base_url('assets/fontend/') ?>js/wsit-menu.js"></script> -->
+<script src="<?php echo base_url('assets/fontend/') ?>js/mobile-menu-init.js"></script>
+<script src="<?php echo base_url('assets/fontend/') ?>js/wow.min.js"></script>
+<script src="<?php echo base_url('assets/fontend/') ?>js/lightbox-plus-jquery.min.js"></script>
+<script>
+    new WOW().init();
+</script>
+<link rel="stylesheet" href="<?php echo base_url('assets/fontend/') ?>css/flatpickr.min.css" />
+<script src="<?php echo base_url('assets/fontend/') ?>js/flatpickr.js"></script>
+
+<!-- feather icon -->
+<script src="<?php echo base_url('assets/fontend/') ?>js/feather.min.js"></script>
+<script>
+    feather.replace();
+</script>
+<script src="<?php echo base_url('assets/fontend/') ?>js/toastr.min.js"></script>
+<script type="text/javascript"></script>
+<script src="<?php echo base_url('assets/fontend/') ?>js/owl.carousel.min.js"></script>
+<script src="<?php echo base_url('assets/fontend/') ?>js/jquery.syotimer.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $(".main_slider").owlCarousel({
+            items: 1,
+            loop: true,
+            dots: false,
+            autoplay: true,
+            nav: true,
+            autoplayHoverPause: false,
+            margin: 0,
+            mouseDrag: true,
+            smartSpeed: 8000,
+            autoplayTimeout: 3000,
+            animateOut: "fadeOutDown",
+            animateIn: "slideInDown",
+
+            navText: ["<i class='fa-solid fa-angle-left'></i>",
+                "<i class='fa-solid fa-angle-right'></i>"
+            ],
         });
-    </script>
-    <script>
-        $(document).ready(function () {
-            $(".hotdeals-slider").owlCarousel({
-                margin: 15,
-                loop: true,
-                dots: false,
-                autoplay: true,
-                autoplayTimeout: 6000,
-                autoplayHoverPause: true,
-                responsiveClass: true,
-                responsive: {
-                    0: {
-                        items: 3,
-                        nav: true,
-                    },
-                    600: {
-                        items: 3,
-                        nav: false,
-                    },
-                    1000: {
-                        items: 6,
-                        nav: true,
-                        loop: false,
-                    },
+    });
+</script>
+<script>
+    $(document).ready(function() {
+        $(".hotdeals-slider").owlCarousel({
+            margin: 15,
+            loop: true,
+            dots: false,
+            autoplay: true,
+            autoplayTimeout: 6000,
+            autoplayHoverPause: true,
+            responsiveClass: true,
+            responsive: {
+                0: {
+                    items: 3,
+                    nav: true,
                 },
-            });
-        });
-    </script>
-    <script>
-        $(document).ready(function () {
-            $(".topcategory").owlCarousel({
-                margin: 15,
-                loop: true,
-                dots: false,
-                autoplay: true,
-                autoplayTimeout: 6000,
-                autoplayHoverPause: true,
-                responsiveClass: true,
-                responsive: {
-                    0: {
-                        items: 2,
-                        nav: true,
-                    },
-                    600: {
-                        items: 5,
-                        nav: false,
-                    },
-                    1000: {
-                        items: 8,
-                        nav: false,
-                        loop: true,
-                    },
+                600: {
+                    items: 3,
+                    nav: false,
                 },
-            });
-        });
-    </script>
-    <script>
-        $(document).ready(function () {
-            $(".category-slider").owlCarousel({
-                margin: 15,
-                loop: true,
-                dots: false,
-                autoplay: true,
-                autoplayTimeout: 6000,
-                autoplayHoverPause: true,
-                responsiveClass: true,
-                responsive: {
-                    0: {
-                        items: 5,
-                        nav: true,
-                    },
-                    600: {
-                        items: 3,
-                        nav: false,
-                    },
-                    1000: {
-                        items: 8,
-                        nav: true,
-                        loop: false,
-                    },
+                1000: {
+                    items: 6,
+                    nav: true,
+                    loop: false,
                 },
-            });
-
-            $(".product_slider").owlCarousel({
-                margin: 15,
-                items: 6,
-                loop: true,
-                dots: false,
-                autoplay: true,
-                autoplayTimeout: 6000,
-                autoplayHoverPause: true,
-                responsiveClass: true,
-                responsive: {
-                    0: {
-                        items: 2,
-                        nav: false,
-                    },
-                    600: {
-                        items: 5,
-                        nav: false,
-                    },
-                    1000: {
-                        items: 6,
-                        nav: false,
-                    },
+            },
+        });
+    });
+</script>
+<script>
+    $(document).ready(function() {
+        $(".topcategory").owlCarousel({
+            margin: 15,
+            loop: true,
+            dots: false,
+            autoplay: true,
+            autoplayTimeout: 6000,
+            autoplayHoverPause: true,
+            responsiveClass: true,
+            responsive: {
+                0: {
+                    items: 2,
+                    nav: true,
                 },
-            });
-        });
-    </script>
-
-    <script>
-        $("#simple_timer").syotimer({
-            date: new Date(2015, 0, 1),
-            layout: "hms",
-            doubleNumbers: false,
-            effectType: "opacity",
-
-            periodUnit: "d",
-            periodic: true,
-            periodInterval: 1,
-        });
-    </script>
-    <script>
-        $('.wishlist_store').on('click', function () {
-            var id = $(this).data('id');
-            var qty = 1;
-            $("#loading").show();
-            if (id) {
-                $.ajax({
-                    type: "GET",
-                    data: {
-                        'id': id,
-                        'qty': qty ? qty : 1
-                    },
-                    url: "https://www.ozybd.com/wishlist/store",
-                    success: function (data) {
-                        if (data) {
-                            $("#loading").hide();
-                            toastr.success('success', 'Product added in wishlist');
-                            return wishlist_count() + mobile_wishlist_count();
-                        }
-                    }
-                });
-            }
-        });
-
-        $('.wishlist_remove').on('click', function () {
-            var id = $(this).data('id');
-            $("#loading").show();
-            if (id) {
-                $.ajax({
-                    type: "GET",
-                    data: {
-                        'id': id
-                    },
-                    url: "https://www.ozybd.com/wishlist/remove",
-                    success: function (data) {
-                        if (data) {
-                            $("#wishlist").html(data);
-                            $("#loading").hide();
-                            //return wishlist_count();
-                        }
-                    }
-                });
-            }
-        });
-
-        function wishlist_count() {
-            $.ajax({
-                type: "GET",
-                url: "https://www.ozybd.com/wishlist/count",
-                success: function (data) {
-                    if (data) {
-                        $("#wishlist-qty").html(data);
-                    } else {
-                        $("#wishlist-qty").empty();
-                    }
-                }
-            });
-        };
-    </script>
-
-    <script>
-        $(".quick_view").on("click", function () {
-            var id = $(this).data("id");
-            $("#loading").show();
-            if (id) {
-                $.ajax({
-                    type: "GET",
-                    data: {
-                        id: id
-                    },
-                    url: "https://www.ozybd.com/quick-view",
-                    success: function (data) {
-                        if (data) {
-                            $("#custom-modal").html(data);
-                            $("#custom-modal").show();
-                            $("#loading").hide();
-                            $("#page-overlay").show();
-                        }
-                    },
-                });
-            }
-        });
-    </script>
-    <!-- quick view end -->
-    <script>
-        $(document).ready(function () {
-            $(document).on('click', '.detailsFormSubmit', function (e) {
-                e.preventDefault();
-                var colors = $('.variable_color');
-                var color = $(".variable_color:checked").data('color');
-                var size = $(".variable_size:checked").data('size');
-                const productId = $(this).data('id');
-                const addcart = $(this).data('addcart');
-                if (colors.length > 0) {
-                    console.log('this color: ' + colors);
-                    if (!color) {
-                        toastr.warning("Please select a color before adding to the cart.", "Warning");
-                        $('.selector-item_label').addClass('red');
-                        return;
-                    }
-                } else {
-                    console.log('nothing');
-                }
-                $.ajax({
-                    url: 'https://www.ozybd.com/ajax-cart-store',
-                    type: 'POST',
-                    data: {
-                        _token: $('meta[name="csrf-token"]').attr('content'),
-                        id: productId,
-                        color: color,
-                        size: size,
-                        addcart: addcart
-                    },
-                    success: function (response) {
-                        console.log(response);
-                        if (response.success) {
-                            toastr.success("Product add to cart succfully", "Success");
-                            if (response.redirect) {
-                                window.location.href = 'customer/checkout.html';
-                            } else {
-                                $("#page-overlay").show();
-                                $(".mini-cart-wrapper").addClass("active");
-                            }
-                            return cart_count() + mobile_cart() + cart_summary() + mini_cart();
-                        } else if (!response.success) {
-                            toastr.error("Product stock over", "Sorry");
-                        } else {
-                            console.log(response.message || 'Failed to update cart');
-                        }
-                    },
-                    error: function () {
-                        console.log('An error occurred while updating the cart.');
-                    },
-                });
-            });
-        });
-    </script>
-    <!-- cart js start -->
-    <script>
-        $(".addcartbutton").on("click", function () {
-            var id = $(this).data("id");
-            var qty = 1;
-            if (id) {
-                $.ajax({
-                    cache: "false",
-                    type: "GET",
-                    url: "https://www.ozybd.com/add-to-cart/" + id + "/" + qty,
-                    dataType: "json",
-                    success: function (data) {
-                        if (data) {
-                            toastr.success("Success", "Product add to cart successfully");
-                            $(".mini-cart-wrapper").addClass("active");
-                            $("#page-overlay").show();
-                            return cart_count() + mobile_cart() + mini_cart();
-
-                        }
-                    },
-                });
-            }
-        });
-        $(".cart_store").on("click", function () {
-            var id = $(this).data("id");
-            var qty = $(this).parent().find("input").val();
-            if (id) {
-                $.ajax({
-                    type: "GET",
-                    data: {
-                        id: id,
-                        qty: qty ? qty : 1
-                    },
-                    url: "https://www.ozybd.com/cart/store",
-                    success: function (data) {
-                        if (data) {
-                            toastr.success("Success", "Product add to cart succfully");
-                            return cart_count() + mobile_cart() + cart_summary() + mini_cart();
-                        }
-                    },
-                });
-            }
-        });
-
-        $(document).on('click', '.cart_remove', function (e) {
-            var id = $(this).data("id");
-            if (id) {
-                $(this).prop("disabled", true);
-                $.ajax({
-                    type: "GET",
-                    data: {
-                        id: id
-                    },
-                    url: "https://www.ozybd.com/cart/remove",
-                    success: function (data) {
-                        if (data) {
-                            $(".cartlist").html(data);
-                            return cart_count() + mobile_cart() + cart_summary() + mini_cart();
-                        }
-                    },
-                });
-            }
-        });
-
-        $(document).on('click', '.cart_increment', function (e) {
-            var id = $(this).data("id");
-            if (id) {
-                $.ajax({
-                    type: "GET",
-                    data: {
-                        id: id
-                    },
-                    url: "https://www.ozybd.com/cart/increment",
-                    success: function (data) {
-                        if (data) {
-                            $(".cartlist").html(data);
-                            return cart_count() + mobile_cart() + cart_summary() + mini_cart();
-                        }
-                    },
-                });
-            }
-        });
-
-        $(document).on('click', '.cart_decrement', function (e) {
-            var id = $(this).data("id");
-            if (id) {
-                $.ajax({
-                    type: "GET",
-                    data: {
-                        id: id
-                    },
-                    url: "https://www.ozybd.com/cart/decrement",
-                    success: function (data) {
-                        if (data) {
-                            $(".cartlist").html(data);
-                            return cart_count() + mobile_cart() + cart_summary() + mini_cart();
-                        }
-                    },
-                });
-            }
-        });
-
-        function cart_count() {
-            $.ajax({
-                type: "GET",
-                url: "https://www.ozybd.com/cart/count",
-                success: function (data) {
-                    if (data) {
-                        $("#cart-qty").html(data);
-                    } else {
-                        $("#cart-qty").empty();
-                    }
+                600: {
+                    items: 5,
+                    nav: false,
                 },
-            });
-        }
-
-        function mobile_cart() {
-            $.ajax({
-                type: "GET",
-                url: "https://www.ozybd.com/mobilecart/count",
-                success: function (data) {
-                    if (data) {
-                        $(".mobilecart-qty").html(data);
-                    } else {
-                        $(".mobilecart-qty").empty();
-                    }
+                1000: {
+                    items: 8,
+                    nav: false,
+                    loop: true,
                 },
-            });
-        }
-
-        function cart_summary() {
-            $.ajax({
-                type: "GET",
-                url: "https://www.ozybd.com/shipping-charge",
-                dataType: "html",
-                success: function (response) {
-                    $(".cart-summary").html(response);
+            },
+        });
+    });
+</script>
+<script>
+    $(document).ready(function() {
+        $(".category-slider").owlCarousel({
+            margin: 15,
+            loop: true,
+            dots: false,
+            autoplay: true,
+            autoplayTimeout: 6000,
+            autoplayHoverPause: true,
+            responsiveClass: true,
+            responsive: {
+                0: {
+                    items: 5,
+                    nav: true,
                 },
-            });
-        }
-        function mini_cart() {
-            $.ajax({
-                type: "GET",
-                url: "https://www.ozybd.com/mini/cart",
-                dataType: "html",
-                success: function (data) {
-                    $(".mini-cart-wrapper").html(data);
+                600: {
+                    items: 3,
+                    nav: false,
                 },
-            });
-        }
-
-
-    </script>
-
-    <!--Compare js -->
-
-    <script>
-        // get type
-
-        $(".compare_store").on("click", function () {
-            var id = $(this).data("id");
-            if (id) {
-                $.ajax({
-                    cache: "false",
-                    type: "GET",
-                    url: "https://www.ozybd.com/add-to-compare/" + id,
-                    dataType: "json",
-                    success: function (data) {
-                        if (data) {
-                            toastr.success('Success', 'Product add to cart successfully');
-                            return compare_count();
-                        }
-                    },
-                });
-            }
+                1000: {
+                    items: 8,
+                    nav: true,
+                    loop: false,
+                },
+            },
         });
 
-        function compare_content() {
-            $.ajax({
-                type: "GET",
-                url: "https://www.ozybd.com/compare/content",
-                dataType: "html",
-                success: function (compareinfo) {
-                    toastr.success('Product add in compare', '');
-                    $('#compareContent').html(compareinfo);
-                }
-            });
-        }
-    </script>
+        $(".product_slider").owlCarousel({
+            margin: 15,
+            items: 6,
+            loop: true,
+            dots: false,
+            autoplay: true,
+            autoplayTimeout: 6000,
+            autoplayHoverPause: true,
+            responsiveClass: true,
+            responsive: {
+                0: {
+                    items: 2,
+                    nav: false,
+                },
+                600: {
+                    items: 5,
+                    nav: false,
+                },
+                1000: {
+                    items: 6,
+                    nav: false,
+                },
+            },
+        });
+    });
+</script>
 
-    <!-- cart js end -->
-    <script>
-        $(".search_click").on("keyup change", function () {
-            var keyword = $(".search_keyword").val();
+<script>
+    $("#simple_timer").syotimer({
+        date: new Date(2015, 0, 1),
+        layout: "hms",
+        doubleNumbers: false,
+        effectType: "opacity",
+
+        periodUnit: "d",
+        periodic: true,
+        periodInterval: 1,
+    });
+</script>
+<script>
+    $('.wishlist_store').on('click', function() {
+        var id = $(this).data('id');
+        var qty = 1;
+        $("#loading").show();
+        if (id) {
             $.ajax({
                 type: "GET",
                 data: {
-                    keyword: keyword
+                    'id': id,
+                    'qty': qty ? qty : 1
                 },
-                url: "https://www.ozybd.com/livesearch",
-                success: function (products) {
-                    if (products) {
-                        $(".search_result").html(products);
-                    } else {
-                        $(".search_result").empty();
-                    }
-                },
-            });
-        });
-        $(".msearch_click").on("keyup change", function () {
-            var keyword = $(".msearch_keyword").val();
-            $.ajax({
-                type: "GET",
-                data: {
-                    keyword: keyword
-                },
-                url: "https://www.ozybd.com/livesearch",
-                success: function (products) {
-                    if (products) {
+                url: "https://www.ozybd.com/wishlist/store",
+                success: function(data) {
+                    if (data) {
                         $("#loading").hide();
-                        $(".search_result").html(products);
-                    } else {
-                        $(".search_result").empty();
+                        toastr.success('success', 'Product added in wishlist');
+                        return wishlist_count() + mobile_wishlist_count();
                     }
-                },
+                }
             });
-        });
-    </script>
-    <!-- search js start -->
+        }
+    });
 
-    <script>
-        $(".district").on("change", function () {
-            var id = $(this).val();
+    $('.wishlist_remove').on('click', function() {
+        var id = $(this).data('id');
+        $("#loading").show();
+        if (id) {
+            $.ajax({
+                type: "GET",
+                data: {
+                    'id': id
+                },
+                url: "https://www.ozybd.com/wishlist/remove",
+                success: function(data) {
+                    if (data) {
+                        $("#wishlist").html(data);
+                        $("#loading").hide();
+                        //return wishlist_count();
+                    }
+                }
+            });
+        }
+    });
+
+    function wishlist_count() {
+        $.ajax({
+            type: "GET",
+            url: "https://www.ozybd.com/wishlist/count",
+            success: function(data) {
+                if (data) {
+                    $("#wishlist-qty").html(data);
+                } else {
+                    $("#wishlist-qty").empty();
+                }
+            }
+        });
+    };
+</script>
+
+<script>
+    $(".quick_view").on("click", function() {
+        var id = $(this).data("id");
+        $("#loading").show();
+        if (id) {
             $.ajax({
                 type: "GET",
                 data: {
                     id: id
                 },
-                url: "https://www.ozybd.com/districts",
-                success: function (res) {
-                    if (res) {
-                        $(".area").empty();
-                        $(".area").append('<option value="">Select..</option>');
-                        $.each(res, function (key, value) {
-                            $(".area").append('<option value="' + key + '" >' + value +
-                                "</option>");
-                        });
-                    } else {
-                        $(".area").empty();
+                url: "https://www.ozybd.com/quick-view",
+                success: function(data) {
+                    if (data) {
+                        $("#custom-modal").html(data);
+                        $("#custom-modal").show();
+                        $("#loading").hide();
+                        $("#page-overlay").show();
                     }
                 },
             });
-        });
-    </script>
-    <script>
-        $(".toggle").on("click", function () {
-            $("#page-overlay").show();
-            $(".mobile-menu").addClass("active");
-        });
-        $(".cart-toggle").on("click", function () {
-            $(".mini-cart-wrapper").addClass("active");
-        });
-        $(document).on('click', '.cart-toggle-button', function (e) {
-            $("#page-overlay").show();
-            $(".mini-cart-wrapper").addClass("active");
-        });
-        $(".toggle-desktop").on("click", function () {
-            $("#page-overlay").show();
-            $(".desktop-menu").addClass("active");
-        });
-
-        $("#page-overlay").on("click", function () {
-            $("#page-overlay").hide();
-            $(".mobile-menu").removeClass("active");
-            $(".feature-products").removeClass("active");
-            $(".mini-cart-wrapper").removeClass("active");
-        });
-
-        $(".mobile-menu-close").on("click", function () {
-            $("#page-overlay").hide();
-            $(".mobile-menu").removeClass("active");
-        });
-
-        $(".desktop-menu-close").on("click", function () {
-            $("#page-overlay").hide();
-            $(".desktop-menu").removeClass("active");
-        });
-
-        $(".mobile-filter-toggle").on("click", function () {
-            $("#page-overlay").show();
-            $(".feature-products").addClass("active");
-        });
-        $(document).on('click', '.mini-close-button', function (e) {
-            $(".mini-cart-wrapper").removeClass("active");
-            $("#page-overlay").hide();
-        });
-    </script>
-    <script>
-        $(document).ready(function () {
-            var timer;
-
-            function addAndRemoveClass() {
-                // Add the class
-                $(".order_place").addClass("custom-shake");
-
-                // Wait for 2 seconds and then remove the class
-                // Wait for 2 seconds and then remove the class
-                timer = setTimeout(function () {
-                    $(".order_place").removeClass("custom-shake");
-                    timer = setTimeout(addAndRemoveClass, 2000);
-                }, 2000);
-            }
-
-            // Initial call to start the cycle
-            addAndRemoveClass();
-
-            // Pause the cycle when mouse enters the element
-            $(".order_place").mouseenter(function () {
-                clearTimeout(timer); // Clear the timer
-            });
-
-            // Resume the cycle when mouse leaves the element
-            $(".order_place").mouseleave(function () {
-                addAndRemoveClass(); // Restart the cycle
-            });
-        });
-    </script>
-    <script>
-        $(document).ready(function () {
-            $(".parent-category").each(function () {
-                const menuCatToggle = $(this).find(".menu-category-toggle");
-                const secondNav = $(this).find(".second-nav");
-
-                menuCatToggle.on("click", function () {
-                    menuCatToggle.toggleClass("active");
-                    secondNav.slideToggle("fast");
-                    $(this).closest(".parent-category").toggleClass("active");
-                });
-            });
-            $(".parent-subcategory").each(function () {
-                const menuSubcatToggle = $(this).find(".menu-subcategory-toggle");
-                const thirdNav = $(this).find(".third-nav");
-
-                menuSubcatToggle.on("click", function () {
-                    menuSubcatToggle.toggleClass("active");
-                    thirdNav.slideToggle("fast");
-                    $(this).closest(".parent-subcategory").toggleClass("active");
-                });
-            });
-        });
-    </script>
-
-    <script>
-        var menu = new MmenuLight(document.querySelector("#menu"), "all");
-
-        var navigator = menu.navigation({
-            selectedClass: "Selected",
-            slidingSubmenus: true,
-            // theme: 'dark',
-            title: "ক্যাটাগরি",
-        });
-
-        var drawer = menu.offcanvas({
-            // position: 'left'
-        });
-
-        //  Open the menu.
-        document.querySelector('a[href="#menu"]').addEventListener("click", (evnt) => {
-            evnt.preventDefault();
-            drawer.open();
-        });
-    </script>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            window.addEventListener("scroll", function () {
-                if (window.scrollY > 200) {
-                    document.getElementById("navbar_top").classList.add("fixed-top");
-                } else {
-                    document.getElementById("navbar_top").classList.remove("fixed-top");
-                    document.body.style.paddingTop = "0";
+        }
+    });
+</script>
+<!-- quick view end -->
+<script>
+    $(document).ready(function() {
+        $(document).on('click', '.detailsFormSubmit', function(e) {
+            e.preventDefault();
+            var colors = $('.variable_color');
+            var color = $(".variable_color:checked").data('color');
+            var size = $(".variable_size:checked").data('size');
+            const productId = $(this).data('id');
+            const addcart = $(this).data('addcart');
+            if (colors.length > 0) {
+                console.log('this color: ' + colors);
+                if (!color) {
+                    toastr.warning("Please select a color before adding to the cart.", "Warning");
+                    $('.selector-item_label').addClass('red');
+                    return;
                 }
+            } else {
+                console.log('nothing');
+            }
+            $.ajax({
+                url: 'https://www.ozybd.com/ajax-cart-store',
+                type: 'POST',
+                data: {
+                    _token: $('meta[name="csrf-token"]').attr('content'),
+                    id: productId,
+                    color: color,
+                    size: size,
+                    addcart: addcart
+                },
+                success: function(response) {
+                    console.log(response);
+                    if (response.success) {
+                        toastr.success("Product add to cart succfully", "Success");
+                        if (response.redirect) {
+                            window.location.href = 'customer/checkout.html';
+                        } else {
+                            $("#page-overlay").show();
+                            $(".mini-cart-wrapper").addClass("active");
+                        }
+                        return cart_count() + mobile_cart() + cart_summary() + mini_cart();
+                    } else if (!response.success) {
+                        toastr.error("Product stock over", "Sorry");
+                    } else {
+                        console.log(response.message || 'Failed to update cart');
+                    }
+                },
+                error: function() {
+                    console.log('An error occurred while updating the cart.');
+                },
             });
         });
+    });
+</script>
+<!-- cart js start -->
+<script>
+    $(".addcartbutton").on("click", function() {
+        var id = $(this).data("id");
+        var qty = 1;
+        if (id) {
+            $.ajax({
+                cache: "false",
+                type: "GET",
+                url: "https://www.ozybd.com/add-to-cart/" + id + "/" + qty,
+                dataType: "json",
+                success: function(data) {
+                    if (data) {
+                        toastr.success("Success", "Product add to cart successfully");
+                        $(".mini-cart-wrapper").addClass("active");
+                        $("#page-overlay").show();
+                        return cart_count() + mobile_cart() + mini_cart();
 
-        $(window).scroll(function () {
-            if ($(this).scrollTop() > 50) {
-                $(".scrolltop:hidden").stop(true, true).fadeIn();
-            } else {
-                $(".scrolltop").stop(true, true).fadeOut();
+                    }
+                },
+            });
+        }
+    });
+    $(".cart_store").on("click", function() {
+        var id = $(this).data("id");
+        var qty = $(this).parent().find("input").val();
+        if (id) {
+            $.ajax({
+                type: "GET",
+                data: {
+                    id: id,
+                    qty: qty ? qty : 1
+                },
+                url: "https://www.ozybd.com/cart/store",
+                success: function(data) {
+                    if (data) {
+                        toastr.success("Success", "Product add to cart succfully");
+                        return cart_count() + mobile_cart() + cart_summary() + mini_cart();
+                    }
+                },
+            });
+        }
+    });
+
+    $(document).on('click', '.cart_remove', function(e) {
+        var id = $(this).data("id");
+        if (id) {
+            $(this).prop("disabled", true);
+            $.ajax({
+                type: "GET",
+                data: {
+                    id: id
+                },
+                url: "https://www.ozybd.com/cart/remove",
+                success: function(data) {
+                    if (data) {
+                        $(".cartlist").html(data);
+                        return cart_count() + mobile_cart() + cart_summary() + mini_cart();
+                    }
+                },
+            });
+        }
+    });
+
+    $(document).on('click', '.cart_increment', function(e) {
+        var id = $(this).data("id");
+        if (id) {
+            $.ajax({
+                type: "GET",
+                data: {
+                    id: id
+                },
+                url: "https://www.ozybd.com/cart/increment",
+                success: function(data) {
+                    if (data) {
+                        $(".cartlist").html(data);
+                        return cart_count() + mobile_cart() + cart_summary() + mini_cart();
+                    }
+                },
+            });
+        }
+    });
+
+    $(document).on('click', '.cart_decrement', function(e) {
+        var id = $(this).data("id");
+        if (id) {
+            $.ajax({
+                type: "GET",
+                data: {
+                    id: id
+                },
+                url: "https://www.ozybd.com/cart/decrement",
+                success: function(data) {
+                    if (data) {
+                        $(".cartlist").html(data);
+                        return cart_count() + mobile_cart() + cart_summary() + mini_cart();
+                    }
+                },
+            });
+        }
+    });
+
+    function cart_count() {
+        $.ajax({
+            type: "GET",
+            url: "https://www.ozybd.com/cart/count",
+            success: function(data) {
+                if (data) {
+                    $("#cart-qty").html(data);
+                } else {
+                    $("#cart-qty").empty();
+                }
+            },
+        });
+    }
+
+    function mobile_cart() {
+        $.ajax({
+            type: "GET",
+            url: "https://www.ozybd.com/mobilecart/count",
+            success: function(data) {
+                if (data) {
+                    $(".mobilecart-qty").html(data);
+                } else {
+                    $(".mobilecart-qty").empty();
+                }
+            },
+        });
+    }
+
+    function cart_summary() {
+        $.ajax({
+            type: "GET",
+            url: "https://www.ozybd.com/shipping-charge",
+            dataType: "html",
+            success: function(response) {
+                $(".cart-summary").html(response);
+            },
+        });
+    }
+
+    function mini_cart() {
+        $.ajax({
+            type: "GET",
+            url: "https://www.ozybd.com/mini/cart",
+            dataType: "html",
+            success: function(data) {
+                $(".mini-cart-wrapper").html(data);
+            },
+        });
+    }
+</script>
+
+<!--Compare js -->
+
+<script>
+    // get type
+
+    $(".compare_store").on("click", function() {
+        var id = $(this).data("id");
+        if (id) {
+            $.ajax({
+                cache: "false",
+                type: "GET",
+                url: "https://www.ozybd.com/add-to-compare/" + id,
+                dataType: "json",
+                success: function(data) {
+                    if (data) {
+                        toastr.success('Success', 'Product add to cart successfully');
+                        return compare_count();
+                    }
+                },
+            });
+        }
+    });
+
+    function compare_content() {
+        $.ajax({
+            type: "GET",
+            url: "https://www.ozybd.com/compare/content",
+            dataType: "html",
+            success: function(compareinfo) {
+                toastr.success('Product add in compare', '');
+                $('#compareContent').html(compareinfo);
             }
         });
-        $(function () {
-            $(".scroll").click(function () {
-                $("html,body").animate({
-                    scrollTop: $(".gotop").offset().top
-                }, "1000");
-                return false;
+    }
+</script>
+
+<!-- cart js end -->
+<script>
+    $(".search_click").on("keyup change", function() {
+        var keyword = $(".search_keyword").val();
+        $.ajax({
+            type: "GET",
+            data: {
+                keyword: keyword
+            },
+            url: "https://www.ozybd.com/livesearch",
+            success: function(products) {
+                if (products) {
+                    $(".search_result").html(products);
+                } else {
+                    $(".search_result").empty();
+                }
+            },
+        });
+    });
+    $(".msearch_click").on("keyup change", function() {
+        var keyword = $(".msearch_keyword").val();
+        $.ajax({
+            type: "GET",
+            data: {
+                keyword: keyword
+            },
+            url: "https://www.ozybd.com/livesearch",
+            success: function(products) {
+                if (products) {
+                    $("#loading").hide();
+                    $(".search_result").html(products);
+                } else {
+                    $(".search_result").empty();
+                }
+            },
+        });
+    });
+</script>
+<!-- search js start -->
+
+<script>
+    $(".district").on("change", function() {
+        var id = $(this).val();
+        $.ajax({
+            type: "GET",
+            data: {
+                id: id
+            },
+            url: "https://www.ozybd.com/districts",
+            success: function(res) {
+                if (res) {
+                    $(".area").empty();
+                    $(".area").append('<option value="">Select..</option>');
+                    $.each(res, function(key, value) {
+                        $(".area").append('<option value="' + key + '" >' + value +
+                            "</option>");
+                    });
+                } else {
+                    $(".area").empty();
+                }
+            },
+        });
+    });
+</script>
+<script>
+    $(".toggle").on("click", function() {
+        $("#page-overlay").show();
+        $(".mobile-menu").addClass("active");
+    });
+    $(".cart-toggle").on("click", function() {
+        $(".mini-cart-wrapper").addClass("active");
+    });
+    $(document).on('click', '.cart-toggle-button', function(e) {
+        $("#page-overlay").show();
+        $(".mini-cart-wrapper").addClass("active");
+    });
+    $(".toggle-desktop").on("click", function() {
+        $("#page-overlay").show();
+        $(".desktop-menu").addClass("active");
+    });
+
+    $("#page-overlay").on("click", function() {
+        $("#page-overlay").hide();
+        $(".mobile-menu").removeClass("active");
+        $(".feature-products").removeClass("active");
+        $(".mini-cart-wrapper").removeClass("active");
+    });
+
+    $(".mobile-menu-close").on("click", function() {
+        $("#page-overlay").hide();
+        $(".mobile-menu").removeClass("active");
+    });
+
+    $(".desktop-menu-close").on("click", function() {
+        $("#page-overlay").hide();
+        $(".desktop-menu").removeClass("active");
+    });
+
+    $(".mobile-filter-toggle").on("click", function() {
+        $("#page-overlay").show();
+        $(".feature-products").addClass("active");
+    });
+    $(document).on('click', '.mini-close-button', function(e) {
+        $(".mini-cart-wrapper").removeClass("active");
+        $("#page-overlay").hide();
+    });
+</script>
+<script>
+    $(document).ready(function() {
+        var timer;
+
+        function addAndRemoveClass() {
+            // Add the class
+            $(".order_place").addClass("custom-shake");
+
+            // Wait for 2 seconds and then remove the class
+            // Wait for 2 seconds and then remove the class
+            timer = setTimeout(function() {
+                $(".order_place").removeClass("custom-shake");
+                timer = setTimeout(addAndRemoveClass, 2000);
+            }, 2000);
+        }
+
+        // Initial call to start the cycle
+        addAndRemoveClass();
+
+        // Pause the cycle when mouse enters the element
+        $(".order_place").mouseenter(function() {
+            clearTimeout(timer); // Clear the timer
+        });
+
+        // Resume the cycle when mouse leaves the element
+        $(".order_place").mouseleave(function() {
+            addAndRemoveClass(); // Restart the cycle
+        });
+    });
+</script>
+<script>
+    $(document).ready(function() {
+        $(".parent-category").each(function() {
+            const menuCatToggle = $(this).find(".menu-category-toggle");
+            const secondNav = $(this).find(".second-nav");
+
+            menuCatToggle.on("click", function() {
+                menuCatToggle.toggleClass("active");
+                secondNav.slideToggle("fast");
+                $(this).closest(".parent-category").toggleClass("active");
             });
         });
-    </script>
-    <script>
-        $(".filter_btn").click(function () {
-            $(".filter_sidebar").addClass("active");
-            $("body").css("overflow-y", "hidden");
-        });
-        $(".filter_close").click(function () {
-            $(".filter_sidebar").removeClass("active");
-            $("body").css("overflow-y", "auto");
-        });
-    </script>
+        $(".parent-subcategory").each(function() {
+            const menuSubcatToggle = $(this).find(".menu-subcategory-toggle");
+            const thirdNav = $(this).find(".third-nav");
 
-    <!-- -->
-    <!--<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W9QKMSWL" height="0" width="0" style="display: none; visibility: hidden;"></iframe></noscript>-->
+            menuSubcatToggle.on("click", function() {
+                menuSubcatToggle.toggleClass("active");
+                thirdNav.slideToggle("fast");
+                $(this).closest(".parent-subcategory").toggleClass("active");
+            });
+        });
+    });
+</script>
 
-    <!--
+<!-- <script>
+    var menu = new MmenuLight(document.querySelector("#menu"), "all");
+
+    var navigator = menu.navigation({
+        selectedClass: "Selected",
+        slidingSubmenus: true,
+        // theme: 'dark',
+        title: "ক্যাটাগরি",
+    });
+
+    var drawer = menu.offcanvas({
+        // position: 'left'
+    });
+
+    //  Open the menu.
+    document.querySelector('a[href="#menu"]').addEventListener("click", (evnt) => {
+        evnt.preventDefault();
+        drawer.open();
+    });
+</script> -->
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        window.addEventListener("scroll", function() {
+            if (window.scrollY > 200) {
+                document.getElementById("navbar_top").classList.add("fixed-top");
+            } else {
+                document.getElementById("navbar_top").classList.remove("fixed-top");
+                document.body.style.paddingTop = "0";
+            }
+        });
+    });
+
+    $(window).scroll(function() {
+        if ($(this).scrollTop() > 50) {
+            $(".scrolltop:hidden").stop(true, true).fadeIn();
+        } else {
+            $(".scrolltop").stop(true, true).fadeOut();
+        }
+    });
+    $(function() {
+        $(".scroll").click(function() {
+            $("html,body").animate({
+                scrollTop: $(".gotop").offset().top
+            }, "1000");
+            return false;
+        });
+    });
+</script>
+<script>
+    $(".filter_btn").click(function() {
+        $(".filter_sidebar").addClass("active");
+        $("body").css("overflow-y", "hidden");
+    });
+    $(".filter_close").click(function() {
+        $(".filter_sidebar").removeClass("active");
+        $("body").css("overflow-y", "auto");
+    });
+</script>
+
+<!-- -->
+<!--<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W9QKMSWL" height="0" width="0" style="display: none; visibility: hidden;"></iframe></noscript>-->
+
+<!--
 -->
 
-    <!-- Google Tag Manager (noscript) -->
-    <!-- <noscript><iframe src="https://analytic.ozybd.com/ns.html?id=GTM-W9QKMSWL" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript> -->
-    <!-- End Google Tag Manager (noscript) -->
+<!-- Google Tag Manager (noscript) -->
+<!-- <noscript><iframe src="https://analytic.ozybd.com/ns.html?id=GTM-W9QKMSWL" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript> -->
+<!-- End Google Tag Manager (noscript) -->
 
 
 </body>

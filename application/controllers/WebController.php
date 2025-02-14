@@ -25,6 +25,26 @@ class WebController extends CI_Controller
 		$this->load->view('fontend/layout', $data);
 	}
 
+	// Category Wise Products Page
+	public function categoryView($catTag)
+	{
+		$data['title'] = 'Hand Bag';
+		$data['front_content'] = 'page/category_wise_products';
+		$this->load->view('fontend/layout', $data);
+	}
+
+	public function category()
+	{
+		$data['title'] = 'Home';
+		// $data['sliders'] = $this->db->query("select * from tbl_sliders where status = 'a'")->result();
+		// $data['products'] = $this->db->query("select * from tbl_product where status = 'a' and is_website = 'true' and is_active = 'true' ORDER BY Product_SlNo DESC limit 30")->result();
+		// $data['img_url'] = $this->db->query("select * from tbl_content")->row()->soft_url;
+		// $data['categories'] = $this->db->query("select * from tbl_productcategory where status = 'a' order by ProductCategory_SlNo desc")->result();
+		// $data['about'] = $this->db->query("select * from tbl_abouts")->row();
+		$data['front_content'] = 'page/home';
+		$this->load->view('fontend/layout', $data);
+	}
+
 	public function contactUs()
 	{
 		$data['title'] = 'Contact Us';

@@ -4,8 +4,23 @@
 
 
 :root {
+    /* --primary-color: #128282;
+    --primary-hover-color: #e9f0ee;
+    --primary-color-dark: #128282;
+    --primary-color-light: #128282;
+    --primary-color-success: #388e3c;
+    --secondary-color: #41bce1;
+    --site-light-color: #e9eff0;
+    --text-highlight: #000;
+    --bg-color: #eaeaea;
+    --bg--gray: "gray";
+    --text-color: "#fff"; */
+
     --background-color: #f7f7f7;
-    --primary-color: #000;
+    --primary-color: #167389;
+    --primary-color-dark: #167389;
+    --primary-color-light: #167389;
+    --primary-color-success: #388e3c;
     --secondary-color: #00aef0;
     --secondary-color-extra: #ffbe02;
     --en-font: "Maven Pro", sans-serif;
@@ -26,7 +41,7 @@ body {
     font-style: normal;
     font-weight: 400;
     font-display: swap;
-    src: url(https://fonts.gstatic.com/s/jost/v15/92zPtBhPNqw79Ij1E865zBUv7myjJQVF.woff) format('woff')
+    src: url('/assets/fontend/fonts/jost/v15/92zPtBhPNqw79Ij1E865zBUv7myjJQVF.woff') format('woff')
 }
 
 @font-face {
@@ -34,7 +49,7 @@ body {
     font-style: normal;
     font-weight: 500;
     font-display: swap;
-    src: url(https://fonts.gstatic.com/s/jost/v15/92zPtBhPNqw79Ij1E865zBUv7myRJQVF.woff) format('woff')
+    src: url('/assets/fontend/fonts/jost/v15/92zPtBhPNqw79Ij1E865zBUv7myRJQVF.woff') format('woff')
 }
 
 @font-face {
@@ -42,7 +57,7 @@ body {
     font-style: normal;
     font-weight: 600;
     font-display: swap;
-    src: url(https://fonts.gstatic.com/s/jost/v15/92zPtBhPNqw79Ij1E865zBUv7mx9IgVF.woff) format('woff')
+    src: url('/assets/fontend/fonts/jost/v15/92zPtBhPNqw79Ij1E865zBUv7mx9IgVF.woff') format('woff')
 }
 
 @font-face {
@@ -50,7 +65,7 @@ body {
     font-style: normal;
     font-weight: 400;
     font-display: swap;
-    src: url(https://fonts.gstatic.com/s/jost/v15/92zatBhPNqw73oDd4jQmfxIC7w.woff2) format('woff2');
+    src: url('/assets/fontend/fonts/jost/v15/92zatBhPNqw73oDd4jQmfxIC7w.woff2') format('woff2');
     unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116
 }
 
@@ -59,7 +74,7 @@ body {
     font-style: normal;
     font-weight: 400;
     font-display: swap;
-    src: url(https://fonts.gstatic.com/s/jost/v15/92zatBhPNqw73ord4jQmfxIC7w.woff2) format('woff2');
+    src: url('/assets/fontend/fonts/jost/v15/92zatBhPNqw73ord4jQmfxIC7w.woff2') format('woff2');
     unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF
 }
 
@@ -68,7 +83,7 @@ body {
     font-style: normal;
     font-weight: 400;
     font-display: swap;
-    src: url(https://fonts.gstatic.com/s/jost/v15/92zatBhPNqw73oTd4jQmfxI.woff2) format('woff2');
+    src: url('/assets/fontend/fonts/jost/v15/92zatBhPNqw73oTd4jQmfxI.woff2') format('woff2');
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD
 }
 
@@ -77,7 +92,7 @@ body {
     font-style: normal;
     font-weight: 500;
     font-display: swap;
-    src: url(https://fonts.gstatic.com/s/jost/v15/92zatBhPNqw73oDd4jQmfxIC7w.woff2) format('woff2');
+    src: url('/assets/fontend/fonts/jost/v15/92zatBhPNqw73oDd4jQmfxIC7w.woff2') format('woff2');
     unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116
 }
 
@@ -86,7 +101,7 @@ body {
     font-style: normal;
     font-weight: 500;
     font-display: swap;
-    src: url(https://fonts.gstatic.com/s/jost/v15/92zatBhPNqw73ord4jQmfxIC7w.woff2) format('woff2');
+    src: url('/assets/fontend/fonts/jost/v15/92zatBhPNqw73ord4jQmfxIC7w.woff2') format('woff2');
     unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF
 }
 
@@ -95,7 +110,7 @@ body {
     font-style: normal;
     font-weight: 500;
     font-display: swap;
-    src: url(https://fonts.gstatic.com/s/jost/v15/92zatBhPNqw73oTd4jQmfxI.woff2) format('woff2');
+    src: url('/assets/fontend/fonts/jost/v15/92zatBhPNqw73oTd4jQmfxI.woff2') format('woff2');
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD
 }
 
@@ -104,7 +119,7 @@ body {
     font-style: normal;
     font-weight: 600;
     font-display: swap;
-    src: url(https://fonts.gstatic.com/s/jost/v15/92zatBhPNqw73oDd4jQmfxIC7w.woff2) format('woff2');
+    src: url('/assets/fontend/fonts/jost/v15/92zatBhPNqw73oDd4jQmfxIC7w.woff2') format('woff2');
     unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116
 }
 
@@ -113,7 +128,7 @@ body {
     font-style: normal;
     font-weight: 600;
     font-display: swap;
-    src: url(https://fonts.gstatic.com/s/jost/v15/92zatBhPNqw73ord4jQmfxIC7w.woff2) format('woff2');
+    src: url('/assets/fontend/fonts/jost/v15/92zatBhPNqw73ord4jQmfxIC7w.woff2') format('woff2');
     unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF
 }
 
@@ -122,7 +137,7 @@ body {
     font-style: normal;
     font-weight: 600;
     font-display: swap;
-    src: url(https://fonts.gstatic.com/s/jost/v15/92zatBhPNqw73oTd4jQmfxI.woff2) format('woff2');
+    src: url('/assets/fontend/fonts/jost/v15/92zatBhPNqw73oTd4jQmfxI.woff2') format('woff2');
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD
 }
 
@@ -551,7 +566,7 @@ li.Newsletter i {
 .main-search form button {
     height: 100%;
     outline: 0;
-    background: var(--primary-color);
+    background: #000;
     width: 11%;
     float: left;
     border-radius: 0;
@@ -671,8 +686,8 @@ li.Newsletter i {
     position: absolute;
     top: -5px;
     right: -12px;
-    background: var(--primary-color);
-    color: #fff;
+    background: #fff;
+    color: var(--primary-color);
     height: 18px;
     width: 18px;
     line-height: 18px;
@@ -874,7 +889,7 @@ li.Newsletter i {
 }
 
 .menu-area {
-    background: var(--primary-color);
+    background: #156274;
     border-bottom: 1px solid #ddd;
 }
 
@@ -987,7 +1002,7 @@ li.Newsletter i {
 
 .catagory_menu {
     padding: 0px;
-    text-align: left;
+    text-align: center;
 }
 
 
@@ -1492,6 +1507,10 @@ section.slider-section {
 
 .footer_nav ul li i {
     font-size: 16px;
+}
+
+.footer_nav ul li a {
+    color: var(--primary-color);
 }
 
 .item_count {
@@ -2096,10 +2115,12 @@ html .ui-button.ui-state-disabled:active {
 
 .sec_title {
     margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #ececec;
 }
 
 .section-title-header {
-    border-bottom: 1px solid #ececec;
     padding-bottom: 10px;
 }
 
@@ -3171,7 +3192,7 @@ section.product-inner {
     font-size: 13px;
     margin-top: 8px;
     text-align: center;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
 }
 
 .wist_item {
@@ -3324,7 +3345,7 @@ section.product-inner {
 }
 
 .pro_price p {
-    color: #bc0306;
+    color: #cf3056;
     font-weight: 500;
     margin-top: 5px;
     text-align: center;
@@ -3890,18 +3911,18 @@ form.sort-form .form-select:focus {
 }
 
 a.view_more_btn {
-    text-align: right;
-    /* float: right; */
     background: var(--primary-color);
     text-transform: capitalize;
     font-size: 15px;
-    padding: 8px 15px;
     color: #fff;
-    font-family: 'Jost';
-    /* border-radius: 50px; */
-    border: 1px solid var(--primary-color);
+    background-image: linear-gradient(to right, var(--primary-color-dark) 50%, var(--primary-color-light) 100%);
     width: 104px;
     text-align: center;
+    border-radius: 4px;
+    height: 30px;
+    padding: 0.3rem 0.65rem;
+    border: none;
+    cursor: pointer;
 }
 
 .register-now.no-account {
@@ -4393,6 +4414,10 @@ ul.child-category {
     text-transform: capitalize;
 }
 
+.cat_name a {
+    font-weight: 500;
+}
+
 .cat_item {
     padding: 10px;
     transition: 0.34s all;
@@ -4425,7 +4450,7 @@ ul.child-category {
     right: 34px !important;
     bottom: 10px !important;
     width: 40px !important;
-    background: var(--primary-color) !important;
+    background: #156274 !important;
     height: 40px !important;
     line-height: 40px !important;
     border-radius: 50% !important;
@@ -4707,7 +4732,8 @@ td.tfoot_bg {
 
 .show_more_btn {
     text-align: center;
-    margin-bottom: 12px;
+    margin-top: 7px;
+    /* margin-bottom: 12px; */
 }
 
 /*==== FOOTER  CSS START ====  */
@@ -4776,7 +4802,7 @@ td.tfoot_bg {
     height: auto;
     width: 217px;
     object-fit: contain;
-    margin-bottom: 12px;
+    /* margin-bottom: 12px; */
 }
 
 .footer-menu .title {
@@ -4793,9 +4819,10 @@ td.tfoot_bg {
 
 .footer-menu ul li a {
     color: #000;
-    margin: 15px 0 !important;
+    /* margin: 15px 0 !important; */
     display: block;
     transition: 0.35s all;
+    font-size: 15px;
 }
 
 .footer-menu ul li a:hover {
@@ -4816,7 +4843,7 @@ td.tfoot_bg {
 
 .copyright p {
     text-align: center;
-    color: #bcb4b4;
+    color: #fff;
     font-weight: 500;
     font-size: 15px;
 }
@@ -4942,6 +4969,7 @@ ul.social_link {
 /*==== CART SIDEBAR CSS STARTS ====  */
 button.cart-toggle-button {
     background: transparent;
+    color: var(--primary-color);
 }
 
 button.cart-toggle-button span {
