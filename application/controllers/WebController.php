@@ -11,15 +11,27 @@ class WebController extends CI_Controller
 		$this->load->library('cart');
 		$this->load->database();
 		$this->limit = 24;
+		$this->img_url = $this->db->query("SELECT * FROM tbl_website_profile LIMIT 1")->row()->Software_Url;
 	}
 
 	public function index()
 	{
 		$data['title'] = 'Home';
+		$data['iurl'] = $this->img_url;
+
+		$categories = $this->db->query("SELECT * FROM tbl_category WHERE status = 'a'")->result();
+
+		foreach ($categories as $cat) {
+			$cat->subCategories = $this->db->query("SELECT sc.*
+				FROM tbl_sub_category sc
+				WHERE sc.Category_SlNo = ?
+				AND sc.status = 'a'
+			", $cat->Category_SlNo)->result();
+		}
+		$data['categories'] = $categories;
+
 		// $data['sliders'] = $this->db->query("select * from tbl_sliders where status = 'a'")->result();
 		// $data['products'] = $this->db->query("select * from tbl_product where status = 'a' and is_website = 'true' and is_active = 'true' ORDER BY Product_SlNo DESC limit 30")->result();
-		// $data['img_url'] = $this->db->query("select * from tbl_content")->row()->soft_url;
-		// $data['categories'] = $this->db->query("select * from tbl_productcategory where status = 'a' order by ProductCategory_SlNo desc")->result();
 		// $data['about'] = $this->db->query("select * from tbl_abouts")->row();
 		$data['front_content'] = 'page/home';
 		$this->load->view('fontend/layout', $data);
@@ -29,6 +41,16 @@ class WebController extends CI_Controller
 	public function categoryView($catTag)
 	{
 		$data['title'] = 'Hand Bag';
+		$data['iurl'] = $this->img_url;
+		$data['front_content'] = 'page/category_wise_products';
+		$this->load->view('fontend/layout', $data);
+	}
+
+	// Category Wise Products Page
+	public function subCategoryView($sCatTag)
+	{
+		$data['title'] = 'Hand Bag';
+		$data['iurl'] = $this->img_url;
 		$data['front_content'] = 'page/category_wise_products';
 		$this->load->view('fontend/layout', $data);
 	}

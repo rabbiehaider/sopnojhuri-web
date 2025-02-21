@@ -1,4 +1,5 @@
 <!-- content end -->
+<?php $fwebsite = $this->db->query("SELECT * FROM tbl_website_profile LIMIT 1")->row(); ?>
 <footer>
     <div class="footer-top">
         <div class="container">
@@ -6,12 +7,12 @@
                 <div class="col-sm-4 mb-3 mb-sm-0">
                     <div class="footer-about">
                         <a href="/">
-                            <img src="<?php echo base_url('assets/fontend/') ?>uploads/settings/sopnojhuri-sidebar-logo.png" alt="" />
+                            <img src="<?php echo $iurl . $fwebsite->Footer_Logo ?>" alt="<?php echo $fwebsite->Website_Name ?>" />
                         </a>
-                        <p style="margin:0 !important;"><a href="#" class="footer-hotlint">Shop. Smile. Repeat.</a></p>
-                        <p>K-85/3,Bhai Bhai Road,Khilkhet, Dhaka 1229</p>
-                        <p><a href="mailto:sopnojhuribd@gmail.com" class="footer-hotlint">sopnojhuribd@gmail.com</a></p>
-                        <p><a href="tel:01870977634" class="footer-hotlint">01870977634</a></p>
+                        <p style="margin:0 !important;"><a href="#" class="footer-hotlint"><?php echo $fwebsite->Website_TagLine ?></a></p>
+                        <p><?php echo $fwebsite->Website_Address ?></p>
+                        <p><a href="mailto:<?php echo $fwebsite->Website_Email ?>" class="footer-hotlint"><?php echo $fwebsite->Website_Email ?></a></p>
+                        <p><a href="tel:<?php echo $fwebsite->Website_Mobile ?>" class="footer-hotlint"><?php echo $fwebsite->Website_Mobile ?></a></p>
                     </div>
                 </div>
                 <!-- col end -->
@@ -82,7 +83,7 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="copyright">
-                        <p>Copyright © <?php echo date('Y'); ?> SopnoJhuri. All Rights Reserved. Design & Developed By <a href="https://mlalonhossain.com/" target="_blank">FARABiE IT</a></p>
+                        <p>Copyright © <?php echo date('Y'); ?> SopnoJhuri. All Rights Reserved. Design & Developed By <a href="<?php echo $fwebsite->Developer_Url ?>" target="_blank"><?php echo $fwebsite->Developed_By ?></a></p>
                     </div>
                 </div>
             </div>
@@ -114,8 +115,7 @@
 
         <li class="mobile_home">
             <a href="/">
-                <img src="<?php echo base_url('assets/fontend/') ?>uploads/settings/sj-fav.png"
-                    alt="" />
+                <img src="<?php echo $iurl . $fwebsite->Mobile_Logo ?>" alt="<?php echo $fwebsite->Website_Name ?>" />
                 <!-- <span><i class="fa-solid fa-home"></i></span> <span>Home</span> -->
             </a>
         </li>

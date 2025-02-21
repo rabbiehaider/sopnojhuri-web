@@ -1,3 +1,4 @@
+<?php $website = $this->db->query("SELECT * FROM tbl_website_profile LIMIT 1")->row(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
@@ -6,7 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- <meta name="csrf-token" content="G3MYR7oERhJ74qLw7kn7hJhWCWaDitFIkh5PZtQB" /> -->
-    <title><?php echo $title ?> - SopnoJhuri - Shop. Smile. Repeat.</title>
+    <title><?php echo $title . ' - ' . $website->Website_Name . ' - ' . $website->Website_TagLine ?></title>
     <link rel="manifest" href="<?php echo base_url('assets/fontend/') ?>json/manifest.json" />
     <!-- App favicon -->
     <!-- <meta name="facebook-domain-verification" content="irkk0bt6na8i9yw1zrib1iiosqm9p3" /> -->
@@ -14,7 +15,7 @@
                         ?>chunks/webpack-a707e99c69361791.js" defer=""></script> -->
     <link rel="preconnect" href="https://fonts.googleapis.com/" />
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="true" />
-    <link rel="shortcut icon" href="<?php echo base_url('assets/fontend/') ?>uploads/settings/sj-fav.png" alt="SopnoJhuri" />
+    <link rel="shortcut icon" href="<?php echo $iurl . $website->Fav_Logo ?>" alt="<?php echo $website->Website_Name ?>" />
     <meta name="author" content="SopnoJhuri" />
     <link rel="canonical" href="#" />
     <meta name="app-url" content="" />
@@ -26,7 +27,7 @@
     <meta property="og:title" content="" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="" />
-    <meta property="og:image" content="<?php echo base_url('assets/fontend/') ?>uploads/settings/sopnojhuri-logo.png" />
+    <meta property="og:image" content="<?php echo $iurl . $website->Header_Logo ?>" />
     <meta property="og:description" content="" />
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
     <link rel="stylesheet" href="<?php echo base_url('assets/fontend/') ?>css/owl.carousel.min.css" />

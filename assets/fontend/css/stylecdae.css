@@ -990,7 +990,7 @@ li.Newsletter i {
 
 .catagory_menu ul li a {
     color: #fff;
-    margin: 0 8px;
+    /* margin: 0 8px; */
     display: block;
     text-transform: capitalize;
     transition: 0.35s all;
@@ -1073,7 +1073,7 @@ li.Newsletter i {
 /*==== CATEGORY SECTION CSS START ====  */
 section.slider-section {
     margin-bottom: 10px;
-    margin-top: 10px;
+    /* margin-top: 10px; */
 }
 
 .home-slider-container {
@@ -4396,7 +4396,7 @@ ul.child-category {
     height: 100px;
     margin: 0 auto;
     width: 100px;
-    border-radius: 50%;
+    /* border-radius: 50%; */
     overflow: hidden;
 }
 
@@ -4404,7 +4404,7 @@ ul.child-category {
     height: 100%;
     object-fit: contain;
     width: 100%;
-    border-radius: 50%;
+    /* border-radius: 50%; */
     padding: 3px;
 }
 

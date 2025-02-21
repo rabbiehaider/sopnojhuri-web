@@ -66,7 +66,7 @@
         justify-content: space-between;
         border-bottom: 1px solid #ddd;
         padding: 14px 15px;
-        background: #550D0E;
+        background: var(--primary-color) !important;
     }
 
     .desktop-menu-close {
@@ -208,12 +208,12 @@
     }
 
     .filter_sidebar.active::-webkit-scrollbar-thumb {
-        background-color: #550D0E;
+        background-color: var(--primary-color) !important;
     }
 
     .filter_btn {
         display: inline-block;
-        background: #550D0E;
+        background: var(--primary-color) !important;
         color: #fff;
         width: 55px;
         height: 33px;
@@ -226,7 +226,7 @@
     }
 
     .filter_close {
-        background: #550D0E;
+        background: var(--primary-color) !important;
         padding: 10px 15px;
         font-size: 18px;
         color: #fff;
@@ -376,7 +376,7 @@
     }
 
     .mobile-menu::-webkit-scrollbar-thumb {
-        background-color: #550D0E;
+        background-color: var(--primary-color) !important;
     }
 
     .mobile-search {
@@ -513,7 +513,7 @@
 
     .parent-subcategory .menu-subcategory-name {
         display: block;
-        padding: 10px;
+        padding: 4px;
         padding-left: 40px;
         text-transform: capitalize;
         font-weight: 600;
