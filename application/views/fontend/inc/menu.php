@@ -27,7 +27,7 @@ foreach ($categories as $cat) {
             <?php foreach ($categories as $key => $category) { ?>
                 <li class="parent-category">
                     <a href="<?php echo base_url() . 'category/' . $category->route ?>" class="menu-category-name">
-                        <img src="<?php echo $iurl . $category->Category_Icon ?>" alt="<?php echo $category->Category_Name ?>" class="side_cat_img" />
+                        <img src="<?php echo $iurl . $category->Category_Image ?>" alt="<?php echo $category->Category_Name ?>" class="side_cat_img" />
                         <?php echo $category->Category_Name ?>
                     </a>
 

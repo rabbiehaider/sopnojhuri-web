@@ -11,13 +11,13 @@ class WebController extends CI_Controller
 		$this->load->library('cart');
 		$this->load->database();
 		$this->limit = 24;
-		$this->img_url = $this->db->query("SELECT * FROM tbl_website_profile LIMIT 1")->row()->Software_Url;
+		$this->website = $this->db->query("SELECT * FROM tbl_website_profile LIMIT 1")->row();
 	}
 
 	public function index()
 	{
-		$data['title'] = 'Home';
-		$data['iurl'] = $this->img_url;
+		$data['title'] = $this->website->Website_TagLine . ' - ' . $this->website->Website_Name;
+		$data['iurl'] = $this->website->Software_Url;
 
 		$categories = $this->db->query("SELECT * FROM tbl_category WHERE status = 'a'")->result();
 
@@ -29,19 +29,89 @@ class WebController extends CI_Controller
 			", $cat->Category_SlNo)->result();
 		}
 		$data['categories'] = $categories;
-
-		// $data['sliders'] = $this->db->query("select * from tbl_sliders where status = 'a'")->result();
-		// $data['products'] = $this->db->query("select * from tbl_product where status = 'a' and is_website = 'true' and is_active = 'true' ORDER BY Product_SlNo DESC limit 30")->result();
-		// $data['about'] = $this->db->query("select * from tbl_abouts")->row();
 		$data['front_content'] = 'page/home';
 		$this->load->view('fontend/layout', $data);
 	}
+
+	public function productView($productSlug)
+	{
+		$product = $this->db->query("SELECT * FROM tbl_product WHERE slug = ? AND status = 'a'", $productSlug)->row();
+		$data['title'] = $product->Product_Name;
+		$data['iurl'] = $this->website->Software_Url;
+		$data['product_slug'] = $productSlug;
+		$data['front_content'] = 'page/product_details';
+		$this->load->view('fontend/layout', $data);
+	}
+
+	public function getProducts()
+	{
+		$data = json_decode($this->input->raw_input_stream);
+
+		$clauses = "";
+		$limit = "";
+		$status = "a";
+		if (isset($data->status) && $data->status != '') {
+			$status = $data->status;
+		}
+
+		if (isset($data->categoryId) && $data->categoryId != '') {
+			$clauses .= " and p.ProductCategory_ID = '$data->categoryId'";
+		}
+
+		if (isset($data->subCategoryId) && $data->subCategoryId != '') {
+			$clauses .= " and p.ProductSubCategory_ID = '$data->subCategoryId'";
+		}
+
+		if (isset($data->isWebsite) && $data->isWebsite != null && $data->isWebsite != '') {
+			$clauses .= " and p.is_website = '$data->isWebsite'";
+		}
+
+		if (isset($data->isService) && $data->isService != null && $data->isService != '') {
+			$clauses .= " and p.is_service = '$data->isService'";
+		}
+
+		if (isset($data->forSearch) && $data->forSearch != '') {
+			$limit .= " limit 20";
+		}
+		if (isset($data->name) && $data->name != '') {
+			$clauses .= " and p.Product_Code like '$data->name%'";
+			$clauses .= " or p.Product_Name like '$data->name%'";
+		}
+
+		$products = $this->db->query("SELECT
+				p.*,
+				concat(p.Product_Name, ' - ', p.Product_Code) as display_text,
+				IFNULL((((p.Product_PreviousPrice-p.Product_SellingPrice)/p.Product_PreviousPrice)*100), 0) as discount_percent,
+				pc.Category_Name,
+				psc.SubCategory_Name,
+				br.brand_name,
+				c.color_name,
+				u.Unit_Name,
+				ua.User_Name as added_by,
+				ud.User_Name as deleted_by
+			FROM tbl_product p
+			LEFT JOIN tbl_category pc on pc.Category_SlNo = p.ProductCategory_ID
+			LEFT JOIN tbl_sub_category psc on psc.SubCategory_SlNo = p.ProductSubCategory_ID
+			LEFT JOIN tbl_brand br on br.brand_SiNo = p.Brand_ID
+			LEFT JOIN tbl_color c on c.color_SiNo = p.Color_ID
+			LEFT JOIN tbl_unit u on u.Unit_SlNo = p.Unit_ID
+			LEFT JOIN tbl_user ua on ua.User_SlNo = p.AddBy
+			LEFT JOIN tbl_user ud on ud.User_SlNo = p.DeletedBy
+			WHERE p.status = '$status'
+			$clauses
+			order by p.Product_SlNo desc
+			$limit
+		")->result();
+
+		echo json_encode($products);
+	}
+
 
 	// Category Wise Products Page
 	public function categoryView($catTag)
 	{
 		$data['title'] = 'Hand Bag';
-		$data['iurl'] = $this->img_url;
+		$data['iurl'] = $this->website->Software_Url;
 		$data['front_content'] = 'page/category_wise_products';
 		$this->load->view('fontend/layout', $data);
 	}
@@ -50,7 +120,7 @@ class WebController extends CI_Controller
 	public function subCategoryView($sCatTag)
 	{
 		$data['title'] = 'Hand Bag';
-		$data['iurl'] = $this->img_url;
+		$data['iurl'] = $this->website->Software_Url;
 		$data['front_content'] = 'page/category_wise_products';
 		$this->load->view('fontend/layout', $data);
 	}
@@ -361,36 +431,6 @@ class WebController extends CI_Controller
 		}
 		echo json_encode($res);
 	}
-
-	public function getProducts()
-	{
-		$data = json_decode($this->input->raw_input_stream);
-
-		$clauses = "";
-		if (isset($data->categoryId) && $data->categoryId != '') {
-			$clauses .= " and p.ProductCategory_ID = '$data->categoryId'";
-		}
-
-		if (isset($data->idFrom) && $data->idFrom != 0 && isset($data->idTo) && $data->idTo != 0) {
-			$clauses .= " and p.Product_SlNo between $data->idFrom and $data->idTo";
-		}
-
-		$products = $this->db->query("
-            select
-                p.*,
-                pc.ProductCategory_Name
-            from tbl_product p
-            left join tbl_productcategory pc on pc.ProductCategory_SlNo = p.ProductCategory_ID
-            where p.status = 'a'
-			and p.is_active = 'true' 
-			and p.is_website = 'true'
-			$clauses
-            order by p.Product_SlNo desc
-        ")->result();
-
-		echo json_encode($products);
-	}
-
 
 	public function cart()
 	{

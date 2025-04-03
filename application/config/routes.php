@@ -1,6 +1,13 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
-$route['default_controller']         = 'WebController/index';
+
+$route['default_controller'] = 'WebController/index';
+$route['product/(:any)']     = 'WebController/productView/$1';
+
+
+
+
+
 $route['category/(:any)']            = 'WebController/categoryView/$1';
 $route['scategory/(:any)']           = 'WebController/subCategoryView/$1';
 $route['about-us']                   = 'WebController/about_us';
