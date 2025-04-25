@@ -16,11 +16,10 @@ class WebController extends CI_Controller
 
 	public function index()
 	{
-		$data['title'] = $this->website->Website_TagLine . ' - ' . $this->website->Website_Name;
+		$data['title'] = '';
 		$data['iurl'] = $this->website->Software_Url;
 
 		$categories = $this->db->query("SELECT * FROM tbl_category WHERE status = 'a'")->result();
-
 		foreach ($categories as $cat) {
 			$cat->subCategories = $this->db->query("SELECT sc.*
 				FROM tbl_sub_category sc
@@ -83,6 +82,82 @@ class WebController extends CI_Controller
 				concat(p.Product_Name, ' - ', p.Product_Code) as display_text,
 				IFNULL((((p.Product_PreviousPrice-p.Product_SellingPrice)/p.Product_PreviousPrice)*100), 0) as discount_percent,
 				pc.Category_Name,
+				psc.SubCategory_Name,
+				br.brand_name,
+				c.color_name,
+				u.Unit_Name,
+				ua.User_Name as added_by,
+				ud.User_Name as deleted_by
+			FROM tbl_product p
+			LEFT JOIN tbl_category pc on pc.Category_SlNo = p.ProductCategory_ID
+			LEFT JOIN tbl_sub_category psc on psc.SubCategory_SlNo = p.ProductSubCategory_ID
+			LEFT JOIN tbl_brand br on br.brand_SiNo = p.Brand_ID
+			LEFT JOIN tbl_color c on c.color_SiNo = p.Color_ID
+			LEFT JOIN tbl_unit u on u.Unit_SlNo = p.Unit_ID
+			LEFT JOIN tbl_user ua on ua.User_SlNo = p.AddBy
+			LEFT JOIN tbl_user ud on ud.User_SlNo = p.DeletedBy
+			WHERE p.status = '$status'
+			$clauses
+			order by p.Product_SlNo desc
+			$limit
+		")->result();
+
+		echo json_encode($products);
+	}
+
+	public function getProductDetails()
+	{
+		$data = json_decode($this->input->raw_input_stream);
+
+		$clauses = "";
+		$limit = "";
+		$status = "a";
+		if (isset($data->status) && $data->status != '') {
+			$status = $data->status;
+		}
+
+		if (isset($data->productSlug) && $data->productSlug != '') {
+			$clauses .= " and p.slug = '$data->productSlug'";
+		}
+
+		if (isset($data->categoryId) && $data->categoryId != '') {
+			$clauses .= " and p.ProductCategory_ID = '$data->categoryId'";
+		}
+
+		if (isset($data->subCategoryId) && $data->subCategoryId != '') {
+			$clauses .= " and p.ProductSubCategory_ID = '$data->subCategoryId'";
+		}
+
+		if (isset($data->isWebsite) && $data->isWebsite != null && $data->isWebsite != '') {
+			$clauses .= " and p.is_website = '$data->isWebsite'";
+		}
+
+		if (isset($data->isService) && $data->isService != null && $data->isService != '') {
+			$clauses .= " and p.is_service = '$data->isService'";
+		}
+
+		if (isset($data->forSearch) && $data->forSearch != '') {
+			$limit .= " limit 20";
+		}
+		if (isset($data->name) && $data->name != '') {
+			$clauses .= " and p.Product_Code like '$data->name%'";
+			$clauses .= " or p.Product_Name like '$data->name%'";
+		}
+
+		$products = $this->db->query("SELECT
+				p.Product_SlNo,
+				p.Product_Name,
+				p.Product_Code,
+				p.Video_Url,
+				p.Product_Image,
+				p.Product_SizeImage,
+				p.Product_PreviousPrice,
+				p.Product_SellingPrice,
+				p.Product_Description,
+				concat(p.Product_Name, ' - ', p.Product_Code) as display_text,
+				IFNULL((((p.Product_PreviousPrice-p.Product_SellingPrice)/p.Product_PreviousPrice)*100), 0) as discount_percent,
+				pc.Category_Name,
+				pc.route AS cat_route,
 				psc.SubCategory_Name,
 				br.brand_name,
 				c.color_name,

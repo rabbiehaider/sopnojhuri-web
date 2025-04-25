@@ -26,8 +26,9 @@ $route['save_booking']               = 'Booking/saveBooking';
 $route['check_booking_exits']        = 'Booking/bookingAlreadyExits';
 $route['save_contact']               = 'WebController/saveContact';
 
-$route['get_categories'] = 'WebController/getCategories';
-$route['get_products']   = 'WebController/getProducts';
+$route['get_categories']      = 'WebController/getCategories';
+$route['get_products']        = 'WebController/getProducts';
+$route['get_product_details'] = 'WebController/getProductDetails';
 
 
 $route['get_product_more']          = 'WebController/get_product_more';

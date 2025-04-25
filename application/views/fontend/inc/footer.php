@@ -7,12 +7,12 @@
                 <div class="col-sm-4 mb-3 mb-sm-0">
                     <div class="footer-about">
                         <a href="/">
-                            <img src="<?php echo $iurl . $fwebsite->Footer_Logo ?>" alt="<?php echo $fwebsite->Website_Name ?>" />
+                            <img src="<?= $iurl . $fwebsite->Footer_Logo ?>" alt="<?= $fwebsite->Website_Name ?>" />
                         </a>
-                        <p style="margin:0 !important;"><a href="#" class="footer-hotlint"><?php echo $fwebsite->Website_TagLine ?></a></p>
-                        <p><?php echo $fwebsite->Website_Address ?></p>
-                        <p><a href="mailto:<?php echo $fwebsite->Website_Email ?>" class="footer-hotlint"><?php echo $fwebsite->Website_Email ?></a></p>
-                        <p><a href="tel:<?php echo $fwebsite->Website_Mobile ?>" class="footer-hotlint"><?php echo $fwebsite->Website_Mobile ?></a></p>
+                        <p style="margin:0 !important;"><a href="#" class="footer-hotlint"><?= $fwebsite->Website_TagLine ?></a></p>
+                        <p><i class="fa fa-map-marker"></i> <?= $fwebsite->Website_Address ?></p>
+                        <p><a href="mailto:<?= $fwebsite->Website_Email ?>" class="footer-hotlint"><i class="fa fa-envelope"></i> <?= $fwebsite->Website_Email ?></a></p>
+                        <p><a href="tel:<?= $fwebsite->Website_Mobile ?>" class="footer-hotlint"><i class="fa fa-phone"></i> <?= $fwebsite->Website_Mobile ?></a></p>
                     </div>
                 </div>
                 <!-- col end -->
@@ -52,24 +52,22 @@
                         </ul>
                         <ul class="social_link">
                             <li class="social_list">
-                                <a class="mobile-social-link" href="https://www.facebook.com/ozybdofficial/"><i
-                                        class="fab fa-facebook-f"></i></a>
+                                <a class="mobile-social-link" target="_blank" href="<?= $fwebsite->Facebook_Url; ?>"><i class="fab fa-facebook-f"></i></a>
                             </li>
                             <li class="social_list">
-                                <a class="mobile-social-link" href="#"><i class="fab fa-google"></i></a>
+                                <a class="mobile-social-link" href="tel:<?= $fwebsite->Website_Mobile ?>"><i class="fa fa-phone"></i></a>
                             </li>
                             <li class="social_list">
-                                <a class="mobile-social-link" href="#"><i class="fa-brands fa-youtube"></i></a>
+                                <a class="mobile-social-link" target="_blank" href="<?= $fwebsite->Youtube_Url; ?>"><i class="fa-brands fa-youtube"></i></a>
                             </li>
                             <li class="social_list">
-                                <a class="mobile-social-link" href="http://www.instagram.com/ozy.bd/"><i
-                                        class="fa-brands fa-instagram"></i></a>
+                                <a class="mobile-social-link" target="_blank" href="<?= $fwebsite->Instragram_Url; ?>"><i class="fa-brands fa-instagram"></i></a>
                             </li>
                         </ul>
                         <div class="d_app">
                             <h2>Download App</h2>
                             <a href="#">
-                                <img src="<?php echo base_url('assets/fontend/') ?>images/app-download.png" alt="" />
+                                <img src="<?= base_url('assets/fontend/') ?>images/app-download.png" alt="" />
                             </a>
                         </div>
                     </div>
@@ -83,7 +81,7 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="copyright">
-                        <p>Copyright © <?php echo date('Y'); ?> SopnoJhuri. All Rights Reserved. Design & Developed By <a href="<?php echo $fwebsite->Developer_Url ?>" target="_blank"><?php echo $fwebsite->Developed_By ?></a></p>
+                        <p>Copyright © <?= date('Y'); ?> SopnoJhuri. All Rights Reserved. Design & Developed By <a href="<?= $fwebsite->Developer_Url ?>" target="_blank"><?= $fwebsite->Developed_By ?></a></p>
                     </div>
                 </div>
             </div>
@@ -115,7 +113,7 @@
 
         <li class="mobile_home">
             <a href="/">
-                <img src="<?php echo $iurl . $fwebsite->Mobile_Logo ?>" alt="<?php echo $fwebsite->Website_Name ?>" />
+                <img src="<?= $iurl . $fwebsite->Mobile_Logo ?>" alt="<?= $fwebsite->Website_Name ?>" />
                 <!-- <span><i class="fa-solid fa-home"></i></span> <span>Home</span> -->
             </a>
         </li>
@@ -147,8 +145,7 @@
 
 <!-- cart sidebar button-->
 <div class="fixed_whats">
-    <a href="https://api.whatsapp.com/send/?phone=8801870977634" target="_blank"><i
-            class="fa-brands fa-whatsapp"></i></a>
+    <a href="https://api.whatsapp.com/send/?phone=88<?= $fwebsite->Website_Mobile; ?>" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
 </div>
 
 <!-- /. fixed sidebar -->
@@ -174,35 +171,52 @@
 
     <div class="empty-cart">
         <div class="empty-img">
-            <img src="<?php echo base_url('assets/fontend/') ?>images/empty-cart.webp" alt="">
+            <img src="<?= base_url('assets/fontend/') ?>images/empty-cart.webp" alt="">
         </div>
     </div>
     <script></script>
 </div>
 <!-- cart sidebar -->
 
-<script src="<?php echo base_url('assets/fontend/') ?>js/bootstrap.min.js"></script>
-<script src="<?php echo base_url('assets/fontend/') ?>js/owl.carousel.min.js"></script>
-<script src="<?php echo base_url('assets/fontend/') ?>js/mobile-menu.js"></script>
-<!-- <script src="<?php echo base_url('assets/fontend/') ?>js/wsit-menu.js"></script> -->
-<script src="<?php echo base_url('assets/fontend/') ?>js/mobile-menu-init.js"></script>
-<script src="<?php echo base_url('assets/fontend/') ?>js/wow.min.js"></script>
-<script src="<?php echo base_url('assets/fontend/') ?>js/lightbox-plus-jquery.min.js"></script>
+<script src="<?= base_url('assets/fontend/') ?>js/bootstrap.min.js"></script>
+<script src="<?= base_url('assets/fontend/') ?>js/owl.carousel.min.js"></script>
+<script src="<?= base_url('assets/fontend/') ?>js/mobile-menu.js"></script>
+<!-- <script src="<?= base_url('assets/fontend/') ?>js/wsit-menu.js"></script> -->
+<script src="<?= base_url('assets/fontend/') ?>js/mobile-menu-init.js"></script>
+<script src="<?= base_url('assets/fontend/') ?>js/wow.min.js"></script>
+<script src="<?= base_url('assets/fontend/') ?>js/lightbox-plus-jquery.min.js"></script>
 <script>
     new WOW().init();
 </script>
-<link rel="stylesheet" href="<?php echo base_url('assets/fontend/') ?>css/flatpickr.min.css" />
-<script src="<?php echo base_url('assets/fontend/') ?>js/flatpickr.js"></script>
+<link rel="stylesheet" href="<?= base_url('assets/fontend/') ?>css/flatpickr.min.css" />
+<script src="<?= base_url('assets/fontend/') ?>js/flatpickr.js"></script>
 
 <!-- feather icon -->
-<script src="<?php echo base_url('assets/fontend/') ?>js/feather.min.js"></script>
+<script src="<?= base_url('assets/fontend/') ?>js/feather.min.js"></script>
 <script>
     feather.replace();
 </script>
-<script src="<?php echo base_url('assets/fontend/') ?>js/toastr.min.js"></script>
+<script src="<?= base_url('assets/fontend/') ?>js/toastr.min.js"></script>
 <script type="text/javascript"></script>
-<script src="<?php echo base_url('assets/fontend/') ?>js/owl.carousel.min.js"></script>
-<script src="<?php echo base_url('assets/fontend/') ?>js/jquery.syotimer.min.js"></script>
+<script src="<?= base_url('assets/fontend/') ?>js/owl.carousel.min.js"></script>
+<script src="<?= base_url('assets/fontend/') ?>js/zoomsl.min.js"></script>
+<script src="<?= base_url('assets/fontend/') ?>js/jquery.syotimer.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $(".details_slider").owlCarousel({
+            margin: 15,
+            items: 1,
+            loop: true,
+            dots: false,
+            nav: false,
+            autoplay: false,
+        });
+        $(".indicator-item,.color-item").on("click", function() {
+            var slideIndex = $(this).data('id');
+            $('.details_slider').trigger('to.owl.carousel', slideIndex);
+        });
+    });
+</script>
 
 <script>
     $(document).ready(function() {

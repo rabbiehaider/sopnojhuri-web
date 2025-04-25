@@ -7,15 +7,16 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- <meta name="csrf-token" content="G3MYR7oERhJ74qLw7kn7hJhWCWaDitFIkh5PZtQB" /> -->
-    <title><?php echo $title . ' - ' . $website->Website_Name . ' - ' . $website->Website_TagLine ?></title>
-    <link rel="manifest" href="<?php echo base_url('assets/fontend/') ?>json/manifest.json" />
+    <title>
+        <?= $title != '' ? $title . ' - ' . $website->Website_Name . ' - ' . $website->Website_TagLine : $website->Website_Name . ' - ' . $website->Website_TagLine; ?>
+    </title>
+    <link rel="manifest" href="<?= base_url('assets/fontend/') ?>json/manifest.json" />
     <!-- App favicon -->
     <!-- <meta name="facebook-domain-verification" content="irkk0bt6na8i9yw1zrib1iiosqm9p3" /> -->
-    <!-- <script src="<?php //echo base_url('assets/website/') 
-                        ?>chunks/webpack-a707e99c69361791.js" defer=""></script> -->
+    <!-- <script src="<?php echo base_url('assets/website/') ?>chunks/webpack-a707e99c69361791.js" defer=""></script> -->
     <link rel="preconnect" href="https://fonts.googleapis.com/" />
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="true" />
-    <link rel="shortcut icon" href="<?php echo $iurl . $website->Fav_Logo ?>" alt="<?php echo $website->Website_Name ?>" />
+    <link rel="shortcut icon" href="<?= $iurl . $website->Fav_Logo ?>" alt="<?= $website->Website_Name ?>" />
     <meta name="author" content="SopnoJhuri" />
     <link rel="canonical" href="#" />
     <meta name="app-url" content="" />
@@ -27,29 +28,29 @@
     <meta property="og:title" content="" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="" />
-    <meta property="og:image" content="<?php echo $iurl . $website->Header_Logo ?>" />
+    <meta property="og:image" content="<?= $iurl . $website->Header_Logo ?>" />
     <meta property="og:description" content="" />
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
-    <link rel="stylesheet" href="<?php echo base_url('assets/fontend/') ?>css/owl.carousel.min.css" />
-    <link rel="stylesheet" href="<?php echo base_url('assets/fontend/') ?>css/owl.theme.default.min.css" />
-    <link rel="stylesheet" href="<?php echo base_url('assets/fontend/') ?>css/animate-web.css" />
-    <link rel="stylesheet" href="<?php echo base_url('assets/fontend/') ?>css/bootstrap.min.css" />
-    <link rel="stylesheet" href="<?php echo base_url('assets/fontend/') ?>css/animate.css" />
-    <link rel="stylesheet" href="<?php echo base_url('assets/fontend/') ?>css/all.min.css" />
-    <link rel="stylesheet" href="<?php echo base_url('assets/fontend/') ?>css/owl.carousel.min.css" />
-    <link rel="stylesheet" href="<?php echo base_url('assets/fontend/') ?>css/owl.theme.default.min.css" />
-    <link rel="stylesheet" href="<?php echo base_url('assets/fontend/') ?>css/mobile-menu.css" />
-    <link rel="stylesheet" href="<?php echo base_url('assets/fontend/') ?>css/select2.min.css" />
-    <link rel="stylesheet" href="<?php echo base_url('assets/fontend/') ?>css/lightbox.css" />
+    <link rel="stylesheet" href="<?= base_url('assets/fontend/') ?>css/owl.carousel.min.css" />
+    <link rel="stylesheet" href="<?= base_url('assets/fontend/') ?>css/owl.theme.default.min.css" />
+    <link rel="stylesheet" href="<?= base_url('assets/fontend/') ?>css/animate-web.css" />
+    <link rel="stylesheet" href="<?= base_url('assets/fontend/') ?>css/bootstrap.min.css" />
+    <link rel="stylesheet" href="<?= base_url('assets/fontend/') ?>css/animate.css" />
+    <link rel="stylesheet" href="<?= base_url('assets/fontend/') ?>css/all.min.css" />
+    <link rel="stylesheet" href="<?= base_url('assets/fontend/') ?>css/owl.carousel.min.css" />
+    <link rel="stylesheet" href="<?= base_url('assets/fontend/') ?>css/owl.theme.default.min.css" />
+    <link rel="stylesheet" href="<?= base_url('assets/fontend/') ?>css/mobile-menu.css" />
+    <link rel="stylesheet" href="<?= base_url('assets/fontend/') ?>css/select2.min.css" />
+    <link rel="stylesheet" href="<?= base_url('assets/fontend/') ?>css/lightbox.css" />
     <!-- toastr css -->
-    <link rel="stylesheet" href="<?php echo base_url('assets/fontend/') ?>css/toastr.min.css" />
+    <link rel="stylesheet" href="<?= base_url('assets/fontend/') ?>css/toastr.min.css" />
 
-    <link rel="stylesheet" href="<?php echo base_url('assets/fontend/') ?>css/wsit-menu.css" />
-    <link rel="stylesheet" href="<?php echo base_url('assets/fontend/') ?>css/stylecdae.css?v=1.2.2" />
-    <link rel="stylesheet" href="<?php echo base_url('assets/fontend/') ?>css/responsivefbbb.css?v=1.2.3" />
-    <link rel="stylesheet" href="<?php echo base_url('assets/fontend/') ?>css/main.css" />
-    <script src="<?php echo base_url('assets/fontend/') ?>js/jquery-3.6.3.min.js"></script>
-    <style rel='stylesheet' data-href="<?php echo base_url('assets/fontend/') ?>css/jost-font.css">
+    <link rel="stylesheet" href="<?= base_url('assets/fontend/') ?>css/wsit-menu.css" />
+    <link rel="stylesheet" href="<?= base_url('assets/fontend/') ?>css/custom_style.css?v=1.2.2" />
+    <link rel="stylesheet" href="<?= base_url('assets/fontend/') ?>css/responsivefbbb.css?v=1.2.3" />
+    <link rel="stylesheet" href="<?= base_url('assets/fontend/') ?>css/main.css" />
+    <script src="<?= base_url('assets/fontend/') ?>js/jquery-3.6.3.min.js"></script>
+    <style rel='stylesheet' data-href="<?= base_url('assets/fontend/') ?>css/jost-font.css">
         @font-face {
             font-family: 'Jost';
             font-style: normal;

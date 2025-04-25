@@ -1658,6 +1658,20 @@ section.slider-section {
 .add_cart_btn,
 .add_cart_btn:disabled {
     color: #fff;
+    background-color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    border-radius: 0;
+    width: 100%;
+    height: 45px;
+    margin-top: 10px;
+    border-radius: 5px;
+    font-family: 'Jost';
+    font-size: 18px;
+}
+
+.p_order_now,
+.p_order_now:disabled {
+    color: #fff;
     background-color: var(--bs-pink);
     border: 1px solid var(--bs-pink);
     border-radius: 0;
@@ -1692,6 +1706,13 @@ section.slider-section {
 
 .add_cart_btn:hover,
 .add_cart_btn:active {
+    color: #fff !important;
+    background-color: #087bce !important;
+    border-color: #087bce !important;
+}
+
+.p_order_now:hover,
+.p_order_now:active {
     color: #fff !important;
     background-color: #087bce !important;
     border-color: #087bce !important;
@@ -5443,9 +5464,9 @@ span.invalid-feedback {
     display: inline-block;
     border: 1px solid;
     border-color: green;
-    padding: 6px 20px;
-    padding-left: 40px;
-    font-size: 1rem;
+    padding: 6px 15px;
+    padding-left: 35px;
+    font-size: .75rem;
     border-radius: 5px;
     position: relative;
     font-weight: 700;

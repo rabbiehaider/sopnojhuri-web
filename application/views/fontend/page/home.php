@@ -1,5 +1,5 @@
 <div id="content">
-    <div id="NEXT_DATA">
+    <div id="WEB_DATA">
         <section class="slider-section">
             <!-- <div class="container"> -->
             <div class="row">
@@ -162,9 +162,7 @@
                                         <div class="pro_price">
                                             <p>
                                                 <del>৳ 2499</del>
-
                                                 ৳ 2050
-
                                             </p>
                                         </div>
                                     </div>
@@ -725,7 +723,7 @@
 
 <script>
     new Vue({
-        el: '#NEXT_DATA',
+        el: '#WEB_DATA',
         data() {
             return {
                 img_url: "<?php echo $iurl; ?>",
@@ -734,11 +732,11 @@
             }
         },
         filters: {
-            pDecimal(val) {
-                return parseFloat(val).toFixed(0);
+            pDecimal(value) {
+                return value == null || value == '' ? '0' : parseFloat(value).toFixed(0);
             },
-            decimal(val) {
-                return parseFloat(val).toFixed(2);
+            decimal(value) {
+                return value == null || value == '' ? '0.00' : parseFloat(value).toFixed(2);
             }
         },
         async created() {
