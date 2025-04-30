@@ -166,8 +166,7 @@ foreach ($categories as $cat) {
                             </div>
                             <div class="main-search">
                                 <form action="https://www.ozybd.com/search">
-                                    <input type="text" placeholder="Search Product..."
-                                        class="search_keyword search_click" name="keyword" />
+                                    <input type="text" placeholder="Search Product..." class="search_keyword search_click" name="keyword" />
                                     <button>
                                         <i style="color: #fff;" class="fa fa-search"></i>
                                     </button>
@@ -178,15 +177,20 @@ foreach ($categories as $cat) {
                             <div class="header-list-items">
                                 <ul>
                                     <li class="track_btn">
-                                        <a href="customer/order-track.html"> <i class="fa fa-truck"></i> Track
-                                            Order</a>
+                                        <a href="customer/order-track.html"> <i class="fa fa-truck"></i> Track Order</a>
                                     </li>
                                     <li class="for_order">
                                         <p>
-                                            <a href="customer/login.html">
-                                                <i class="fa-regular fa-user"></i>
-                                                Accounts
-                                            </a>
+                                            <?php if ($this->session->userdata("customer_id") != '') { ?>
+                                                <a href="<?= base_url('customer/account') ?>">
+                                                    <i class="fa-regular fa-user"></i>
+                                                    <?= $this->session->userdata("customer_name") ?>
+                                                </a>
+                                            <?php } else { ?>
+                                                <a href="<?= base_url('customer/login') ?>">
+                                                    <i class="fa-regular fa-user"></i> Account
+                                                </a>
+                                            <?php } ?>
                                         </p>
                                     </li>
 
@@ -197,7 +201,6 @@ foreach ($categories as $cat) {
                                                 <span>0</span>
                                             </p>
                                         </button>
-
                                     </li>
                                 </ul>
                             </div>

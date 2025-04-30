@@ -8,19 +8,28 @@ class Customer extends CI_Controller
         // Load cart library
         $this->load->library('cart');
 
-        $this->load->model('Customer_model', 'customer_m');
+        $this->load->model('Customer_model', 'cm');
+        $this->website = $this->db->query("SELECT * FROM tbl_website_profile LIMIT 1")->row();
+    }
+
+    public function index()
+    {
+        $data['title'] = 'Customer Login';
+        $data['iurl'] = $this->website->Software_Url;
+        $data['front_content'] = 'customer/customer_login';
+        $this->load->view('fontend/layout', $data);
     }
 
     public function customer_login()
     {
         $data['title'] = 'Customer Login';
-        $data['front_content'] = 'page/customer_login';
+        $data['iurl'] = $this->website->Software_Url;
+        $data['front_content'] = 'customer/customer_login';
         $this->load->view('fontend/layout', $data);
     }
 
-    public function login_in()
+    public function customerLoginCheck()
     {
-
         $res = ['success' => false, 'message' => ''];
         try {
             $data = json_decode($this->input->raw_input_stream);
@@ -34,24 +43,28 @@ class Customer extends CI_Controller
             } else if (empty($pass)) {
                 $res = ['success' => false, 'message' => 'Enter your password!'];
             } else {
-                $result = $this->customer_m->user_login($phone, $password);
+                $result = $this->cm->loginCheck($phone, $password);
 
                 if ($result) {
+                    if ($result[0]['status' != 'a']) {
+                        $res = ['success' => false, 'message' => 'You are deactivated! Please contact with Admin.'];
+                    }
+
                     $data = array(
-                        'id' => $result[0]['id'],
-                        'name' => $result[0]['name'],
-                        'email' => $result[0]['email'],
-                        'phone' => $result[0]['phone'],
-                        'address' => $result[0]['address'],
-                        'shipping_address' => $result[0]['shipping_address'],
-                        'billing_address' => $result[0]['billing_address'],
-                        'image' => $result[0]['image'],
-                        'password' => $pass,
+                        'customer_id'      => $result[0]['Customer_SlNo'],
+                        'customer_code'    => $result[0]['Customer_Code'],
+                        'customer_name'    => $result[0]['Customer_Name'],
+                        'customer_type'    => $result[0]['Customer_Type'],
+                        'customer_mobile'  => $result[0]['Customer_Mobile'],
+                        'customer_email'   => $result[0]['Customer_Email'],
+                        'customer_address' => $result[0]['Customer_Address'],
+                        'customer_image'   => $result[0]['image_name'],
+                        'password'         => $pass,
                     );
                     $this->session->set_userdata($data);
-                    $res = ['success' => true, 'message' => 'Login success!', 'user' => $data];
+                    $res = ['success' => true, 'message' => 'You are login successfully!', 'user' => $data];
                 } else {
-                    $res = ['success' => false, 'message' => 'Phone or Password dose not match!'];
+                    $res = ['success' => false, 'message' => 'Your Phone or Password dose not match!'];
                 }
             }
         } catch (\Exception $e) {
@@ -59,6 +72,14 @@ class Customer extends CI_Controller
         }
 
         echo json_encode($res);
+    }
+
+    public function customer_register()
+    {
+        $data['title'] = 'Customer Registration';
+        $data['iurl'] = $this->website->Software_Url;
+        $data['front_content'] = 'customer/customer_register';
+        $this->load->view('fontend/layout', $data);
     }
 
     public function my_account()
@@ -133,7 +154,7 @@ class Customer extends CI_Controller
                 $data = array(
                     'password'  => $passmd5,
                 );
-    
+
                 $this->db->where('id', $cus_id);
                 $result = $this->db->update('tbl_app_customer', $data);
 
@@ -143,8 +164,6 @@ class Customer extends CI_Controller
             } else {
                 $res = ['success' => false, 'message' => 'Password and Confirm password does not match!'];
             }
-
-            
         } catch (\Exception $e) {
             $res = ['success' => false, 'message' => 'Something wents wrong!' . $e->getMessage()];
         }
@@ -201,15 +220,6 @@ class Customer extends CI_Controller
         $res['sales'] = $sales;
 
         echo json_encode($res);
-    }
-
-    public function customer_register()
-    {
-        $data['title'] = 'Customer Registration';
-        $data['company'] = $this->db->query("select * from tbl_content")->row();
-        // $data['img_url']= $this->db->query("select * from tbl_content")->row()->soft_url;
-        $data['front_content'] = 'page/customer_register';
-        $this->load->view('fontend/layout', $data);
     }
 
     public function registration()

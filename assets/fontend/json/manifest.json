@@ -3,12 +3,12 @@
     "short_name": "SopnoJhuri",
     "icons": [
         {
-            "src": "ixt.webp",
+            "src": "sopnojhuri.webp",
             "sizes": "192x192",
             "type": "image/png/webp"
         },
         {
-            "src": "ixt.webp",
+            "src": "sopnojhuri.webp",
             "sizes": "512x512",
             "type": "image/png/webp"
         }

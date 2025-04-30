@@ -127,12 +127,21 @@
             </button>
         </li>
         <li>
-            <a href="customer/login.html">
-                <span>
-                    <i class="fa-solid fa-user"></i>
-                </span>
-                <span>Login</span>
-            </a>
+            <?php if ($this->session->userdata("customer_id") != '') { ?>
+                <a href="<?= base_url('customer/account') ?>">
+                    <span>
+                        <i class="fa-solid fa-user"></i>
+                    </span>
+                    <span>Account</span>
+                </a>
+            <?php } else { ?>
+                <a href="<?= base_url('customer/login') ?>">
+                    <span>
+                        <i class="fa-solid fa-user"></i>
+                    </span>
+                    <span>Login</span>
+                </a>
+            <?php } ?>
         </li>
     </ul>
 </div>
@@ -196,6 +205,11 @@
 <script>
     feather.replace();
 </script>
+
+<script src="<?php echo base_url('assets/fontend/') ?>js/notify.min.js"></script>
+<script src="<?php echo base_url('assets/fontend/') ?>js/toastr.min.js"></script>
+
+<script src="<?= base_url('assets/fontend/') ?>js/notify.min.js"></script>
 <script src="<?= base_url('assets/fontend/') ?>js/toastr.min.js"></script>
 <script type="text/javascript"></script>
 <script src="<?= base_url('assets/fontend/') ?>js/owl.carousel.min.js"></script>

@@ -30,9 +30,16 @@ $route['get_categories']      = 'WebController/getCategories';
 $route['get_products']        = 'WebController/getProducts';
 $route['get_product_details'] = 'WebController/getProductDetails';
 
-
 $route['get_product_more']          = 'WebController/get_product_more';
 $route['get_category_product_more'] = 'WebController/get_category_product_more';
+
+$route['customer/login']    = 'Customer/customer_login';
+$route['customer_signin']   = 'Customer/customerLoginCheck';
+$route['customer/register'] = 'Customer/customer_register';
+$route['customer/profile']  = 'Customer/my_account';
+
+
+
 
 //cart
 $route['cart']                = 'WebController/cart';

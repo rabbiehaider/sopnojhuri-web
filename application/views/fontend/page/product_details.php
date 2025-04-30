@@ -227,7 +227,7 @@
                     <div class="col-sm-8">
                         <div class="description tab-content details-action-box" id="description">
                             <h2>Description</h2>
-                            <p>{{ selectedProduct.Product_Description }}</p>
+                            <p><div style="line-height: 10px;" v-html="selectedProduct.Product_Description"></div></p>
                         </div>
                         <!-- <div class="tab-content details-action-box" id="writeReview">
                         <div class="container">
