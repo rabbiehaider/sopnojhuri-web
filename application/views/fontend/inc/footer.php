@@ -20,11 +20,11 @@
                     <div class="footer-menu">
                         <ul>
                             <li class="title"><a>Customer</a></li>
-                            <li> <a href="site/contact-us.html"> <a href="site/contact-us.html">Account</a></a> </li>
+                            <li> <a href="<?= $this->session->userdata("customer_id") != '' ? base_url('customer/account') : base_url('customer/login') ?>">Account</a></li>
                             <li><a href="page/order-procedure.html">Cart</a> </li>
                             <li><a href="page/delivery-rules.html">Wishlist</a> </li>
                             <li><a href="page/return-policy.html">Shipping Charge</a> </li>
-                            <li><a href="page/return-policy.html">Retail Purchase</a> </li>
+                            <li><a href="<?= base_url('track-order') ?>">Track Order</a> </li>
                             <li><a href="page/return-policy.html">FAQ</a> </li>
                         </ul>
                     </div>
@@ -129,16 +129,12 @@
         <li>
             <?php if ($this->session->userdata("customer_id") != '') { ?>
                 <a href="<?= base_url('customer/account') ?>">
-                    <span>
-                        <i class="fa-solid fa-user"></i>
-                    </span>
+                    <span><i class="fa-solid fa-user"></i></span>
                     <span>Account</span>
                 </a>
             <?php } else { ?>
                 <a href="<?= base_url('customer/login') ?>">
-                    <span>
-                        <i class="fa-solid fa-user"></i>
-                    </span>
+                    <span><i class="fa-solid fa-user"></i></span>
                     <span>Login</span>
                 </a>
             <?php } ?>
@@ -166,7 +162,7 @@
 </div>
 
 <!-- cart sidebar -->
-<div class="mini-cart-wrapper">
+<!-- <div class="mini-cart-wrapper">
     <div class="mini-cart-header">
         <p>
             <i class="fa-solid fa-shopping-cart"></i>
@@ -184,8 +180,184 @@
         </div>
     </div>
     <script></script>
-</div>
+</div> -->
 <!-- cart sidebar -->
+
+
+<!-- cart sidebar -->
+<div id="sidebarCart">
+    <div class="mini-cart-wrapper">
+        <div class="mini-cart-header">
+            <p>
+                <i class="fa-solid fa-shopping-cart"></i>
+                {{ cart_count }} items - ({{ sub_total }} TK)
+            </p>
+            <button class="mini-close-button mini-close-cart">
+                <i class="fa-solid fa-times"></i>
+            </button>
+        </div>
+        <div class="mini-cart-body">
+
+            <div class="mini-cart-item" v-for="(item, index) in cart" :key="item.id">
+                <div class="cart-item-image">
+                    <img :src="item.image" alt="item.name">
+                </div>
+                <div class="cart-item-content">
+                    <div class="cart-product"><a href="">{{ item.name }}</a></div>
+                    <div class="cart-item-subtotal"><strong>{{ item.price }} TK</strong></div>
+                </div>
+                <div class="cart-quantity-content">
+                    <button v-if="item.qty == 1" class="mini-cart-change" @click="deleteCartItem(item)"><i class="fa fa-trash-alt"></i></button>
+                    <button v-else class="mini-cart-change" @click="decrementQty(index)"><i class="fa fa-minus"></i></button>
+                    <span>{{ item.qty }}</span>
+                    <button class="mini-cart-change" @click="incrementQty(index)"><i class="fa fa-plus"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="mini-cart-checkout">
+            <div class="mini-cart-summary">
+                <ul>
+                    <li><span>Subtotal</span><span>{{ sub_total }} Tk</span></li>
+                </ul>
+            </div>
+
+            <a href="https://www.ozybd.com/customer/checkout" class="mini-cart-order order_place">
+                <i class="fa fa-shopping-cart"></i>
+                ক্যাশ অন ডেলিভারিতে অর্ডার করুন
+            </a>
+        </div>
+        <button class="mini-close-button floating-close-button"><i class="fa-solid fa-angle-right"></i></button>
+        <script></script>
+    </div>
+</div>
+
+<script src="<?php echo base_url('assets/fontend/') ?>js/vue/vue.min.js"></script>
+<script src="<?php echo base_url('assets/fontend/') ?>js/vue/axios.min.js"></script>
+<script src="<?php echo base_url('assets/fontend/') ?>js/vue/moment.min.js"></script>
+
+<script>
+    // S Menu
+    // new Vue({
+    //     el: '#sidebarCart',
+    //     data() {
+    //         return {
+    //             cart: [],
+    //             cart_count: '',
+    //             sub_total: '',
+    //         }
+    //     },
+    //     async created() {
+    //         this.fetchCartData();
+    //     },
+    //     methods: {
+    //         async fetchCartData() {
+    //             await axios.get('/get_cart_contents').then(async res => {
+    //                 let data = res.data;
+
+    //                 this.cart = data.cart;
+    //                 this.cart_count = data.cart_count;
+    //                 this.sub_total = data.sub_total;
+    //             })
+    //         }
+    //     }
+    // });
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // // Head
+    // new Vue({
+    //     el: '#CartCount',
+    //     data() {
+    //         return {
+    //             cart_count: 0,
+    //             sub_total: 0
+    //         };
+    //     },
+    //     created() {
+    //         this.fetchCartData(); 
+    //         setInterval(() => {
+    //             this.fetchCartData(); 
+    //         }, 500);
+    //     },
+    //     methods: {
+    //         async fetchCartData() {
+    //             await axios.get('/get_cart_total').then(async res => {
+    //                 let product = res.data;
+
+    //                 this.cart_count = product.cart_count;
+    //                 this.sub_total = product.sub_total;
+    //             })
+    //         }
+    //     }
+    // });
+
+    // // M Head
+    // new Vue({
+    //     el: '#mCartCount',
+    //     data() {
+    //         return {
+    //             mcart_count: 0,
+    //             msub_tatol: 0
+    //         };
+    //     },
+    //     created() {
+    //         this.fetchCartData(); 
+    //         setInterval(() => {
+    //             this.fetchCartData(); 
+    //         }, 500);
+    //     },
+    //     methods: {
+    //         async fetchCartData() {
+    //             await axios.get('/get_cart_total').then(async res => {
+    //                 let product = res.data;
+
+    //                 this.mcart_count = product.cart_count;
+    //                 this.msub_tatol = product.sub_total;
+    //             })
+    //         }
+    //     }
+    // });
+
+    // // S Menu
+    // new Vue({
+    //     el: '#sidebarCart',
+    //     data() {
+    //         return {
+    //             cart: "<?= $this->cart->contents() ?>",
+    //             scart_count: 0,
+    //             ssub_tatol: 0
+    //         };
+    //     },
+    //     created() {
+    //         this.fetchCartData(); 
+    //         setInterval(() => {
+    //             this.fetchCartData(); 
+    //         }, 500);
+    //     },
+    //     methods: {
+    //         async fetchCartData() {
+    //             await axios.get('/get_cart_total').then(async res => {
+    //                 let product = res.data;
+
+    //                 this.scart_count = product.cart_count;
+    //                 this.ssub_tatol = product.sub_total;
+    //             })
+    //         }
+    //     }
+    // });
+</script>
+
 
 <script src="<?= base_url('assets/fontend/') ?>js/bootstrap.min.js"></script>
 <script src="<?= base_url('assets/fontend/') ?>js/owl.carousel.min.js"></script>
@@ -460,60 +632,7 @@
     });
 </script>
 <!-- quick view end -->
-<script>
-    $(document).ready(function() {
-        $(document).on('click', '.detailsFormSubmit', function(e) {
-            e.preventDefault();
-            var colors = $('.variable_color');
-            var color = $(".variable_color:checked").data('color');
-            var size = $(".variable_size:checked").data('size');
-            const productId = $(this).data('id');
-            const addcart = $(this).data('addcart');
-            if (colors.length > 0) {
-                console.log('this color: ' + colors);
-                if (!color) {
-                    toastr.warning("Please select a color before adding to the cart.", "Warning");
-                    $('.selector-item_label').addClass('red');
-                    return;
-                }
-            } else {
-                console.log('nothing');
-            }
-            $.ajax({
-                url: 'https://www.ozybd.com/ajax-cart-store',
-                type: 'POST',
-                data: {
-                    _token: $('meta[name="csrf-token"]').attr('content'),
-                    id: productId,
-                    color: color,
-                    size: size,
-                    addcart: addcart
-                },
-                success: function(response) {
-                    console.log(response);
-                    if (response.success) {
-                        toastr.success("Product add to cart succfully", "Success");
-                        if (response.redirect) {
-                            window.location.href = 'customer/checkout.html';
-                        } else {
-                            $("#page-overlay").show();
-                            $(".mini-cart-wrapper").addClass("active");
-                        }
-                        return cart_count() + mobile_cart() + cart_summary() + mini_cart();
-                    } else if (!response.success) {
-                        toastr.error("Product stock over", "Sorry");
-                    } else {
-                        console.log(response.message || 'Failed to update cart');
-                    }
-                },
-                error: function() {
-                    console.log('An error occurred while updating the cart.');
-                },
-            });
-        });
-    });
-</script>
-<!-- cart js start -->
+
 <script>
     $(".addcartbutton").on("click", function() {
         var id = $(this).data("id");
@@ -767,6 +886,8 @@
     });
 </script>
 <script>
+    let vueInstance = null;
+
     $(".toggle").on("click", function() {
         $("#page-overlay").show();
         $(".mobile-menu").addClass("active");
@@ -774,10 +895,79 @@
     $(".cart-toggle").on("click", function() {
         $(".mini-cart-wrapper").addClass("active");
     });
+
     $(document).on('click', '.cart-toggle-button', function(e) {
         $("#page-overlay").show();
         $(".mini-cart-wrapper").addClass("active");
+
+        if (!vueInstance) {
+            vueInstance = new Vue({
+                el: '#sidebarCart',
+                data() {
+                    return {
+                        cart: [],
+                        cart_count: '',
+                        sub_total: '',
+                    }
+                },
+                async created() {
+                    this.fetchCartData();
+                    setInterval(() => {
+                        // this.fetchCartData();
+                    }, 5000);
+                },
+                methods: {
+                    async fetchCartData() {
+                        await axios.get('/get_cart_contents').then(res => {
+                            let data = res.data;
+                            this.cart = data.cart;
+                            this.cart_count = data.cart_count;
+                            this.sub_total = data.sub_total;
+                        })
+                    },
+                    incrementQty(index) {
+                        this.cart[index].qty++;
+                        this.updateCartItem(this.cart[index]);
+                    },
+                    decrementQty(index) {
+                        if (this.cart[index].qty > 1) {
+                            this.cart[index].qty--;
+                            this.updateCartItem(this.cart[index]);
+                        }
+                    },
+                    deleteCartItem(item) {
+                        axios.post('/remove_cart_item', {
+                            id: item.id
+                        }).then(res => {
+                            let r = res.data;
+                            if (r.success) {
+                                this.fetchCartData();
+                                $(".cartMainCount").text(r.cartMainCount);
+                            } else {
+                                toastr.error('Item remove error!');
+                            }
+
+                        })
+                    },
+                    updateCartItem(item) {
+                        axios.post('/update_cart_quantity', {
+                            id: item.id,
+                            qnty: item.qty
+                        }).then(res => {
+                            let r = res.data;
+                            if (r.success) {
+                                this.fetchCartData();
+                            } else {
+                                toastr.error('Update quantity error!');
+                            }
+
+                        })
+                    }
+                }
+            });
+        }
     });
+
     $(".toggle-desktop").on("click", function() {
         $("#page-overlay").show();
         $(".desktop-menu").addClass("active");

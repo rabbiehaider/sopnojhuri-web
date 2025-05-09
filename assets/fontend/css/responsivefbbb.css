@@ -236,9 +236,9 @@
         display: block;
     }
 
-    .sidebar-menu {
+    /* .sidebar-menu {
         display: none;
-    }
+    } */
 
     li.mobile_home {
         border: 2px solid #ddd;

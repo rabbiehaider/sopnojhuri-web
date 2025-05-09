@@ -21,26 +21,17 @@
                                             </div>
                                         </div>
 
-                                        <!-- variable product image -->
                                         <div class="details_slider owl-carousel">
-                                            <div class="dimage_item">
-                                                <a href="<?php echo base_url('assets/fontend/') ?>uploads/product/1737538758-19.webp" data-lightbox="roadtrip" data-title="" style="cursor:zoom-in;">
-                                                    <img src="<?php echo base_url('assets/fontend/') ?>uploads/product/1737538758-19.webp" style="cursor:zoom-in;" />
-                                                </a>
-                                            </div>
-                                            <div class="dimage_item">
-                                                <a href="<?php echo base_url('assets/fontend/') ?>uploads/product/1737538758-20.webp" data-lightbox="roadtrip" data-title="" style="cursor:zoom-in;">
-                                                    <img src="<?php echo base_url('assets/fontend/') ?>uploads/product/1737538758-20.webp" style="cursor:zoom-in;" />
+                                            <div class="dimage_item" v-for="(pimage, pi) in selectedProduct.product_images" :key="pi">
+                                                <a :href="pimage.product_image" data-lightbox="roadtrip" data-title="" style="cursor:zoom-in;">
+                                                    <img :src="pimage.product_image" style="cursor: zoom-in;" />
                                                 </a>
                                             </div>
                                         </div>
 
                                         <div class="indicator_thumb ">
-                                            <div class="indicator-item" data-id="0">
-                                                <img src="<?php echo base_url('assets/fontend/') ?>uploads/product/1737538758-19.webp" />
-                                            </div>
-                                            <div class="indicator-item" data-id="1">
-                                                <img src="<?php echo base_url('assets/fontend/') ?>uploads/product/1737538758-20.webp" />
+                                            <div class="indicator-item" v-for="(pimg2, pid) in selectedProduct.product_images" :key="pid" :data-id="pid">
+                                                <img :src="pimg2.product_image" />
                                             </div>
                                         </div>
                                     </div>
@@ -128,19 +119,19 @@
                                                     <div class="row">
                                                         <div class="qty-cart col-6 col-xs-6 col-sm-6">
                                                             <div class="quantity">
-                                                                <span class="minus">-</span>
-                                                                <input type="text" name="qty" value="1" />
-                                                                <span class="plus">+</span>
+                                                                <button @click="decrement" class="minus">-</button>
+                                                                <input type="text" v-model="selectedProduct.quantity" readonly />
+                                                                <button @click="increment" class="plus">+</button>
                                                             </div>
                                                         </div>
                                                         <div class="col-6 col-xs-6 col-sm-6">
-                                                            <button type="button" class="btn px-4 add_cart_btn detailsFormSubmit">
+                                                            <button type="button" class="btn px-4 add_cart_btn" @click="addToCart(selectedProduct)">
                                                                 <!-- <i class="fa fa-shopping-cart"></i> -->
                                                                 কার্ট-এ রাখুন
                                                             </button>
                                                         </div>
                                                         <div class="d-flex single_product col-sm-12">
-                                                            <button type="button" class="btn px-4 p_order_now detailsFormSubmit">
+                                                            <button type="button" class="btn px-4 p_order_now">
                                                                 <!-- <i class="fa fa-shopping-cart"></i> -->
                                                                 ক্যাশ অন ডেলিভারিতে অর্ডার করুন</button>
                                                         </div>
@@ -227,7 +218,9 @@
                     <div class="col-sm-8">
                         <div class="description tab-content details-action-box" id="description">
                             <h2>Description</h2>
-                            <p><div style="line-height: 10px;" v-html="selectedProduct.Product_Description"></div></p>
+                            <p>
+                            <div style="line-height: 10px;" v-html="selectedProduct.Product_Description"></div>
+                            </p>
                         </div>
                         <!-- <div class="tab-content details-action-box" id="writeReview">
                         <div class="container">
@@ -593,8 +586,13 @@
                     size_image: '',
                     Product_SellingPrice: 0.00,
                     Product_PreviousPrice: 0.00,
-                    quantity: 0,
+                    quantity: 1,
                 }
+            }
+        },
+        computed: {
+            fullImageUrl() {
+                return `${this.img_url.replace(/\/$/, '')}/${this.pimage.Gallery_Image.replace(/^\//, '')}`;
             }
         },
         filters: {
@@ -611,18 +609,49 @@
             }
         },
         methods: {
+            increment() {
+                this.selectedProduct.quantity++;
+            },
+            decrement() {
+                if (this.selectedProduct.quantity > 1) this.selectedProduct.quantity--;
+            },
             async getProducts() {
                 await axios.post('/get_product_details', {
                     productSlug: this.product_slug
                 }).then(async res => {
                     let product = res.data;
                     let shownProduct = product.map((pro, index) => {
+                        pro.quantity = 1;
                         pro.pro_image = this.img_url + pro.Product_Image;
                         pro.size_image = this.img_url + pro.Product_SizeImage;
                         return pro;
                     });
 
+                    shownProduct[0].product_images.forEach(pi => {
+                        pi.product_image = this.img_url + 'uploads/product_gallery/' + pi.Gallery_Image;
+                    });
+
                     this.selectedProduct = shownProduct[0];
+                })
+            },
+            addToCart(product) {
+                axios.post('/add_to_cart', {
+                    productId: product.Product_SlNo,
+                    productName: product.Product_Name,
+                    saleRate: product.Product_SellingPrice,
+                    quantity: product.quantity,
+                    productSlug: this.product_slug,
+                    productImage: product.pro_image,
+                }).then(res => {
+                    let r = res.data;
+                    if (r.success) {
+                        toastr.success(r.message);
+                        $(".cartMainCount").text(r.cartMainCount);
+                        // $(".mini-cart-wrapper").addClass("active");
+                        // $("#page-overlay").show();
+                    } else {
+                        toastr.error(r.message);
+                    }
                 })
             }
         }

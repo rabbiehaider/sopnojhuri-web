@@ -79,15 +79,15 @@ class WebController extends CI_Controller
 
 		$products = $this->db->query("SELECT
 				p.*,
-				concat(p.Product_Name, ' - ', p.Product_Code) as display_text,
-				IFNULL((((p.Product_PreviousPrice-p.Product_SellingPrice)/p.Product_PreviousPrice)*100), 0) as discount_percent,
+				concat(p.Product_Name, ' - ', p.Product_Code) AS display_text,
+				IFNULL((((p.Product_PreviousPrice-p.Product_SellingPrice)/p.Product_PreviousPrice)*100), 0) AS discount_percent,
 				pc.Category_Name,
 				psc.SubCategory_Name,
 				br.brand_name,
 				c.color_name,
 				u.Unit_Name,
-				ua.User_Name as added_by,
-				ud.User_Name as deleted_by
+				ua.User_Name AS added_by,
+				ud.User_Name AS deleted_by
 			FROM tbl_product p
 			LEFT JOIN tbl_category pc on pc.Category_SlNo = p.ProductCategory_ID
 			LEFT JOIN tbl_sub_category psc on psc.SubCategory_SlNo = p.ProductSubCategory_ID
@@ -98,7 +98,7 @@ class WebController extends CI_Controller
 			LEFT JOIN tbl_user ud on ud.User_SlNo = p.DeletedBy
 			WHERE p.status = '$status'
 			$clauses
-			order by p.Product_SlNo desc
+			ORDER BY p.Product_SlNo DESC
 			$limit
 		")->result();
 
@@ -174,9 +174,17 @@ class WebController extends CI_Controller
 			LEFT JOIN tbl_user ud on ud.User_SlNo = p.DeletedBy
 			WHERE p.status = '$status'
 			$clauses
-			order by p.Product_SlNo desc
+			ORDER BY p.Product_SlNo DESC
 			$limit
 		")->result();
+
+		foreach ($products as $product) {
+			$product->product_images = $this->db->query("SELECT pg.* 
+				FROM tbl_product_gallery pg
+				WHERE pg.Product_ID = ?
+				AND pg.status = '$status'
+			", $product->Product_SlNo)->result();
+		}
 
 		echo json_encode($products);
 	}

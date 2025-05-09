@@ -13,11 +13,14 @@ ALTER TABLE `tbl_customer` ADD `Cust_Pass` VARCHAR(55) NOT NULL AFTER `Customer_
 
 
 
+
 Website primary color: #167389
 background: #167389;
 price font color #cf3056
 
 
+https://www.luxuriousbd.com/customer/login
+01712131415
 
 
 https://www.ozybd.com/

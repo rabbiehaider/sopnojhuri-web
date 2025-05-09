@@ -54,10 +54,10 @@
                 }).then(res => {
                     let r = res.data;
                     if (r.success) {
-                        $.notify(r.message, "success");
-                        window.location = '/customer/profile';
+                        toastr.success(r.message);
+                        window.location = '/customer/account';
                     } else {
-                        $.notify(r.message, "error");
+                        toastr.error(r.message);
                     }
                 })
             }

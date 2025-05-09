@@ -66,7 +66,8 @@ foreach ($categories as $cat) {
             <div class="menu-bag">
                 <button class="cart-toggle-button margin-shopping">
                     <i class="fa-solid fa-cart-shopping"></i>
-                    <span class="mobilecart-qty">0</span>
+                    <!-- <span class="mobilecart-qty">{{ mcart_count }}</span> -->
+                    <span class="mobilecart-qty cartMainCount"><?= count($this->cart->contents()); ?>
                 </button>
             </div>
         </div>
@@ -177,7 +178,7 @@ foreach ($categories as $cat) {
                             <div class="header-list-items">
                                 <ul>
                                     <li class="track_btn">
-                                        <a href="customer/order-track.html"> <i class="fa fa-truck"></i> Track Order</a>
+                                        <a href="<?= base_url('track-order') ?>"> <i class="fa fa-truck"></i> Track Order</a>
                                     </li>
                                     <li class="for_order">
                                         <p>
@@ -198,7 +199,8 @@ foreach ($categories as $cat) {
                                         <button class="cart-toggle-button">
                                             <p class="margin-shopping">
                                                 <i class="fa-solid fa-cart-shopping"></i>
-                                                <span>0</span>
+                                                <!-- <span>{{ cart_count }}</span> -->
+                                                <span class="cartMainCount"><?= count($this->cart->contents()); ?></span>
                                             </p>
                                         </button>
                                     </li>
