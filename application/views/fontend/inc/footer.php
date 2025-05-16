@@ -200,10 +200,10 @@
 
             <div class="mini-cart-item" v-for="(item, index) in cart" :key="item.id">
                 <div class="cart-item-image">
-                    <img :src="item.image" alt="item.name">
+                    <img :src="item.image" :alt="item.name">
                 </div>
                 <div class="cart-item-content">
-                    <div class="cart-product"><a href="">{{ item.name }}</a></div>
+                    <div class="cart-product"><a :href="`/product/${item.slug}`">{{ item.name }}</a></div>
                     <div class="cart-item-subtotal"><strong>{{ item.price }} TK</strong></div>
                 </div>
                 <div class="cart-quantity-content">
@@ -222,7 +222,7 @@
                 </ul>
             </div>
 
-            <a href="https://www.ozybd.com/customer/checkout" class="mini-cart-order order_place">
+            <a href="<?php echo base_url() . 'customer/checkout'; ?>" class="mini-cart-order order_place">
                 <i class="fa fa-shopping-cart"></i>
                 ক্যাশ অন ডেলিভারিতে অর্ডার করুন
             </a>

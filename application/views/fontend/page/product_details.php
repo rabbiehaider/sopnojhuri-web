@@ -131,7 +131,7 @@
                                                             </button>
                                                         </div>
                                                         <div class="d-flex single_product col-sm-12">
-                                                            <button type="button" class="btn px-4 p_order_now">
+                                                            <button type="button" class="btn px-4 p_order_now" @click="orderNow(selectedProduct)">
                                                                 <!-- <i class="fa fa-shopping-cart"></i> -->
                                                                 ক্যাশ অন ডেলিভারিতে অর্ডার করুন</button>
                                                         </div>
@@ -166,9 +166,8 @@
                                                                 <div class="flext_area">
                                                                     <i class="fa-solid fa-truck"></i>
                                                                     <div>
-                                                                        <span>ঢাকা সিটির ভিতরে ৮০ টাকা <br /></span>
-                                                                        <span>ঢাকা জেলা ১২০ টাকা <br /></span>
-                                                                        <span>ঢাকা সিটির বাইরে ১২০ টাকা <br /></span>
+                                                                        <span>ঢাকা সিটির ভিতরে {{ isd_charge }} টাকা <br /></span>
+                                                                        <span>ঢাকা সিটির বাইরে {{ osd_charge }} টাকা <br /></span>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -317,218 +316,39 @@
                     </div>
 
                     <div class="col-sm-12">
-                        <div class="product_sliders">
-                            <div class="product_item wist_item">
+                        <div class="product_sliders" v-if="relProducts.length > 0" style="display:none;" v-bind:style="{display: relProducts.length > 0 ? '' : 'none'}">
+                            <div class="product_item wist_item" v-for="(hproduct, hpi) in relProducts" :key="hpi">
                                 <div class="product_item_inner">
-
                                     <div class="sale-badge">
                                         <div class="sale-badge-inner">
                                             <div class="sale-badge-box">
                                                 <span class="sale-badge-text">
-                                                    <p> 20%</p>
-                                                    Off
+                                                    <p> {{ hproduct.discount_percent | pDecimal }}%</p> Off
                                                 </span>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="pro_img">
-                                        <a href="product/women%27s-stylish-shoulder-bag-105.html">
-                                            <img src="<?php echo base_url('assets/fontend/') ?>uploads/product/1737538770-19.webp"
-                                                alt="Women's Stylish Shoulder Bag" />
+                                        <a :href="`/product/${hproduct.slug}`">
+                                            <img :src="hproduct.pro_image" :alt="hproduct.Product_Name" />
                                         </a>
                                     </div>
                                     <div class="pro_des">
                                         <div class="pro_name">
-                                            <a href="product/women%27s-stylish-shoulder-bag-105.html">Women's
-                                                Stylish Shoulder Bag</a>
+                                            <a :href="`/product/${hproduct.slug}`">{{ hproduct.Product_Name }}</a>
                                         </div>
                                         <div class="pro_price">
                                             <p>
-                                                <del>৳ 2499</del>
-
-                                                ৳ 1999
-
+                                                <del>৳ {{ hproduct.Product_PreviousPrice }}</del>
+                                                ৳ {{ hproduct.Product_SellingPrice }}
                                             </p>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="pro_btn">
-
                                     <div class="cart_btn order_button">
                                         <a href="product/women%27s-stylish-shoulder-bag-105.html"
-                                            class="">Order Now
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product_item wist_item">
-                                <div class="product_item_inner">
-
-                                    <div class="sale-badge">
-                                        <div class="sale-badge-inner">
-                                            <div class="sale-badge-box">
-                                                <span class="sale-badge-text">
-                                                    <p> 19%</p>
-                                                    Off
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="pro_img">
-                                        <a href="product/elegance-shoulder-bag-103.html">
-                                            <img src="<?php echo base_url('assets/fontend/') ?>uploads/product/1737558251-30.webp"
-                                                alt="Elegance Shoulder Bag" />
-                                        </a>
-                                    </div>
-                                    <div class="pro_des">
-                                        <div class="pro_name">
-                                            <a href="product/elegance-shoulder-bag-103.html">Elegance Shoulder Bag</a>
-                                        </div>
-                                        <div class="pro_price">
-                                            <p>
-                                                <del>৳ 1799</del>
-
-                                                ৳ 1450
-
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="pro_btn">
-
-                                    <div class="cart_btn order_button">
-                                        <a href="product/elegance-shoulder-bag-103.html" class="">Order Now
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product_item wist_item">
-                                <div class="product_item_inner">
-
-                                    <div class="sale-badge">
-                                        <div class="sale-badge-inner">
-                                            <div class="sale-badge-box">
-                                                <span class="sale-badge-text">
-                                                    <p> 18%</p>
-                                                    Off
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="pro_img">
-                                        <a href="product/casual-shoulder-bag-100.html">
-                                            <img src="<?php echo base_url('assets/fontend/') ?>uploads/product/1737538793-15.webp"
-                                                alt="Casual Shoulder Bag" />
-                                        </a>
-                                    </div>
-                                    <div class="pro_des">
-                                        <div class="pro_name">
-                                            <a href="product/casual-shoulder-bag-100.html">Casual Shoulder Bag</a>
-                                        </div>
-                                        <div class="pro_price">
-                                            <p>
-                                                <del>৳ 2199</del>
-
-                                                ৳ 1799
-
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="pro_btn">
-
-                                    <div class="cart_btn order_button">
-                                        <a href="product/casual-shoulder-bag-100.html" class="">Order Now
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product_item wist_item">
-                                <div class="product_item_inner">
-
-                                    <div class="sale-badge">
-                                        <div class="sale-badge-inner">
-                                            <div class="sale-badge-box">
-                                                <span class="sale-badge-text">
-                                                    <p> 25%</p>
-                                                    Off
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="pro_img">
-                                        <a href="product/versatile-fashion-shoulder-bag-96.html">
-                                            <img src="<?php echo base_url('assets/fontend/') ?>uploads/product/1737558410-27.webp"
-                                                alt="Versatile Fashion Shoulder Bag" />
-                                        </a>
-                                    </div>
-                                    <div class="pro_des">
-                                        <div class="pro_name">
-                                            <a href="product/versatile-fashion-shoulder-bag-96.html">Versatile Fashion
-                                                Shoulder Bag</a>
-                                        </div>
-                                        <div class="pro_price">
-                                            <p>
-                                                <del>৳ 1599</del>
-
-                                                ৳ 1199
-
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="pro_btn">
-
-                                    <div class="cart_btn order_button">
-                                        <a href="product/versatile-fashion-shoulder-bag-96.html"
-                                            class="">Order Now
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product_item wist_item">
-                                <div class="product_item_inner">
-
-                                    <div class="sale-badge">
-                                        <div class="sale-badge-inner">
-                                            <div class="sale-badge-box">
-                                                <span class="sale-badge-text">
-                                                    <p> 24%</p>
-                                                    Off
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="pro_img">
-                                        <a href="product/premium-shoulder-bag-with-teddy-charm-95.html">
-                                            <img src="<?php echo base_url('assets/fontend/') ?>uploads/product/1737558456-17.webp"
-                                                alt="Premium Shoulder Bag with Teddy Charm" />
-                                        </a>
-                                    </div>
-                                    <div class="pro_des">
-                                        <div class="pro_name">
-                                            <a href="product/premium-shoulder-bag-with-teddy-charm-95.html">Premium
-                                                Shoulder Bag with Teddy Charm</a>
-                                        </div>
-                                        <div class="pro_price">
-                                            <p>
-                                                <del>৳ 2499</del>
-
-                                                ৳ 1899
-
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="pro_btn">
-
-                                    <div class="cart_btn order_button">
-                                        <a href="product/premium-shoulder-bag-with-teddy-charm-95.html"
                                             class="">Order Now
                                         </a>
                                     </div>
@@ -568,6 +388,8 @@
             return {
                 img_url: "<?php echo $iurl; ?>",
                 product_slug: '<?php echo $product_slug; ?>',
+                isd_charge: parseFloat('<?php echo $isd_charge; ?>'),
+                osd_charge: parseFloat('<?php echo $osd_charge; ?>'),
                 selectedProduct: {
                     Product_SlNo: '',
                     Product_Code: '',
@@ -587,7 +409,8 @@
                     Product_SellingPrice: 0.00,
                     Product_PreviousPrice: 0.00,
                     quantity: 1,
-                }
+                },
+                relProducts: []
             }
         },
         computed: {
@@ -633,6 +456,19 @@
 
                     this.selectedProduct = shownProduct[0];
                 })
+
+                this.getRelatedProducts();
+            },
+            async getRelatedProducts() {
+                await axios.post('/get_products', {
+                    categoryId: this.selectedProduct.ProductCategory_ID
+                }).then(async res => {
+                    let products = res.data.filter(p => p.Product_SlNo != this.selectedProduct.Product_SlNo);
+                    this.relProducts = products.map((pro, index) => {
+                        pro.pro_image = this.img_url + pro.Product_Image;
+                        return pro;
+                    })
+                })
             },
             addToCart(product) {
                 axios.post('/add_to_cart', {
@@ -649,6 +485,24 @@
                         $(".cartMainCount").text(r.cartMainCount);
                         // $(".mini-cart-wrapper").addClass("active");
                         // $("#page-overlay").show();
+                    } else {
+                        toastr.error(r.message);
+                    }
+                })
+            },
+            orderNow(product) {
+                axios.post('/add_to_cart', {
+                    productId: product.Product_SlNo,
+                    productName: product.Product_Name,
+                    saleRate: product.Product_SellingPrice,
+                    quantity: product.quantity,
+                    productSlug: this.product_slug,
+                    productImage: product.pro_image,
+                }).then(res => {
+                    let r = res.data;
+                    if (r.success) {
+                        toastr.success(r.message);
+                        window.location = '/customer/checkout';
                     } else {
                         toastr.error(r.message);
                     }

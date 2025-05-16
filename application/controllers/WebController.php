@@ -37,6 +37,8 @@ class WebController extends CI_Controller
 		$product = $this->db->query("SELECT * FROM tbl_product WHERE slug = ? AND status = 'a'", $productSlug)->row();
 		$data['title'] = $product->Product_Name;
 		$data['iurl'] = $this->website->Software_Url;
+		$data['isd_charge'] = $this->website->isd_charge;
+		$data['osd_charge'] = $this->website->osd_charge;
 		$data['product_slug'] = $productSlug;
 		$data['front_content'] = 'page/product_details';
 		$this->load->view('fontend/layout', $data);
@@ -77,8 +79,18 @@ class WebController extends CI_Controller
 			$clauses .= " or p.Product_Name like '$data->name%'";
 		}
 
-		$products = $this->db->query("SELECT
-				p.*,
+		$products = $this->db->query("SELECT			
+				p.Product_SlNo,
+				p.Product_Name,
+				p.Product_Code,
+				p.Video_Url,
+				p.Product_Image,
+				p.Product_SizeImage,
+				p.Product_PreviousPrice,
+				p.Product_SellingPrice,
+				p.ProductCategory_ID,
+				p.slug,
+				p.is_offer,
 				concat(p.Product_Name, ' - ', p.Product_Code) AS display_text,
 				IFNULL((((p.Product_PreviousPrice-p.Product_SellingPrice)/p.Product_PreviousPrice)*100), 0) AS discount_percent,
 				pc.Category_Name,
@@ -154,6 +166,8 @@ class WebController extends CI_Controller
 				p.Product_PreviousPrice,
 				p.Product_SellingPrice,
 				p.Product_Description,
+				p.ProductCategory_ID,
+				p.slug,
 				concat(p.Product_Name, ' - ', p.Product_Code) as display_text,
 				IFNULL((((p.Product_PreviousPrice-p.Product_SellingPrice)/p.Product_PreviousPrice)*100), 0) as discount_percent,
 				pc.Category_Name,
