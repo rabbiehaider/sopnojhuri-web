@@ -1,7 +1,0 @@
-Website primary color: #167389
-
-
-background: #167389;
-
-
-price font color #cf3056
