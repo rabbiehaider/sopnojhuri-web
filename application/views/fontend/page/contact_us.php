@@ -107,7 +107,7 @@
 <script>
     var app = new Vue({
         el: "#ContactForm",
-        data(){
+        data() {
             return {
                 contact: {
                     id: 0,
@@ -120,24 +120,23 @@
                 regMobile: /^01[13-9][\d]{8}$/,
             }
         },
-        methods:{
+        methods: {
             saveContact() {
-                if(this.contact.name == '') {
-                    $.notify('Please Enter Your Name', "error");
+                if (this.contact.name == '') {
+                    toastr.error('Please Enter Your Name');
                     return;
                 }
-                if(this.contact.phone == '') {
-                    $.notify('Enter Your phone number', "error");
+                if (this.contact.phone == '') {
+                    toastr.error('Enter Your phone number');
                     return;
                 }
-                if(!this.validateMobile(this.contact.phone)) {
-                    $.notify('Please Enter a valid phone number!', "error");
+                if (!this.validateMobile(this.contact.phone)) {
+                    toastr.error('Please Enter a valid phone number!');
                     return;
                 }
-                axios.post('/save_contact', this.contact)
-                .then(res => {
+                axios.post('/save_contact', this.contact).then(res => {
                     let r = res.data;
-                    $.notify(r.message, "success");
+                    toastr.success(r.message);
                     this.clearContactForm();
                 })
             },
@@ -152,7 +151,7 @@
                 }
             },
             validateMobile(mobile) {
-                if(mobile == null || mobile == '') return true;
+                if (mobile == null || mobile == '') return true;
                 return this.regMobile.test(mobile);
             }
         },

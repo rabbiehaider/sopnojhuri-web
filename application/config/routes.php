@@ -4,10 +4,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 $route['default_controller'] = 'WebController/index';
 $route['product/(:any)']     = 'WebController/productView/$1';
 
-
-
-
-
 $route['category/(:any)']            = 'WebController/categoryView/$1';
 $route['scategory/(:any)']           = 'WebController/subCategoryView/$1';
 $route['about-us']                   = 'WebController/about_us';
@@ -30,9 +26,30 @@ $route['get_categories']      = 'WebController/getCategories';
 $route['get_products']        = 'WebController/getProducts';
 $route['get_product_details'] = 'WebController/getProductDetails';
 
-
 $route['get_product_more']          = 'WebController/get_product_more';
 $route['get_category_product_more'] = 'WebController/get_category_product_more';
+
+$route['customer/login']           = 'Customer/customer_login';
+$route['customer_signin']          = 'Customer/customerLoginCheck';
+$route['customer/register']        = 'Customer/customerRegister';
+$route['customer/create']          = 'Customer/customerCreate';
+$route['customer/account']         = 'Customer/customerAccount';
+$route['customer/orders']          = 'Customer/customerOrders';
+$route['customer/invoice/(:any)']  = 'Customer/customerOrders';
+$route['customer/account-edit']    = 'Customer/customerAccountUpdate';
+$route['customer/change-password'] = 'Customer/passwordChange';
+$route['customer/logout']          = 'Customer/customerLogout';
+$route['track-order']              = 'Customer/trackYourOrder';
+
+$route['add_to_cart']          = 'ProductCart/pAddToCart';
+$route['order_now']            = 'ProductCart/pOrderNow';
+$route['get_cart_contents']    = 'ProductCart/getCartContents';
+$route['update_cart_quantity'] = 'ProductCart/updateItemQnty';
+$route['remove_cart_item']     = 'ProductCart/removeCartItem';
+$route['customer/checkout']    = 'ProductCart/cusChcekOut';
+$route['place_order']          = 'ProductCart/placeCusOrder';
+
+
 
 //cart
 $route['cart']                = 'WebController/cart';

@@ -1379,7 +1379,7 @@ section.slider-section {
 }
 
 .footer-top {
-    padding: 50px 0;
+    padding: 25px 0;
     background: #fff;
 }
 
@@ -1530,7 +1530,7 @@ section.slider-section {
 
 /*==== DETAILS CSS START ====  */
 .product-section {
-    padding: 30px 0;
+    padding: 10px 0;
     background: #fff;
     margin-bottom: 10px;
     margin-top: 10px;
@@ -4766,7 +4766,7 @@ td.tfoot_bg {
 }
 
 .footer-top {
-    padding: 50px 0;
+    padding: 25px 0;
     background: #ffffff;
 }
 
@@ -5280,8 +5280,8 @@ a.mini-cart-order {
     position: absolute;
     width: 25px;
     height: 25px;
-    background-color: #000000;
-    border: 2px solid #000000;
+    background-color: var(--primary-color);
+    border: 2px solid var(--primary-color);
     border-radius: 50%;
     top: 20px;
     left: 0;
@@ -5449,7 +5449,7 @@ span.invalid-feedback {
 
 .checkout-suggest-text h3 {
     color: green;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     font-weight: 600;
     text-align: center;
 }

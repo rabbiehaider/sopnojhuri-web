@@ -7,20 +7,34 @@ class Customer extends CI_Controller
         parent::__construct();
         // Load cart library
         $this->load->library('cart');
+        $this->load->model('Admin_model', 'am');
+        $this->load->model('Customer_model', 'cm');
+        $this->website = $this->db->query("SELECT * FROM tbl_website_profile LIMIT 1")->row();
+    }
 
-        $this->load->model('Customer_model', 'customer_m');
+    public function index()
+    {
+        $data['title'] = 'Customer Login';
+        $data['iurl'] = $this->website->Software_Url;
+        $data['front_content'] = 'customer/customer_login';
+        $this->load->view('fontend/layout', $data);
     }
 
     public function customer_login()
     {
+        $session = $this->am->checkSession();
+        if ($session) {
+            redirect(base_url('customer/account'));
+        }
+
         $data['title'] = 'Customer Login';
-        $data['front_content'] = 'page/customer_login';
+        $data['iurl'] = $this->website->Software_Url;
+        $data['front_content'] = 'customer/customer_login';
         $this->load->view('fontend/layout', $data);
     }
 
-    public function login_in()
+    public function customerLoginCheck()
     {
-
         $res = ['success' => false, 'message' => ''];
         try {
             $data = json_decode($this->input->raw_input_stream);
@@ -34,24 +48,36 @@ class Customer extends CI_Controller
             } else if (empty($pass)) {
                 $res = ['success' => false, 'message' => 'Enter your password!'];
             } else {
-                $result = $this->customer_m->user_login($phone, $password);
+                $result = $this->cm->loginCheck($phone, $password);
+
+                // echo '<pre>';
+                // print_r($result);
+                // exit;
 
                 if ($result) {
+                    if ($result[0]['status' != 'a']) {
+                        $res = ['success' => false, 'message' => 'You are deactivated! Please contact with Admin.'];
+                    }
+
                     $data = array(
-                        'id' => $result[0]['id'],
-                        'name' => $result[0]['name'],
-                        'email' => $result[0]['email'],
-                        'phone' => $result[0]['phone'],
-                        'address' => $result[0]['address'],
-                        'shipping_address' => $result[0]['shipping_address'],
-                        'billing_address' => $result[0]['billing_address'],
-                        'image' => $result[0]['image'],
-                        'password' => $pass,
+                        'customer_id'      => $result[0]['Customer_SlNo'],
+                        'customer_code'    => $result[0]['Customer_Code'],
+                        'customer_name'    => $result[0]['Customer_Name'],
+                        'customer_type'    => $result[0]['Customer_Type'],
+                        'customer_mobile'  => $result[0]['Customer_Mobile'],
+                        'customer_email'   => $result[0]['Customer_Email'],
+                        'customer_address' => $result[0]['Customer_Address'],
+                        'district_id'      => $result[0]['district_id'],
+                        'district_name'    => $result[0]['District_Name'],
+                        'thana_id'         => $result[0]['thana_id'],
+                        'thana_name'       => $result[0]['Thana_Name'],
+                        'customer_image'   => $result[0]['image_name'],
+                        'password'         => $pass,
                     );
                     $this->session->set_userdata($data);
-                    $res = ['success' => true, 'message' => 'Login success!', 'user' => $data];
+                    $res = ['success' => true, 'message' => 'You are login successfully!', 'user' => $data];
                 } else {
-                    $res = ['success' => false, 'message' => 'Phone or Password dose not match!'];
+                    $res = ['success' => false, 'message' => 'Your Phone or Password dose not match!'];
                 }
             }
         } catch (\Exception $e) {
@@ -60,6 +86,127 @@ class Customer extends CI_Controller
 
         echo json_encode($res);
     }
+
+    public function customerAccount()
+    {
+        $data['title'] = 'Customer Account';
+        $data['iurl'] = $this->website->Software_Url;
+        $data['front_content'] = 'customer/customer_account';
+        $this->load->view('fontend/layout', $data);
+    }
+
+    public function customerOrders()
+    {
+        $data['title'] = 'Customer Orders';
+        $data['iurl'] = $this->website->Software_Url;
+        $data['front_content'] = 'customer/customer_orders';
+        $this->load->view('fontend/layout', $data);
+    }
+
+    public function customerAccountUpdate()
+    {
+        $data['title'] = 'Account Update';
+        $data['iurl'] = $this->website->Software_Url;
+        $data['front_content'] = 'customer/account_update';
+        $this->load->view('fontend/layout', $data);
+    }
+
+    public function passwordChange()
+    {
+        $data['title'] = 'Change Password';
+        $data['iurl'] = $this->website->Software_Url;
+        $data['front_content'] = 'customer/password_change';
+        $this->load->view('fontend/layout', $data);
+    }
+
+    public function trackYourOrder()
+    {
+        $data['title'] = 'Track Order';
+        $data['iurl'] = $this->website->Software_Url;
+        $data['front_content'] = 'customer/order_track';
+        $this->load->view('fontend/layout', $data);
+    }
+
+    public function customerRegister()
+    {
+        $session = $this->am->checkSession();
+        if ($session) {
+            redirect(base_url('customer/account'));
+        }
+
+        $data['title'] = 'Customer Registration';
+        $data['iurl'] = $this->website->Software_Url;
+        $data['front_content'] = 'customer/customer_register';
+        $this->load->view('fontend/layout', $data);
+    }
+
+    public function customerCreate()
+    {
+        $res = ['success' => false, 'message' => ''];
+        try {
+
+            $data = json_decode($this->input->raw_input_stream);
+
+            $name = $data->customer->name;
+            $email = $data->customer->email;
+            $phone = $data->customer->phone;
+            $password = trim($data->customer->password);
+            $passmd5 = md5($password);
+
+            if (!empty($email) && (!preg_match('/^[a-zA-Z0-9._-]+@[a-zA-Z0-9-]+\.[a-zA-Z.]{2,5}$/', $email))) {
+                $res = ['success' => false, 'message' => 'Email is not valid!'];
+            } else if (!preg_match('/^01[3-9]\d{8}$/', $phone)) {
+                $res = ['success' => false, 'message' => 'Phone number is not valid!'];
+            } else if ($this->cm->check_customer_exits($phone)) {
+                $res = ['success' => false, 'message' => 'Customer ' . $phone . ' already exits! Please login again with your phone number.'];
+            } else {
+
+                $customer = array(
+                    'Customer_Code'    => $this->cm->generateCustomerCode(),
+                    'Customer_Name'    => $name,
+                    'Customer_Type'    => 'online',
+                    'Customer_Mobile'  => $phone,
+                    'Customer_Email'   => $email,
+                    'Cust_Pass'        => $passmd5,
+                    'status'           => 'a',
+                    'AddBy'            => $this->session->userdata("userId"),
+                    'AddTime'          => date('Y-m-d H:i:s'),
+                    'last_update_ip'   => get_client_ip(),
+                    'branch_id'        => 1
+                );
+                $result = $this->db->insert('tbl_customer', $customer);
+                $customerId = $this->db->insert_id();
+                $customer = array_merge($data, ['id' => $customerId]);
+
+                if ($result) {
+                    $res = ['success' => true, 'message' => 'Registration success!', 'customer' => $customer];
+                }
+            }
+        } catch (\Exception $e) {
+            $res = ['success' => false, 'message' => 'Something wents wrong!' . $e->getMessage()];
+        }
+
+        echo json_encode($res);
+    }
+
+    public function customerLogout()
+    {
+        $this->session->unset_userdata('customer_id');
+        $this->session->unset_userdata('customer_code');
+        $this->session->unset_userdata('customer_name');
+        $this->session->unset_userdata('customer_type');
+        $this->session->unset_userdata('customer_mobile');
+        $this->session->unset_userdata('customer_email');
+        $this->session->unset_userdata('customer_address');
+        $this->session->unset_userdata('customer_image');
+        $this->session->unset_userdata('password');
+        redirect(base_url('customer/login'));
+    }
+
+
+
+
+
 
     public function my_account()
     {
@@ -133,7 +280,7 @@ class Customer extends CI_Controller
                 $data = array(
                     'password'  => $passmd5,
                 );
-    
+
                 $this->db->where('id', $cus_id);
                 $result = $this->db->update('tbl_app_customer', $data);
 
@@ -143,8 +290,6 @@ class Customer extends CI_Controller
             } else {
                 $res = ['success' => false, 'message' => 'Password and Confirm password does not match!'];
             }
-
-            
         } catch (\Exception $e) {
             $res = ['success' => false, 'message' => 'Something wents wrong!' . $e->getMessage()];
         }
@@ -201,15 +346,6 @@ class Customer extends CI_Controller
         $res['sales'] = $sales;
 
         echo json_encode($res);
-    }
-
-    public function customer_register()
-    {
-        $data['title'] = 'Customer Registration';
-        $data['company'] = $this->db->query("select * from tbl_content")->row();
-        // $data['img_url']= $this->db->query("select * from tbl_content")->row()->soft_url;
-        $data['front_content'] = 'page/customer_register';
-        $this->load->view('fontend/layout', $data);
     }
 
     public function registration()
@@ -344,15 +480,5 @@ class Customer extends CI_Controller
         ", $data->phone)->result();
 
         echo json_encode(['bills' => $bills]);
-    }
-
-    public function logout()
-    {
-        $this->session->unset_userdata('id');
-        $this->session->unset_userdata('name');
-        $this->session->unset_userdata('email');
-        $this->session->unset_userdata('phone');
-        $this->session->unset_userdata('image');
-        redirect("customer-login");
     }
 }

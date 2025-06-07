@@ -21,26 +21,17 @@
                                             </div>
                                         </div>
 
-                                        <!-- variable product image -->
                                         <div class="details_slider owl-carousel">
-                                            <div class="dimage_item">
-                                                <a href="<?php echo base_url('assets/fontend/') ?>uploads/product/1737538758-19.webp" data-lightbox="roadtrip" data-title="" style="cursor:zoom-in;">
-                                                    <img src="<?php echo base_url('assets/fontend/') ?>uploads/product/1737538758-19.webp" style="cursor:zoom-in;" />
-                                                </a>
-                                            </div>
-                                            <div class="dimage_item">
-                                                <a href="<?php echo base_url('assets/fontend/') ?>uploads/product/1737538758-20.webp" data-lightbox="roadtrip" data-title="" style="cursor:zoom-in;">
-                                                    <img src="<?php echo base_url('assets/fontend/') ?>uploads/product/1737538758-20.webp" style="cursor:zoom-in;" />
+                                            <div class="dimage_item" v-for="(pimage, pi) in selectedProduct.product_images" :key="pi">
+                                                <a :href="pimage.product_image" data-lightbox="roadtrip" data-title="" style="cursor:zoom-in;">
+                                                    <img :src="pimage.product_image" style="cursor: zoom-in;" />
                                                 </a>
                                             </div>
                                         </div>
 
                                         <div class="indicator_thumb ">
-                                            <div class="indicator-item" data-id="0">
-                                                <img src="<?php echo base_url('assets/fontend/') ?>uploads/product/1737538758-19.webp" />
-                                            </div>
-                                            <div class="indicator-item" data-id="1">
-                                                <img src="<?php echo base_url('assets/fontend/') ?>uploads/product/1737538758-20.webp" />
+                                            <div class="indicator-item" v-for="(pimg2, pid) in selectedProduct.product_images" :key="pid" :data-id="pid">
+                                                <img :src="pimg2.product_image" />
                                             </div>
                                         </div>
                                     </div>
@@ -128,19 +119,19 @@
                                                     <div class="row">
                                                         <div class="qty-cart col-6 col-xs-6 col-sm-6">
                                                             <div class="quantity">
-                                                                <span class="minus">-</span>
-                                                                <input type="text" name="qty" value="1" />
-                                                                <span class="plus">+</span>
+                                                                <button @click="decrement" class="minus">-</button>
+                                                                <input type="text" v-model="selectedProduct.quantity" readonly />
+                                                                <button @click="increment" class="plus">+</button>
                                                             </div>
                                                         </div>
                                                         <div class="col-6 col-xs-6 col-sm-6">
-                                                            <button type="button" class="btn px-4 add_cart_btn detailsFormSubmit">
+                                                            <button type="button" class="btn px-4 add_cart_btn" @click="addToCart(selectedProduct)">
                                                                 <!-- <i class="fa fa-shopping-cart"></i> -->
                                                                 কার্ট-এ রাখুন
                                                             </button>
                                                         </div>
                                                         <div class="d-flex single_product col-sm-12">
-                                                            <button type="button" class="btn px-4 p_order_now detailsFormSubmit">
+                                                            <button type="button" class="btn px-4 p_order_now" @click="orderNow(selectedProduct)">
                                                                 <!-- <i class="fa fa-shopping-cart"></i> -->
                                                                 ক্যাশ অন ডেলিভারিতে অর্ডার করুন</button>
                                                         </div>
@@ -175,9 +166,8 @@
                                                                 <div class="flext_area">
                                                                     <i class="fa-solid fa-truck"></i>
                                                                     <div>
-                                                                        <span>ঢাকা সিটির ভিতরে ৮০ টাকা <br /></span>
-                                                                        <span>ঢাকা জেলা ১২০ টাকা <br /></span>
-                                                                        <span>ঢাকা সিটির বাইরে ১২০ টাকা <br /></span>
+                                                                        <span>ঢাকা সিটির ভিতরে {{ isd_charge }} টাকা <br /></span>
+                                                                        <span>ঢাকা সিটির বাইরে {{ osd_charge }} টাকা <br /></span>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -227,7 +217,9 @@
                     <div class="col-sm-8">
                         <div class="description tab-content details-action-box" id="description">
                             <h2>Description</h2>
-                            <p>{{ selectedProduct.Product_Description }}</p>
+                            <p>
+                            <div style="line-height: 10px;" v-html="selectedProduct.Product_Description"></div>
+                            </p>
                         </div>
                         <!-- <div class="tab-content details-action-box" id="writeReview">
                         <div class="container">
@@ -324,218 +316,39 @@
                     </div>
 
                     <div class="col-sm-12">
-                        <div class="product_sliders">
-                            <div class="product_item wist_item">
+                        <div class="product_sliders" v-if="relProducts.length > 0" style="display:none;" v-bind:style="{display: relProducts.length > 0 ? '' : 'none'}">
+                            <div class="product_item wist_item" v-for="(hproduct, hpi) in relProducts" :key="hpi">
                                 <div class="product_item_inner">
-
                                     <div class="sale-badge">
                                         <div class="sale-badge-inner">
                                             <div class="sale-badge-box">
                                                 <span class="sale-badge-text">
-                                                    <p> 20%</p>
-                                                    Off
+                                                    <p> {{ hproduct.discount_percent | pDecimal }}%</p> Off
                                                 </span>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="pro_img">
-                                        <a href="product/women%27s-stylish-shoulder-bag-105.html">
-                                            <img src="<?php echo base_url('assets/fontend/') ?>uploads/product/1737538770-19.webp"
-                                                alt="Women's Stylish Shoulder Bag" />
+                                        <a :href="`/product/${hproduct.slug}`">
+                                            <img :src="hproduct.pro_image" :alt="hproduct.Product_Name" />
                                         </a>
                                     </div>
                                     <div class="pro_des">
                                         <div class="pro_name">
-                                            <a href="product/women%27s-stylish-shoulder-bag-105.html">Women's
-                                                Stylish Shoulder Bag</a>
+                                            <a :href="`/product/${hproduct.slug}`">{{ hproduct.Product_Name }}</a>
                                         </div>
                                         <div class="pro_price">
                                             <p>
-                                                <del>৳ 2499</del>
-
-                                                ৳ 1999
-
+                                                <del>৳ {{ hproduct.Product_PreviousPrice }}</del>
+                                                ৳ {{ hproduct.Product_SellingPrice }}
                                             </p>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="pro_btn">
-
                                     <div class="cart_btn order_button">
                                         <a href="product/women%27s-stylish-shoulder-bag-105.html"
-                                            class="">Order Now
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product_item wist_item">
-                                <div class="product_item_inner">
-
-                                    <div class="sale-badge">
-                                        <div class="sale-badge-inner">
-                                            <div class="sale-badge-box">
-                                                <span class="sale-badge-text">
-                                                    <p> 19%</p>
-                                                    Off
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="pro_img">
-                                        <a href="product/elegance-shoulder-bag-103.html">
-                                            <img src="<?php echo base_url('assets/fontend/') ?>uploads/product/1737558251-30.webp"
-                                                alt="Elegance Shoulder Bag" />
-                                        </a>
-                                    </div>
-                                    <div class="pro_des">
-                                        <div class="pro_name">
-                                            <a href="product/elegance-shoulder-bag-103.html">Elegance Shoulder Bag</a>
-                                        </div>
-                                        <div class="pro_price">
-                                            <p>
-                                                <del>৳ 1799</del>
-
-                                                ৳ 1450
-
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="pro_btn">
-
-                                    <div class="cart_btn order_button">
-                                        <a href="product/elegance-shoulder-bag-103.html" class="">Order Now
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product_item wist_item">
-                                <div class="product_item_inner">
-
-                                    <div class="sale-badge">
-                                        <div class="sale-badge-inner">
-                                            <div class="sale-badge-box">
-                                                <span class="sale-badge-text">
-                                                    <p> 18%</p>
-                                                    Off
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="pro_img">
-                                        <a href="product/casual-shoulder-bag-100.html">
-                                            <img src="<?php echo base_url('assets/fontend/') ?>uploads/product/1737538793-15.webp"
-                                                alt="Casual Shoulder Bag" />
-                                        </a>
-                                    </div>
-                                    <div class="pro_des">
-                                        <div class="pro_name">
-                                            <a href="product/casual-shoulder-bag-100.html">Casual Shoulder Bag</a>
-                                        </div>
-                                        <div class="pro_price">
-                                            <p>
-                                                <del>৳ 2199</del>
-
-                                                ৳ 1799
-
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="pro_btn">
-
-                                    <div class="cart_btn order_button">
-                                        <a href="product/casual-shoulder-bag-100.html" class="">Order Now
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product_item wist_item">
-                                <div class="product_item_inner">
-
-                                    <div class="sale-badge">
-                                        <div class="sale-badge-inner">
-                                            <div class="sale-badge-box">
-                                                <span class="sale-badge-text">
-                                                    <p> 25%</p>
-                                                    Off
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="pro_img">
-                                        <a href="product/versatile-fashion-shoulder-bag-96.html">
-                                            <img src="<?php echo base_url('assets/fontend/') ?>uploads/product/1737558410-27.webp"
-                                                alt="Versatile Fashion Shoulder Bag" />
-                                        </a>
-                                    </div>
-                                    <div class="pro_des">
-                                        <div class="pro_name">
-                                            <a href="product/versatile-fashion-shoulder-bag-96.html">Versatile Fashion
-                                                Shoulder Bag</a>
-                                        </div>
-                                        <div class="pro_price">
-                                            <p>
-                                                <del>৳ 1599</del>
-
-                                                ৳ 1199
-
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="pro_btn">
-
-                                    <div class="cart_btn order_button">
-                                        <a href="product/versatile-fashion-shoulder-bag-96.html"
-                                            class="">Order Now
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product_item wist_item">
-                                <div class="product_item_inner">
-
-                                    <div class="sale-badge">
-                                        <div class="sale-badge-inner">
-                                            <div class="sale-badge-box">
-                                                <span class="sale-badge-text">
-                                                    <p> 24%</p>
-                                                    Off
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="pro_img">
-                                        <a href="product/premium-shoulder-bag-with-teddy-charm-95.html">
-                                            <img src="<?php echo base_url('assets/fontend/') ?>uploads/product/1737558456-17.webp"
-                                                alt="Premium Shoulder Bag with Teddy Charm" />
-                                        </a>
-                                    </div>
-                                    <div class="pro_des">
-                                        <div class="pro_name">
-                                            <a href="product/premium-shoulder-bag-with-teddy-charm-95.html">Premium
-                                                Shoulder Bag with Teddy Charm</a>
-                                        </div>
-                                        <div class="pro_price">
-                                            <p>
-                                                <del>৳ 2499</del>
-
-                                                ৳ 1899
-
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="pro_btn">
-
-                                    <div class="cart_btn order_button">
-                                        <a href="product/premium-shoulder-bag-with-teddy-charm-95.html"
                                             class="">Order Now
                                         </a>
                                     </div>
@@ -575,6 +388,8 @@
             return {
                 img_url: "<?php echo $iurl; ?>",
                 product_slug: '<?php echo $product_slug; ?>',
+                isd_charge: parseFloat('<?php echo $isd_charge; ?>'),
+                osd_charge: parseFloat('<?php echo $osd_charge; ?>'),
                 selectedProduct: {
                     Product_SlNo: '',
                     Product_Code: '',
@@ -593,8 +408,14 @@
                     size_image: '',
                     Product_SellingPrice: 0.00,
                     Product_PreviousPrice: 0.00,
-                    quantity: 0,
-                }
+                    quantity: 1,
+                },
+                relProducts: []
+            }
+        },
+        computed: {
+            fullImageUrl() {
+                return `${this.img_url.replace(/\/$/, '')}/${this.pimage.Gallery_Image.replace(/^\//, '')}`;
             }
         },
         filters: {
@@ -611,18 +432,80 @@
             }
         },
         methods: {
+            increment() {
+                this.selectedProduct.quantity++;
+            },
+            decrement() {
+                if (this.selectedProduct.quantity > 1) this.selectedProduct.quantity--;
+            },
             async getProducts() {
                 await axios.post('/get_product_details', {
                     productSlug: this.product_slug
                 }).then(async res => {
                     let product = res.data;
                     let shownProduct = product.map((pro, index) => {
+                        pro.quantity = 1;
                         pro.pro_image = this.img_url + pro.Product_Image;
                         pro.size_image = this.img_url + pro.Product_SizeImage;
                         return pro;
                     });
 
+                    shownProduct[0].product_images.forEach(pi => {
+                        pi.product_image = this.img_url + 'uploads/product_gallery/' + pi.Gallery_Image;
+                    });
+
                     this.selectedProduct = shownProduct[0];
+                })
+
+                this.getRelatedProducts();
+            },
+            async getRelatedProducts() {
+                await axios.post('/get_products', {
+                    categoryId: this.selectedProduct.ProductCategory_ID
+                }).then(async res => {
+                    let products = res.data.filter(p => p.Product_SlNo != this.selectedProduct.Product_SlNo);
+                    this.relProducts = products.map((pro, index) => {
+                        pro.pro_image = this.img_url + pro.Product_Image;
+                        return pro;
+                    })
+                })
+            },
+            addToCart(product) {
+                axios.post('/add_to_cart', {
+                    productId: product.Product_SlNo,
+                    productName: product.Product_Name,
+                    saleRate: product.Product_SellingPrice,
+                    quantity: product.quantity,
+                    productSlug: this.product_slug,
+                    productImage: product.pro_image,
+                }).then(res => {
+                    let r = res.data;
+                    if (r.success) {
+                        toastr.success(r.message);
+                        $(".cartMainCount").text(r.cartMainCount);
+                        // $(".mini-cart-wrapper").addClass("active");
+                        // $("#page-overlay").show();
+                    } else {
+                        toastr.error(r.message);
+                    }
+                })
+            },
+            orderNow(product) {
+                axios.post('/add_to_cart', {
+                    productId: product.Product_SlNo,
+                    productName: product.Product_Name,
+                    saleRate: product.Product_SellingPrice,
+                    quantity: product.quantity,
+                    productSlug: this.product_slug,
+                    productImage: product.pro_image,
+                }).then(res => {
+                    let r = res.data;
+                    if (r.success) {
+                        toastr.success(r.message);
+                        window.location = '/customer/checkout';
+                    } else {
+                        toastr.error(r.message);
+                    }
                 })
             }
         }

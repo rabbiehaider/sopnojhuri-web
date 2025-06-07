@@ -8,13 +8,16 @@ class Cart_model extends CI_Model
     }
 
     public function generateOrderInvoice()
-    {        
-        $invoice = "SKG" . date('y') . "00001";
-        $sales = $this->db->query("select * from tbl_order_master");
+    {
+        $branchId = 1;
+        $branchNo = strlen($branchId) < 10 ? '0' . $branchId : $branchId;
+        $invoice = date('y') . $branchNo . "00001";
+        $year = date('y');
+        $sales = $this->db->query("SELECT * FROM tbl_sale_master sm where sm.SaleMaster_InvoiceNo like '$year%' and branch_id = ?", $branchId);
         if ($sales->num_rows() != 0) {
             $newSalesId = $sales->num_rows() + 1;
             $zeros = array('0', '00', '000', '0000');
-            $invoice = "SKG" . date('y') . (strlen($newSalesId) > count($zeros) ? $newSalesId : $zeros[count($zeros) - strlen($newSalesId)] . $newSalesId);
+            $invoice = date('y') . $branchNo . (strlen($newSalesId) > count($zeros) ? $newSalesId : $zeros[count($zeros) - strlen($newSalesId)] . $newSalesId);
         }
 
         return $invoice;
