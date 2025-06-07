@@ -193,9 +193,9 @@
                 },
                 customer: {
                     customer_id: '<?php echo $this->session->userdata("customer_id"); ?>',
-                    customer_name: '',
-                    customer_mobile: '',
-                    customer_address: '',
+                    customer_name: '<?php echo $this->session->userdata("customer_name"); ?>',
+                    customer_mobile: '<?php echo $this->session->userdata("customer_mobile"); ?>',
+                    customer_address: '<?php echo $this->session->userdata("customer_address"); ?>',
                     customer_notes: '',
                 },
                 cart: [],

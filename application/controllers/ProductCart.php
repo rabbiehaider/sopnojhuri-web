@@ -151,27 +151,29 @@ class ProductCart extends CI_Controller
             $this->db->trans_begin();
             $data = json_decode($this->input->raw_input_stream);
 
-            echo '<pre>';
-            print_r($data->order);
-            exit;
-
             $customerId = $data->customer->customer_id;
 
-            if (isset($data->customer)) {
+            if (isset($data->customer) && $customerId == '') {
                 $customerMobile = $data->customer->customer_mobile;
 
                 if (!preg_match('/^01[3-9]\d{8}$/', $customerMobile)) {
                     $res = ['success' => false, 'message' => 'Please enter a valid number!'];
                 } else {
-
                     $customer = (array)$data->customer;
+
                     unset($customer['Customer_SlNo']);
                     unset($customer['display_name']);
                     unset($customer['Customer_Type']);
-                    $mobile_count = $this->db->query("SELECT * FROM tbl_customer where Customer_Mobile = ? and branch_id = ?", [$data->customer->customer_mobile, 1])->row();
+                    unset($customer['customer_id']);
+                    unset($customer['customer_name']);
+                    unset($customer['customer_mobile']);
+                    unset($customer['customer_address']);
+                    unset($customer['customer_notes']);
+                    $cusCount = $this->db->query("SELECT * FROM tbl_customer where Customer_Mobile = ? and branch_id = ?", [$data->customer->customer_mobile, 1])->row();
 
-                    if (empty($mobile_count)) {
-                        $customer['Customer_Code'] = $this->cm->generateCustomerCode();
+                    if (empty($cusCount)) {
+                        $customerCode = $this->cm->generateCustomerCode();
+                        $customer['Customer_Code'] = $customerCode;
                         $customer['Customer_Name'] = $data->customer->customer_name;
                         $customer['Customer_Type'] = 'online';
                         $customer['Customer_Mobile'] = $customerMobile;
@@ -180,14 +182,19 @@ class ProductCart extends CI_Controller
                         $customer['Cust_Pass'] = $customerMobile;
                         $customer['Customer_Credit_Limit'] = 0;
                         $customer['status'] = 'a';
-                        $customer['AddBy'] = $this->session->userdata("userId");
+                        $customer['AddBy'] = $customerCode;
                         $customer['AddTime'] = date("Y-m-d H:i:s");
                         $customer['last_update_ip'] = get_client_ip();
                         $customer['branch_id'] = 1;
+
+                        
+            
+
                         $this->db->insert('tbl_customer', $customer);
                         $customerId = $this->db->insert_id();
 
-                        $data = array(
+                        
+                        $sData = array(
                             'customer_id'      => $customerId,
                             'customer_code'    => $customer['Customer_Code'],
                             'customer_name'    => $customer['Customer_Name'],
@@ -197,12 +204,20 @@ class ProductCart extends CI_Controller
                             'customer_address' => $customer['Customer_Address'],
                             'password'         => $customer['Customer_Mobile'],
                         );
-                        $this->session->set_userdata($data);
+                        $this->session->set_userdata($sData);
+                    } else {
+                        $customerId = $cusCount->Customer_SlNo;
                     }
                 }
             }
 
-            $sales = array(
+
+                    echo '<pre>';
+                    print_r(date("Y-m-d H:i:s"));
+                    exit;
+
+
+            $orderData = array(
                 'SaleMaster_InvoiceNo'           => $this->cm->generateOrderInvoice(),
                 'SaleMaster_SaleDate'            => date('Y-m-d'),
                 'SaleMaster_SaleType'            => 'online',
@@ -225,7 +240,10 @@ class ProductCart extends CI_Controller
                 'last_update_ip'                 => get_client_ip(),
                 'branch_id'                      => 1
             );
-            $this->db->insert('tbl_sale_master', $sales);
+            
+
+
+            $this->db->insert('tbl_sale_master', $orderData);
 
             $orderId = $this->db->insert_id();
 
