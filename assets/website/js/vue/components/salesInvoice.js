@@ -156,7 +156,7 @@ const salesInvoice = Vue.component("sales-invoice", {
     return {
       sales: {
         SaleMaster_InvoiceNo: null,
-        SalseCustomer_IDNo: null,
+        Customer_IDNo: null,
         SaleMaster_SaleDate: null,
         Customer_Name: null,
         Customer_Address: null,

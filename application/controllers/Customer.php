@@ -203,6 +203,113 @@ class Customer extends CI_Controller
         redirect(base_url('customer/login'));
     }
 
+    public function getCustOrders()
+    {
+        $data = json_decode($this->input->raw_input_stream);
+        $branchId = 1;
+        $clauses = "";
+        $status = "a";
+        if (isset($data->status) && $data->status != '') {
+            $status = $data->status;
+        }
+
+        if (isset($data->customerId) && $data->customerId != '') {
+            $clauses .= " AND sm.Customer_IDNo = '$data->customerId'";
+        }
+
+        if (isset($data->orderId) && $data->orderId != 0 && $data->orderId != '') {
+            $clauses .= " AND sm.SaleMaster_SlNo = '$data->orderId'";
+            $saleDetails = $this->db->query("SELECT 
+                    sd.*,
+                    p.Product_Code,
+                    p.Product_Name,
+                    pc.Category_Name,
+                    u.Unit_Name
+                from tbl_sale_details sd
+                join tbl_product p on p.Product_SlNo = sd.Product_IDNo
+                join tbl_category pc on pc.Category_SlNo = p.ProductCategory_ID
+                join tbl_unit u on u.Unit_SlNo = p.Unit_ID
+                where sd.SaleMaster_IDNo = ?
+                and sd.status = '$status'
+            ", $data->orderId)->result();
+
+            $res['orderDetails'] = $saleDetails;
+        }
+        $sales = $this->db->query("SELECT 
+                sm.SaleMaster_SlNo,
+                sm.SaleMaster_InvoiceNo,
+                sm.SaleMaster_PaymentType,
+                sm.Customer_IDNo,
+                sm.SaleMaster_SaleDate,
+                sm.SaleMaster_Description,
+                sm.SaleMaster_SubTotalAmount,
+                sm.SaleMaster_Freight,
+                sm.SaleMaster_TotalSaleAmount,
+                sm.SaleMaster_PaidAmount,
+                sm.status,
+                sm.delivery_status,
+                CASE sm.delivery_status
+                    WHEN 'p' THEN 'Pending'
+                    WHEN 's' THEN 'Shipped'
+                    WHEN 'o' THEN 'On The Way'
+                    WHEN 'd' THEN 'Delivered'
+                    WHEN 's' THEN 'Cancelled'
+                END AS order_status,
+                sm.SaleMaster_PaymentType,
+                CASE sm.SaleMaster_PaymentType
+                    WHEN 'cod' THEN 'Cash On Delivery'
+                    WHEN 'bkash' THEN 'BKash'
+                    WHEN 'bank' THEN 'Bank Payment'
+                END AS payment_type,
+                IFNULL(c.Customer_Code, 'Cash Customer') AS Customer_Code,
+                IFNULL(c.Customer_Name, sm.customerName) AS Customer_Name,
+                IFNULL(c.Customer_Mobile, sm.customerMobile) AS Customer_Mobile,
+                IFNULL(c.Customer_Address, sm.customerAddress) AS Customer_Address,
+                IFNULL(c.Customer_Email, '') AS Customer_Email,
+                br.Branch_name
+            FROM tbl_sale_master sm
+            LEFT JOIN tbl_customer c ON c.Customer_SlNo = sm.Customer_IDNo
+            LEFT JOIN tbl_outlet br ON br.branch_id = sm.branch_id
+            WHERE sm.branch_id = '$branchId'
+            AND sm.status = '$status'
+            $clauses
+            ORDER BY sm.SaleMaster_SlNo DESC
+        ")->result();
+
+        $res['orders'] = $sales;
+
+        echo json_encode($res);
+    }
+
+    public function custSuccInvoice($saleId)
+    {
+        $data['title'] = "Order Invoice";
+        $data['orderId'] = $saleId;
+        $data['iurl'] = $this->website->Software_Url;
+        $data['front_content'] = 'customer/success_invoice';
+        $this->load->view('fontend/layout', $data);
+    }
+
+    public function custInvoice($saleId)
+    {
+        $data['title'] = "Order Invoice";
+        $data['orderId'] = $saleId;
+        $data['iurl'] = $this->website->Software_Url;
+        $data['front_content'] = 'customer/order_invoice';
+        $this->load->view('fontend/layout', $data);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

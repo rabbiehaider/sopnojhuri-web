@@ -27,23 +27,30 @@
                     </div>
                     <div class="col-sm-9">
                         <div class="customer-content">
-                            <h5 class="account-title">My Order</h5>
+                            <h5 class="account-title">My Orders</h5>
                             <div class="table-responsive">
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th>Sl</th>
+                                            <th>Invoice No</th>
                                             <th>Date</th>
                                             <th>Amount</th>
-                                            <th>Discount</th>
                                             <th>Status</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <tr v-for="sale in orders">
+                                            <td>{{ sale.SaleMaster_InvoiceNo }}</td>
+                                            <td>{{ sale.SaleMaster_SaleDate }}</td>
+                                            <td>{{ sale.SaleMaster_TotalSaleAmount | decimal }}</td>
+                                            <td>{{ sale.order_status }}</td>
+                                            <td>
+                                                <a href="" title="Order Invoice" v-bind:href="`/order-report/${sale.SaleMaster_SlNo}`"><i class="fa fa-file"></i> Invoice</a>
+                                            </td>
+                                        </tr>
                                     </tbody>
                                 </table>
-
                             </div>
                         </div>
                     </div>
@@ -75,6 +82,7 @@
                 thanaName: '<?php echo $this->session->userdata("thana_name"); ?>',
                 customerImage: '',
                 imageFile: '<?php echo $this->session->userdata("customer_image"); ?>',
+                orders: [],
             }
         },
         filters: {
@@ -87,23 +95,14 @@
         },
         async created() {
             this.customerImage = this.imageFile == '' ? '/uploads/no_user.png' : this.img_url + this.imageFile;
-            if (this.product_slug != '') {
-                await this.getProducts();
-            }
+            await this.getOrders();
         },
         methods: {
-            async getProducts() {
-                await axios.post('/get_product_details', {
-                    productSlug: this.product_slug
+            async getOrders() {
+                await axios.post('/get_corders', {
+                    customerId: this.customerId
                 }).then(async res => {
-                    let product = res.data;
-                    let shownProduct = product.map((pro, index) => {
-                        pro.pro_image = this.img_url + pro.Product_Image;
-                        pro.size_image = this.img_url + pro.Product_SizeImage;
-                        return pro;
-                    });
-
-                    this.selectedProduct = shownProduct[0];
+                    this.orders = res.data.orders;
                 })
             }
         }

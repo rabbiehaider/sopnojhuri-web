@@ -1,129 +1,149 @@
-<div id="OrderInvoice">
-    <div class="section">
-        <div class="container pt-3">
-            <div class="row" style="display:none;" v-bind:style="{display: cart.length > 0 ? '' : 'none'}">
-                <div class="col-md-12 col-md-offset-2">
-                    <!-- <div class="row">
-                        <div class="col-sm-12">
-                            <a href="" v-on:click.prevent="print"><i class="fa fa-print"></i> Print</a>
-                        </div>
-                    </div> -->
+<div id="content">
+    <style>
+        .customer-invoice {
+            margin: 25px 0;
+        }
 
-                    <div id="invoiceContent">
-                        <div class="row">
-                            <div class="col-sm-12 text-center" style="width: 100%;">
-                                <div _h098asdh>
-                                    Order Invoice
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-8" style="width: 100%;">
-                                <strong>Customer Name:</strong> {{ sales.customer_name }}<br>
-                                <strong>Customer Mobile:</strong> {{ sales.customer_phone }}<br>
-                                <strong>Customer Email:</strong> {{ sales.customer_email }}
-                            </div>
-                            <div class="col-sm-4 text-right" style="width: 100%;">
-                                <strong>Invoice No.:</strong> {{ sales.invoice_no }}<br>
-                                <strong>Order Date:</strong> {{ sales.date }}
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-12" style="width: 100%;">
-                                <div _d9283dsc></div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-6" style="width: 100%;">
-                                <div class="complain">
-                                    <div class="cus_heading">
-                                        <strong>Shipping Address</strong>
-                                    </div>
+        .invoice_btn {
+            margin-bottom: 15px;
+        }
 
-                                    <p>{{ sales.shipping_address }}</p>
-                                </div>
-                            </div>
-                            <div class="col-sm-6" style="width: 100%;">
-                                <div class="investigation">
-                                    <div class="cus_heading">
-                                        <strong>Customer Address</strong>
+        td {
+            font-size: 16px;
+        }
+
+        @page {
+            size: a4;
+            margin: 0mm;
+            background: #F9F9F9
+        }
+
+        @media print {
+            td {
+                font-size: 18px;
+            }
+
+            header,
+            footer,
+            .no-print,
+            .mobile-menu {
+                display: none !important;
+            }
+        }
+    </style>
+    <section class="customer-invoice ">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <a href="https://www.ozybd.com/customer/orders"><strong><i class="fa-solid fa-arrow-left"></i> Back To Order</strong></a>
+                </div>
+                <div class="col-sm-6">
+                    <button onclick="printFunction()" class="no-print invoice_btn"><i class="fa fa-print"></i></button>
+                </div>
+                <div class="col-sm-12">
+                    <div class="invoice-innter" style="width: 900px;margin: 0 auto;background: #f9f9f9;overflow: hidden;padding: 30px;padding-top: 0;">
+                        <table style="width:100%">
+                            <tr>
+                                <td style="width: 40%; float: left; padding-top: 15px;">
+                                    <img src="https://www.ozybd.com/public/uploads/settings/1749012750-website-svg.webp" style="margin-top:25px !important;width:150px" alt="">
+                                    <p style="font-size: 14px; color: #222; margin: 20px 0;"><strong>Payment Method:</strong> <span style="text-transform: uppercase;">Cash On Delivery</span></p>
+                                    <div class="invoice_form">
+                                        <p style="font-size:16px;line-height:1.8;color:#222"><strong>Invoice From:</strong></p>
+                                        <p style="font-size:16px;line-height:1.8;color:#222">ozybd</p>
+                                        <p style="font-size:16px;line-height:1.8;color:#222">01877702077</p>
+                                        <p style="font-size:16px;line-height:1.8;color:#222">info.ozybd@gmail.com</p>
+                                        <p style="font-size:16px;line-height:1.8;color:#222">K-85/3,Bhai Bhai Road,Khilkhet, Dhaka 1229</p>
                                     </div>
-                                    <p>{{ sales.shipping_address }}</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-12" style="width: 100%;">
-                                <table _a584de>
-                                    <thead>
-                                        <tr>
-                                            <td>Sl.</td>
-                                            <td>Description</td>
-                                            <td>Qnty</td>
-                                            <td>Unit Price</td>
-                                            <td>Total</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr v-for="(product, sl) in cart">
-                                            <td>{{ sl + 1 }}</td>
-                                            <td>{{ product.Product_Name }}</td>
-                                            <td>{{ product.quantity }} {{ product.Unit_Name }}</td>
-                                            <td>{{ product.product_price }}</td>
-                                            <td align="right">{{ product.total_amount }}</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-6" style="width: 100%;">
-                                <br>
-                                <table class="pull-left" style="width: 100%;">
-                                </table>
-                            </div>
-                            <div class="col-sm-6" style="width: 100%;">
-                                <table _t92sadbc2>
-                                    <tr>
-                                        <td><strong>Sub Total:</strong></td>
-                                        <td style="text-align:right">{{ formatNumber(sales.total_amount - sales.shipping_cost)  }}</td>
+                                </td>
+                                <td style="width:60%;float: left;">
+                                    <div class="invoice-bar" style=" background: #167389; transform: skew(38deg); width: 100%; margin-left: 65px; padding: 20px 60px; ">
+                                        <p style="font-size: 30px; color: #fff; transform: skew(-38deg); text-transform: uppercase; text-align: right; font-weight: bold;">Invoice</p>
+                                    </div>
+                                    <div class="invoice-bar" style="background:#fff; width: 80%; margin-left: 132px; padding: 12px 32px; margin-top: 6px;text-align:right">
+                                        <p style="display:block;text-align: right;">Invoice Date: <strong>09-06-25</strong></p>
+                                        <p style="display:block;text-align: right;">Invoice No: <strong>94991</p>
+                                        </p>
+                                    </div>
+                                    <div class="invoice_to" style="padding-top: 20px;">
+                                        <p style="font-size:16px;line-height:1.8;color:#222;text-align: right;"><strong>Invoice To:</strong></p>
+                                        <p style="font-size:16px;line-height:1.8;color:#222;text-align: right;font-weight:normal">Abid Ali</p>
+                                        <p style="font-size:16px;line-height:1.8;color:#222;text-align: right;font-weight:normal">01712131415</p>
+                                        <p style="font-size:16px;line-height:1.8;color:#222;text-align: right;font-weight:normal">Madhobdi</p>
+                                        <p style="font-size:16px;line-height:1.8;color:#222;text-align: right;font-weight:normal">Pilkhana</p>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                        <table class="table" style="margin-top: 30px">
+                            <thead style="background: #167389; color: #fff;">
+                                <tr>
+                                    <th>SL</th>
+                                    <th>Product</th>
+                                    <th>Image</th>
+                                    <th>Price</th>
+                                    <th>Qty</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>OZ-Special Premium Hand bag
+
+                                    </td>
+                                    <td class="invoice-img">
+                                        <img src="https://www.ozybd.com/public/uploads/product/1737728533-44.webp"
+                                            alt="">
+                                    </td>
+                                    <td>৳1899</td>
+                                    <td>1</td>
+                                    <td>৳1899</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="invoice-bottom">
+
+                            <table class="table" style="width: 300px; float: right;    margin-bottom: 30px;">
+                                <tbody style="background:#167389">
+                                    <tr style="color:#fff">
+                                        <td><strong>SubTotal</strong></td>
+                                        <td><strong>৳1899</strong></td>
                                     </tr>
-                                    <tr>
-                                        <td><strong>Shipping Cost:</strong></td>
-                                        <td style="text-align:right">{{ sales.shipping_cost }}</td>
+                                    <tr style="color:#fff">
+                                        <td><strong>Shipping(+)</strong></td>
+                                        <td><strong>৳80</strong></td>
                                     </tr>
-                                    <tr>
-                                        <td colspan="2" style="border-bottom: 1px solid #ccc"></td>
+                                    <tr style="background:#167389;color:#fff">
+                                        <td><strong>Final Total</strong></td>
+                                        <td><strong>৳1979</strong></td>
                                     </tr>
-                                    <tr>
-                                        <td><strong>Total:</strong></td>
-                                        <td style="text-align:right">{{ sales.total_amount }}</td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-12" style="width: 100%;">
-                                <strong>In Word: </strong> {{ convertNumberToWords(sales.total_amount) }}<br><br>
-                                <strong>Note: </strong>
-                                <p style="white-space: pre-line">{{ sales.order_note }}</p>
+                                </tbody>
+                            </table>
+                            <div class="terms-condition" style="overflow: hidden; width: 100%; text-align: center; padding: 20px 0; border-top: 1px solid #ddd;">
+                                <h5 style="font-style: italic;"><a href="https://www.ozybd.com/page/terms-condition">Terms & Conditions</a></h5>
+                                <p style="text-align: center; font-style: italic; font-size: 15px; margin-top: 10px;">* This is a computer generated invoice, does not require any signature.</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 </div>
+
+<script src="<?php echo base_url('assets/fontend/') ?>js/vue/vue.min.js"></script>
+<script src="<?php echo base_url('assets/fontend/') ?>js/vue/axios.min.js"></script>
+<script src="<?php echo base_url('assets/fontend/') ?>js/vue/moment.min.js"></script>
+
 <script>
     new Vue({
         el: '#OrderInvoice',
         data() {
             return {
                 sales: {
-                    SaleMaster_SlNo: parseInt('<?php echo $saleId; ?>'),
+                    SaleMaster_SlNo: parseInt('<?php echo $orderId; ?>'),
                     SaleMaster_InvoiceNo: null,
-                    SalseCustomer_IDNo: null,
+                    Customer_IDNo: null,
                     SaleMaster_SaleDate: null,
                     Customer_Name: null,
                     Customer_Address: null,
@@ -141,8 +161,6 @@
                 },
                 cart: [],
                 style: null,
-                companyProfile: null,
-                currentBranch: null
             }
         },
         created() {
@@ -151,11 +169,11 @@
         },
         methods: {
             getSales() {
-                axios.post('/get_orders', {
-                    salesId: this.sales.SaleMaster_SlNo
+                axios.post('/get_corders', {
+                    orderId: this.sales.SaleMaster_SlNo
                 }).then(res => {
-                    this.sales = res.data.sales[0];
-                    this.cart = res.data.saleDetails;
+                    this.sales = res.data.orders[0];
+                    this.cart = res.data.orderDetails;
                 })
             },
             formatNumber(num) {
@@ -286,107 +304,6 @@
                     words_string = words_string.split("  ").join(" ");
                 }
                 return words_string + ' only';
-            },
-            async print() {
-                let reportContent = `
-                <!DOCTYPE html>
-                    <html lang="en">
-                    <head>
-                        <meta charset="UTF-8">
-                        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-                        <title>Invoice</title>
-                        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
-                        <style>
-                            body, table{
-                                font-size: 13px;
-                            }
-                        </style>
-                    </head>
-                    <body>
-                        <div class="container">
-                            <table style="width:100%;">
-                                <thead>
-                                    <tr>
-                                        <td>
-                                            <div class="row">
-                                                
-                                                <div class="col-xs-10" style="padding-top:20px;">
-                                                    <strong style="font-size:18px;">SKG Auto</strong><br>
-                                                    <p style="white-space:pre-line;">Mirpur-10, Dhaka-1216</p>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-xs-12">
-                                                    <div style="border-bottom: 4px double #454545;margin-top:7px;margin-bottom:7px;"></div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <div class="row">
-                                                <div class="col-xs-12">
-                                                    ${document.querySelector('#invoiceContent').innerHTML}
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <td>
-                                            <div style="width:100%;height:50px;">&nbsp;</div>
-                                        </td>
-                                    </tr>
-                                </tfoot>
-                            </table>
-                            <div class="row" style="border-bottom:1px solid #ccc;margin-bottom:5px;padding-bottom:6px;">
-                                <div class="col-xs-6">
-                                    <span style="text-decoration:overline;">Received by</span><br><br>
-                                    ** THANK YOU FOR YOUR BUSINESS **
-                                </div>
-                                <div class="col-xs-6 text-right">
-                                    <span style="text-decoration:overline;">Authorized by</span>
-                                </div>
-                            </div>
-                            <div style="position:fixed;left:0;bottom:15px;width:100%;">
-                                <div class="row" style="font-size:12px;">
-                                    <div class="col-xs-6">
-                                        Print Date: ${moment().format('DD-MM-YYYY h:mm a')}, Printed by: ${this.sales.AddBy}
-                                    </div>
-                                    <div class="col-xs-6 text-right">
-                                        Developed by: Link-Up Technology Ltd., Contact no: 01743134075
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                    </body>
-                    </html>
-				`;
-
-                var reportWindow = window.open('', 'PRINT', `height=${screen.height}, width=${screen.width}`);
-
-                reportWindow.document.body.innerHTML += reportContent;
-
-                if (this.searchType == '' || this.searchType == 'user') {
-                    let rows = reportWindow.document.querySelectorAll('.record-table tr');
-                    rows.forEach(row => {
-                        row.lastChild.remove();
-                    })
-                }
-
-                let invoiceStyle = reportWindow.document.createElement('style');
-                invoiceStyle.innerHTML = this.style.innerHTML;
-                reportWindow.document.head.appendChild(invoiceStyle);
-
-                reportWindow.focus();
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                reportWindow.print();
-                reportWindow.close();
             }
         }
     })

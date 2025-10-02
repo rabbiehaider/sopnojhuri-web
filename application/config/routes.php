@@ -41,6 +41,11 @@ $route['customer/change-password'] = 'Customer/passwordChange';
 $route['customer/logout']          = 'Customer/customerLogout';
 $route['track-order']              = 'Customer/trackYourOrder';
 
+$route['get_corders']          = 'Customer/getCustOrders';
+$route['order-success/(:any)'] = 'Customer/custSuccInvoice/$1';
+$route['order-report/(:any)']  = 'Customer/custInvoice/$1';
+
+
 $route['add_to_cart']          = 'ProductCart/pAddToCart';
 $route['order_now']            = 'ProductCart/pOrderNow';
 $route['get_cart_contents']    = 'ProductCart/getCartContents';

@@ -117,7 +117,7 @@ const posInvoice = Vue.component("pos-invoice", {
         return {
             sale: {
                 SaleMaster_InvoiceNo: null,
-                SalseCustomer_IDNo: null,
+                Customer_IDNo: null,
                 SaleMaster_SaleDate: null,
                 Customer_Name: null,
                 Customer_Address: null,

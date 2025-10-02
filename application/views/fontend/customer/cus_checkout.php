@@ -279,7 +279,7 @@
                     let r = res.data;
                     if (r.success) {
                         toastr.success(r.message);
-                        window.open('/customer/invoice/' + r.orderId);
+                        window.open('/order-success/' + r.orderId);
                     } else {
                         this.orderOnGoing = false;
                         toastr.error(r.message);

@@ -151,6 +151,11 @@ class ProductCart extends CI_Controller
             $this->db->trans_begin();
             $data = json_decode($this->input->raw_input_stream);
 
+            // echo '<pre>';
+            // print_r($orderData);
+            // echo '</pre>';
+            // exit;
+
             $customerId = $data->customer->customer_id;
 
             if (isset($data->customer) && $customerId == '') {
@@ -179,21 +184,16 @@ class ProductCart extends CI_Controller
                         $customer['Customer_Mobile'] = $customerMobile;
                         $customer['Customer_Address'] = $data->customer->customer_address;
                         $customer['Customer_Email'] = '';
-                        $customer['Cust_Pass'] = $customerMobile;
+                        $customer['Cust_Pass'] = md5($customerMobile);
                         $customer['Customer_Credit_Limit'] = 0;
                         $customer['status'] = 'a';
                         $customer['AddBy'] = $customerCode;
                         $customer['AddTime'] = date("Y-m-d H:i:s");
                         $customer['last_update_ip'] = get_client_ip();
                         $customer['branch_id'] = 1;
-
-                        
-            
-
                         $this->db->insert('tbl_customer', $customer);
                         $customerId = $this->db->insert_id();
 
-                        
                         $sData = array(
                             'customer_id'      => $customerId,
                             'customer_code'    => $customer['Customer_Code'],
@@ -211,38 +211,30 @@ class ProductCart extends CI_Controller
                 }
             }
 
-
-                    echo '<pre>';
-                    print_r(date("Y-m-d H:i:s"));
-                    exit;
-
-
             $orderData = array(
-                'SaleMaster_InvoiceNo'           => $this->cm->generateOrderInvoice(),
-                'SaleMaster_SaleDate'            => date('Y-m-d'),
+                'SaleMaster_InvoiceNo'           => $this->ct->generateOrderInvoice(),
+                'SaleMaster_SaleDate'            => date("Y-m-d"),
                 'SaleMaster_SaleType'            => 'online',
+                'SaleMaster_PaymentType'         => $data->order->payment_method,
                 'customerType'                   => 'online',
-                'SalseCustomer_IDNo'             => $customerId,
-                'SaleMaster_TotalSaleAmount'     => $data->order->total_amount,
+                'Customer_IDNo'                  => $customerId,
+                'SaleMaster_TotalSaleAmount'     => $data->order->total_amount ?? 0,
                 'SaleMaster_TotalDiscountAmount' => 0,
                 'SaleMaster_TaxAmount'           => 0,
-                'SaleMaster_Freight'             => 0,
-                'SaleMaster_SubTotalAmount'      => $data->order->sub_total,
-                'cashPaid'                       => $data->order->total_amount,
+                'SaleMaster_Freight'             => $data->order->delivery_charge ?? 0,
+                'SaleMaster_SubTotalAmount'      => $data->order->sub_total ?? 0,
+                'cashPaid'                       => $data->order->total_amount ?? 0,
                 'bankPaid'                       => 0,
-                'SaleMaster_PaidAmount'          => $data->order->total_amount,
+                'SaleMaster_PaidAmount'          => $data->order->total_amount ?? 0,
                 'SaleMaster_DueAmount'           => 0,
                 'SaleMaster_Previous_Due'        => 0,
-                'SaleMaster_Description'         => $data->customer->customer_notes,
+                'SaleMaster_Description'         => $data->customer->customer_notes ?? '',
                 'status'                         => 'a',
-                "AddBy"                          => $customerId,
+                'AddBy'                          => $customerId,
                 'AddTime'                        => date("Y-m-d H:i:s"),
                 'last_update_ip'                 => get_client_ip(),
                 'branch_id'                      => 1
             );
-            
-
-
             $this->db->insert('tbl_sale_master', $orderData);
 
             $orderId = $this->db->insert_id();
@@ -266,6 +258,7 @@ class ProductCart extends CI_Controller
                 );
                 $this->db->insert('tbl_sale_details', $saleDetails);
             }
+            $this->cart->destroy();
 
             $this->db->trans_commit();
             $res = ['success' => true, 'message' => 'Your order placed successfully!', 'orderId' => $orderId];

@@ -108,7 +108,7 @@
 
                                     <div class="pro_btn">
                                         <div class="cart_btn order_button">
-                                            <button class="" data-id="106">Order Now </button>
+                                            <button @click="orderNow(hproduct)">Order Now </button>
                                         </div>
                                     </div>
                                 </div>
@@ -760,6 +760,24 @@
                         pro.pro_image = this.img_url + pro.Product_Image;
                         return pro;
                     });
+                })
+            },
+            orderNow(product) {
+                axios.post('/add_to_cart', {
+                    productId: product.Product_SlNo,
+                    productName: product.Product_Name,
+                    saleRate: product.Product_SellingPrice,
+                    quantity: 1,
+                    productSlug: product.slug,
+                    productImage: product.pro_image,
+                }).then(res => {
+                    let r = res.data;
+                    if (r.success) {
+                        toastr.success(r.message);
+                        window.location = '/customer/checkout';
+                    } else {
+                        toastr.error(r.message);
+                    }
                 })
             }
         }

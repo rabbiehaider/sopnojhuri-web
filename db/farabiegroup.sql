@@ -1936,7 +1936,7 @@ INSERT INTO `tbl_quotation_details` (`SaleDetails_SlNo`, `SaleMaster_IDNo`, `Pro
 CREATE TABLE `tbl_quotation_master` (
   `SaleMaster_SlNo` int(11) NOT NULL,
   `SaleMaster_InvoiceNo` varchar(50) NOT NULL,
-  `SalseCustomer_IDNo` int(11) DEFAULT NULL,
+  `Customer_IDNo` int(11) DEFAULT NULL,
   `customerType` varchar(20) NOT NULL,
   `SaleMaster_customer_name` varchar(500) DEFAULT NULL,
   `SaleMaster_customer_mobile` varchar(50) DEFAULT NULL,
@@ -1963,7 +1963,7 @@ CREATE TABLE `tbl_quotation_master` (
 -- Dumping data for table `tbl_quotation_master`
 --
 
-INSERT INTO `tbl_quotation_master` (`SaleMaster_SlNo`, `SaleMaster_InvoiceNo`, `SalseCustomer_IDNo`, `customerType`, `SaleMaster_customer_name`, `SaleMaster_customer_mobile`, `SaleMaster_customer_address`, `SaleMaster_SaleDate`, `SaleMaster_Description`, `SaleMaster_TotalSaleAmount`, `SaleMaster_TotalDiscountAmount`, `SaleMaster_TaxAmount`, `SaleMaster_Freight`, `SaleMaster_SubTotalAmount`, `status`, `AddBy`, `AddTime`, `UpdateBy`, `UpdateTime`, `DeletedBy`, `DeletedTime`, `last_update_ip`, `branch_id`) VALUES
+INSERT INTO `tbl_quotation_master` (`SaleMaster_SlNo`, `SaleMaster_InvoiceNo`, `Customer_IDNo`, `customerType`, `SaleMaster_customer_name`, `SaleMaster_customer_mobile`, `SaleMaster_customer_address`, `SaleMaster_SaleDate`, `SaleMaster_Description`, `SaleMaster_TotalSaleAmount`, `SaleMaster_TotalDiscountAmount`, `SaleMaster_TaxAmount`, `SaleMaster_Freight`, `SaleMaster_SubTotalAmount`, `status`, `AddBy`, `AddTime`, `UpdateBy`, `UpdateTime`, `DeletedBy`, `DeletedTime`, `last_update_ip`, `branch_id`) VALUES
 (1, 'Q-202400001', NULL, 'G', 'Cash Customer', '', '', '2024-05-18', NULL, '600.00', '0.00', '0.00', '0.00', '600.00', 'a', 1, '2024-05-18 10:35:58', NULL, NULL, NULL, NULL, '103.134.59.53', 1),
 (2, 'Q-202400002', NULL, 'G', '', '', '', '2024-05-22', NULL, '400.00', '0.00', '0.00', '0.00', '400.00', 'a', 1, '2024-05-22 12:58:25', NULL, NULL, NULL, NULL, '92.96.213.180', 1),
 (3, 'Q-202400003', NULL, 'G', 'Cash Customer', '', '', '2024-05-22', NULL, '750.00', '0.00', '0.00', '0.00', '750.00', 'a', 1, '2024-05-22 12:59:27', NULL, NULL, NULL, NULL, '92.96.213.180', 1),
@@ -2426,7 +2426,7 @@ INSERT INTO `tbl_sale_details` (`SaleDetails_SlNo`, `SaleMaster_IDNo`, `Product_
 CREATE TABLE `tbl_sale_master` (
   `SaleMaster_SlNo` int(11) NOT NULL,
   `SaleMaster_InvoiceNo` varchar(50) NOT NULL,
-  `SalseCustomer_IDNo` int(11) DEFAULT NULL,
+  `Customer_IDNo` int(11) DEFAULT NULL,
   `customerType` varchar(15) NOT NULL,
   `customerName` varchar(191) DEFAULT NULL,
   `customerMobile` varchar(15) DEFAULT NULL,
@@ -2461,7 +2461,7 @@ CREATE TABLE `tbl_sale_master` (
 -- Dumping data for table `tbl_sale_master`
 --
 
-INSERT INTO `tbl_sale_master` (`SaleMaster_SlNo`, `SaleMaster_InvoiceNo`, `SalseCustomer_IDNo`, `customerType`, `customerName`, `customerMobile`, `customerAddress`, `employee_id`, `SaleMaster_SaleDate`, `SaleMaster_Description`, `SaleMaster_SaleType`, `accountId`, `SaleMaster_TotalSaleAmount`, `SaleMaster_TotalDiscountAmount`, `SaleMaster_TaxAmount`, `SaleMaster_Freight`, `SaleMaster_SubTotalAmount`, `cashPaid`, `bankPaid`, `SaleMaster_PaidAmount`, `SaleMaster_DueAmount`, `SaleMaster_Previous_Due`, `status`, `AddBy`, `AddTime`, `UpdateBy`, `UpdateTime`, `DeletedBy`, `DeletedTime`, `last_update_ip`, `branch_id`) VALUES
+INSERT INTO `tbl_sale_master` (`SaleMaster_SlNo`, `SaleMaster_InvoiceNo`, `Customer_IDNo`, `customerType`, `customerName`, `customerMobile`, `customerAddress`, `employee_id`, `SaleMaster_SaleDate`, `SaleMaster_Description`, `SaleMaster_SaleType`, `accountId`, `SaleMaster_TotalSaleAmount`, `SaleMaster_TotalDiscountAmount`, `SaleMaster_TaxAmount`, `SaleMaster_Freight`, `SaleMaster_SubTotalAmount`, `cashPaid`, `bankPaid`, `SaleMaster_PaidAmount`, `SaleMaster_DueAmount`, `SaleMaster_Previous_Due`, `status`, `AddBy`, `AddTime`, `UpdateBy`, `UpdateTime`, `DeletedBy`, `DeletedTime`, `last_update_ip`, `branch_id`) VALUES
 (1, '240100001', NULL, 'G', 'Cash Customer', '', '', NULL, '2024-04-28', '', 'retail', NULL, '450.00', '48.00', '18.00', '0.00', '480.00', '450.00', '0.00', '450.00', '0.00', 0.00, 'a', 1, '2024-04-28 16:42:24', NULL, NULL, NULL, NULL, '103.159.73.251', 1),
 (2, '240100002', 1, 'retail', NULL, NULL, NULL, NULL, '2024-04-29', '', 'retail', NULL, '216.00', '0.00', '6.00', '0.00', '210.00', '50.00', '0.00', '50.00', '166.00', 1000.00, 'a', 1, '2024-04-29 14:59:54', NULL, NULL, NULL, NULL, '103.159.73.251', 1),
 (3, '240100003', 1, 'retail', NULL, NULL, NULL, NULL, '2024-04-29', 'test invoice', 'retail', NULL, '498.00', '0.00', '18.00', '0.00', '480.00', '400.00', '0.00', '400.00', '98.00', 966.00, 'a', 1, '2024-04-29 16:55:51', NULL, NULL, NULL, NULL, '103.159.73.251', 1),
@@ -2652,7 +2652,7 @@ INSERT INTO `tbl_sale_master` (`SaleMaster_SlNo`, `SaleMaster_InvoiceNo`, `Salse
 (188, '240100172', 32, 'retail', NULL, NULL, NULL, 1, '2024-10-06', '', 'retail', NULL, '5280.00', '0.00', '0.00', '0.00', '5280.00', '3000.00', '0.00', '3000.00', '2280.00', 0.00, 'a', 1, '2024-10-06 23:09:29', NULL, NULL, NULL, NULL, '103.60.175.40', 1),
 (189, '240100173', 38, 'retail', NULL, NULL, NULL, NULL, '2024-10-07', '', 'retail', NULL, '56400.00', '200.00', '0.00', '200.00', '56400.00', '30000.00', '0.00', '30000.00', '26400.00', 0.00, 'a', 1, '2024-10-07 12:06:50', NULL, NULL, NULL, NULL, '103.185.224.24', 1),
 (190, '240100174', NULL, 'G', 'Cash Customer', '', '', NULL, '2024-10-07', '', 'retail', NULL, '1000.00', '0.00', '0.00', '0.00', '1000.00', '1000.00', '0.00', '1000.00', '0.00', 0.00, 'a', 1, '2024-10-07 13:55:42', NULL, NULL, NULL, NULL, '103.10.194.7', 1);
-INSERT INTO `tbl_sale_master` (`SaleMaster_SlNo`, `SaleMaster_InvoiceNo`, `SalseCustomer_IDNo`, `customerType`, `customerName`, `customerMobile`, `customerAddress`, `employee_id`, `SaleMaster_SaleDate`, `SaleMaster_Description`, `SaleMaster_SaleType`, `accountId`, `SaleMaster_TotalSaleAmount`, `SaleMaster_TotalDiscountAmount`, `SaleMaster_TaxAmount`, `SaleMaster_Freight`, `SaleMaster_SubTotalAmount`, `cashPaid`, `bankPaid`, `SaleMaster_PaidAmount`, `SaleMaster_DueAmount`, `SaleMaster_Previous_Due`, `status`, `AddBy`, `AddTime`, `UpdateBy`, `UpdateTime`, `DeletedBy`, `DeletedTime`, `last_update_ip`, `branch_id`) VALUES
+INSERT INTO `tbl_sale_master` (`SaleMaster_SlNo`, `SaleMaster_InvoiceNo`, `Customer_IDNo`, `customerType`, `customerName`, `customerMobile`, `customerAddress`, `employee_id`, `SaleMaster_SaleDate`, `SaleMaster_Description`, `SaleMaster_SaleType`, `accountId`, `SaleMaster_TotalSaleAmount`, `SaleMaster_TotalDiscountAmount`, `SaleMaster_TaxAmount`, `SaleMaster_Freight`, `SaleMaster_SubTotalAmount`, `cashPaid`, `bankPaid`, `SaleMaster_PaidAmount`, `SaleMaster_DueAmount`, `SaleMaster_Previous_Due`, `status`, `AddBy`, `AddTime`, `UpdateBy`, `UpdateTime`, `DeletedBy`, `DeletedTime`, `last_update_ip`, `branch_id`) VALUES
 (191, '240100175', 39, 'retail', NULL, NULL, NULL, NULL, '2024-10-07', '', 'wholesale', NULL, '9000.00', '0.00', '0.00', '0.00', '9000.00', '2700.00', '0.00', '2700.00', '6300.00', 0.00, 'a', 1, '2024-10-07 14:01:41', NULL, NULL, NULL, NULL, '103.10.194.7', 1),
 (192, '240100176', 38, 'retail', NULL, NULL, NULL, NULL, '2024-10-07', '', 'retail', NULL, '6900.00', '0.00', '0.00', '0.00', '6900.00', '6900.00', '0.00', '6900.00', '0.00', 26400.00, 'a', 1, '2024-10-07 14:29:25', NULL, NULL, NULL, NULL, '103.10.194.7', 1),
 (193, '240100177', 27, 'retail', NULL, NULL, NULL, NULL, '2024-10-07', '', 'retail', NULL, '200.00', '0.00', '0.00', '0.00', '200.00', '200.00', '0.00', '200.00', '0.00', 26000.00, 'a', 1, '2024-10-07 18:26:56', NULL, NULL, NULL, NULL, '103.116.167.227', 1),
@@ -4820,7 +4820,7 @@ ALTER TABLE `tbl_sale_details`
 ALTER TABLE `tbl_sale_master`
   ADD PRIMARY KEY (`SaleMaster_SlNo`),
   ADD KEY `SaleMaster_InvoiceNo` (`SaleMaster_InvoiceNo`),
-  ADD KEY `SalseCustomer_IDNo` (`SalseCustomer_IDNo`),
+  ADD KEY `Customer_IDNo` (`Customer_IDNo`),
   ADD KEY `employee_id` (`employee_id`),
   ADD KEY `SaleMaster_SaleDate` (`SaleMaster_SaleDate`),
   ADD KEY `Status` (`status`),

@@ -4161,7 +4161,7 @@ INSERT INTO `tbl_salereturndetails` (`SaleReturnDetails_SlNo`, `SaleReturn_IdNo`
 CREATE TABLE `tbl_salesmaster` (
   `SaleMaster_SlNo` int(11) NOT NULL,
   `SaleMaster_InvoiceNo` varchar(50) NOT NULL,
-  `SalseCustomer_IDNo` int(11) DEFAULT NULL,
+  `Customer_IDNo` int(11) DEFAULT NULL,
   `employee_id` int(11) DEFAULT NULL,
   `SaleMaster_SaleDate` date NOT NULL,
   `SaleMaster_Description` longtext DEFAULT NULL,
@@ -4192,7 +4192,7 @@ CREATE TABLE `tbl_salesmaster` (
 -- Dumping data for table `tbl_salesmaster`
 --
 
-INSERT INTO `tbl_salesmaster` (`SaleMaster_SlNo`, `SaleMaster_InvoiceNo`, `SalseCustomer_IDNo`, `employee_id`, `SaleMaster_SaleDate`, `SaleMaster_Description`, `SaleMaster_SaleType`, `SaleMaster_InvoiceType`, `payment_type`, `SaleMaster_TotalSaleAmount`, `SaleMaster_TotalDiscountAmount`, `SaleMaster_TaxAmount`, `SaleMaster_Freight`, `SaleMaster_SubTotalAmount`, `SaleMaster_PaidAmount`, `SaleMaster_DueAmount`, `SaleMaster_Previous_Due`, `installment_month`, `installment_charge`, `installment_amount`, `Status`, `is_service`, `AddBy`, `AddTime`, `UpdateBy`, `UpdateTime`, `SaleMaster_branchid`) VALUES
+INSERT INTO `tbl_salesmaster` (`SaleMaster_SlNo`, `SaleMaster_InvoiceNo`, `Customer_IDNo`, `employee_id`, `SaleMaster_SaleDate`, `SaleMaster_Description`, `SaleMaster_SaleType`, `SaleMaster_InvoiceType`, `payment_type`, `SaleMaster_TotalSaleAmount`, `SaleMaster_TotalDiscountAmount`, `SaleMaster_TaxAmount`, `SaleMaster_Freight`, `SaleMaster_SubTotalAmount`, `SaleMaster_PaidAmount`, `SaleMaster_DueAmount`, `SaleMaster_Previous_Due`, `installment_month`, `installment_charge`, `installment_amount`, `Status`, `is_service`, `AddBy`, `AddTime`, `UpdateBy`, `UpdateTime`, `SaleMaster_branchid`) VALUES
 (1, '2402000001', 2, NULL, '2023-09-03', '', 'retail', NULL, 'Cash', '3500.00', '725.00', '0.00', '0.00', '4200.00', '3500.00', '0.00', 0.00, 0, '25.00', '0.00', 'a', 'false', 'MD MILON ', '2024-01-28 12:57:29', 'Admin', '2024-01-29 17:36:04', 2),
 (2, '24012802000002', 3, NULL, '2023-09-04', '', 'retail', NULL, 'Cash', '16700.00', '480.00', '0.00', '0.00', '17100.00', '16700.00', '0.00', 0.00, 0, '80.00', '0.00', 'a', 'false', 'MD MILON ', '2024-01-28 13:12:15', 'Admin', '2024-01-28 17:48:32', 2),
 (3, '24012802000003', 4, NULL, '2023-09-05', '', 'retail', NULL, 'Cash', '900.00', '210.00', '0.00', '0.00', '1100.00', '900.00', '0.00', 0.00, 0, '10.00', '0.00', 'a', 'false', 'MD MILON ', '2024-01-28 13:17:51', 'Admin', '2024-01-28 17:46:12', 2),
@@ -5599,7 +5599,7 @@ ALTER TABLE `tbl_salereturndetails`
 ALTER TABLE `tbl_salesmaster`
   ADD PRIMARY KEY (`SaleMaster_SlNo`),
   ADD KEY `SaleMaster_InvoiceNo` (`SaleMaster_InvoiceNo`),
-  ADD KEY `SalseCustomer_IDNo` (`SalseCustomer_IDNo`),
+  ADD KEY `Customer_IDNo` (`Customer_IDNo`),
   ADD KEY `employee_id` (`employee_id`),
   ADD KEY `SaleMaster_SaleDate` (`SaleMaster_SaleDate`),
   ADD KEY `Status` (`Status`),

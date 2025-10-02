@@ -1,7 +1,10 @@
-Update Files - May 01, 2025
+Update Files - July 18, 2025
 ========================================================
 ALTER TABLE `tbl_customer` ADD `Cust_Pass` VARCHAR(55) NOT NULL AFTER `Customer_Web`;
 
+ALTER TABLE `tbl_sale_master` ADD `delivery_status` ENUM('p','s','o','d','c') NOT NULL DEFAULT 'p' AFTER `status`;
+
+ALTER TABLE `tbl_sale_master` ADD `SaleMaster_PaymentType` VARCHAR(50) NOT NULL DEFAULT 'cod' AFTER `SaleMaster_SaleType`;
 
 
 
@@ -9,6 +12,27 @@ ALTER TABLE `tbl_customer` ADD `Cust_Pass` VARCHAR(55) NOT NULL AFTER `Customer_
 
 
 
+
+
+
+
+
+
+
+Update Files - June 08, 2025
+========================================================
+ALTER TABLE `tbl_customer` ADD `Cust_Pass` VARCHAR(55) NOT NULL AFTER `Customer_Web`;
+
+ALTER TABLE `tbl_sale_master` ADD `delivery_status` ENUM('p','s','o','d','c') NOT NULL DEFAULT 'p' AFTER `status`;
+
+
+
+
+
+
+Update Files - May 01, 2025
+========================================================
+ALTER TABLE `tbl_customer` ADD `Cust_Pass` VARCHAR(55) NOT NULL AFTER `Customer_Web`;
 
 
 
