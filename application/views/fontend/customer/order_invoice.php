@@ -31,104 +31,107 @@
             }
         }
     </style>
-    <section class="customer-invoice ">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-6">
-                    <a href="https://www.ozybd.com/customer/orders"><strong><i class="fa-solid fa-arrow-left"></i> Back To Order</strong></a>
-                </div>
-                <div class="col-sm-6">
-                    <button onclick="printFunction()" class="no-print invoice_btn"><i class="fa fa-print"></i></button>
-                </div>
-                <div class="col-sm-12">
-                    <div class="invoice-innter" style="width: 900px;margin: 0 auto;background: #f9f9f9;overflow: hidden;padding: 30px;padding-top: 0;">
-                        <table style="width:100%">
-                            <tr>
-                                <td style="width: 40%; float: left; padding-top: 15px;">
-                                    <img src="https://www.ozybd.com/public/uploads/settings/1749012750-website-svg.webp" style="margin-top:25px !important;width:150px" alt="">
-                                    <p style="font-size: 14px; color: #222; margin: 20px 0;"><strong>Payment Method:</strong> <span style="text-transform: uppercase;">Cash On Delivery</span></p>
-                                    <div class="invoice_form">
-                                        <p style="font-size:16px;line-height:1.8;color:#222"><strong>Invoice From:</strong></p>
-                                        <p style="font-size:16px;line-height:1.8;color:#222">ozybd</p>
-                                        <p style="font-size:16px;line-height:1.8;color:#222">01877702077</p>
-                                        <p style="font-size:16px;line-height:1.8;color:#222">info.ozybd@gmail.com</p>
-                                        <p style="font-size:16px;line-height:1.8;color:#222">K-85/3,Bhai Bhai Road,Khilkhet, Dhaka 1229</p>
-                                    </div>
-                                </td>
-                                <td style="width:60%;float: left;">
-                                    <div class="invoice-bar" style=" background: #167389; transform: skew(38deg); width: 100%; margin-left: 65px; padding: 20px 60px; ">
-                                        <p style="font-size: 30px; color: #fff; transform: skew(-38deg); text-transform: uppercase; text-align: right; font-weight: bold;">Invoice</p>
-                                    </div>
-                                    <div class="invoice-bar" style="background:#fff; width: 80%; margin-left: 132px; padding: 12px 32px; margin-top: 6px;text-align:right">
-                                        <p style="display:block;text-align: right;">Invoice Date: <strong>09-06-25</strong></p>
-                                        <p style="display:block;text-align: right;">Invoice No: <strong>94991</p>
-                                        </p>
-                                    </div>
-                                    <div class="invoice_to" style="padding-top: 20px;">
-                                        <p style="font-size:16px;line-height:1.8;color:#222;text-align: right;"><strong>Invoice To:</strong></p>
-                                        <p style="font-size:16px;line-height:1.8;color:#222;text-align: right;font-weight:normal">Abid Ali</p>
-                                        <p style="font-size:16px;line-height:1.8;color:#222;text-align: right;font-weight:normal">01712131415</p>
-                                        <p style="font-size:16px;line-height:1.8;color:#222;text-align: right;font-weight:normal">Madhobdi</p>
-                                        <p style="font-size:16px;line-height:1.8;color:#222;text-align: right;font-weight:normal">Pilkhana</p>
-                                    </div>
-                                </td>
-                            </tr>
-                        </table>
-                        <table class="table" style="margin-top: 30px">
-                            <thead style="background: #167389; color: #fff;">
-                                <tr>
-                                    <th>SL</th>
-                                    <th>Product</th>
-                                    <th>Image</th>
-                                    <th>Price</th>
-                                    <th>Qty</th>
-                                    <th>Total</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>OZ-Special Premium Hand bag
 
-                                    </td>
-                                    <td class="invoice-img">
-                                        <img src="https://www.ozybd.com/public/uploads/product/1737728533-44.webp"
-                                            alt="">
-                                    </td>
-                                    <td>৳1899</td>
-                                    <td>1</td>
-                                    <td>৳1899</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <div class="invoice-bottom">
+    <div id="OrderInvoice">
+        <section class="customer-invoice">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <a href="<?= base_url('customer/orders') ?>"><strong><i class="fa-solid fa-arrow-left"></i> Back To Order</strong></a>
+                    </div>
+                    <div class="col-sm-6">
+                        <button v-on:click.prevent="print" class="no-print invoice_btn"><i class="fa fa-print"></i></button>
+                    </div>
+                </div>
+                <div id="invoiceContent">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="invoice-innter" style="width: 900px;margin: 0 auto;background: #f9f9f9;overflow: hidden;padding: 30px;padding-top: 0;">
+                                <table style="width:100%">
+                                    <tr>
+                                        <td style="width: 40%; float: left; padding-top: 15px;">
+                                            <img :src="website.web_logo" style="margin-top:15px !important;width:150px" alt="" />
+                                            <p style="font-size: 14px; color: #222; margin: 20px 0;"><strong>Payment Method:</strong> <span style="text-transform: uppercase;">{{ order.payment_type }}</span></p>
+                                            <div class="invoice_form">
+                                                <p style="font-size:16px;line-height:1.8;color:#222"><strong>Invoice From:</strong></p>
+                                                <p style="font-size:16px;line-height:1.8;color:#222">{{ website.Website_Name }}</p>
+                                                <p style="font-size:16px;line-height:1.8;color:#222">{{ website.Website_Mobile }}</p>
+                                                <p style="font-size:16px;line-height:1.8;color:#222">{{ website.Website_Email }}</p>
+                                                <p style="font-size:16px;line-height:1.8;color:#222">{{ website.Website_Address }}</p>
+                                            </div>
+                                        </td>
+                                        <td style="width:60%;float: left;">
+                                            <div class="invoice-bar" style=" background: #167389; transform: skew(38deg); width: 100%; margin-left: 65px; padding: 20px 60px; ">
+                                                <p style="font-size: 30px; color: #fff; transform: skew(-38deg); text-transform: uppercase; text-align: right; font-weight: bold;">Invoice</p>
+                                            </div>
+                                            <div class="invoice-bar" style="background:#fff; width: 80%; margin-left: 132px; padding: 12px 32px; margin-top: 6px;text-align:right">
+                                                <p style="display:block;text-align: right;">Invoice Date: <strong>{{ order.SaleMaster_SaleDate | formatDateTime('DD-MM-YYYY') }}</strong></p>
+                                                <p style="display:block;text-align: right;">Invoice No: <strong>{{ order.SaleMaster_InvoiceNo }}</p>
+                                                </p>
+                                            </div>
+                                            <div class="invoice_to">
+                                                <p style="font-size:16px;line-height:1.8;color:#222;text-align: right;"><strong>Invoice To:</strong></p>
+                                                <p style="font-size:16px;line-height:1.8;color:#222;text-align: right;font-weight:normal">{{ order.Customer_Name }}</p>
+                                                <p style="font-size:16px;line-height:1.8;color:#222;text-align: right;font-weight:normal">{{ order.Customer_Mobile }}</p>
+                                                <p style="font-size:16px;line-height:1.8;color:#222;text-align: right;font-weight:normal">{{ order.Customer_Address }}</p>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <table class="table" style="margin-top: 30px">
+                                    <thead style="background: #167389; color: #fff;">
+                                        <tr>
+                                            <th>SL</th>
+                                            <th>Product</th>
+                                            <th>Image</th>
+                                            <th>Price</th>
+                                            <th>Qty</th>
+                                            <th>Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr v-for="(product, sl) in cart">
+                                            <td>{{ sl + 1 }}</td>
+                                            <td>{{ product.Product_Name }}</td>
+                                            <td class="invoice-img">
+                                                <img :src="product.pro_image" :alt="product.Product_Name">
+                                            </td>
+                                            <td>৳ {{ product.SaleDetails_Rate }}</td>
+                                            <td>{{ product.SaleDetails_TotalQuantity }}</td>
+                                            <td>৳ {{ product.SaleDetails_TotalAmount }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="invoice-bottom">
 
-                            <table class="table" style="width: 300px; float: right;    margin-bottom: 30px;">
-                                <tbody style="background:#167389">
-                                    <tr style="color:#fff">
-                                        <td><strong>SubTotal</strong></td>
-                                        <td><strong>৳1899</strong></td>
-                                    </tr>
-                                    <tr style="color:#fff">
-                                        <td><strong>Shipping(+)</strong></td>
-                                        <td><strong>৳80</strong></td>
-                                    </tr>
-                                    <tr style="background:#167389;color:#fff">
-                                        <td><strong>Final Total</strong></td>
-                                        <td><strong>৳1979</strong></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <div class="terms-condition" style="overflow: hidden; width: 100%; text-align: center; padding: 20px 0; border-top: 1px solid #ddd;">
-                                <h5 style="font-style: italic;"><a href="https://www.ozybd.com/page/terms-condition">Terms & Conditions</a></h5>
-                                <p style="text-align: center; font-style: italic; font-size: 15px; margin-top: 10px;">* This is a computer generated invoice, does not require any signature.</p>
+                                    <table class="table" style="width: 300px; float: right; margin-bottom: 30px;">
+                                        <tbody style="background:#167389">
+                                            <tr style="color:#fff">
+                                                <td><strong>SubTotal</strong></td>
+                                                <td><strong>৳ {{ order.SaleMaster_SubTotalAmount }}</strong></td>
+                                            </tr>
+                                            <tr style="color:#fff">
+                                                <td><strong>Delivery Charge(+)</strong></td>
+                                                <td><strong>৳ {{ order.SaleMaster_Freight }}</strong></td>
+                                            </tr>
+                                            <tr style="background:#167389;color:#fff">
+                                                <td><strong>Final Total</strong></td>
+                                                <td><strong>৳ {{ order.SaleMaster_TotalSaleAmount }}</strong></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="terms-condition" style="overflow: hidden; width: 100%; text-align: center; border-top: 1px solid #ddd;">
+                                        <p style="text-align: center; font-style: italic; font-size: 15px; margin-top: 10px;">* This is a computer generated invoice, does not require any signature.</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+    </div>
     </section>
+</div>
 </div>
 
 <script src="<?php echo base_url('assets/fontend/') ?>js/vue/vue.min.js"></script>
@@ -140,7 +143,7 @@
         el: '#OrderInvoice',
         data() {
             return {
-                sales: {
+                order: {
                     SaleMaster_SlNo: parseInt('<?php echo $orderId; ?>'),
                     SaleMaster_InvoiceNo: null,
                     Customer_IDNo: null,
@@ -160,20 +163,46 @@
                     AddBy: null
                 },
                 cart: [],
+                img_url: "<?php echo $iurl; ?>",
+                website: {
+                    Website_Name: null,
+                    Website_Mobile: null,
+                    Website_Email: null,
+                    Website_Address: null,
+                    web_logo: null
+                },
                 style: null,
             }
         },
+        filters: {
+            formatDateTime(dt, format) {
+                return dt == "" || dt == null ? "" : moment(dt).format(format);
+            },
+        },
         created() {
             this.setStyle();
-            this.getSales();
+            this.getWebsiteProfile();
+            this.getCOrders();
         },
         methods: {
-            getSales() {
+            getCOrders() {
                 axios.post('/get_corders', {
-                    orderId: this.sales.SaleMaster_SlNo
+                    orderId: this.order.SaleMaster_SlNo
                 }).then(res => {
-                    this.sales = res.data.orders[0];
-                    this.cart = res.data.orderDetails;
+                    this.order = res.data.orders[0];
+                    this.cart = res.data.orderDetails.map(item => {
+                        item.pro_image = item.Product_Image ? this.img_url + item.Product_Image : this.img_url + 'uploads/no_image.jpg';
+                        return item;
+                    });
+                })
+            },
+            getWebsiteProfile() {
+                axios.get('/get_website_profile').then(res => {
+                    let website = res.data.map(item => {
+                        item.web_logo = this.img_url + item.Footer_Logo;
+                        return item;
+                    });
+                    this.website = website[0];
                 })
             },
             formatNumber(num) {
@@ -182,46 +211,46 @@
             setStyle() {
                 this.style = document.createElement('style');
                 this.style.innerHTML = `
-                div[_h098asdh]{
-                    background-color:#e0e0e0;
-                    font-weight: bold;
-                    font-size:15px;
-                    margin-bottom:15px;
-                    padding: 5px;
-                }
-                div[_d9283dsc]{
-                    padding-bottom:10px;
-                    border-bottom: 1px solid #ccc;
-                    margin-bottom: 10px;
-                }
-                table[_a584de]{
-                    width: 100%;
-                    text-align:center;
-                }
-                table[_a584de] thead{
-                    font-weight:bold;
-                }
-                table[_a584de] td{
-                    padding: 3px;
-                    border: 1px solid #ccc;
-                }
-                table[_t92sadbc2]{
-                    width: 100%;
-                }
-                table[_t92sadbc2] td{
-                    padding: 2px;
-                }
-                .cus_heading {
-                    background: #DDDDDD;
-                    padding: 5px;
-                    font-size: 12px;
-                }
-                .complain,.investigation {
-                    border: 1px solid #ccc;
-		            margin: 5px 0px;
-                    min-height: 90px;
-                }
-            `;
+                    div[_h098asdh]{
+                        background-color:#e0e0e0;
+                        font-weight: bold;
+                        font-size:15px;
+                        margin-bottom:15px;
+                        padding: 5px;
+                    }
+                    div[_d9283dsc]{
+                        padding-bottom:10px;
+                        border-bottom: 1px solid #ccc;
+                        margin-bottom: 10px;
+                    }
+                    table[_a584de]{
+                        width: 100%;
+                        text-align:center;
+                    }
+                    table[_a584de] thead{
+                        font-weight:bold;
+                    }
+                    table[_a584de] td{
+                        padding: 3px;
+                        border: 1px solid #ccc;
+                    }
+                    table[_t92sadbc2]{
+                        width: 100%;
+                    }
+                    table[_t92sadbc2] td{
+                        padding: 2px;
+                    }
+                    .cus_heading {
+                        background: #DDDDDD;
+                        padding: 5px;
+                        font-size: 12px;
+                    }
+                    .complain,.investigation {
+                        border: 1px solid #ccc;
+                        margin: 5px 0px;
+                        min-height: 90px;
+                    }
+                `;
                 document.head.appendChild(this.style);
             },
             convertNumberToWords(amountToWord) {
@@ -304,6 +333,31 @@
                     words_string = words_string.split("  ").join(" ");
                 }
                 return words_string + ' only';
+            },
+            async print() {
+                let reportContent = `
+                    <link rel="stylesheet" href="<?= base_url('assets/fontend/') ?>css/bootstrap.min.css">
+					<div class="container">
+						<div class="row">
+							<div class="col-xs-12">
+								${document.querySelector('#invoiceContent').innerHTML}
+							</div>
+						</div>
+					</div>
+				`;
+
+                var reportWindow = window.open('', 'PRINT', `height=${screen.height}, width=${screen.width}`);
+
+                reportWindow.document.body.innerHTML += reportContent;
+
+                let invoiceStyle = reportWindow.document.createElement('style');
+                invoiceStyle.innerHTML = this.style.innerHTML;
+                reportWindow.document.head.appendChild(invoiceStyle);
+
+                reportWindow.focus();
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                reportWindow.print();
+                reportWindow.close();
             }
         }
     })

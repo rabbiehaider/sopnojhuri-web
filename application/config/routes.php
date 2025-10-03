@@ -21,9 +21,12 @@ $route['gallery']                    = 'WebController/gallery';
 $route['save_booking']               = 'Booking/saveBooking';
 $route['check_booking_exits']        = 'Booking/bookingAlreadyExits';
 $route['save_contact']               = 'WebController/saveContact';
+$route['get_website_profile']        = 'WebController/getWebsiteProfile';
 
 $route['get_categories']      = 'WebController/getCategories';
+$route['get_subcategories']   = 'WebController/getPSubCategories';
 $route['get_products']        = 'WebController/getProducts';
+$route['get_hot_deals']       = 'WebController/getHotProducts';
 $route['get_product_details'] = 'WebController/getProductDetails';
 
 $route['get_product_more']          = 'WebController/get_product_more';

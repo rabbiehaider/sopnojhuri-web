@@ -23,7 +23,7 @@
             <!-- </div> -->
         </section>
 
-        <!-- Category Section -->
+        <!-- Category Section ~ 14102 -->
         <section class="homeproduct">
             <div class="container">
                 <div class="row">
@@ -51,6 +51,66 @@
                                     <a :href="`/category/${category.route}`">
                                         {{ category.Category_Name }}
                                     </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Treding Products Section ~ 14102 -->
+        <section class="homeproduct">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-sm-12">
+                        <div class="sec_title">
+                            <h3 class="section-title-header">
+                                <span class="section-title-name">Trending Products</span>
+                            </h3>
+                            <div class="show_more_btn">
+                                <a href="category/shoulder-bag.html" class="view_more_btn">View More</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-6 col-xs-6 col-sm-6 col-md-3 col-lg-2" v-for="(hproduct, hpi) in hotProducts" :key="hpi">
+                                <div class="product_item wist_item">
+                                    <div class="product_item_inner">
+                                        <div class="sale-badge">
+                                            <div class="sale-badge-inner">
+                                                <div class="sale-badge-box">
+                                                    <span class="sale-badge-text">
+                                                        <p> {{ hproduct.discount_percent | pDecimal }}%</p> Off
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="pro_img">
+                                            <a :href="`/product/${hproduct.slug}`">
+                                                <img :src="hproduct.pro_image" :alt="hproduct.Product_Name" />
+                                            </a>
+                                        </div>
+                                        <div class="pro_des">
+                                            <div class="pro_name">
+                                                <a :href="`/product/${hproduct.slug}`">{{ hproduct.Product_Name }}</a>
+                                            </div>
+                                            <div class="pro_price">
+                                                <p>
+                                                    <del>৳ {{ hproduct.Product_PreviousPrice }}</del>
+                                                    ৳ {{ hproduct.Product_SellingPrice }}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="pro_btn">
+                                        <div class="cart_btn order_button">
+                                            <button @click="orderNow(hproduct)">Order Now </button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -750,12 +810,13 @@
                         item.cat_image = this.img_url + item.Category_Image;
                         return item;
                     });
-                    // console.log(res.data);
                 })
             },
             async getHotDeals() {
-                await axios.get('/get_products').then(async res => {
-                    let products = res.data.filter(p => p.is_offer == 'true');
+                await axios.post('/get_hot_deals', {
+                    isOffer: 'true'
+                }).then(async res => {
+                    let products = res.data;
                     this.hotProducts = products.map((pro, index) => {
                         pro.pro_image = this.img_url + pro.Product_Image;
                         return pro;

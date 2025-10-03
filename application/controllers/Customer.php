@@ -223,6 +223,7 @@ class Customer extends CI_Controller
                     sd.*,
                     p.Product_Code,
                     p.Product_Name,
+                    p.Product_Image,
                     pc.Category_Name,
                     u.Unit_Name
                 from tbl_sale_details sd
@@ -281,19 +282,19 @@ class Customer extends CI_Controller
         echo json_encode($res);
     }
 
-    public function custSuccInvoice($saleId)
+    public function custSuccInvoice($orderId)
     {
         $data['title'] = "Order Invoice";
-        $data['orderId'] = $saleId;
+        $data['orderId'] = $orderId;
         $data['iurl'] = $this->website->Software_Url;
         $data['front_content'] = 'customer/success_invoice';
         $this->load->view('fontend/layout', $data);
     }
 
-    public function custInvoice($saleId)
+    public function custInvoice($orderId)
     {
         $data['title'] = "Order Invoice";
-        $data['orderId'] = $saleId;
+        $data['orderId'] = $orderId;
         $data['iurl'] = $this->website->Software_Url;
         $data['front_content'] = 'customer/order_invoice';
         $this->load->view('fontend/layout', $data);
@@ -404,10 +405,10 @@ class Customer extends CI_Controller
         echo json_encode($res);
     }
 
-    public function customerInvoice($saleId)
+    public function customerInvoice($orderId)
     {
         $data['title'] = "Order Invoice";
-        $data['saleId'] = $saleId;
+        $data['orderId'] = $orderId;
         $data['about'] = $this->db->query("select * from tbl_abouts")->row();
         $data['front_content'] = 'customer/order_invoice';
         $this->load->view('fontend/layout', $data);

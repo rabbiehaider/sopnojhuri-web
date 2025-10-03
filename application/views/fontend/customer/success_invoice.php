@@ -5,7 +5,7 @@
                 <div class="row justify-content-center">
                     <div class="col-sm-8">
                         <div class="success-img">
-                            <img src="../../assets/fontend/images/ovinondon.png" alt="">
+                            <img src="../../assets/fontend/images/ovinondon.png" alt="Order Success image">
                         </div>
                         <div class="success-title">
                             <h2>আপনার অর্ডারটি আমরা পেয়েছি। খুব শিগগিরই আমাদের একজন প্রতিনিধি আপনাকে ফোন করবেন।</h2>
@@ -36,7 +36,7 @@
                                     <tr>
                                         <td colspan="4">
                                             <p>Payment Method</p>
-                                            <p><strong>{{ order.payment_type    }}</strong></p>
+                                            <p><strong>{{ order.payment_type }}</strong></p>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -63,7 +63,7 @@
                                         <td><strong id="net_total">৳ {{ order.SaleMaster_SubTotalAmount }}</strong></td>
                                     </tr>
                                     <tr>
-                                        <th class="text-end px-4">Shipping Cost</th>
+                                        <th class="text-end px-4">Delivery Charge</th>
                                         <td>
                                             <strong id="cart_shipping_cost">৳ {{ order.SaleMaster_Freight }}</strong>
                                         </td>
@@ -133,7 +133,6 @@
             }
         },
         created() {
-            this.successImage = '/assets/fontend/images/sorder.png';
             this.setStyle();
             this.getCOrders();
         },

@@ -60,6 +60,8 @@
                                 <a href="<?= base_url() ?>">Home</a>
                                 <span>/</span>
                                 <strong>{{ categoryName }}</strong>
+                                <span>/</span>
+                                <strong>{{ sCategoryName }}</strong>
                             </div>
                         </div>
                         <div class="col-sm-6">
@@ -100,18 +102,9 @@
                                     <h2 class="accordion-header">
                                         <button class="accordion-button" type="button" data-bs-toggle="collapse"
                                             data-bs-target="#collapseCat" aria-expanded="true" aria-controls="collapseOne">
-                                            {{ categoryName }}
+                                            {{ sCategoryName }}
                                         </button>
                                     </h2>
-                                    <div id="collapseCat" class="accordion-collapse collapse show" data-bs-parent="#category_sidebar" v-if="subCategories.length > 0" style="display:none;" v-bind:style="{display: subCategories.length > 0 ? '' : 'none'}">
-                                        <div class="accordion-body cust_according_body">
-                                            <ul>
-                                                <li v-for="(scat, scSl) in subCategories">
-                                                    <a :href="`/scategory/${scat.route}`">{{ scat.SubCategory_Name }}</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -169,38 +162,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!--sidebar item end-->
-                        <div class="sidebar_item wraper__item">
-                            <div class="accordion" id="filter_sidebar">
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header">
-                                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                            data-bs-target="#collapseFilter" aria-expanded="true"
-                                            aria-controls="collapseOne">
-                                            Filter
-                                        </button>
-                                    </h2>
-                                    <div id="collapseFilter" class="accordion-collapse collapse show"
-                                        data-bs-parent="#filter_sidebar" v-if="subCategories.length > 0" style="display:none;" v-bind:style="{display: subCategories.length > 0 ? '' : 'none'}">
-                                        <div class="accordion-body cust_according_body">
-                                            <div class="filter-body">
-                                                <ul class="space-y-3">
-                                                    <li v-for="(fscat, index) in subCategories" :key="fscat.SubCategory_SlNo" class="subcategory-filter-list">
-                                                        <label :for="'subcat_' + fscat.SubCategory_SlNo" class="subcategory-filter-label">
-                                                            <input type="checkbox" class="form-checkbox form-attribute" :id="'subcat_' + fscat.SubCategory_SlNo" v-bind:value="fscat.SubCategory_SlNo" v-model="selectedSCategory" @change="getProducts">
-                                                            <p class="subcategory-filter-name">
-                                                                {{ fscat.SubCategory_Name }}
-                                                            </p>
-                                                        </label>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--sidebar item end-->
                     </div>
                     <div class="col-sm-9">
                         <div class="row" v-if="products.length > 0" style="display:none;" v-bind:style="{display: products.length > 0 ? '' : 'none'}">
@@ -249,12 +210,12 @@
                         </div>
                     </div>
                 </div>
-                <!-- <div class="row">
+                <div class="row">
                     <div class="col-sm-12">
                         <div class="custom_paginate">
                         </div>
                     </div>
-                </div> -->
+                </div>
             </div>
         </section>
     </div>
@@ -270,16 +231,15 @@
         data() {
             return {
                 img_url: "<?php echo $iurl; ?>",
-                categoryId: parseInt('<?php echo $categoryId; ?>'),
+                sCategoryId: parseInt('<?php echo $sCategoryId; ?>'),
 
                 maxPrice: parseFloat('<?php echo $maxPrice; ?>'),
                 minPrice: parseFloat('<?php echo $minPrice; ?>'),
                 maxRange: parseFloat('<?php echo $maxPrice; ?>'),
                 minRange: parseFloat('<?php echo $minPrice; ?>'),
+                sCategoryName: '<?php echo $sCategoryName; ?>',
                 categoryName: '<?php echo $categoryName; ?>',
                 filterType: 'new',
-                subCategories: [],
-                selectedSCategory: [],
                 products: []
             }
         },
@@ -313,24 +273,14 @@
             }
         },
         async created() {
-            await this.getSubCategories();
             await this.getProducts();
         },
         methods: {
-            async getSubCategories() {
-                await axios.post('/get_subcategories', {
-                    categoryId: this.categoryId
-                }).then(async res => {
-                    let categories = res.data;
-                    this.subCategories = categories;
-                })
-            },
             async getProducts() {
                 await axios.post('/get_products', {
-                    categoryId: this.categoryId,
+                    subCategoryId: this.sCategoryId,
                     minPrice: this.minPrice,
                     maxPrice: this.maxPrice,
-                    selectedSCategory: this.selectedSCategory,
                     filterType: this.filterType
                 }).then(async res => {
                     let products = res.data;

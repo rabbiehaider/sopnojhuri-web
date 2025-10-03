@@ -218,7 +218,7 @@
                         <div class="description tab-content details-action-box" id="description">
                             <h2>Description</h2>
                             <p>
-                            <div style="line-height: 10px;" v-html="selectedProduct.Product_Description"></div>
+                            <div style="/*line-height: 10px;*/" v-html="selectedProduct.Product_Description"></div>
                             </p>
                         </div>
                         <!-- <div class="tab-content details-action-box" id="writeReview">
