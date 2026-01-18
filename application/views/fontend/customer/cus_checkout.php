@@ -198,6 +198,7 @@
                     customer_address: '<?php echo $this->session->userdata("customer_address"); ?>',
                     customer_notes: '',
                 },
+                regMobile: /^01[3-9]\d{8}$/,
                 cart: [],
                 orderOnGoing: false,
             }
@@ -268,6 +269,11 @@
                     toastr.error('আপনার কার্টে কোন প্রোডাক্ট নেই!');
                     return;
                 }
+
+                if (!this.validateMobile(this.customer.customer_mobile)) {
+                    toastr.error('আপনার সঠিক নাম্বার লিখুন');
+                    return;
+                }
                 
                 let data = {
                     order: this.order,
@@ -287,6 +293,10 @@
                     }
                 })
             },
+            validateMobile(mobile) {
+                if (mobile == null || mobile == '') return true;
+                return this.regMobile.test(mobile);
+            }
         }
     })
 </script>

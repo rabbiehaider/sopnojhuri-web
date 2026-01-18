@@ -59,7 +59,7 @@
                             <div class="category-breadcrumb d-flex align-items-center">
                                 <a href="<?= base_url() ?>">Home</a>
                                 <span>/</span>
-                                <strong>{{ categoryName }}</strong>
+                                <strong>Trending Products</strong>
                             </div>
                         </div>
                         <div class="col-sm-6">
@@ -100,14 +100,14 @@
                                     <h2 class="accordion-header">
                                         <button class="accordion-button" type="button" data-bs-toggle="collapse"
                                             data-bs-target="#collapseCat" aria-expanded="true" aria-controls="collapseOne">
-                                            {{ categoryName }}
+                                            Trending Categories
                                         </button>
                                     </h2>
-                                    <div id="collapseCat" class="accordion-collapse collapse show" data-bs-parent="#category_sidebar" v-if="subCategories.length > 0" style="display:none;" v-bind:style="{display: subCategories.length > 0 ? '' : 'none'}">
+                                    <div id="collapseCat" class="accordion-collapse collapse show" data-bs-parent="#category_sidebar" v-if="categories.length > 0" style="display:none;" v-bind:style="{display: categories.length > 0 ? '' : 'none'}">
                                         <div class="accordion-body cust_according_body">
                                             <ul>
-                                                <li v-for="(scat, scSl) in subCategories">
-                                                    <a :href="`/scategory/${scat.route}`">{{ scat.SubCategory_Name }}</a>
+                                                <li v-for="(scat, scSl) in categories">
+                                                    <a :href="`/category/${scat.route}`">{{ scat.Category_Name }}</a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -181,15 +181,15 @@
                                         </button>
                                     </h2>
                                     <div id="collapseFilter" class="accordion-collapse collapse show"
-                                        data-bs-parent="#filter_sidebar" v-if="subCategories.length > 0" style="display:none;" v-bind:style="{display: subCategories.length > 0 ? '' : 'none'}">
+                                        data-bs-parent="#filter_sidebar" v-if="categories.length > 0" style="display:none;" v-bind:style="{display: categories.length > 0 ? '' : 'none'}">
                                         <div class="accordion-body cust_according_body">
                                             <div class="filter-body">
                                                 <ul class="space-y-3">
-                                                    <li v-for="(fscat, index) in subCategories" :key="fscat.SubCategory_SlNo" class="subcategory-filter-list">
-                                                        <label :for="'subcat_' + fscat.SubCategory_SlNo" class="subcategory-filter-label">
-                                                            <input type="checkbox" class="form-checkbox form-attribute" :id="'subcat_' + fscat.SubCategory_SlNo" v-bind:value="fscat.SubCategory_SlNo" v-model="selectedSCategory" @change="getProducts">
+                                                    <li v-for="(fscat, index) in categories" :key="fscat.Category_SlNo" class="subcategory-filter-list">
+                                                        <label :for="'subcat_' + fscat.Category_SlNo" class="subcategory-filter-label">
+                                                            <input type="checkbox" class="form-checkbox form-attribute" :id="'subcat_' + fscat.Category_SlNo" v-bind:value="fscat.Category_SlNo" v-model="selectedCategory" @change="getProducts">
                                                             <p class="subcategory-filter-name">
-                                                                {{ fscat.SubCategory_Name }}
+                                                                {{ fscat.Category_Name }}
                                                             </p>
                                                         </label>
                                                     </li>
@@ -249,12 +249,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- <div class="row">
-                    <div class="col-sm-12">
-                        <div class="custom_paginate">
-                        </div>
-                    </div>
-                </div> -->
             </div>
         </section>
     </div>
@@ -270,16 +264,14 @@
         data() {
             return {
                 img_url: "<?php echo $iurl; ?>",
-                categoryId: parseInt('<?php echo $categoryId; ?>'),
 
                 maxPrice: parseFloat('<?php echo $maxPrice; ?>'),
                 minPrice: parseFloat('<?php echo $minPrice; ?>'),
                 maxRange: parseFloat('<?php echo $maxPrice; ?>'),
                 minRange: parseFloat('<?php echo $minPrice; ?>'),
-                categoryName: '<?php echo $categoryName; ?>',
                 filterType: 'new',
-                subCategories: [],
-                selectedSCategory: [],
+                categories: [],
+                selectedCategory: [],
                 products: []
             }
         },
@@ -313,25 +305,25 @@
             }
         },
         async created() {
-            await this.getSubCategories();
+            await this.getCategories();
             await this.getProducts();
         },
         methods: {
-            async getSubCategories() {
-                await axios.post('/get_subcategories', {
-                    categoryId: this.categoryId
+            async getCategories() {
+                await axios.post('/get_product_categories', {
+                    isTrending: 'true'
                 }).then(async res => {
                     let categories = res.data;
-                    this.subCategories = categories;
+                    this.categories = categories;
                 })
             },
             async getProducts() {
                 await axios.post('/get_products', {
-                    categoryId: this.categoryId,
                     minPrice: this.minPrice,
                     maxPrice: this.maxPrice,
-                    selectedSCategory: this.selectedSCategory,
-                    filterType: this.filterType
+                    selectedCategory: this.selectedCategory,
+                    filterType: this.filterType,
+                    isTrending: 'true'                    
                 }).then(async res => {
                     let products = res.data;
                     this.products = products.map((pro, index) => {

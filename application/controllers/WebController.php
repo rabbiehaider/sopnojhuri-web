@@ -55,6 +55,12 @@ class WebController extends CI_Controller
 		if (isset($data->status) && $data->status != '') {
 			$status = $data->status;
 		}
+		if (isset($data->isTrending) && $data->isTrending != null && $data->isTrending != '') {
+			$clauses .= " AND p.is_popular = '$data->isTrending'";
+		}
+		if (isset($data->isOffer) && $data->isOffer != null && $data->isOffer != '') {
+			$clauses .= " AND p.is_offer = '$data->isOffer'";
+		}
 		if (isset($data->categoryId) && $data->categoryId != '') {
 			$clauses .= " AND p.ProductCategory_ID = '$data->categoryId'";
 		}
@@ -264,7 +270,6 @@ class WebController extends CI_Controller
 		echo json_encode($products);
 	}
 
-
 	// Category Wise Products Page
 	public function categoryView($catTag)
 	{
@@ -340,6 +345,90 @@ class WebController extends CI_Controller
 		$this->load->view('fontend/layout', $data);
 	}
 
+	//Trending Products
+	public function trendingProducts()
+	{
+		$Max_SellPrice = $this->db->query("SELECT 
+				MAX(p.Product_SellingPrice) AS Max_SellPrice
+			FROM tbl_product p  
+			WHERE p.status = 'a'
+			AND p.is_website = 'true'
+			AND p.is_popular = 'true'
+		")->row()->Max_SellPrice;
+
+		$Min_SellPrice = $this->db->query("SELECT 
+				MIN(p.Product_SellingPrice) AS Min_SellPrice
+			FROM tbl_product p  
+			WHERE p.status = 'a'
+			AND p.is_website = 'true'
+			AND p.is_popular = 'true'
+		")->row()->Min_SellPrice;
+
+		$data['title'] = 'Trending Products';
+		$data['iurl'] = $this->website->Software_Url;
+		$data['maxPrice'] = $Max_SellPrice ?? 0;
+		$data['minPrice'] = $Min_SellPrice ?? 0;
+		$data['front_content'] = 'page/trending_products';
+		$this->load->view('fontend/layout', $data);
+	}
+
+	public function getProdCategories()
+	{
+		$data = json_decode($this->input->raw_input_stream);
+
+		$clauses = "";
+		if (isset($data->isTrending) && $data->isTrending != null && $data->isTrending != '') {
+			$clauses .= " AND p.is_popular = '$data->isTrending'";
+		}
+		if (isset($data->isOffer) && $data->isOffer != null && $data->isOffer != '') {
+			$clauses .= " AND p.is_offer = '$data->isOffer'";
+		}
+
+		$categories = $this->db->query("SELECT 
+				p.ProductCategory_ID,
+				pc.Category_SlNo,
+				pc.Category_Name,
+				pc.route
+			FROM tbl_product p
+			LEFT JOIN tbl_category pc on pc.Category_SlNo = p.ProductCategory_ID
+			WHERE p.status = 'a'
+			AND p.is_website = 'true'
+			AND pc.status = 'a'
+			$clauses
+			GROUP BY p.ProductCategory_ID
+			ORDER BY pc.Category_Name ASC
+		")->result();
+
+		echo json_encode($categories);
+	}
+
+	//Hot Deals Products
+	public function hotDealProducts()
+	{
+		$Max_SellPrice = $this->db->query("SELECT 
+				MAX(p.Product_SellingPrice) AS Max_SellPrice
+			FROM tbl_product p  
+			WHERE p.status = 'a'
+			AND p.is_website = 'true'
+			AND p.is_offer = 'true'
+		")->row()->Max_SellPrice;
+
+		$Min_SellPrice = $this->db->query("SELECT 
+				MIN(p.Product_SellingPrice) AS Min_SellPrice
+			FROM tbl_product p  
+			WHERE p.status = 'a'
+			AND p.is_website = 'true'
+			AND p.is_offer = 'true'
+		")->row()->Min_SellPrice;
+
+		$data['title'] = 'Hot Deals';
+		$data['iurl'] = $this->website->Software_Url;
+		$data['maxPrice'] = $Max_SellPrice ?? 0;
+		$data['minPrice'] = $Min_SellPrice ?? 0;
+		$data['front_content'] = 'page/hot_deal_products';
+		$this->load->view('fontend/layout', $data);
+	}
+
 	public function category()
 	{
 		$data['title'] = 'Home';
@@ -382,6 +471,7 @@ class WebController extends CI_Controller
 
 		echo json_encode($categories);
 	}
+
 	public function getPSubCategories()
 	{
 		$data = json_decode($this->input->raw_input_stream);

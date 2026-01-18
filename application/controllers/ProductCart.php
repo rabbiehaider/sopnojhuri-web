@@ -151,19 +151,20 @@ class ProductCart extends CI_Controller
             $this->db->trans_begin();
             $data = json_decode($this->input->raw_input_stream);
 
-            // echo '<pre>';
-            // print_r($orderData);
-            // echo '</pre>';
-            // exit;
 
             $customerId = $data->customer->customer_id;
+
 
             if (isset($data->customer) && $customerId == '') {
                 $customerMobile = $data->customer->customer_mobile;
 
+                
+
                 if (!preg_match('/^01[3-9]\d{8}$/', $customerMobile)) {
                     $res = ['success' => false, 'message' => 'Please enter a valid number!'];
                 } else {
+
+                
                     $customer = (array)$data->customer;
 
                     unset($customer['Customer_SlNo']);
@@ -174,9 +175,15 @@ class ProductCart extends CI_Controller
                     unset($customer['customer_mobile']);
                     unset($customer['customer_address']);
                     unset($customer['customer_notes']);
-                    $cusCount = $this->db->query("SELECT * FROM tbl_customer where Customer_Mobile = ? and branch_id = ?", [$data->customer->customer_mobile, 1])->row();
+                    $cusCount = $this->db->query("SELECT * FROM tbl_customer where Customer_Mobile = ? and branch_id = ?", [$data->customer->customer_mobile, 1]);
 
-                    if (empty($cusCount)) {
+                    
+            // echo '<pre>';
+            // print_r($cusCount);
+            // echo '</pre>';
+            // exit;
+
+                    if ($cusCount->num_rows() == 0) {
                         $customerCode = $this->cm->generateCustomerCode();
                         $customer['Customer_Code'] = $customerCode;
                         $customer['Customer_Name'] = $data->customer->customer_name;
@@ -206,7 +213,7 @@ class ProductCart extends CI_Controller
                         );
                         $this->session->set_userdata($sData);
                     } else {
-                        $customerId = $cusCount->Customer_SlNo;
+                        $customerId = $cusCount->row()->Customer_SlNo;
                     }
                 }
             }

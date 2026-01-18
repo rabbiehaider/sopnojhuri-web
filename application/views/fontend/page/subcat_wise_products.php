@@ -76,7 +76,7 @@
                                         <div class="filter_btn">
                                             <i class="fa fa-list-ul"></i>
                                         </div>
-                                        <div class="page-sort" style="border: 1px solid #167389;">
+                                        <div class="page-sort" style="border: 1px solid #167389;border-radius: 4px;">
                                             <select name="sort" class="form-control form-select sort" v-model="filterType" @change="getProducts">
                                                 <option value="new">Product: Latest</option>
                                                 <option value="old">Product: Oldest</option>

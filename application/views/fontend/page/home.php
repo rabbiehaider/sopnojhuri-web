@@ -69,38 +69,38 @@
                                 <span class="section-title-name">Trending Products</span>
                             </h3>
                             <div class="show_more_btn">
-                                <a href="category/shoulder-bag.html" class="view_more_btn">View More</a>
+                                <a href="<?= base_url('trending-products') ?>" class="view_more_btn">View More</a>
                             </div>
                         </div>
                     </div>
 
                     <div class="col-sm-12">
                         <div class="row">
-                            <div class="col-6 col-xs-6 col-sm-6 col-md-3 col-lg-2" v-for="(hproduct, hpi) in hotProducts" :key="hpi">
+                            <div class="col-6 col-xs-6 col-sm-6 col-md-3 col-lg-2" v-for="(tproduct, hpi) in trendings" :key="hpi">
                                 <div class="product_item wist_item">
                                     <div class="product_item_inner">
                                         <div class="sale-badge">
                                             <div class="sale-badge-inner">
                                                 <div class="sale-badge-box">
                                                     <span class="sale-badge-text">
-                                                        <p> {{ hproduct.discount_percent | pDecimal }}%</p> Off
+                                                        <p> {{ tproduct.discount_percent | pDecimal }}%</p> Off
                                                     </span>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="pro_img">
-                                            <a :href="`/product/${hproduct.slug}`">
-                                                <img :src="hproduct.pro_image" :alt="hproduct.Product_Name" />
+                                            <a :href="`/product/${tproduct.slug}`">
+                                                <img :src="tproduct.pro_image" :alt="tproduct.Product_Name" />
                                             </a>
                                         </div>
                                         <div class="pro_des">
                                             <div class="pro_name">
-                                                <a :href="`/product/${hproduct.slug}`">{{ hproduct.Product_Name }}</a>
+                                                <a :href="`/product/${tproduct.slug}`">{{ tproduct.Product_Name }}</a>
                                             </div>
                                             <div class="pro_price">
                                                 <p>
-                                                    <del>৳ {{ hproduct.Product_PreviousPrice }}</del>
-                                                    ৳ {{ hproduct.Product_SellingPrice }}
+                                                    <del>৳ {{ tproduct.Product_PreviousPrice }}</del>
+                                                    ৳ {{ tproduct.Product_SellingPrice }}
                                                 </p>
                                             </div>
                                         </div>
@@ -108,7 +108,7 @@
 
                                     <div class="pro_btn">
                                         <div class="cart_btn order_button">
-                                            <button @click="orderNow(hproduct)">Order Now </button>
+                                            <button @click="orderNow(tproduct)">Order Now </button>
                                         </div>
                                     </div>
                                 </div>
@@ -126,10 +126,10 @@
                     <div class="col-12 col-sm-12">
                         <div class="sec_title">
                             <h3 class="section-title-header">
-                                <span class="section-title-name">Hot Deal</span>
+                                <span class="section-title-name">Hot Deals</span>
                             </h3>
                             <div class="show_more_btn">
-                                <a href="category/shoulder-bag.html" class="view_more_btn">View More</a>
+                                <a href="<?= base_url('hot-deals') ?>" class="view_more_btn">View More</a>
                             </div>
                         </div>
                     </div>
@@ -788,6 +788,7 @@
             return {
                 img_url: "<?php echo $iurl; ?>",
                 categories: [],
+                trendings: [],
                 hotProducts: [],
             }
         },
@@ -801,6 +802,7 @@
         },
         async created() {
             await this.getCategories();
+            await this.getTrendingPros();
             await this.getHotDeals();
         },
         methods: {
@@ -812,8 +814,19 @@
                     });
                 })
             },
+            async getTrendingPros() {
+                await axios.post('/get_products', {
+                    isTrending: 'true'
+                }).then(async res => {
+                    let products = res.data;
+                    this.trendings = products.map((pro, index) => {
+                        pro.pro_image = this.img_url + pro.Product_Image;
+                        return pro;
+                    });
+                })
+            },
             async getHotDeals() {
-                await axios.post('/get_hot_deals', {
+                await axios.post('/get_products', {
                     isOffer: 'true'
                 }).then(async res => {
                     let products = res.data;

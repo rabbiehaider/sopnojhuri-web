@@ -32,6 +32,10 @@ $route['get_product_details'] = 'WebController/getProductDetails';
 $route['get_product_more']          = 'WebController/get_product_more';
 $route['get_category_product_more'] = 'WebController/get_category_product_more';
 
+$route['trending-products']      = 'WebController/trendingProducts';
+$route['get_product_categories'] = 'WebController/getProdCategories';
+$route['hot-deals']              = 'WebController/hotDealProducts';
+
 $route['customer/login']           = 'Customer/customer_login';
 $route['customer_signin']          = 'Customer/customerLoginCheck';
 $route['customer/register']        = 'Customer/customerRegister';
