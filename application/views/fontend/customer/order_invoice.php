@@ -81,24 +81,24 @@
                                 <table class="table" style="margin-top: 30px">
                                     <thead style="background: #167389; color: #fff;">
                                         <tr>
-                                            <th>SL</th>
-                                            <th>Product</th>
-                                            <th>Image</th>
-                                            <th>Price</th>
-                                            <th>Qty</th>
-                                            <th>Total</th>
+                                            <th style="text-align: center;">SL</th>
+                                            <th>Product Details</th>
+                                            <th style="text-align: center;">Image</th>
+                                            <th style="text-align: center;">Price</th>
+                                            <th style="text-align: center;">Qty</th>
+                                            <th style="text-align: center;">Total</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr v-for="(product, sl) in cart">
-                                            <td>{{ sl + 1 }}</td>
+                                            <td style="text-align: center;">{{ sl + 1 }}</td>
                                             <td>{{ product.Product_Name }}</td>
-                                            <td class="invoice-img">
+                                            <td style="text-align: center;" class="invoice-img">
                                                 <img :src="product.pro_image" :alt="product.Product_Name">
                                             </td>
-                                            <td>৳ {{ product.SaleDetails_Rate }}</td>
-                                            <td>{{ product.SaleDetails_TotalQuantity }}</td>
-                                            <td>৳ {{ product.SaleDetails_TotalAmount }}</td>
+                                            <td style="text-align: right;">৳ {{ product.SaleDetails_Rate }}</td>
+                                            <td style="text-align: center;">{{ product.SaleDetails_TotalQuantity }}</td>
+                                            <td style="text-align: right;">৳ {{ product.SaleDetails_TotalAmount }}</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -108,15 +108,15 @@
                                         <tbody style="background:#167389">
                                             <tr style="color:#fff">
                                                 <td><strong>SubTotal</strong></td>
-                                                <td><strong>৳ {{ order.SaleMaster_SubTotalAmount }}</strong></td>
+                                                <td style="text-align: right;"><strong>৳ {{ order.SaleMaster_SubTotalAmount }}</strong></td>
                                             </tr>
                                             <tr style="color:#fff">
-                                                <td><strong>Delivery Charge(+)</strong></td>
-                                                <td><strong>৳ {{ order.SaleMaster_Freight }}</strong></td>
+                                                <td><strong>Delivery Charge (+)</strong></td>
+                                                <td style="text-align: right;"><strong>৳ {{ order.SaleMaster_Freight }}</strong></td>
                                             </tr>
                                             <tr style="background:#167389;color:#fff">
                                                 <td><strong>Final Total</strong></td>
-                                                <td><strong>৳ {{ order.SaleMaster_TotalSaleAmount }}</strong></td>
+                                                <td style="text-align: right;"><strong>৳ {{ order.SaleMaster_TotalSaleAmount }}</strong></td>
                                             </tr>
                                         </tbody>
                                     </table>

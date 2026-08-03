@@ -17,7 +17,7 @@
                             <div class="sidebar-menu">
                                 <ul>
                                     <li><a href="<?= base_url('customer/account') ?>" class=""><i data-feather="user"></i> My Account</a></li>
-                                    <li><a href="<?= base_url('customer/orders') ?>" class="active"><i data-feather="database"></i> My Order</a></li>
+                                    <li><a href="<?= base_url('customer/orders') ?>" class="active"><i data-feather="shopping-cart"></i> My Orders</a></li>
                                     <li><a href="<?= base_url('customer/account-edit') ?>" class=""><i data-feather="edit"></i> Profile Edit</a></li>
                                     <li><a href="<?= base_url('customer/change-password') ?>" class=""><i data-feather="lock"></i> Change Password</a></li>
                                     <li><a href="<?= base_url('customer/logout') ?>"><i data-feather="log-out"></i> Logout</a></li>
@@ -32,21 +32,25 @@
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th>Invoice No</th>
-                                            <th>Date</th>
-                                            <th>Amount</th>
-                                            <th>Status</th>
-                                            <th>Action</th>
+                                            <th style="text-align: center;">SL</th>
+                                            <th style="text-align: center;">Invoice No</th>
+                                            <th style="text-align: center;">Date</th>
+                                            <th style="text-align: center;">Amount</th>
+                                            <th style="text-align: center;">Status</th>
+                                            <th style="text-align: center;">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr v-for="sale in orders">
-                                            <td>{{ sale.SaleMaster_InvoiceNo }}</td>
-                                            <td>{{ sale.SaleMaster_SaleDate }}</td>
-                                            <td>{{ sale.SaleMaster_TotalSaleAmount | decimal }}</td>
-                                            <td>{{ sale.order_status }}</td>
-                                            <td>
-                                                <a href="" title="Order Invoice" v-bind:href="`/order-report/${sale.SaleMaster_SlNo}`"><i class="fa fa-file"></i> Invoice</a>
+                                        <tr v-for="(sale, sl) in orders">
+                                            <td style="text-align: center;">{{ sl + 1 }}</td>
+                                            <td style="text-align: center;">{{ sale.SaleMaster_InvoiceNo }}</td>
+                                            <td style="text-align: center;">{{ sale.SaleMaster_SaleDate }}</td>
+                                            <td style="text-align: right;">৳ {{ sale.SaleMaster_TotalSaleAmount | decimal }}</td>
+                                            <td style="text-align: center;"><button style="padding: 1px 5px; color: white; background-color: orange; border-radius: 5px;"><b>{{ sale.order_status }}</b></button></td>
+                                            <td style="text-align: center;">
+                                                <a href="" title="Order Invoice" v-bind:href="`/order-report/${sale.SaleMaster_SlNo}`">
+                                                    <button style="padding: 1px 5px; color: white; background-color: #167389; border-radius: 5px;"><i class="fa fa-file"></i> Invoice</button>
+                                                </a>
                                             </td>
                                         </tr>
                                     </tbody>

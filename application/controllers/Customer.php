@@ -217,6 +217,14 @@ class Customer extends CI_Controller
             $clauses .= " AND sm.Customer_IDNo = '$data->customerId'";
         }
 
+        if (isset($data->phone_no) && $data->phone_no != '') {
+            $clauses .= " AND c.Customer_Mobile = '$data->phone_no'";
+        }
+
+        if (isset($data->invoice_id) && $data->invoice_id != '') {
+            $clauses .= " AND sm.SaleMaster_InvoiceNo = '$data->invoice_id'";
+        }
+
         if (isset($data->orderId) && $data->orderId != 0 && $data->orderId != '') {
             $clauses .= " AND sm.SaleMaster_SlNo = '$data->orderId'";
             $saleDetails = $this->db->query("SELECT 

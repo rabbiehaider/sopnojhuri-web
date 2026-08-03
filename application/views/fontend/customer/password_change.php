@@ -17,7 +17,7 @@
                             <div class="sidebar-menu">
                                 <ul>
                                     <li><a href="<?= base_url('customer/account') ?>" class=""><i data-feather="user"></i> My Account</a></li>
-                                    <li><a href="<?= base_url('customer/orders') ?>" class=""><i data-feather="database"></i> My Order</a></li>
+                                    <li><a href="<?= base_url('customer/orders') ?>" class=""><i data-feather="shopping-cart"></i> My Orders</a></li>
                                     <li><a href="<?= base_url('customer/account-edit') ?>" class=""><i data-feather="edit"></i> Profile Edit</a></li>
                                     <li><a href="<?= base_url('customer/change-password') ?>" class="active"><i data-feather="lock"></i> Change Password</a></li>
                                     <li><a href="<?= base_url('customer/logout') ?>"><i data-feather="log-out"></i> Logout</a></li>

@@ -270,7 +270,7 @@ class WebController extends CI_Controller
 		echo json_encode($products);
 	}
 
-	// Category Wise Products Page
+	// Category Wise Products
 	public function categoryView($catTag)
 	{
 		$category = $this->db->query("SELECT Category_SlNo, Category_Name FROM tbl_category WHERE route = ?", $catTag)->row();
@@ -304,7 +304,7 @@ class WebController extends CI_Controller
 		$this->load->view('fontend/layout', $data);
 	}
 
-	// Category Wise Products Page
+	// Sub Category Wise Products
 	public function subCategoryView($sCatTag)
 	{
 		$category = $this->db->query("SELECT 
@@ -429,6 +429,141 @@ class WebController extends CI_Controller
 		$this->load->view('fontend/layout', $data);
 	}
 
+	public function getSubCateProducts()
+	{
+		$subcategories = $this->db->query("SELECT 
+				p.ProductSubCategory_ID,
+				pc.SubCategory_SlNo,
+				pc.SubCategory_Name,
+				pc.route
+			FROM tbl_product p
+			LEFT JOIN tbl_sub_category pc on pc.SubCategory_SlNo = p.ProductSubCategory_ID
+			WHERE p.status = 'a'
+			AND p.is_website = 'true'
+			AND pc.status = 'a'
+			GROUP BY p.ProductSubCategory_ID
+			ORDER BY pc.SubCategory_Name ASC
+		")->result();
+
+		foreach ($subcategories as $scat) {
+			$scat->products = $this->db->query("SELECT			
+					p.Product_SlNo,
+					p.Product_Name,
+					p.Product_Code,
+					p.Video_Url,
+					p.Product_Image,
+					p.Product_SizeImage,
+					p.Product_PreviousPrice,
+					p.Product_SellingPrice,
+					p.ProductCategory_ID,
+					p.slug,
+					p.is_offer,
+					concat(p.Product_Name, ' - ', p.Product_Code) AS display_text,
+					IFNULL((((p.Product_PreviousPrice-p.Product_SellingPrice)/p.Product_PreviousPrice)*100), 0) AS discount_percent,
+					pc.Category_Name,
+					psc.SubCategory_Name,
+					br.brand_name,
+					c.color_name,
+					u.Unit_Name,
+					ua.User_Name AS added_by,
+					ud.User_Name AS deleted_by
+				FROM tbl_product p
+				LEFT JOIN tbl_category pc on pc.Category_SlNo = p.ProductCategory_ID
+				LEFT JOIN tbl_sub_category psc on psc.SubCategory_SlNo = p.ProductSubCategory_ID
+				LEFT JOIN tbl_brand br on br.brand_SiNo = p.Brand_ID
+				LEFT JOIN tbl_color c on c.color_SiNo = p.Color_ID
+				LEFT JOIN tbl_unit u on u.Unit_SlNo = p.Unit_ID
+				LEFT JOIN tbl_user ua on ua.User_SlNo = p.AddBy
+				LEFT JOIN tbl_user ud on ud.User_SlNo = p.DeletedBy
+				WHERE p.status = 'a'
+				AND p.is_website = 'true'
+				AND p.ProductSubCategory_ID = ? 
+				ORDER BY p.Product_SlNo DESC
+				LIMIT 12
+            ", [$scat->ProductSubCategory_ID])->result();
+		}
+
+		echo json_encode($subcategories);
+	}
+
+    public function aboutUs()
+    {
+        $data['title'] = 'About Us';
+        $data['iurl'] = $this->website->Software_Url;
+        $data['front_content'] = 'page/about_us';
+        $this->load->view('fontend/layout', $data);
+    }
+
+    public function contactUs()
+    {
+        $data['title'] = 'Contact Us';
+        $data['iurl'] = $this->website->Software_Url;
+        $data['front_content'] = 'page/contact_us';
+        $this->load->view('fontend/layout', $data);
+    }
+
+    public function returnAndRefund()
+    {
+        $data['title'] = 'Returns & Refund';
+        $data['iurl'] = $this->website->Software_Url;
+        $data['front_content'] = 'page/return_refund';
+        $this->load->view('fontend/layout', $data);
+    }
+
+    public function securedPayment()
+    {
+        $data['title'] = 'Secured Payment';
+        $data['iurl'] = $this->website->Software_Url;
+        $data['front_content'] = 'page/secured_payment';
+        $this->load->view('fontend/layout', $data);
+    }
+
+    public function privacyPolicy()
+    {
+        $data['title'] = 'Privacy Policy';
+        $data['iurl'] = $this->website->Software_Url;
+        $data['front_content'] = 'page/privacy_policy';
+        $this->load->view('fontend/layout', $data);
+    }
+
+    public function termsCondition()
+    {
+        $data['title'] = 'Terms & Condition';
+        $data['iurl'] = $this->website->Software_Url;
+        $data['front_content'] = 'page/terms_condition';
+        $this->load->view('fontend/layout', $data);
+    }	
+
+    public function webFAQs()
+    {
+        $data['title'] = 'Website FAQs';
+        $data['iurl'] = $this->website->Software_Url;
+        $data['front_content'] = 'page/web_faqs';
+        $this->load->view('fontend/layout', $data);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	public function category()
 	{
 		$data['title'] = 'Home';
@@ -441,13 +576,6 @@ class WebController extends CI_Controller
 		$this->load->view('fontend/layout', $data);
 	}
 
-	public function contactUs()
-	{
-		$data['title'] = 'Contact Us';
-		// $data['company'] = $this->db->query("select * from tbl_content")->row();
-		$data['front_content'] = 'page/contact';
-		$this->load->view('fontend/layout', $data);
-	}
 
 	// Product Category 
 	public function getCategories()
@@ -649,16 +777,6 @@ class WebController extends CI_Controller
 
 
 
-
-	public function about_us()
-	{
-		$data['title'] = 'About';
-		$data['testimonials'] = $this->db->query("select * from tbl_testimonials where status = 'a' limit 10")->result();
-		$data['img_url'] = $this->db->query("select * from tbl_content")->row()->soft_url;
-		$data['about'] = $this->db->query("select * from tbl_abouts")->row();
-		$data['front_content'] = 'page/about';
-		$this->load->view('fontend/layout', $data);
-	}
 
 	public function management()
 	{

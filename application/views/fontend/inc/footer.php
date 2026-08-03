@@ -21,11 +21,11 @@
                         <ul>
                             <li class="title"><a>Customer</a></li>
                             <li> <a href="<?= $this->session->userdata("customer_id") != '' ? base_url('customer/account') : base_url('customer/login') ?>">Account</a></li>
-                            <li><a href="page/order-procedure.html">Cart</a> </li>
-                            <li><a href="page/delivery-rules.html">Wishlist</a> </li>
-                            <li><a href="page/return-policy.html">Shipping Charge</a> </li>
+                            <li><a href="<?= $this->session->userdata("customer_id") != '' ? base_url('customer/checkout') : base_url('customer/login') ?>">My Cart</a> </li>
+                            <li><a href="<?= $this->session->userdata("customer_id") != '' ? base_url('customer/orders') : base_url('customer/login') ?>">My Orders</a> </li>
+                            <li><a href="<?= $this->session->userdata("customer_id") != '' ? base_url('customer/checkout') : base_url('customer/login') ?>">Checkout</a> </li>
                             <li><a href="<?= base_url('track-order') ?>">Track Order</a> </li>
-                            <li><a href="page/return-policy.html">FAQ</a> </li>
+                            <li><a href="<?= base_url('faqs') ?>">FAQ</a> </li>
                         </ul>
                     </div>
                 </div>
@@ -34,12 +34,12 @@
                     <div class="footer-menu">
                         <ul>
                             <li class="title"><a>Information</a></li>
-                            <li><a href="page/terms-%26-conditions.html">About us</a></li>
-                            <li><a href="page/privacy-policy.html">Contact Us</a></li>
-                            <li><a href="page/about-us.html">Privacy Policy</a></li>
-                            <li><a href="page/about-us.html">Returns & Refund</a></li>
-                            <li><a href="page/about-us.html">Terms & Conditions</a></li>
-                            <li><a href="page/about-us.html">Secured Payment</a></li>
+                            <li><a href="<?= base_url('about-us') ?>">About us</a></li>
+                            <li><a href="<?= base_url('contact-us') ?>">Contact Us</a></li>
+                            <li><a href="<?= base_url('return-refund') ?>">Returns & Refund</a></li>
+                            <li><a href="<?= base_url('secured-payment') ?>">Secured Payment</a></li>
+                            <li><a href="<?= base_url('privacy-policy') ?>">Privacy Policy</a></li>
+                            <li><a href="<?= base_url('terms-conditions') ?>">Terms & Conditions</a></li>
                         </ul>
                     </div>
                 </div>

@@ -6,7 +6,6 @@ $route['product/(:any)']     = 'WebController/productView/$1';
 
 $route['category/(:any)']            = 'WebController/categoryView/$1';
 $route['scategory/(:any)']           = 'WebController/subCategoryView/$1';
-$route['about-us']                   = 'WebController/about_us';
 $route['products']                   = 'WebController/products';
 $route['product_details/(:any)']     = 'WebController/product_details/$1';
 $route['product-by-category/(:any)'] = 'WebController/product_by_category/$1';
@@ -23,11 +22,12 @@ $route['check_booking_exits']        = 'Booking/bookingAlreadyExits';
 $route['save_contact']               = 'WebController/saveContact';
 $route['get_website_profile']        = 'WebController/getWebsiteProfile';
 
-$route['get_categories']      = 'WebController/getCategories';
-$route['get_subcategories']   = 'WebController/getPSubCategories';
-$route['get_products']        = 'WebController/getProducts';
-$route['get_hot_deals']       = 'WebController/getHotProducts';
-$route['get_product_details'] = 'WebController/getProductDetails';
+$route['get_categories']         = 'WebController/getCategories';
+$route['get_subcategories']      = 'WebController/getPSubCategories';
+$route['get_products']           = 'WebController/getProducts';
+$route['get_hot_deals']          = 'WebController/getHotProducts';
+$route['get_product_details']    = 'WebController/getProductDetails';
+$route['get_scategory_products'] = 'WebController/getSubCateProducts';
 
 $route['get_product_more']          = 'WebController/get_product_more';
 $route['get_category_product_more'] = 'WebController/get_category_product_more';
@@ -60,6 +60,15 @@ $route['update_cart_quantity'] = 'ProductCart/updateItemQnty';
 $route['remove_cart_item']     = 'ProductCart/removeCartItem';
 $route['customer/checkout']    = 'ProductCart/cusChcekOut';
 $route['place_order']          = 'ProductCart/placeCusOrder';
+
+$route['about-us']         = 'WebController/aboutUs';
+$route['contact-us']       = 'WebController/contactUs';
+$route['return-refund']    = 'WebController/returnAndRefund';
+$route['secured-payment']  = 'WebController/securedPayment';
+$route['privacy-policy']   = 'WebController/privacyPolicy';
+$route['terms-conditions'] = 'WebController/termsCondition';
+$route['faqs']             = 'WebController/webFAQs';
+
 
 
 
@@ -97,7 +106,6 @@ $route['delete-message/(:any)'] = 'Admin/delete_message/$1';
 $route['admin-profile'] = 'Admin/admin_profile';
 $route['update-user']   = 'Admin/update_user';
 $route['change-pass']   = 'Admin/change_pass';
-$route['contact-us']    = 'Admin/contact_us';
 
 //create administator
 $route['administator'] = 'Admin/add_administator';

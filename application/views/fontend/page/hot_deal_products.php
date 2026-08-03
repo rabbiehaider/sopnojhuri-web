@@ -59,7 +59,7 @@
                             <div class="category-breadcrumb d-flex align-items-center">
                                 <a href="<?= base_url() ?>">Home</a>
                                 <span>/</span>
-                                <strong>Trending Products</strong>
+                                <strong>Hot Deals</strong>
                             </div>
                         </div>
                         <div class="col-sm-6">
@@ -100,7 +100,7 @@
                                     <h2 class="accordion-header">
                                         <button class="accordion-button" type="button" data-bs-toggle="collapse"
                                             data-bs-target="#collapseCat" aria-expanded="true" aria-controls="collapseOne">
-                                            Trending Categories
+                                            Hot Categories
                                         </button>
                                     </h2>
                                     <div id="collapseCat" class="accordion-collapse collapse show" data-bs-parent="#category_sidebar" v-if="categories.length > 0" style="display:none;" v-bind:style="{display: categories.length > 0 ? '' : 'none'}">
