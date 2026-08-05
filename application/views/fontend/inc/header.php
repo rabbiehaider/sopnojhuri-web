@@ -50,6 +50,9 @@
     <link rel="stylesheet" href="<?= base_url('assets/fontend/') ?>css/responsivefbbb.css?v=1.2.3" />
     <link rel="stylesheet" href="<?= base_url('assets/fontend/') ?>css/main.css" />
     <script src="<?= base_url('assets/fontend/') ?>js/jquery-3.6.3.min.js"></script>
+    <script src="<?= base_url('assets/fontend/') ?>js/vue/vue.min.js"></script>
+    <script src="<?= base_url('assets/fontend/') ?>js/vue/axios.min.js"></script>
+    <script src="<?= base_url('assets/fontend/') ?>js/vue/moment.min.js"></script>
     <style rel='stylesheet' data-href="<?= base_url('assets/fontend/') ?>css/jost-font.css">
         @font-face {
             font-family: 'Jost';

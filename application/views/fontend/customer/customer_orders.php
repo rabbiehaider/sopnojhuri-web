@@ -48,7 +48,7 @@
                                             <td style="text-align: right;">৳ {{ sale.SaleMaster_TotalSaleAmount | decimal }}</td>
                                             <td style="text-align: center;"><button style="padding: 1px 5px; color: white; background-color: orange; border-radius: 5px;"><b>{{ sale.order_status }}</b></button></td>
                                             <td style="text-align: center;">
-                                                <a href="" title="Order Invoice" v-bind:href="`/order-report/${sale.SaleMaster_SlNo}`">
+                                                <a href="" title="Order Invoice" v-bind:href="'/order-report/' + sale.SaleMaster_SlNo">
                                                     <button style="padding: 1px 5px; color: white; background-color: #167389; border-radius: 5px;"><i class="fa fa-file"></i> Invoice</button>
                                                 </a>
                                             </td>
@@ -64,28 +64,24 @@
     </div>
 </div>
 
-<script src="<?php echo base_url('assets/fontend/') ?>js/vue/vue.min.js"></script>
-<script src="<?php echo base_url('assets/fontend/') ?>js/vue/axios.min.js"></script>
-<script src="<?php echo base_url('assets/fontend/') ?>js/vue/moment.min.js"></script>
-
 <script>
     new Vue({
         el: '#WEB_DATA',
         data() {
             return {
-                img_url: "<?php echo $iurl; ?>",
-                customerId: '<?php echo $this->session->userdata("customer_id"); ?>',
-                customerName: '<?php echo $this->session->userdata("customer_name"); ?>',
-                customerType: '<?php echo $this->session->userdata("customer_type"); ?>',
-                customerMobile: '<?php echo $this->session->userdata("customer_mobile"); ?>',
-                customerEmail: '<?php echo $this->session->userdata("customer_email"); ?>',
-                customerAddress: '<?php echo $this->session->userdata("customer_address"); ?>',
-                districtId: '<?php echo $this->session->userdata("district_id"); ?>',
-                districtName: '<?php echo $this->session->userdata("district_name"); ?>',
-                thanaId: '<?php echo $this->session->userdata("thana_id"); ?>',
-                thanaName: '<?php echo $this->session->userdata("thana_name"); ?>',
+                img_url: <?php echo json_encode($iurl); ?>,
+                customerId: <?php echo json_encode($this->session->userdata("customer_id")); ?>,
+                customerName: <?php echo json_encode($this->session->userdata("customer_name")); ?>,
+                customerType: <?php echo json_encode($this->session->userdata("customer_type")); ?>,
+                customerMobile: <?php echo json_encode($this->session->userdata("customer_mobile")); ?>,
+                customerEmail: <?php echo json_encode($this->session->userdata("customer_email")); ?>,
+                customerAddress: <?php echo json_encode($this->session->userdata("customer_address")); ?>,
+                districtId: <?php echo json_encode($this->session->userdata("district_id")); ?>,
+                districtName: <?php echo json_encode($this->session->userdata("district_name")); ?>,
+                thanaId: <?php echo json_encode($this->session->userdata("thana_id")); ?>,
+                thanaName: <?php echo json_encode($this->session->userdata("thana_name")); ?>,
                 customerImage: '',
-                imageFile: '<?php echo $this->session->userdata("customer_image"); ?>',
+                imageFile: <?php echo json_encode($this->session->userdata("customer_image")); ?>,
                 orders: [],
             }
         },

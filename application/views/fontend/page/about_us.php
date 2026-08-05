@@ -1,113 +1,79 @@
-<div id="content">
-    <section class="comn_sec">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="cmn_menu">
-                        <ul>
-                            <li>
-                                <a href="<?= base_url('about-us') ?>">About us</a>
-                            </li>
-                            <li>
-                                <a href="<?= base_url('contact-us') ?>">Contact Us</a>
-                            </li>
-                            <li>
-                                <a href="<?= base_url('return-refund') ?>">Returns & Refund</a>
-                            </li>
-                            <li>
-                                <a href="<?= base_url('secured-payment') ?>">Secured Payment</a>
-                            </li>
-                            <li>
-                                <a href="<?= base_url('privacy-policy') ?>">Privacy Policy</a>
-                            </li>
-                            <li>
-                                <a href="<?= base_url('terms-conditions') ?>">Terms & Conditions</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<?php $wab = $this->db->query("SELECT * FROM tbl_website_profile LIMIT 1")->row(); ?>
+<style>
+    /* Matches CKEditor's content markup (figure.table, text-align-* classes)
+       so anything styled in the admin editor renders the same way here. */
+    #content .ck-content,
+    #content .cke-output {
+        line-height: 1.6;
+    }
 
+    #content .ck-content .table,
+    #content .cke-output .table {
+        margin: 16px 0;
+        overflow-x: auto;
+    }
+
+    #content .ck-content table,
+    #content .cke-output table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    #content .ck-content table td,
+    #content .ck-content table th,
+    #content .cke-output table td,
+    #content .cke-output table th {
+        border: 1px solid #d0d5dd;
+        padding: 8px 12px;
+    }
+
+    #content .ck-content table th,
+    #content .cke-output table th {
+        background: #f4f6f9;
+        font-weight: 600;
+    }
+
+    #content .ck-content .text-align-left,
+    #content .cke-output .text-align-left {
+        text-align: left;
+    }
+
+    #content .ck-content .text-align-center,
+    #content .cke-output .text-align-center {
+        text-align: center;
+    }
+
+    #content .ck-content .text-align-right,
+    #content .cke-output .text-align-right {
+        text-align: right;
+    }
+
+    #content .ck-content .text-align-justify,
+    #content .cke-output .text-align-justify {
+        text-align: justify;
+    }
+
+    #content .ck-content figure.image,
+    #content .cke-output figure.image {
+        margin: 16px 0;
+    }
+
+    #content .ck-content figure.image img,
+    #content .cke-output figure.image img {
+        max-width: 100%;
+        height: auto;
+    }
+</style>
+
+<div id="content">
     <section class="contact-section">
         <div class="container">
-            
+
             <div class="row">
-                <div class="col-sm-6">
-                    <div class="cont_item">
-                        <a href="tel:01870977634">
-                            <i data-feather="phone"></i>
-                            01870977634
-                        </a>
-                    </div>
-                </div>
-
-                <div class="col-sm-6">
-                    <div class="cont_item">
-                        <a href="#">
-                            <i data-feather="mail"></i>
-                            sopnojhuribd@gmail.com
-                        </a>
-                    </div>
+                <div class="col-sm-12 cke-output">
+                    <span><?= $wab->About_Us ?></span>
                 </div>
             </div>
-
-            <div class="row justify-content-center">
-                <div class="col-sm-12">
-
-                </div>
-                <div class="col-sm-10">
-                    <div class="contact-form">
-                        <h5 class="account-title">অথবা </h5>
-                        <form action="https://sopnojhuri.com/" method="POST" class="row" enctype="multipart/form-data" data-parsley-validate="">
-                            <input type="hidden" name="_token" value="YwG9TspG3r18gVyNm4lWRAnZP3vmxP80Um42TCFK">
-                            <div class="col-sm-6">
-                                <div class="form-group mb-3">
-                                    <label for="name">সম্পূর্ণ নাম *</label>
-                                    <input type="text" id="name" class="form-control " name="name" value="" required>
-                                </div>
-                            </div>
-                            <!-- col-end -->
-                            <div class="col-sm-6">
-                                <div class="form-group mb-3">
-                                    <label for="phone">মোবাইল নাম্বার *</label>
-                                    <input type="number" id="phone" class="form-control " name="phone" value="" required>
-                                </div>
-                            </div>
-                            <!-- col-end -->
-                            <div class="col-sm-12">
-                                <div class="form-group mb-3">
-                                    <label for="email">ইমেইল *</label>
-                                    <input type="email" id="email" class="form-control " name="email" value="" required>
-                                </div>
-                            </div>
-                            <!-- col-end -->
-                            <div class="col-sm-12">
-                                <div class="form-group mb-3">
-                                    <label for="subject">বিষয় *</label>
-                                    <input type="text" id="subject" class="form-control " name="subject" value="" required>
-                                </div>
-                            </div>
-                            <!-- col-end -->
-                            <div class="col-sm-12">
-                                <div class="form-group mb-3">
-                                    <label for="message">মেসেজ লিখুন *</label>
-                                    <textarea type="text" id="message" class="form-control " name="message" value="" required></textarea>
-                                </div>
-                            </div>
-                            <!-- col-end -->
-                            <div class="col-sm-12">
-                                <div class="form-group mb-3">
-                                    <button type="submit" class="submit-btn">মেসেজ পাঠান</button>
-                                </div>
-                            </div>
-                            <!-- col-end -->
-                        </form>
-                    </div>
-                </div>
-            </div>
-
         </div>
     </section>
 </div>

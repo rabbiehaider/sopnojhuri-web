@@ -10,101 +10,97 @@
                                     <h4>ক্যাশ অন ডেলিভারিতে অর্ডার করতে আপনার তথ্য দিন </h4>
                                 </div>
                                 <div class="card-body">
-                                    <form action="https://www.ozybd.com/customer/order-save" id="checkoutForm" method="POST"
-                                        data-parsley-validate="">
-                                        <input type="hidden" name="_token" value="ugncRPvZXeZcAVzSWjERz0pZkSnprApBj3LbDrK3">
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <div class="form-group customized-input-box mb-3">
-                                                    <label for="name">আপনার নাম <span style="color: red">*</span></label>
-                                                    <span class="input-icon-label">
-                                                        <i class="fa fa-user"></i>
-                                                    </span>
-                                                    <input type="text" placeholder="আপনার নাম লিখুন" id="name" class="form-control" v-model="customer.customer_name" required />
-                                                </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="form-group customized-input-box mb-3">
+                                                <label for="name">আপনার নাম <span style="color: red">*</span></label>
+                                                <span class="input-icon-label">
+                                                    <i class="fa fa-user"></i>
+                                                </span>
+                                                <input type="text" placeholder="আপনার নাম লিখুন" id="name" class="form-control" v-model="customer.customer_name" required />
                                             </div>
-                                            <!-- col-end -->
-                                            <div class="col-sm-12">
-                                                <div class="form-group customized-input-box mb-3">
-                                                    <label for="phone">আপনার মোবাইল <span style="color: red">*</span></label>
-                                                    <span class="input-icon-label">
-                                                        <i class="fa fa-phone"></i>
-                                                    </span>
-                                                    <input placeholder="আপনার মোবাইল নাম্বার লিখুন" type="number" minlength="11"
-                                                        id="number" maxlength="11" pattern="0[0-9]+"
-                                                        title="please enter number only and 0 must first character"
-                                                        title="Please enter an 11-digit number." id="phone"
-                                                        class="form-control" v-model="customer.customer_mobile" required />
-                                                </div>
+                                        </div>
+                                        <!-- col-end -->
+                                        <div class="col-sm-12">
+                                            <div class="form-group customized-input-box mb-3">
+                                                <label for="phone">আপনার মোবাইল <span style="color: red">*</span></label>
+                                                <span class="input-icon-label">
+                                                    <i class="fa fa-phone"></i>
+                                                </span>
+                                                <input placeholder="আপনার মোবাইল নাম্বার লিখুন" type="number" minlength="11"
+                                                    id="number" maxlength="11" pattern="0[0-9]+"
+                                                    title="please enter number only and 0 must first character"
+                                                    title="Please enter an 11-digit number." id="phone"
+                                                    class="form-control" v-model="customer.customer_mobile" required />
                                             </div>
-                                            <!-- col-end -->
+                                        </div>
+                                        <!-- col-end -->
 
-                                            <div class="col-sm-12">
-                                                <div class="form-group customized-input-box mb-3">
-                                                    <label for="address">আপনার ঠিকানা (থানা ও জেলা সহ) <span style="color: red">*</span></label>
-                                                    <span class="input-icon-label">
-                                                        <i class="fa fa-map-location-dot"></i>
-                                                    </span>
-                                                    <input placeholder="আপনার ঠিকানা লিখুন" type="address" id="address" class="form-control" v-model="customer.customer_address" required />
-                                                </div>
+                                        <div class="col-sm-12">
+                                            <div class="form-group customized-input-box mb-3">
+                                                <label for="address">আপনার ঠিকানা (থানা ও জেলা সহ) <span style="color: red">*</span></label>
+                                                <span class="input-icon-label">
+                                                    <i class="fa fa-map-location-dot"></i>
+                                                </span>
+                                                <input placeholder="আপনার ঠিকানা লিখুন" type="address" id="address" class="form-control" v-model="customer.customer_address" required />
                                             </div>
+                                        </div>
 
-                                            <div class="col-sm-12">
-                                                <div class="form-group customized-input-box mb-3">
-                                                    <label for="address">নোট লিখুন (যেমন: কালার, সাইজ) যদি থাকে</label>
-                                                    <span class="input-icon-label">
-                                                        <i class="fas fa-sticky-note"></i>
-                                                    </span>
-                                                    <input placeholder="নোট লিখুন (যেমন: কালার, সাইজ) যদি থাকে" type="address" id="address" class="form-control" v-model="customer.customer_notes" required />
-                                                </div>
+                                        <div class="col-sm-12">
+                                            <div class="form-group customized-input-box mb-3">
+                                                <label for="address">নোট লিখুন (যেমন: কালার, সাইজ) যদি থাকে</label>
+                                                <span class="input-icon-label">
+                                                    <i class="fas fa-sticky-note"></i>
+                                                </span>
+                                                <input placeholder="নোট লিখুন (যেমন: কালার, সাইজ) যদি থাকে" type="address" id="address" class="form-control" v-model="customer.customer_notes" required />
                                             </div>
+                                        </div>
 
-                                            <div class="col-sm-12">
-                                                <div class="form-group mb-3">
-                                                    <label for="area">ডেলিভারি এরিয়া সিলেক্ট করুন <span style="color: red">*</span></label>
-                                                    <div class="shipping-area-box">
-                                                        <div :class="order.delivery_type == 'isd' ? 'area-item active' : 'area-item'">
-                                                            <input name="delivery_type" type="radio" value="isd" v-model="order.delivery_type" v-on:change="calculateTotal" id="isd">
-                                                            <label for="isd">ঢাকা সিটির ভিতরে {{ order.isd_charge }} টাকা</label>
-                                                        </div>
-                                                        <div :class="order.delivery_type == 'osd' ? 'area-item active' : 'area-item'">
-                                                            <input name="delivery_type" type="radio" value="osd" v-model="order.delivery_type" v-on:change="calculateTotal" id="osd">
-                                                            <label for="osd">ঢাকা সিটির বাইরে {{ order.osd_charge }} টাকা</label>
-                                                        </div>
+                                        <div class="col-sm-12">
+                                            <div class="form-group mb-3">
+                                                <label for="area">ডেলিভারি এরিয়া সিলেক্ট করুন <span style="color: red">*</span></label>
+                                                <div class="shipping-area-box">
+                                                    <div :class="order.delivery_type == 'isd' ? 'area-item active' : 'area-item'">
+                                                        <input name="delivery_type" type="radio" value="isd" v-model="order.delivery_type" v-on:change="calculateTotal" id="isd">
+                                                        <label for="isd">ঢাকা সিটির ভিতরে {{ order.isd_charge }} টাকা</label>
                                                     </div>
-                                                </div>
-                                            </div>
-
-                                            <!-- col-end -->
-
-                                            <div class="col-sm-12">
-                                                <div class="radio_payment">
-                                                    <label id="payment_method">পেমেন্ট মেথড </label>
-                                                    <div class="payment_option">
+                                                    <div :class="order.delivery_type == 'osd' ? 'area-item active' : 'area-item'">
+                                                        <input name="delivery_type" type="radio" value="osd" v-model="order.delivery_type" v-on:change="calculateTotal" id="osd">
+                                                        <label for="osd">ঢাকা সিটির বাইরে {{ order.osd_charge }} টাকা</label>
                                                     </div>
-                                                </div>
-                                                <div class="payment-methods">
-                                                    <div class="form-check p_cash payment_method" data-id="cod">
-
-                                                        <input class="form-check-input" type="radio" name="payment_method"
-                                                            id="inlineRadio1" value="cod" v-model="order.payment_method" checked required />
-                                                        <label class="form-check-label" for="inlineRadio1"> ক্যাশ অন ডেলিভারি
-                                                        </label>
-
-                                                    </div>
-                                                    <div class="form-check p_bkash payment_method" data-id="bkash">
-                                                        <input class="form-check-input" type="radio"
-                                                            name="payment_method" id="inlineRadio2" value="bkash" v-model="order.payment_method"
-                                                            required />
-                                                        <label class="form-check-label" for="inlineRadio2">
-                                                            বিকাশ
-                                                        </label>
-                                                    </div>
-
                                                 </div>
                                             </div>
                                         </div>
-                                    </form>
+
+                                        <!-- col-end -->
+
+                                        <div class="col-sm-12">
+                                            <div class="radio_payment">
+                                                <label id="payment_method">পেমেন্ট মেথড </label>
+                                                <div class="payment_option">
+                                                </div>
+                                            </div>
+                                            <div class="payment-methods">
+                                                <div class="form-check p_cash payment_method" data-id="cod">
+
+                                                    <input class="form-check-input" type="radio" name="payment_method"
+                                                        id="inlineRadio1" value="cod" v-model="order.payment_method" checked required />
+                                                    <label class="form-check-label" for="inlineRadio1"> ক্যাশ অন ডেলিভারি
+                                                    </label>
+
+                                                </div>
+                                                <div class="form-check p_bkash payment_method" data-id="bkash">
+                                                    <input class="form-check-input" type="radio"
+                                                        name="payment_method" id="inlineRadio2" value="bkash" v-model="order.payment_method"
+                                                        required />
+                                                    <label class="form-check-label" for="inlineRadio2">
+                                                        বিকাশ
+                                                    </label>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <!-- card end -->
@@ -173,10 +169,6 @@
 </div>
 <!-- content end -->
 
-<script src="<?php echo base_url('assets/fontend/') ?>js/vue/vue.min.js"></script>
-<script src="<?php echo base_url('assets/fontend/') ?>js/vue/axios.min.js"></script>
-<script src="<?php echo base_url('assets/fontend/') ?>js/vue/moment.min.js"></script>
-
 <script>
     new Vue({
         el: '#WEB_DATA',
@@ -188,14 +180,14 @@
                     total_amount: 0,
                     delivery_type: 'isd',
                     payment_method: 'cod',
-                    isd_charge: parseFloat('<?php echo $isd_charge; ?>'),
-                    osd_charge: parseFloat('<?php echo $osd_charge; ?>'),
+                    isd_charge: parseFloat(<?php echo json_encode($isd_charge); ?>),
+                    osd_charge: parseFloat(<?php echo json_encode($osd_charge); ?>),
                 },
                 customer: {
-                    customer_id: '<?php echo $this->session->userdata("customer_id"); ?>',
-                    customer_name: '<?php echo $this->session->userdata("customer_name"); ?>',
-                    customer_mobile: '<?php echo $this->session->userdata("customer_mobile"); ?>',
-                    customer_address: '<?php echo $this->session->userdata("customer_address"); ?>',
+                    customer_id: <?php echo json_encode($this->session->userdata("customer_id")); ?>,
+                    customer_name: <?php echo json_encode($this->session->userdata("customer_name")); ?>,
+                    customer_mobile: <?php echo json_encode($this->session->userdata("customer_mobile")); ?>,
+                    customer_address: <?php echo json_encode($this->session->userdata("customer_address")); ?>,
                     customer_notes: '',
                 },
                 regMobile: /^01[3-9]\d{8}$/,
@@ -274,7 +266,7 @@
                     toastr.error('আপনার সঠিক নাম্বার লিখুন');
                     return;
                 }
-                
+
                 let data = {
                     order: this.order,
                     cart: this.cart,

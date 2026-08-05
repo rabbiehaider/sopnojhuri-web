@@ -28,13 +28,12 @@
                     <div class="col-sm-9">
                         <div class="customer-content checkout-shipping">
                             <h5 class="account-title">Change Password</h5>
-                            <form action="https://www.ozybd.com/customer/password-update" method="POST" class="row justify-content-center" data-parsley-validate="">
-                                <input type="hidden" name="_token" value="rw88yYjeeffxPz8uQWa0uWvHMt1fyb8MxsnCC82T">
+                            <form @submit.prevent="savePassword" class="row justify-content-center">
                                 <div class="col-sm-12">
                                     <div class="form-group mb-3">
                                         <label for="old_password">Old Password *</label>
                                         <span data-feather="folder"></span>
-                                        <input type="password" id="old_password" class="form-control " name="old_password" value="" required>
+                                        <input type="password" id="old_password" class="form-control " v-model="password.old_password" required>
                                     </div>
                                 </div>
                                 <!-- col-end -->
@@ -42,7 +41,7 @@
                                     <div class="form-group mb-3">
                                         <label for="new_password">New Password *</label>
                                         <span data-feather="lock"></span>
-                                        <input type="password" id="new_password" class="form-control " name="new_password" value="" required>
+                                        <input type="password" id="new_password" class="form-control " v-model="password.new_password" required>
                                     </div>
                                 </div>
                                 <!-- col-end -->
@@ -50,7 +49,7 @@
                                     <div class="form-group mb-3">
                                         <label for="confirm_password">Confirmed Password *</label>
                                         <span data-feather="key"></span>
-                                        <input type="password" id="confirm_password" class="form-control " name="confirm_password" value="" required>
+                                        <input type="password" id="confirm_password" class="form-control " v-model="password.confirm_password" required>
                                     </div>
                                 </div>
                                 <!-- col-end -->
@@ -69,58 +68,66 @@
     </div>
 </div>
 
-<script src="<?php echo base_url('assets/fontend/') ?>js/vue/vue.min.js"></script>
-<script src="<?php echo base_url('assets/fontend/') ?>js/vue/axios.min.js"></script>
-<script src="<?php echo base_url('assets/fontend/') ?>js/vue/moment.min.js"></script>
-
 <script>
     new Vue({
         el: '#WEB_DATA',
         data() {
             return {
-                img_url: "<?php echo $iurl; ?>",
-                customerId: '<?php echo $this->session->userdata("customer_id"); ?>',
-                customerName: '<?php echo $this->session->userdata("customer_name"); ?>',
-                customerType: '<?php echo $this->session->userdata("customer_type"); ?>',
-                customerMobile: '<?php echo $this->session->userdata("customer_mobile"); ?>',
-                customerEmail: '<?php echo $this->session->userdata("customer_email"); ?>',
-                customerAddress: '<?php echo $this->session->userdata("customer_address"); ?>',
-                districtId: '<?php echo $this->session->userdata("district_id"); ?>',
-                districtName: '<?php echo $this->session->userdata("district_name"); ?>',
-                thanaId: '<?php echo $this->session->userdata("thana_id"); ?>',
-                thanaName: '<?php echo $this->session->userdata("thana_name"); ?>',
+                img_url: <?php echo json_encode($iurl); ?>,
+                customerId: <?php echo json_encode($this->session->userdata("customer_id")); ?>,
+                customerName: <?php echo json_encode($this->session->userdata("customer_name")); ?>,
                 customerImage: '',
-                imageFile: '<?php echo $this->session->userdata("customer_image"); ?>',
+                imageFile: <?php echo json_encode($this->session->userdata("customer_image")); ?>,
+                password: {
+                    old_password: '',
+                    new_password: '',
+                    confirm_password: ''
+                }
             }
         },
-        filters: {
-            pDecimal(value) {
-                return value == null || value == '' ? '0' : parseFloat(value).toFixed(0);
-            },
-            decimal(value) {
-                return value == null || value == '' ? '0.00' : parseFloat(value).toFixed(2);
-            }
-        },
-        async created() {
-            this.customerImage = this.imageFile == '' ? '/uploads/no_user.png' : this.img_url + this.imageFile;
-            if (this.product_slug != '') {
-                await this.getProducts();
-            }
+        created() {
+            this.customerImage = this.imageFile == '' || this.imageFile == null ? '/uploads/no_user.png' : this.img_url + this.imageFile;
         },
         methods: {
-            async getProducts() {
-                await axios.post('/get_product_details', {
-                    productSlug: this.product_slug
-                }).then(async res => {
-                    let product = res.data;
-                    let shownProduct = product.map((pro, index) => {
-                        pro.pro_image = this.img_url + pro.Product_Image;
-                        pro.size_image = this.img_url + pro.Product_SizeImage;
-                        return pro;
-                    });
+            savePassword() {
+                if (this.password.old_password == '') {
+                    toastr.error('Enter your old password');
+                    return;
+                }
+                if (this.password.new_password == '') {
+                    toastr.error('Enter your new password');
+                    return;
+                }
+                if (this.password.new_password.length < 6) {
+                    toastr.error('New password must be at least 6 characters');
+                    return;
+                }
+                if (this.password.new_password != this.password.confirm_password) {
+                    toastr.error('New password and confirm password do not match');
+                    return;
+                }
 
-                    this.selectedProduct = shownProduct[0];
+                axios.post('/save_password_change', {
+                    password: this.password
+                }).then(res => {
+                    let r = res.data;
+                    if (r.success) {
+                        toastr.success(r.message);
+                        this.clearPasswordForm();
+                        setTimeout(() => {
+                            window.location = '/customer/account';
+                        }, 1000);
+                    } else {
+                        toastr.error(r.message);
+                    }
                 })
+            },
+            clearPasswordForm() {
+                this.password = {
+                    old_password: '',
+                    new_password: '',
+                    confirm_password: ''
+                }
             }
         }
     })

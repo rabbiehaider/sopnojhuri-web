@@ -25,7 +25,7 @@
                             <li><a href="<?= $this->session->userdata("customer_id") != '' ? base_url('customer/orders') : base_url('customer/login') ?>">My Orders</a> </li>
                             <li><a href="<?= $this->session->userdata("customer_id") != '' ? base_url('customer/checkout') : base_url('customer/login') ?>">Checkout</a> </li>
                             <li><a href="<?= base_url('track-order') ?>">Track Order</a> </li>
-                            <li><a href="<?= base_url('faqs') ?>">FAQ</a> </li>
+                            <!-- <li><a href="<?= base_url('faqs') ?>">FAQ</a> </li> -->
                         </ul>
                     </div>
                 </div>
@@ -37,7 +37,6 @@
                             <li><a href="<?= base_url('about-us') ?>">About us</a></li>
                             <li><a href="<?= base_url('contact-us') ?>">Contact Us</a></li>
                             <li><a href="<?= base_url('return-refund') ?>">Returns & Refund</a></li>
-                            <li><a href="<?= base_url('secured-payment') ?>">Secured Payment</a></li>
                             <li><a href="<?= base_url('privacy-policy') ?>">Privacy Policy</a></li>
                             <li><a href="<?= base_url('terms-conditions') ?>">Terms & Conditions</a></li>
                         </ul>
@@ -153,6 +152,10 @@
     <a href="https://api.whatsapp.com/send/?phone=88<?= $fwebsite->Website_Mobile; ?>" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
 </div>
 
+<div class="fixed_mess">
+    <a href="https://m.me/<?= $fwebsite->Messenger_Url; ?>" target="_blank"><i class="fa-brands fa-facebook-messenger"></i></a>
+</div>
+
 <!-- /. fixed sidebar -->
 
 <div id="custom-modal"></div>
@@ -232,137 +235,9 @@
     </div>
 </div>
 
-<script src="<?php echo base_url('assets/fontend/') ?>js/vue/vue.min.js"></script>
-<script src="<?php echo base_url('assets/fontend/') ?>js/vue/axios.min.js"></script>
-<script src="<?php echo base_url('assets/fontend/') ?>js/vue/moment.min.js"></script>
-
-<script>
-    // S Menu
-    // new Vue({
-    //     el: '#sidebarCart',
-    //     data() {
-    //         return {
-    //             cart: [],
-    //             cart_count: '',
-    //             sub_total: '',
-    //         }
-    //     },
-    //     async created() {
-    //         this.fetchCartData();
-    //     },
-    //     methods: {
-    //         async fetchCartData() {
-    //             await axios.get('/get_cart_contents').then(async res => {
-    //                 let data = res.data;
-
-    //                 this.cart = data.cart;
-    //                 this.cart_count = data.cart_count;
-    //                 this.sub_total = data.sub_total;
-    //             })
-    //         }
-    //     }
-    // });
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // // Head
-    // new Vue({
-    //     el: '#CartCount',
-    //     data() {
-    //         return {
-    //             cart_count: 0,
-    //             sub_total: 0
-    //         };
-    //     },
-    //     created() {
-    //         this.fetchCartData(); 
-    //         setInterval(() => {
-    //             this.fetchCartData(); 
-    //         }, 500);
-    //     },
-    //     methods: {
-    //         async fetchCartData() {
-    //             await axios.get('/get_cart_total').then(async res => {
-    //                 let product = res.data;
-
-    //                 this.cart_count = product.cart_count;
-    //                 this.sub_total = product.sub_total;
-    //             })
-    //         }
-    //     }
-    // });
-
-    // // M Head
-    // new Vue({
-    //     el: '#mCartCount',
-    //     data() {
-    //         return {
-    //             mcart_count: 0,
-    //             msub_tatol: 0
-    //         };
-    //     },
-    //     created() {
-    //         this.fetchCartData(); 
-    //         setInterval(() => {
-    //             this.fetchCartData(); 
-    //         }, 500);
-    //     },
-    //     methods: {
-    //         async fetchCartData() {
-    //             await axios.get('/get_cart_total').then(async res => {
-    //                 let product = res.data;
-
-    //                 this.mcart_count = product.cart_count;
-    //                 this.msub_tatol = product.sub_total;
-    //             })
-    //         }
-    //     }
-    // });
-
-    // // S Menu
-    // new Vue({
-    //     el: '#sidebarCart',
-    //     data() {
-    //         return {
-    //             cart: "<?= $this->cart->contents() ?>",
-    //             scart_count: 0,
-    //             ssub_tatol: 0
-    //         };
-    //     },
-    //     created() {
-    //         this.fetchCartData(); 
-    //         setInterval(() => {
-    //             this.fetchCartData(); 
-    //         }, 500);
-    //     },
-    //     methods: {
-    //         async fetchCartData() {
-    //             await axios.get('/get_cart_total').then(async res => {
-    //                 let product = res.data;
-
-    //                 this.scart_count = product.cart_count;
-    //                 this.ssub_tatol = product.sub_total;
-    //             })
-    //         }
-    //     }
-    // });
-</script>
-
-
 <script src="<?= base_url('assets/fontend/') ?>js/bootstrap.min.js"></script>
 <script src="<?= base_url('assets/fontend/') ?>js/owl.carousel.min.js"></script>
 <script src="<?= base_url('assets/fontend/') ?>js/mobile-menu.js"></script>
-<!-- <script src="<?= base_url('assets/fontend/') ?>js/wsit-menu.js"></script> -->
 <script src="<?= base_url('assets/fontend/') ?>js/mobile-menu-init.js"></script>
 <script src="<?= base_url('assets/fontend/') ?>js/wow.min.js"></script>
 <script src="<?= base_url('assets/fontend/') ?>js/lightbox-plus-jquery.min.js"></script>
@@ -378,12 +253,13 @@
     feather.replace();
 </script>
 
-<script src="<?php echo base_url('assets/fontend/') ?>js/notify.min.js"></script>
-<script src="<?php echo base_url('assets/fontend/') ?>js/toastr.min.js"></script>
-
 <script src="<?= base_url('assets/fontend/') ?>js/notify.min.js"></script>
 <script src="<?= base_url('assets/fontend/') ?>js/toastr.min.js"></script>
-<script type="text/javascript"></script>
+<script>
+    toastr.options = {
+        toastClass: 'toast show'
+    };
+</script>
 <script src="<?= base_url('assets/fontend/') ?>js/owl.carousel.min.js"></script>
 <script src="<?= base_url('assets/fontend/') ?>js/zoomsl.min.js"></script>
 <script src="<?= base_url('assets/fontend/') ?>js/jquery.syotimer.min.js"></script>
@@ -1001,36 +877,6 @@
 </script>
 <script>
     $(document).ready(function() {
-        var timer;
-
-        function addAndRemoveClass() {
-            // Add the class
-            $(".order_place").addClass("custom-shake");
-
-            // Wait for 2 seconds and then remove the class
-            // Wait for 2 seconds and then remove the class
-            timer = setTimeout(function() {
-                $(".order_place").removeClass("custom-shake");
-                timer = setTimeout(addAndRemoveClass, 2000);
-            }, 2000);
-        }
-
-        // Initial call to start the cycle
-        addAndRemoveClass();
-
-        // Pause the cycle when mouse enters the element
-        $(".order_place").mouseenter(function() {
-            clearTimeout(timer); // Clear the timer
-        });
-
-        // Resume the cycle when mouse leaves the element
-        $(".order_place").mouseleave(function() {
-            addAndRemoveClass(); // Restart the cycle
-        });
-    });
-</script>
-<script>
-    $(document).ready(function() {
         $(".parent-category").each(function() {
             const menuCatToggle = $(this).find(".menu-category-toggle");
             const secondNav = $(this).find(".second-nav");
@@ -1053,27 +899,6 @@
         });
     });
 </script>
-
-<!-- <script>
-    var menu = new MmenuLight(document.querySelector("#menu"), "all");
-
-    var navigator = menu.navigation({
-        selectedClass: "Selected",
-        slidingSubmenus: true,
-        // theme: 'dark',
-        title: "ক্যাটাগরি",
-    });
-
-    var drawer = menu.offcanvas({
-        // position: 'left'
-    });
-
-    //  Open the menu.
-    document.querySelector('a[href="#menu"]').addEventListener("click", (evnt) => {
-        evnt.preventDefault();
-        drawer.open();
-    });
-</script> -->
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
@@ -1113,19 +938,6 @@
         $("body").css("overflow-y", "auto");
     });
 </script>
-
-<!-- -->
-<!--<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W9QKMSWL" height="0" width="0" style="display: none; visibility: hidden;"></iframe></noscript>-->
-
-<!--
--->
-
-<!-- Google Tag Manager (noscript) -->
-<!-- <noscript><iframe src="https://analytic.ozybd.com/ns.html?id=GTM-W9QKMSWL" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript> -->
-<!-- End Google Tag Manager (noscript) -->
-
-
 </body>
-
 
 </html>

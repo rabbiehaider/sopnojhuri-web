@@ -32,10 +32,6 @@
     </div>
 </div>
 
-<script src="<?php echo base_url('assets/fontend/') ?>js/vue/vue.min.js"></script>
-<script src="<?php echo base_url('assets/fontend/') ?>js/vue/axios.min.js"></script>
-<script src="<?php echo base_url('assets/fontend/') ?>js/vue/moment.min.js"></script>
-
 <script>
     new Vue({
         el: '#WEB_DATA',
@@ -55,7 +51,9 @@
                     let r = res.data;
                     if (r.success) {
                         toastr.success(r.message);
-                        window.location = '/customer/account';
+                        setTimeout(() => {
+                            window.location = '/customer/account';
+                        }, 1000);
                     } else {
                         toastr.error(r.message);
                     }

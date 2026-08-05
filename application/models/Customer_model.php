@@ -31,12 +31,6 @@ class Customer_model extends CI_Model
 		}
 	}
 
-	public function save_customer($data)
-	{
-		$query = $this->db->insert('tbl_app_customer', $data);
-		return $query;
-	}
-
 	public function generateCustomerCode()
 	{
 		$customerCode = "C00001";

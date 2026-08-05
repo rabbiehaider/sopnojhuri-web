@@ -55,7 +55,7 @@ class Customer extends CI_Controller
                 // exit;
 
                 if ($result) {
-                    if ($result[0]['status' != 'a']) {
+                    if ($result[0]['status'] != 'a') {
                         $res = ['success' => false, 'message' => 'You are deactivated! Please contact with Admin.'];
                     }
 
@@ -119,6 +119,173 @@ class Customer extends CI_Controller
         $this->load->view('fontend/layout', $data);
     }
 
+    public function saveProfileUpdate()
+    {
+        $res = ['success' => false, 'message' => ''];
+        try {
+            $customerId = $this->session->userdata('customer_id');
+            if ($customerId == '') {
+                $res = ['success' => false, 'message' => 'You are not logged in!'];
+                echo json_encode($res);
+                return;
+            }
+
+            $data = array(
+                'Customer_Name'    => trim($this->input->post('name')),
+                'Customer_Mobile'  => trim($this->input->post('phone')),
+                'Customer_Email'   => trim($this->input->post('email')),
+                'Customer_Address' => trim($this->input->post('address')),
+                'district_id'      => $this->input->post('district_id'),
+                'thana_id'         => $this->input->post('thana_id'),
+                'UpdateTime'       => date('Y-m-d H:i:s'),
+                'last_update_ip'   => get_client_ip(),
+            );
+
+            if (empty($data['Customer_Name'])) {
+                $res = ['success' => false, 'message' => 'Name is required!'];
+            } else if (!preg_match('/^01[3-9]\d{8}$/', $data['Customer_Mobile'])) {
+                $res = ['success' => false, 'message' => 'Please enter a valid phone number!'];
+            } else if (!empty($data['Customer_Email']) && !preg_match('/^[a-zA-Z0-9._-]+@[a-zA-Z0-9-]+\.[a-zA-Z.]{2,5}$/', $data['Customer_Email'])) {
+                $res = ['success' => false, 'message' => 'Email is not valid!'];
+            } else if (empty($data['Customer_Address'])) {
+                $res = ['success' => false, 'message' => 'Address is required!'];
+            } else if (empty($data['district_id'])) {
+                $res = ['success' => false, 'message' => 'District is required!'];
+            } else if (empty($data['thana_id'])) {
+                $res = ['success' => false, 'message' => 'Area is required!'];
+            } else {
+                // Check if mobile is already used by another customer
+                $check = $this->db->query("SELECT Customer_SlNo FROM tbl_customer WHERE Customer_Mobile = ? AND Customer_SlNo != ?", [$data['Customer_Mobile'], $customerId]);
+                if ($check->num_rows() > 0) {
+                    $res = ['success' => false, 'message' => 'This phone number is already used by another account!'];
+                    echo json_encode($res);
+                    return;
+                }
+
+                // Image upload
+                if (!empty($_FILES['image']['name'])) {
+                    // Delete old image
+                    $oldCustomer = $this->db->query("SELECT image_name FROM tbl_customer WHERE Customer_SlNo = ?", $customerId)->row();
+                    if ($oldCustomer && !empty($oldCustomer->image_name)) {
+                        $oldImagePath = FCPATH . $oldCustomer->image_name;
+                        if (file_exists($oldImagePath)) {
+                            @unlink($oldImagePath);
+                        }
+                    }
+
+                    $config['upload_path']   = './uploads/customer/';
+                    $config['allowed_types'] = 'jpg|jpeg|png|gif|webp';
+                    $config['max_size']      = 2048;
+                    $config['file_name']     = 'C' . sprintf('%05d', $customerId) . '_' . time();
+
+                    $this->load->library('upload', $config);
+                    if ($this->upload->do_upload('image')) {
+                        $uploadData = $this->upload->data();
+                        $data['image_name'] = 'uploads/customer/' . $uploadData['file_name'];
+                    } else {
+                        $res = ['success' => false, 'message' => strip_tags($this->upload->display_errors())];
+                        echo json_encode($res);
+                        return;
+                    }
+                }
+
+                $this->db->where('Customer_SlNo', $customerId);
+                $result = $this->db->update('tbl_customer', $data);
+
+                if ($result) {
+                    // Update session data
+                    $sessionData = array(
+                        'customer_name'    => $data['Customer_Name'],
+                        'customer_mobile'  => $data['Customer_Mobile'],
+                        'customer_email'   => $data['Customer_Email'],
+                        'customer_address' => $data['Customer_Address'],
+                        'district_id'      => $data['district_id'],
+                        'thana_id'         => $data['thana_id'],
+                    );
+                    if (isset($data['image_name'])) {
+                        $sessionData['customer_image'] = $data['image_name'];
+                    }
+                    $this->session->set_userdata($sessionData);
+
+                    // Update district_name & thana_name in session
+                    $district = $this->db->query("SELECT District_Name FROM tbl_district WHERE District_SlNo = ? AND status = 'a'", $data['district_id'])->row();
+                    if ($district) {
+                        $this->session->set_userdata('district_name', $district->District_Name);
+                    }
+                    $thana = $this->db->query("SELECT Thana_Name FROM tbl_thana WHERE Thana_SlNo = ? AND status = 'a'", $data['thana_id'])->row();
+                    if ($thana) {
+                        $this->session->set_userdata('thana_name', $thana->Thana_Name);
+                    }
+
+                    $res = ['success' => true, 'message' => 'Profile updated successfully!'];
+                } else {
+                    $res = ['success' => false, 'message' => 'Profile update failed!'];
+                }
+            }
+        } catch (\Exception $e) {
+            $res = ['success' => false, 'message' => 'Something went wrong! ' . $e->getMessage()];
+        }
+
+        echo json_encode($res);
+    }
+
+    public function savePasswordChange()
+    {
+        $res = ['success' => false, 'message' => ''];
+        try {
+            $customerId = $this->session->userdata('customer_id');
+            if ($customerId == '') {
+                $res = ['success' => false, 'message' => 'You are not logged in!'];
+                echo json_encode($res);
+                return;
+            }
+
+            $data = json_decode($this->input->raw_input_stream);
+
+            $oldPassword = trim($data->password->old_password);
+            $newPassword = trim($data->password->new_password);
+            $confirmPassword = trim($data->password->confirm_password);
+
+            if (empty($oldPassword)) {
+                $res = ['success' => false, 'message' => 'Enter your old password!'];
+            } else if (empty($newPassword)) {
+                $res = ['success' => false, 'message' => 'Enter your new password!'];
+            } else if (strlen($newPassword) < 6) {
+                $res = ['success' => false, 'message' => 'New password must be at least 6 characters!'];
+            } else if ($newPassword != $confirmPassword) {
+                $res = ['success' => false, 'message' => 'New password and confirm password do not match!'];
+            } else {
+                $customer = $this->db->query("SELECT Cust_Pass FROM tbl_customer WHERE Customer_SlNo = ? AND status = 'a'", $customerId)->row();
+
+                if (!$customer) {
+                    $res = ['success' => false, 'message' => 'Customer not found!'];
+                } else if (md5($oldPassword) != $customer->Cust_Pass) {
+                    $res = ['success' => false, 'message' => 'Old password is not correct!'];
+                } else {
+                    $updateData = array(
+                        'Cust_Pass'      => md5($newPassword),
+                        'UpdateTime'     => date('Y-m-d H:i:s'),
+                        'last_update_ip' => get_client_ip(),
+                    );
+
+                    $this->db->where('Customer_SlNo', $customerId);
+                    $result = $this->db->update('tbl_customer', $updateData);
+
+                    if ($result) {
+                        $this->session->set_userdata('password', $newPassword);
+                        $res = ['success' => true, 'message' => 'Password changed successfully!'];
+                    } else {
+                        $res = ['success' => false, 'message' => 'Password update failed!'];
+                    }
+                }
+            }
+        } catch (\Exception $e) {
+            $res = ['success' => false, 'message' => 'Something went wrong! ' . $e->getMessage()];
+        }
+
+        echo json_encode($res);
+    }
+
     public function trackYourOrder()
     {
         $data['title'] = 'Track Order';
@@ -176,7 +343,7 @@ class Customer extends CI_Controller
                 );
                 $result = $this->db->insert('tbl_customer', $customer);
                 $customerId = $this->db->insert_id();
-                $customer = array_merge($data, ['id' => $customerId]);
+                $customer = array_merge($customer, ['id' => $customerId]);
 
                 if ($result) {
                     $res = ['success' => true, 'message' => 'Registration success!', 'customer' => $customer];
@@ -205,6 +372,7 @@ class Customer extends CI_Controller
 
     public function getCustOrders()
     {
+        $res = [];
         $data = json_decode($this->input->raw_input_stream);
         $branchId = 1;
         $clauses = "";
@@ -235,9 +403,9 @@ class Customer extends CI_Controller
                     pc.Category_Name,
                     u.Unit_Name
                 from tbl_sale_details sd
-                join tbl_product p on p.Product_SlNo = sd.Product_IDNo
-                join tbl_category pc on pc.Category_SlNo = p.ProductCategory_ID
-                join tbl_unit u on u.Unit_SlNo = p.Unit_ID
+                left join tbl_product p on p.Product_SlNo = sd.Product_IDNo
+                left join tbl_category pc on pc.Category_SlNo = p.ProductCategory_ID
+                left join tbl_unit u on u.Unit_SlNo = p.Unit_ID
                 where sd.SaleMaster_IDNo = ?
                 and sd.status = '$status'
             ", $data->orderId)->result();
@@ -262,7 +430,7 @@ class Customer extends CI_Controller
                     WHEN 's' THEN 'Shipped'
                     WHEN 'o' THEN 'On The Way'
                     WHEN 'd' THEN 'Delivered'
-                    WHEN 's' THEN 'Cancelled'
+                    WHEN 'c' THEN 'Cancelled'
                 END AS order_status,
                 sm.SaleMaster_PaymentType,
                 CASE sm.SaleMaster_PaymentType
@@ -308,263 +476,36 @@ class Customer extends CI_Controller
         $this->load->view('fontend/layout', $data);
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    public function my_account()
+    public function getDistricts()
     {
-        $data['title'] = 'Customer Dashboard';
-        $customer_id = $this->session->userdata("id");
-        $data['img_url'] = $this->db->query("select * from tbl_content")->row()->soft_url;
-        $data['orders'] = $this->db->query("select * from tbl_order_master where status = 'a' and customer_id = '$customer_id' order by id desc")->result();
-        $data['details'] = $this->db->query("select * from tbl_app_customer where status = 'a' and id = '$customer_id'")->row();
-        $data['cartItems'] = $this->cart->contents();
-        $data['front_content'] = 'customer/my_account';
-        $this->load->view('fontend/layout', $data);
+        $districts = $this->db->query("SELECT District_SlNo, District_Name FROM tbl_district WHERE status = 'a' ORDER BY District_Name ASC")->result();
+        echo json_encode($districts);
     }
 
-    function updateDetails()
-    {
-
-        $res = ['success' => false, 'message' => ''];
-        try {
-
-            $data = json_decode($this->input->raw_input_stream);
-
-            $cus_id = $data->customer->id;
-            $name = $data->customer->name;
-            $email = $data->customer->email;
-            $phone = $data->customer->phone;
-            $shipping_address = $data->customer->shipping_address;
-            $billing_address = $data->customer->billing_address;
-
-            if (!preg_match('/^[a-zA-Z0-9._-]+@[a-zA-Z0-9-]+\.[a-zA-Z.]{2,5}$/', $email)) {
-                $res = ['success' => false, 'message' => 'This email is not valid!'];
-            } else if (!preg_match('/^01[3-9]\d{8}$/', $phone)) {
-                $res = ['success' => false, 'message' => 'This phone number is not valid!'];
-            } else {
-                $data = array(
-                    'name'              => $name,
-                    'email'             => $email,
-                    'phone'             => $phone,
-                    'shipping_address'  => $shipping_address,
-                    'billing_address'   => $billing_address,
-                );
-
-                $this->db->where('id', $cus_id);
-                $result = $this->db->update('tbl_app_customer', $data);
-
-                if ($result) {
-                    $res = ['success' => true, 'message' => 'Account Details Updated Successfully!'];
-                }
-            }
-        } catch (\Exception $e) {
-            $res = ['success' => false, 'message' => 'Something wents wrong!' . $e->getMessage()];
-        }
-
-        echo json_encode($res);
-    }
-
-    function updatePassword()
-    {
-
-        $res = ['success' => false, 'message' => ''];
-        try {
-
-            $data = json_decode($this->input->raw_input_stream);
-
-            $cus_id = $data->password->id;
-            $password = trim($data->password->password);
-            $cpassword = trim($data->password->cpassword);
-            $passmd5 = md5($password);
-
-            if ($password == $cpassword) {
-
-                $data = array(
-                    'password'  => $passmd5,
-                );
-
-                $this->db->where('id', $cus_id);
-                $result = $this->db->update('tbl_app_customer', $data);
-
-                if ($result) {
-                    $res = ['success' => true, 'message' => 'Password Updated Successfully!'];
-                }
-            } else {
-                $res = ['success' => false, 'message' => 'Password and Confirm password does not match!'];
-            }
-        } catch (\Exception $e) {
-            $res = ['success' => false, 'message' => 'Something wents wrong!' . $e->getMessage()];
-        }
-
-        echo json_encode($res);
-    }
-
-    public function customerInvoice($orderId)
-    {
-        $data['title'] = "Order Invoice";
-        $data['orderId'] = $orderId;
-        $data['about'] = $this->db->query("select * from tbl_abouts")->row();
-        $data['front_content'] = 'customer/order_invoice';
-        $this->load->view('fontend/layout', $data);
-    }
-
-    public function getOrders()
+    public function getThanas()
     {
         $data = json_decode($this->input->raw_input_stream);
+        $districtId = isset($data->district_id) ? $data->district_id : 0;
 
-        $clauses = "";
-        if (isset($data->dateFrom) && $data->dateFrom != '' && isset($data->dateTo) && $data->dateTo != '') {
-            $clauses .= " and om.date between '$data->dateFrom' and '$data->dateTo'";
-        }
-
-        if (isset($data->salesId) && $data->salesId != 0 && $data->salesId != '') {
-            $clauses .= " and om.id = '$data->salesId'";
-            $saleDetails = $this->db->query("
-                select 
-                od.*,
-                    p.Product_Code,
-                    p.Product_Name,
-                    pc.ProductCategory_Name,
-                    u.Unit_Name
-                from tbl_order_details od
-                join tbl_product p on p.Product_SlNo = od.product_id
-                join tbl_productcategory pc on pc.ProductCategory_SlNo = p.ProductCategory_ID
-                join tbl_unit u on u.Unit_SlNo = p.Unit_ID
-                where od.order_id = ?
-            ", $data->salesId)->result();
-
-            $res['saleDetails'] = $saleDetails;
-        }
-        $sales = $this->db->query("
-            select
-            om.*
-            from tbl_order_master om
-            where om.order_status = 'Pending'
-            and om.status = 'a'
-            $clauses
-            order by om.id desc
-        ")->result();
-
-        $res['sales'] = $sales;
-
-        echo json_encode($res);
+        $thanas = $this->db->query("SELECT Thana_SlNo, Thana_Name FROM tbl_thana WHERE District_SlNo = ? AND status = 'a' ORDER BY Thana_Name ASC", $districtId)->result();
+        echo json_encode($thanas);
     }
 
-    public function registration()
-    {
-        $res = ['success' => false, 'message' => ''];
-        try {
 
-            $data = json_decode($this->input->raw_input_stream);
 
-            $name = $data->customer->name;
-            $email = $data->customer->email;
-            $phone = $data->customer->phone;
-            $password = trim($data->customer->password);
-            $cpassword = trim($data->customer->cpassword);
-            $passmd5 = md5($password);
 
-            if (!preg_match('/^[a-zA-Z0-9._-]+@[a-zA-Z0-9-]+\.[a-zA-Z.]{2,5}$/', $email)) {
 
-                $res = ['success' => false, 'message' => 'This email is not valid!'];
-            } else if (!preg_match('/^01[3-9]\d{8}$/', $phone)) {
 
-                $res = ['success' => false, 'message' => 'This phone number is not valid!'];
-            } else if ($this->customer_m->check_exits($phone)) {
 
-                $res = ['success' => false, 'message' => $phone . ' Already Exits!'];
-            } else {
-                if ($password == $cpassword) {
 
-                    $data = array(
-                        'name'      => $name,
-                        'email'     => $email,
-                        'phone'     => $phone,
-                        'password'  => $passmd5,
-                        'status'    => 'a',
-                        'created_at' => 'Y-m-d h:i:s'
-                    );
 
-                    $result = $this->customer_m->save_customer($data);
-                    $customerId = $this->db->insert_id();
-                    $customer = array_merge($data, ['id' => $customerId]);
 
-                    if ($result) {
-                        $res = ['success' => true, 'message' => 'Registration success!', 'customer' => $customer];
-                    }
-                } else {
-                    $res = ['success' => false, 'message' => 'Password and Comfirm password dose not match!'];
-                }
-            }
-        } catch (\Exception $e) {
-            $res = ['success' => false, 'message' => 'Something wents wrong!' . $e->getMessage()];
-        }
 
-        echo json_encode($res);
-    }
 
-    public function image_upload($file_name_get)
-    {
-        $file_name = $file_name_get['name'];
-        $file_temp = $file_name_get['tmp_name'];
 
-        $div = explode('.', $file_name);
-        $get_last_e = end($div);
-        $new_name =  rand() . '.' . $get_last_e;
-        move_uploaded_file($file_temp, 'assets/images/customer/' . $new_name);
-        return $new_name;
-    }
 
-    public function profileUpdate()
-    {
-        $res = ['success' => false, 'message' => ''];
 
-        try {
-            $id = $this->input->post('id');
 
-            $image = '';
-            if ($_FILES['image']['name'] != "") {
-                $image = $this->image_upload($_FILES['image']);
-                $img_unlink = 'assets/images/customer/' . $this->input->post("image");
-                unlink($img_unlink);
-            } else {
-                $image = $this->input->post("image");
-            }
-
-            $data = array(
-                'name'      => $data->customer->name,
-                'email'     => $data->customer->email,
-                'phone'     => $data->customer->phone,
-                'address'   => $this->input->post('address'),
-                'image'     => $image
-            );
-
-            $this->db->where('id', $id);
-            $result = $this->db->update('tbl_app_customer', $data);
-
-            if ($result) {
-                $res = ['success' => true, 'message' => 'Profile Update success!'];
-            }
-        } catch (\Exception $e) {
-            $res = ['success' => false, 'message' => 'Something wents wrong!' . $e->getMessage()];
-        }
-
-        echo json_encode($res);
-    }
 
     public function getBooking()
     {

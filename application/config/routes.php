@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
 $route['default_controller'] = 'WebController/index';
@@ -49,6 +49,10 @@ $route['customer/logout']          = 'Customer/customerLogout';
 $route['track-order']              = 'Customer/trackYourOrder';
 
 $route['get_corders']          = 'Customer/getCustOrders';
+$route['get_districts']        = 'Customer/getDistricts';
+$route['get_thanas']           = 'Customer/getThanas';
+$route['save_profile_update']  = 'Customer/saveProfileUpdate';
+$route['save_password_change'] = 'Customer/savePasswordChange';
 $route['order-success/(:any)'] = 'Customer/custSuccInvoice/$1';
 $route['order-report/(:any)']  = 'Customer/custInvoice/$1';
 
@@ -83,16 +87,6 @@ $route['cart/removeItem/']    = 'Cart/removeItem';
 $route['insertCheckout']      = 'Cart/insertCheckout';
 
 // Customer Dashboard
-$route['customer-register']       = 'Customer/customer_register';
-$route['save_customer']           = 'Customer/registration';
-$route['customer-login']          = 'Customer/customer_login';
-$route['login_check']             = 'Customer/login_in';
-$route['my_account']              = 'Customer/my_account';
-$route['update_details']          = 'Customer/updateDetails';
-$route['update_password']         = 'Customer/updatePassword';
-$route['customer-invoice/(:any)'] = 'Customer/customerInvoice/$1';
-$route['get_orders']              = 'Customer/getOrders';
-$route['customer-logout']         = 'Customer/logout';
 
 // admin controller
 $route['admin']                 = 'Admin/login';

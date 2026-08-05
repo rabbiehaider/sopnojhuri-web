@@ -99,18 +99,14 @@
     </div>
 </div>
 
-<script src="<?php echo base_url('assets/fontend/') ?>js/vue/vue.min.js"></script>
-<script src="<?php echo base_url('assets/fontend/') ?>js/vue/axios.min.js"></script>
-<script src="<?php echo base_url('assets/fontend/') ?>js/vue/moment.min.js"></script>
-
 <script>
     new Vue({
         el: '#OrderInvoice',
         data() {
             return {
-                img_url: "<?php echo $iurl; ?>",
+                img_url: <?php echo json_encode($iurl); ?>,
                 order: {
-                    SaleMaster_SlNo: parseInt('<?php echo $orderId; ?>'),
+                    SaleMaster_SlNo: parseInt(<?php echo json_encode($orderId); ?>),
                     SaleMaster_InvoiceNo: null,
                     Customer_IDNo: null,
                     SaleMaster_SaleDate: null,

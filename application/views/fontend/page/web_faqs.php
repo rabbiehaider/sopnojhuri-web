@@ -16,9 +16,6 @@
                                 <a href="<?= base_url('return-refund') ?>">Returns & Refund</a>
                             </li>
                             <li>
-                                <a href="<?= base_url('secured-payment') ?>">Secured Payment</a>
-                            </li>
-                            <li>
                                 <a href="<?= base_url('privacy-policy') ?>">Privacy Policy</a>
                             </li>
                             <li>
