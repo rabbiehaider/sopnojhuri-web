@@ -125,7 +125,7 @@
             }
         },
         async created() {
-            this.customerImage = this.imageFile == '' || this.imageFile == null ? '/uploads/no_user.png' : this.img_url + this.imageFile;
+            this.customerImage = this.imageFile == '' || this.imageFile == null ? '/uploads/no_user.png' : this.imageFile;
             await this.getDistricts();
             if (this.profile.district_id != '') {
                 await this.loadThanas();
@@ -188,6 +188,7 @@
                 formData.append('phone', this.profile.phone);
                 formData.append('email', this.profile.email);
                 formData.append('address', this.profile.address);
+                formData.append('img_url', this.img_url);
                 formData.append('district_id', this.profile.district_id);
                 formData.append('thana_id', this.profile.thana_id);
                 if (this.selectedImage) {

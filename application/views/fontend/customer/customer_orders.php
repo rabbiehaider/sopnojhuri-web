@@ -94,7 +94,7 @@
             }
         },
         async created() {
-            this.customerImage = this.imageFile == '' ? '/uploads/no_user.png' : this.img_url + this.imageFile;
+            this.customerImage = this.imageFile == '' || this.imageFile == null ? '/uploads/no_user.png' : this.imageFile;
             await this.getOrders();
         },
         methods: {

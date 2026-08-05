@@ -118,7 +118,6 @@ class Customer extends CI_Controller
         $data['front_content'] = 'customer/password_change';
         $this->load->view('fontend/layout', $data);
     }
-
     public function saveProfileUpdate()
     {
         $res = ['success' => false, 'message' => ''];
@@ -164,16 +163,32 @@ class Customer extends CI_Controller
 
                 // Image upload
                 if (!empty($_FILES['image']['name'])) {
+                    $img_url = $this->input->post('img_url');
+
+                    $temp_upload_path = FCPATH . 'uploads/temp/';
+                    $final_upload_path = FCPATH . 'uploads/customers/';
+
+                    if (!is_dir($temp_upload_path)) {
+                        mkdir($temp_upload_path, 0777, true);
+                    }
+                    if (!is_dir($final_upload_path)) {
+                        mkdir($final_upload_path, 0777, true);
+                    }
+
                     // Delete old image
                     $oldCustomer = $this->db->query("SELECT image_name FROM tbl_customer WHERE Customer_SlNo = ?", $customerId)->row();
                     if ($oldCustomer && !empty($oldCustomer->image_name)) {
-                        $oldImagePath = FCPATH . $oldCustomer->image_name;
-                        if (file_exists($oldImagePath)) {
-                            @unlink($oldImagePath);
+                        $oldFileName = basename($oldCustomer->image_name);
+                        $oldImagePathLocal = FCPATH . 'uploads/customers/' . $oldFileName;
+                        if (file_exists($oldImagePathLocal)) {
+                            @unlink($oldImagePathLocal);
                         }
+
+                        $this->deleteRemoteFile($oldCustomer->image_name);
                     }
 
-                    $config['upload_path']   = './uploads/customer/';
+                    // Upload to local temp first
+                    $config['upload_path']   = $temp_upload_path;
                     $config['allowed_types'] = 'jpg|jpeg|png|gif|webp';
                     $config['max_size']      = 2048;
                     $config['file_name']     = 'C' . sprintf('%05d', $customerId) . '_' . time();
@@ -181,7 +196,28 @@ class Customer extends CI_Controller
                     $this->load->library('upload', $config);
                     if ($this->upload->do_upload('image')) {
                         $uploadData = $this->upload->data();
-                        $data['image_name'] = 'uploads/customer/' . $uploadData['file_name'];
+                        $tempFilePath = $temp_upload_path . $uploadData['file_name'];
+                        $finalFilePath = $final_upload_path . $uploadData['file_name'];
+
+                        // Move to local final directory
+                        if (copy($tempFilePath, $finalFilePath)) {
+                            unlink($tempFilePath); // Delete temp file
+
+                            // Now upload to remote server (localhost:85)
+                            $remoteUploadResult = $this->uploadToRemoteServer($finalFilePath, $uploadData['file_name'], $img_url);
+
+                            if ($remoteUploadResult['success']) {
+                                // Store URL in database
+                                $data['image_name'] = $img_url . 'uploads/customers/' . $uploadData['file_name'];
+                            } else {
+                                // If remote upload fails, still use local URL
+                                $data['image_name'] = base_url('uploads/customers/' . $uploadData['file_name']);
+                            }
+                        } else {
+                            $res = ['success' => false, 'message' => 'Failed to move uploaded file!'];
+                            echo json_encode($res);
+                            return;
+                        }
                     } else {
                         $res = ['success' => false, 'message' => strip_tags($this->upload->display_errors())];
                         echo json_encode($res);
@@ -227,6 +263,60 @@ class Customer extends CI_Controller
         }
 
         echo json_encode($res);
+    }
+
+    private function uploadToRemoteServer($localFilePath, $fileName, $remoteBaseUrl)
+    {
+        $remoteUrl = $remoteBaseUrl . 'uploads/customers/' . $fileName;
+        $remotePath = '/var/www/html/uploads/customers/';
+
+        $ch = curl_init();
+        $postData = array(
+            'file' => new CURLFile($localFilePath),
+            'action' => 'upload'
+        );
+
+        curl_setopt($ch, CURLOPT_URL, $remoteBaseUrl . 'upload_handler.php');
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $postData);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+
+        $response = curl_exec($ch);
+        $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        $error = curl_error($ch);
+        curl_close($ch);
+
+        if ($httpCode == 200 && !empty($response)) {
+            $result = json_decode($response, true);
+            return ['success' => true, 'result' => $result];
+        }
+
+        return ['success' => false, 'error' => $error];
+    }
+
+    private function deleteRemoteFile($fileUrl)
+    {
+        // Extract filename from URL
+        $fileName = basename($fileUrl);
+        $remoteBaseUrl = str_replace('uploads/customers/' . $fileName, '', $fileUrl);
+
+        $ch = curl_init();
+        $postData = array(
+            'file' => $fileName,
+            'action' => 'delete'
+        );
+
+        curl_setopt($ch, CURLOPT_URL, $remoteBaseUrl . 'upload_handler.php');
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($postData));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+
+        $response = curl_exec($ch);
+        curl_close($ch);
+
+        return $response;
     }
 
     public function savePasswordChange()
