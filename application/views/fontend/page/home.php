@@ -40,7 +40,7 @@
                     </div>
 
                     <div class="col-sm-12">
-                        <div class="topcategory owl-carousel">
+                        <div class="topcategory owl-carousel" v-if="categories.length > 0">
                             <div class="cat_item" v-for="(category, index) in categories" :key="index">
                                 <div class="cat_img">
                                     <a :href="`/category/${category.route}`">
@@ -277,9 +277,13 @@
                         return item;
                     });
                     this.$nextTick(() => {
-                        $(".topcategory").owlCarousel({
+                        let $topcat = $(".topcategory");
+                        if ($topcat.hasClass('owl-loaded')) {
+                            $topcat.trigger('destroy.owl.carousel').removeClass('owl-loaded');
+                        }
+                        $topcat.owlCarousel({
                             margin: 15,
-                            loop: true,
+                            loop: this.categories.length > 8,
                             dots: false,
                             autoplay: true,
                             autoplayTimeout: 6000,
@@ -297,7 +301,7 @@
                                 1000: {
                                     items: 8,
                                     nav: false,
-                                    loop: true,
+                                    loop: this.categories.length > 8,
                                 },
                             },
                         });

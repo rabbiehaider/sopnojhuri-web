@@ -480,6 +480,34 @@
         $("body").css("overflow-y", "auto");
     });
 </script>
+<script>
+    // Disable right-click except on input fields
+    document.addEventListener('contextmenu', function(e) {
+        let tagName = e.target.tagName.toLowerCase();
+        if (tagName !== 'input' && tagName !== 'textarea' && tagName !== 'select') {
+            e.preventDefault();
+        }
+    });
+
+    // Disable keyboard shortcuts for inspecting code
+    document.addEventListener('keydown', function(e) {
+        // Disable F12
+        if (e.keyCode === 123) {
+            e.preventDefault();
+            return false;
+        }
+        // Disable Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+Shift+C
+        if (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67)) {
+            e.preventDefault();
+            return false;
+        }
+        // Disable Ctrl+U (View Source) and Ctrl+S (Save Page)
+        if (e.ctrlKey && (e.keyCode === 85 || e.keyCode === 83)) {
+            e.preventDefault();
+            return false;
+        }
+    });
+</script>
 </body>
 
 </html>

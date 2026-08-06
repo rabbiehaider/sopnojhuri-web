@@ -8,10 +8,9 @@ $route['category/(:any)']            = 'WebController/categoryView/$1';
 $route['scategory/(:any)']           = 'WebController/subCategoryView/$1';
 $route['products']                   = 'WebController/products';
 $route['shop']                       = 'WebController/products';
-$route['service']                    = 'WebController/service';
 $route['project']                    = 'WebController/project';
 $route['contact_us']                 = 'WebController/contactUs';
-$route['search']                     = 'WebController/search';
+$route['search']                     = 'WebController/products';
 $route['contact-user']               = 'WebController/contact_user';
 $route['get_website_profile']        = 'WebController/getWebsiteProfile';
 
@@ -63,6 +62,9 @@ $route['secured-payment']  = 'WebController/securedPayment';
 $route['privacy-policy']   = 'WebController/privacyPolicy';
 $route['terms-conditions'] = 'WebController/termsCondition';
 $route['faqs']             = 'WebController/webFAQs';
+
+$route['sitemap']              = 'WebController/sitemapPage';
+$route['sitemap.xml']          = 'WebController/sitemapXml';
 
 $route['404_override']         = 'WebController/error404';
 $route['translate_uri_dashes'] = true;

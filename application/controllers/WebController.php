@@ -35,6 +35,7 @@ class WebController extends CI_Controller
 	public function productView($productSlug)
 	{
 		$product = $this->db->query("SELECT * FROM tbl_product WHERE slug = ? AND status = 'a'", $productSlug)->row();
+		$data['product'] = $product;
 		$data['title'] = $product->Product_Name;
 		$data['iurl'] = $this->website->Software_Url;
 		$data['isd_charge'] = $this->website->isd_charge;
@@ -548,7 +549,6 @@ class WebController extends CI_Controller
 	public function products()
 	{
 		$data['title'] = 'Shop';
-		$data['img_url'] = $this->db->query("select * from tbl_content")->row()->soft_url;
 		$data['iurl'] = $this->website->Software_Url;
 
 		$Max_SellPrice = $this->db->query("SELECT MAX(Product_SellingPrice) AS Max_SellPrice FROM tbl_product WHERE status = 'a' AND is_website = 'true'")->row()->Max_SellPrice;
@@ -631,5 +631,58 @@ class WebController extends CI_Controller
 		$data['iurl'] = $this->website->Software_Url;
 		$data['front_content'] = 'page/error_404';
 		$this->load->view('fontend/layout', $data);
+	}
+
+	public function sitemapPage()
+	{
+		$data['title'] = 'Sitemap';
+		$data['categories'] = $this->db->query("SELECT Category_Name, route FROM tbl_category WHERE status = 'a'")->result();
+		$data['products'] = $this->db->query("SELECT Product_Name, slug FROM tbl_product WHERE status = 'a' AND is_website = 'true' AND is_active = 'true'")->result();
+		$data['front_content'] = 'page/sitemap';
+		$this->load->view('fontend/layout', $data);
+	}
+
+	public function sitemapXml()
+	{
+		$categories = $this->db->query("SELECT route FROM tbl_category WHERE status = 'a'")->result();
+		$products = $this->db->query("SELECT slug FROM tbl_product WHERE status = 'a' AND is_website = 'true' AND is_active = 'true'")->result();
+
+		header("Content-Type: text/xml;charset=UTF-8");
+		echo '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
+		echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . "\n";
+
+		// Home
+		echo '  <url>' . "\n";
+		echo '    <loc>' . base_url() . '</loc>' . "\n";
+		echo '    <priority>1.0</priority>' . "\n";
+		echo '    <changefreq>daily</changefreq>' . "\n";
+		echo '  </url>' . "\n";
+
+		// Shop
+		echo '  <url>' . "\n";
+		echo '    <loc>' . base_url('shop') . '</loc>' . "\n";
+		echo '    <priority>0.8</priority>' . "\n";
+		echo '    <changefreq>daily</changefreq>' . "\n";
+		echo '  </url>' . "\n";
+
+		// Category Pages
+		foreach ($categories as $cat) {
+			echo '  <url>' . "\n";
+			echo '    <loc>' . base_url('category/' . $cat->route) . '</loc>' . "\n";
+			echo '    <priority>0.7</priority>' . "\n";
+			echo '    <changefreq>weekly</changefreq>' . "\n";
+			echo '  </url>' . "\n";
+		}
+
+		// Product Pages
+		foreach ($products as $prod) {
+			echo '  <url>' . "\n";
+			echo '    <loc>' . base_url('product/' . $prod->slug) . '</loc>' . "\n";
+			echo '    <priority>0.8</priority>' . "\n";
+			echo '    <changefreq>weekly</changefreq>' . "\n";
+			echo '  </url>' . "\n";
+		}
+
+		echo '</urlset>' . "\n";
 	}
 }

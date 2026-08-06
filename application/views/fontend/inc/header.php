@@ -14,10 +14,26 @@
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="true" />
     <link rel="shortcut icon" href="<?= $iurl . $website->Fav_Logo ?>" alt="<?= $website->Website_Name ?>" />
     <meta name="author" content="SopnoJhuri" />
-    <link rel="canonical" href="#" />
-    <meta name="app-url" content="" />
+    <link rel="canonical" href="<?= current_url(); ?>" />
+    <meta name="app-url" content="<?= base_url(); ?>" />
     <meta name="robots" content="index, follow" />
-    <meta name="description" content="<?= strip_tags($website->Short_Details); ?>" />
+    
+    <?php 
+    $seo_description = strip_tags($website->Short_Details);
+    $seo_image = $iurl . $website->Header_Logo;
+    
+    if (isset($product) && !empty($product)) {
+        if (!empty($product->Product_Description)) {
+            $desc_clean = strip_tags($product->Product_Description);
+            $seo_description = mb_strlen($desc_clean) > 160 ? mb_substr($desc_clean, 0, 157) . '...' : $desc_clean;
+        } else {
+            $seo_description = $product->Product_Name . ' - Shop online at ' . $website->Website_Name;
+        }
+        $seo_image = $iurl . $product->Product_Image;
+    }
+    ?>
+
+    <meta name="description" content="<?= htmlspecialchars($seo_description); ?>" />
     <meta name="keywords" content="" />
 
     <!-- ============ VERIFICATION META TAGS ============ -->
@@ -35,10 +51,10 @@
 
     <!-- ============ OPEN GRAPH META TAGS ============ -->
     <meta property="og:title" content="<?= $title != '' ? $title . ' - ' . $website->Website_Name : $website->Website_Name; ?>" />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content="<?= isset($product) ? 'product' : 'website'; ?>" />
     <meta property="og:url" content="<?= current_url(); ?>" />
-    <meta property="og:image" content="<?= $iurl . $website->Header_Logo; ?>" />
-    <meta property="og:description" content="<?= strip_tags($website->Short_Details); ?>" />
+    <meta property="og:image" content="<?= $seo_image; ?>" />
+    <meta property="og:description" content="<?= htmlspecialchars($seo_description); ?>" />
     <meta property="og:site_name" content="<?= $website->Website_Name; ?>" />
     <meta property="og:locale" content="bn_BD" />
 
@@ -49,8 +65,38 @@
     <!-- Twitter Cards -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="<?= $title != '' ? $title . ' - ' . $website->Website_Name : $website->Website_Name; ?>" />
-    <meta name="twitter:description" content="<?= strip_tags($website->Short_Details); ?>" />
-    <meta name="twitter:image" content="<?= $iurl . $website->Header_Logo; ?>" />
+    <meta name="twitter:description" content="<?= htmlspecialchars($seo_description); ?>" />
+    <meta name="twitter:image" content="<?= $seo_image; ?>" />
+
+    <!-- JSON-LD Structured Data for Products -->
+    <?php if (isset($product) && !empty($product)): ?>
+        <script type="application/ld+json">
+        {
+          "@context": "https://schema.org/",
+          "@type": "Product",
+          "name": <?= json_encode($product->Product_Name); ?>,
+          "image": [
+            <?= json_encode($iurl . $product->Product_Image); ?>
+          ],
+          "description": <?= json_encode($seo_description); ?>,
+          "sku": <?= json_encode($product->Product_Code); ?>,
+          "mpn": <?= json_encode($product->Product_Code); ?>,
+          "brand": {
+            "@type": "Brand",
+            "name": <?= json_encode($website->Website_Name); ?>
+          },
+          "offers": {
+            "@type": "Offer",
+            "url": <?= json_encode(current_url()); ?>,
+            "priceCurrency": "BDT",
+            "price": <?= json_encode($product->Product_SellingPrice); ?>,
+            "priceValidUntil": <?= json_encode(date('Y-12-31', strtotime('+1 year'))); ?>,
+            "availability": "https://schema.org/InStock",
+            "itemCondition": "https://schema.org/NewCondition"
+          }
+        }
+        </script>
+    <?php endif; ?>
 
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
     <link rel="stylesheet" href="<?= base_url('assets/fontend/') ?>css/owl.carousel.min.css" />

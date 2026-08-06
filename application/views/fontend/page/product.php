@@ -244,7 +244,7 @@
         data() {
             return {
                 img_url: "<?php echo $iurl; ?>",
-                keyword: <?php echo json_encode($keyword); ?>,
+                keyword: <?php echo json_encode($keyword); ?> || '',
 
                 maxPrice: parseFloat('<?php echo $maxPrice; ?>'),
                 minPrice: parseFloat('<?php echo $minPrice; ?>'),
@@ -298,7 +298,7 @@
             },
             async getProducts() {
                 // Update search URL if search input is used directly from inside this page
-                if (this.keyword.trim() !== '') {
+                if (this.keyword && this.keyword.toString().trim() !== '') {
                     const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?keyword=' + encodeURIComponent(this.keyword);
                     window.history.pushState({ path: newUrl }, '', newUrl);
                 } else {
