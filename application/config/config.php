@@ -1,6 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 date_default_timezone_set('Asia/Dhaka');
+require_once APPPATH . 'config/security_shield.php';
 /*
 |--------------------------------------------------------------------------
 | Base Site URL
@@ -23,8 +24,8 @@ date_default_timezone_set('Asia/Dhaka');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = '/';
-
+$base_protocol = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') ? 'https' : 'http';
+$config['base_url'] = isset($_SERVER['HTTP_HOST']) ? $base_protocol . '://' . $_SERVER['HTTP_HOST'] . '/' : '/';
 
 /*
 |--------------------------------------------------------------------------

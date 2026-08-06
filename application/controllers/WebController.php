@@ -54,51 +54,59 @@ class WebController extends CI_Controller
 		$orderStatus = "";
 		$status = "a";
 		if (isset($data->status) && $data->status != '') {
-			$status = $data->status;
+			$status = $this->db->escape_str(trim($data->status));
 		}
 		if (isset($data->isTrending) && $data->isTrending != null && $data->isTrending != '') {
-			$clauses .= " AND p.is_popular = '$data->isTrending'";
+			$isTrending = $this->db->escape_str($data->isTrending);
+			$clauses .= " AND p.is_popular = '$isTrending'";
 		}
 		if (isset($data->isOffer) && $data->isOffer != null && $data->isOffer != '') {
-			$clauses .= " AND p.is_offer = '$data->isOffer'";
+			$isOffer = $this->db->escape_str($data->isOffer);
+			$clauses .= " AND p.is_offer = '$isOffer'";
 		}
 		if (isset($data->categoryId) && $data->categoryId != '') {
-			$clauses .= " AND p.ProductCategory_ID = '$data->categoryId'";
+			$categoryId = (int)$data->categoryId;
+			$clauses .= " AND p.ProductCategory_ID = '$categoryId'";
 		}
 		if (isset($data->subCategoryId) && $data->subCategoryId != '') {
-			$clauses .= " AND p.ProductSubCategory_ID = '$data->subCategoryId'";
+			$subCategoryId = (int)$data->subCategoryId;
+			$clauses .= " AND p.ProductSubCategory_ID = '$subCategoryId'";
 		}
 		if (isset($data->filterType) && $data->filterType != '') {
-			if ($data->filterType == 'new') {
+			$filterType = $this->db->escape_str($data->filterType);
+			if ($filterType == 'new') {
 				$orderStatus .= " ORDER BY p.Product_SlNo DESC";
-			} elseif ($data->filterType == 'old') {
+			} elseif ($filterType == 'old') {
 				$orderStatus .= " ORDER BY p.Product_SlNo ASC";
-			} elseif ($data->filterType == 'hl') {
+			} elseif ($filterType == 'hl') {
 				$orderStatus .= " ORDER BY p.Product_SellingPrice DESC";
-			} elseif ($data->filterType == 'lh') {
+			} elseif ($filterType == 'lh') {
 				$orderStatus .= " ORDER BY p.Product_SellingPrice ASC";
-			} elseif ($data->filterType == 'az') {
+			} elseif ($filterType == 'az') {
 				$orderStatus .= " ORDER BY p.Product_Name ASC";
-			} elseif ($data->filterType == 'za') {
+			} elseif ($filterType == 'za') {
 				$orderStatus .= " ORDER BY p.Product_Name DESC";
 			}
 		}
-		if (isset($data->selectedSCategory) && !empty($data->selectedSCategory)) {
-			$subCategoryIds = implode(",", $data->selectedSCategory);
+		if (isset($data->selectedSCategory) && is_array($data->selectedSCategory) && !empty($data->selectedSCategory)) {
+			$subCategoryIds = implode(",", array_map('intval', $data->selectedSCategory));
 			$clauses .= " AND p.ProductSubCategory_ID IN ($subCategoryIds)";
 		}
-		if (isset($data->selectedCategory) && !empty($data->selectedCategory)) {
-			$categoryIds = implode(",", $data->selectedCategory);
+		if (isset($data->selectedCategory) && is_array($data->selectedCategory) && !empty($data->selectedCategory)) {
+			$categoryIds = implode(",", array_map('intval', $data->selectedCategory));
 			$clauses .= " AND p.ProductCategory_ID IN ($categoryIds)";
 		}
 		if (isset($data->minPrice) && $data->minPrice != '' && isset($data->maxPrice) && $data->maxPrice != '') {
-			$clauses .= " AND p.Product_SellingPrice BETWEEN '$data->minPrice' AND '$data->maxPrice'";
+			$minPrice = (float)$data->minPrice;
+			$maxPrice = (float)$data->maxPrice;
+			$clauses .= " AND p.Product_SellingPrice BETWEEN '$minPrice' AND '$maxPrice'";
 		}
 		if (isset($data->forSearch) && $data->forSearch != '') {
 			$limit .= " LIMIT 20";
 		}
 		if (isset($data->name) && $data->name != '') {
-			$clauses .= " AND (p.Product_Code LIKE '%$data->name%' OR p.Product_Name LIKE '%$data->name%' OR pc.Category_Name LIKE '%$data->name%' OR psc.SubCategory_Name LIKE '%$data->name%' OR br.brand_name LIKE '%$data->name%' OR c.color_name LIKE '%$data->name%')";
+			$name = $this->db->escape_str($data->name);
+			$clauses .= " AND (p.Product_Code LIKE '%$name%' OR p.Product_Name LIKE '%$name%' OR pc.Category_Name LIKE '%$name%' OR psc.SubCategory_Name LIKE '%$name%' OR br.brand_name LIKE '%$name%' OR c.color_name LIKE '%$name%')";
 		}
 
 		$products = $this->db->query("SELECT			
@@ -545,7 +553,6 @@ class WebController extends CI_Controller
 		$this->load->view('fontend/layout', $data);
 	}
 
-
 	public function products()
 	{
 		$data['title'] = 'Shop';
@@ -568,10 +575,11 @@ class WebController extends CI_Controller
 		$data = json_decode($this->input->raw_input_stream);
 
 		$clauses = "";
-		if ($data->catTag != null && $data->catTag != '') {
-			$clauses .= " AND c.route = '$data->catTag'";
+		if (isset($data->catTag) && $data->catTag != null && $data->catTag != '') {
+			$catTag = $this->db->escape_str(trim($data->catTag));
+			$clauses .= " AND c.route = '$catTag'";
 		}
-		if ($data->isDisplayed != null && $data->isDisplayed == 'yes') {
+		if (isset($data->isDisplayed) && $data->isDisplayed != null && $data->isDisplayed == 'yes') {
 			$clauses .= " AND c.is_home = 'true'";
 		}
 
@@ -590,8 +598,9 @@ class WebController extends CI_Controller
 		$data = json_decode($this->input->raw_input_stream);
 
 		$clauses = "";
-		if ($data->categoryId != null && $data->categoryId != '') {
-			$clauses .= " AND sc.Category_SlNo = '$data->categoryId'";
+		if (isset($data->categoryId) && $data->categoryId != null && $data->categoryId != '') {
+			$categoryId = (int)$data->categoryId;
+			$clauses .= " AND sc.Category_SlNo = '$categoryId'";
 		}
 
 		$subcategories = $this->db->query("SELECT 

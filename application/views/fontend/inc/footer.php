@@ -244,16 +244,12 @@
 <script>
     new WOW().init();
 </script>
-<link rel="stylesheet" href="<?= base_url('assets/fontend/') ?>css/flatpickr.min.css" />
-<script src="<?= base_url('assets/fontend/') ?>js/flatpickr.js"></script>
-
 <!-- feather icon -->
 <script src="<?= base_url('assets/fontend/') ?>js/feather.min.js"></script>
 <script>
     feather.replace();
 </script>
 
-<script src="<?= base_url('assets/fontend/') ?>js/notify.min.js"></script>
 <script src="<?= base_url('assets/fontend/') ?>js/toastr.min.js"></script>
 <script>
     toastr.options = {
@@ -262,7 +258,6 @@
 </script>
 <script src="<?= base_url('assets/fontend/') ?>js/owl.carousel.min.js"></script>
 <script src="<?= base_url('assets/fontend/') ?>js/zoomsl.min.js"></script>
-<script src="<?= base_url('assets/fontend/') ?>js/jquery.syotimer.min.js"></script>
 <script>
     $(document).ready(function() {
         $(".details_slider").owlCarousel({
