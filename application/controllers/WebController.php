@@ -3,7 +3,7 @@
 class WebController extends CI_Controller
 {
 
-	function  __construct()
+	function __construct()
 	{
 		parent::__construct();
 
@@ -86,6 +86,10 @@ class WebController extends CI_Controller
 			$subCategoryIds = implode(",", $data->selectedSCategory);
 			$clauses .= " AND p.ProductSubCategory_ID IN ($subCategoryIds)";
 		}
+		if (isset($data->selectedCategory) && !empty($data->selectedCategory)) {
+			$categoryIds = implode(",", $data->selectedCategory);
+			$clauses .= " AND p.ProductCategory_ID IN ($categoryIds)";
+		}
 		if (isset($data->minPrice) && $data->minPrice != '' && isset($data->maxPrice) && $data->maxPrice != '') {
 			$clauses .= " AND p.Product_SellingPrice BETWEEN '$data->minPrice' AND '$data->maxPrice'";
 		}
@@ -93,8 +97,7 @@ class WebController extends CI_Controller
 			$limit .= " LIMIT 20";
 		}
 		if (isset($data->name) && $data->name != '') {
-			$clauses .= " AND p.Product_Code LIKE '$data->name%'";
-			$clauses .= " OR p.Product_Name LIKE '$data->name%'";
+			$clauses .= " AND (p.Product_Code LIKE '%$data->name%' OR p.Product_Name LIKE '%$data->name%' OR pc.Category_Name LIKE '%$data->name%' OR psc.SubCategory_Name LIKE '%$data->name%' OR br.brand_name LIKE '%$data->name%' OR c.color_name LIKE '%$data->name%')";
 		}
 
 		$products = $this->db->query("SELECT			
@@ -219,8 +222,7 @@ class WebController extends CI_Controller
 			$limit .= " limit 20";
 		}
 		if (isset($data->name) && $data->name != '') {
-			$clauses .= " and p.Product_Code like '$data->name%'";
-			$clauses .= " or p.Product_Name like '$data->name%'";
+			$clauses .= " and (p.Product_Code like '%$data->name%' or p.Product_Name like '%$data->name%')";
 		}
 
 		$products = $this->db->query("SELECT
@@ -486,93 +488,76 @@ class WebController extends CI_Controller
 		echo json_encode($subcategories);
 	}
 
-    public function aboutUs()
-    {
-        $data['title'] = 'About Us';
-        $data['iurl'] = $this->website->Software_Url;
-        $data['front_content'] = 'page/about_us';
-        $this->load->view('fontend/layout', $data);
-    }
-
-    public function contactUs()
-    {
-        $data['title'] = 'Contact Us';
-        $data['iurl'] = $this->website->Software_Url;
-        $data['front_content'] = 'page/contact_us';
-        $this->load->view('fontend/layout', $data);
-    }
-
-    public function returnAndRefund()
-    {
-        $data['title'] = 'Returns & Refund';
-        $data['iurl'] = $this->website->Software_Url;
-        $data['front_content'] = 'page/return_refund';
-        $this->load->view('fontend/layout', $data);
-    }
-
-    public function securedPayment()
-    {
-        $data['title'] = 'Secured Payment';
-        $data['iurl'] = $this->website->Software_Url;
-        $data['front_content'] = 'page/secured_payment';
-        $this->load->view('fontend/layout', $data);
-    }
-
-    public function privacyPolicy()
-    {
-        $data['title'] = 'Privacy Policy';
-        $data['iurl'] = $this->website->Software_Url;
-        $data['front_content'] = 'page/privacy_policy';
-        $this->load->view('fontend/layout', $data);
-    }
-
-    public function termsCondition()
-    {
-        $data['title'] = 'Terms & Condition';
-        $data['iurl'] = $this->website->Software_Url;
-        $data['front_content'] = 'page/terms_condition';
-        $this->load->view('fontend/layout', $data);
-    }	
-
-    public function webFAQs()
-    {
-        $data['title'] = 'Website FAQs';
-        $data['iurl'] = $this->website->Software_Url;
-        $data['front_content'] = 'page/web_faqs';
-        $this->load->view('fontend/layout', $data);
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	public function category()
+	public function aboutUs()
 	{
-		$data['title'] = 'Home';
-		// $data['sliders'] = $this->db->query("select * from tbl_sliders where status = 'a'")->result();
-		// $data['products'] = $this->db->query("select * from tbl_product where status = 'a' and is_website = 'true' and is_active = 'true' ORDER BY Product_SlNo DESC limit 30")->result();
-		// $data['img_url'] = $this->db->query("select * from tbl_content")->row()->soft_url;
-		// $data['categories'] = $this->db->query("select * from tbl_productcategory where status = 'a' order by ProductCategory_SlNo desc")->result();
-		// $data['about'] = $this->db->query("select * from tbl_abouts")->row();
-		$data['front_content'] = 'page/home';
+		$data['title'] = 'About Us';
+		$data['iurl'] = $this->website->Software_Url;
+		$data['front_content'] = 'page/about_us';
+		$this->load->view('fontend/layout', $data);
+	}
+
+	public function contactUs()
+	{
+		$data['title'] = 'Contact Us';
+		$data['iurl'] = $this->website->Software_Url;
+		$data['front_content'] = 'page/contact_us';
+		$this->load->view('fontend/layout', $data);
+	}
+
+	public function returnAndRefund()
+	{
+		$data['title'] = 'Returns & Refund';
+		$data['iurl'] = $this->website->Software_Url;
+		$data['front_content'] = 'page/return_refund';
+		$this->load->view('fontend/layout', $data);
+	}
+
+	public function securedPayment()
+	{
+		$data['title'] = 'Secured Payment';
+		$data['iurl'] = $this->website->Software_Url;
+		$data['front_content'] = 'page/secured_payment';
+		$this->load->view('fontend/layout', $data);
+	}
+
+	public function privacyPolicy()
+	{
+		$data['title'] = 'Privacy Policy';
+		$data['iurl'] = $this->website->Software_Url;
+		$data['front_content'] = 'page/privacy_policy';
+		$this->load->view('fontend/layout', $data);
+	}
+
+	public function termsCondition()
+	{
+		$data['title'] = 'Terms & Condition';
+		$data['iurl'] = $this->website->Software_Url;
+		$data['front_content'] = 'page/terms_condition';
+		$this->load->view('fontend/layout', $data);
+	}
+
+	public function webFAQs()
+	{
+		$data['title'] = 'Website FAQs';
+		$data['iurl'] = $this->website->Software_Url;
+		$data['front_content'] = 'page/web_faqs';
+		$this->load->view('fontend/layout', $data);
+	}
+
+
+	public function products()
+	{
+		$data['title'] = 'Shop';
+		$data['img_url'] = $this->db->query("select * from tbl_content")->row()->soft_url;
+		$data['iurl'] = $this->website->Software_Url;
+
+		$Max_SellPrice = $this->db->query("SELECT MAX(Product_SellingPrice) AS Max_SellPrice FROM tbl_product WHERE status = 'a' AND is_website = 'true'")->row()->Max_SellPrice;
+		$Min_SellPrice = $this->db->query("SELECT MIN(Product_SellingPrice) AS Min_SellPrice FROM tbl_product WHERE status = 'a' AND is_website = 'true'")->row()->Min_SellPrice;
+
+		$data['maxPrice'] = $Max_SellPrice ?? 0;
+		$data['minPrice'] = $Min_SellPrice ?? 0;
+		$data['keyword'] = $this->input->get('keyword') ?? '';
+		$data['front_content'] = 'page/product';
 		$this->load->view('fontend/layout', $data);
 	}
 
@@ -621,7 +606,6 @@ class WebController extends CI_Controller
 		echo json_encode($subcategories);
 	}
 
-
 	public function getWebsiteProfile()
 	{
 		$website = $this->db->query("SELECT * FROM tbl_website_profile LIMIT 1")->result();
@@ -629,279 +613,23 @@ class WebController extends CI_Controller
 	}
 
 
-
-	// public function products()
-	// {
-	// 	$data['title'] = 'Products';
-	// 	$data['img_url'] = $this->db->query("select * from tbl_content")->row()->soft_url;
-	// 	$data['products'] = $this->db->query("select * from tbl_product where status = 'a' and is_active = 'true' and is_website = 'true' ORDER BY Product_SlNo DESC")->result();
-	// 	$data['front_content'] = 'page/product';
-	// 	$this->load->view('fontend/layout', $data);
-	// }
-
-
-	// Products Page Start
-	public function products()
-	{
-		$limit = $this->limit;
-		$data['title'] = 'Products';
-		$data['img_url'] = $this->db->query("select * from tbl_content")->row()->soft_url;
-		$data['products'] = $this->get_load_more_product($limit, '');
-
-		$data['front_content'] = 'page/product';
-		$this->load->view('fontend/layout', $data);
-	}
-
-	public function get_product_more()
-	{
-		$limit = $this->limit;
-		$data['img_url'] = $this->db->query("select * from tbl_content")->row()->soft_url;
-		$page = $limit * $this->input->get('page');
-		$data['products'] = $this->get_load_more_product($limit, $page);
-		$isExist = $this->load->view('fontend/page/product_more', $data);
-		if ($isExist) {
-			echo json_encode($isExist);
-		}
-	}
-
-	function get_load_more_product($limit, $offset = '')
-	{
-		$this->db->select('*');
-		$this->db->from('tbl_product');
-		$this->db->where('status', 'a');
-		$this->db->where('is_active', 'true');
-		$this->db->where('is_website', 'true');
-		$this->db->limit($limit, $offset);
-		$this->db->order_by('Product_SlNo', 'desc');
-		$data = $this->db->get()->result();
-		return $data;
-	}
-	// Products Page End
-
-
-
-
-	// public function product_by_category($category_id)
-	// {
-	// 	$data['title'] = 'Product Petails';
-	// 	$data['img_url'] = $this->db->query("select * from tbl_content")->row()->soft_url;
-	// 	$data['category'] =  $this->db->query("select * from tbl_productcategory where ProductCategory_SlNo = ? ", $category_id)->row();
-	// 	$data['category_id'] = $category_id;
-	// 	$data['products'] = $this->db->query("select * from tbl_product where status = 'a' and is_active = 'true' and is_website = 'true' and ProductCategory_ID = ?", $category_id)->result();
-	// 	$data['front_content'] = 'page/product_by_category';
-	// 	$this->load->view('fontend/layout', $data);
-	// }
-
-
-
-
-	// Category Wise Products Page Start
-	public function product_by_category($category_id)
-	{
-		$limit = $this->limit;
-		$data['title'] = 'Products';
-		$data['img_url'] = $this->db->query("select * from tbl_content")->row()->soft_url;
-		$data['category'] =  $this->db->query("select * from tbl_productcategory where ProductCategory_SlNo = ? ", $category_id)->row();
-		$data['productcount'] = $this->db->query("select * from tbl_product where status = 'a' and is_active = 'true' and is_website = 'true' and ProductCategory_ID = ?", $category_id)->result();
-		$data['category_id'] = $category_id;
-		$data['products'] = $this->get_load_more_data($category_id, $limit, '');
-		$data['front_content'] = 'page/product_by_category';
-		$this->load->view('fontend/layout', $data);
-	}
-
-	public function get_category_product_more()
-	{
-		$limit = $this->limit;
-		$data['img_url'] = $this->db->query("select * from tbl_content")->row()->soft_url;
-		$page = $limit * $this->input->get('page');
-		$category_id = $this->input->get('category_id');
-		$data['products'] = $this->get_load_more_data($category_id, $limit, $page);
-		$isExist = $this->load->view('fontend/page/product_more', $data);
-		if ($isExist) {
-			echo json_encode($isExist);
-		}
-	}
-
-	function get_load_more_data($category_id, $limit, $offset = '')
-	{
-		$this->db->select('*');
-		$this->db->from('tbl_product');
-		$this->db->where('status', 'a');
-		$this->db->where('is_active', 'true');
-		$this->db->where('is_website', 'true');
-		$this->db->where('ProductCategory_ID', $category_id);
-		$this->db->limit($limit, $offset);
-		$this->db->order_by('Product_SlNo', 'desc');
-		$data = $this->db->get()->result();
-		return $data;
-	}
-	// Products Page End
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	public function management()
-	{
-		$data['title'] = 'Management';
-		$data['front_content'] = 'page/management';
-		$this->load->view('fontend/layout', $data);
-	}
-	// public function products()
-	// {
-	// 	$data['title'] = 'Products';
-	// 	$data['img_url'] = $this->db->query("select * from tbl_content")->row()->soft_url;
-	// 	$data['products'] = $this->db->query("select * from tbl_product where status = 'a' and is_active = 'true' and is_website = 'true' ORDER BY Product_SlNo DESC")->result();
-	// 	$data['front_content'] = 'page/product';
-	// 	$this->load->view('fontend/layout', $data);
-	// }
-	public function product_details($id)
-	{
-		$data['title'] = 'Product Petails';
-		$data['img_url'] = $this->db->query("select * from tbl_content")->row()->soft_url;
-		$data['products'] = $this->db->query("select * from tbl_product where status = 'a' and is_active = 'true' and is_website = 'true' and Product_SlNo = ?", $id)->row();
-		$data['gallery'] = $this->db->query("select * from tbl_productgallery where status = 'a' and Product_ID = ?", $id)->result();
-		$data['front_content'] = 'page/product_details';
-		$this->load->view('fontend/layout', $data);
-	}
-
-	// public function product_by_category($category_id)
-	// {
-	// 	$data['title'] = 'Product Petails';
-	// 	$data['img_url'] = $this->db->query("select * from tbl_content")->row()->soft_url;
-	// 	$data['category'] =  $this->db->query("select * from tbl_productcategory where ProductCategory_SlNo = ? ", $category_id)->row();
-	// 	$data['category_id'] = $category_id;
-	// 	$data['products'] = $this->db->query("select * from tbl_product where status = 'a' and is_active = 'true' and is_website = 'true' and ProductCategory_ID = ?", $category_id)->result();
-	// 	$data['front_content'] = 'page/product_by_category';
-	// 	$this->load->view('fontend/layout', $data);
-	// }
-
 	public function search()
 	{
-		if ($this->input->post('action') == 'searchdata') {
-			$search = trim($this->input->post('searchdata'));
-			if ($search == '') {
-				echo '<script>alert("Please fill up search box !!")</script>';
-				redirect(base_url());
-			} else {
-				$data['your_search'] = $search;
-				$data['img_url'] = $this->db->query("select * from tbl_content")->row()->soft_url;
-				$data['searchdata'] = $this->db->query("select * from tbl_product where status = 'a' and is_active = 'true' and is_website = 'true' and Product_Name like '%" . $search . "%' or part_no like '%" . $search . "%'")->result();
-				$data['title'] = 'Search';
-				$data['front_content'] = 'page/search';
-				$this->load->view('fontend/layout', $data);
-			}
-		}
-	}
-
-	public function gallery()
-	{
-		$data['title'] = 'Photo Gallery';
-		$data['galleries'] = $this->db->query("select * from tbl_galleries where status = 'a'")->result();
-		$data['img_url'] = $this->db->query("select * from tbl_content")->row()->soft_url;
-		$data['front_content'] = 'page/gallery';
+		$data['title'] = 'Search';
+		$data['iurl'] = $this->website->Software_Url;
+		$data['keyword'] = $this->input->get('keyword') ?? '';
+		$data['front_content'] = 'page/search';
 		$this->load->view('fontend/layout', $data);
 	}
 
-	public function project()
-	{
-		$data['title'] = 'Our Project';
-		$data['img_url'] = $this->db->query("select * from tbl_content")->row()->soft_url;
-		$data['projects'] = $this->db->query("select * from tbl_projects where status = 'a'")->result();
-		$data['front_content'] = 'page/project';
-		$this->load->view('fontend/layout', $data);
-	}
 
-	public function singleProject($id)
-	{
-		$data['title'] = 'Project Details';
-		$data['img_url'] = $this->db->query("select * from tbl_content")->row()->soft_url;
-		$data['project'] = $this->db->query("select * from tbl_projects where status = 'a' and id = ?", $id)->row();
-		$data['services'] = $this->db->query("select * from tbl_our_services where status = 'a' order by id desc limit 6")->result();
-		$data['projects'] = $this->db->query("select * from tbl_projects where status = 'a' and id != ? order by id desc limit 3", $id)->result();
-		$data['front_content'] = 'page/project-details';
-		$this->load->view('fontend/layout', $data);
-	}
 
-	public function service()
-	{
-		$data['title'] = 'Services';
-		$data['img_url'] = $this->db->query("select * from tbl_content")->row()->soft_url;
-		$data['services'] = $this->db->query("select * from tbl_our_services where status = 'a'")->result();
-		$data['pricings'] = $this->db->query("select * from tbl_pricing where status = 'a' order by id desc limit 8")->result();
-		$data['front_content'] = 'page/service';
-		$this->load->view('fontend/layout', $data);
-	}
 
-	public function saveContact()
+	public function error404()
 	{
-		$res = ['success' => false, 'message' => ''];
-		try {
-			$data = json_decode($this->input->raw_input_stream);
-
-			$contact = (array)$data;
-			$contact['status'] = 'a';
-			$this->db->insert('tbl_contacts', $contact);
-			$res = ['success' => true, 'message' => 'Message successfully Send!'];
-		} catch (\Exception $e) {
-			$res = ['success' => false, 'message' => $e->getMessage()];
-		}
-		echo json_encode($res);
-	}
-
-	public function cart()
-	{
-		$data['title'] = 'cart';
-		$data['img_url'] = $this->db->query("select * from tbl_content")->row()->soft_url;
-		$data['cartItems'] = $this->cart->contents();
-		$data['cartTotalwithShipping'] = $this->cart->total() + 100;
-		$data['front_content'] = 'customer/cart';
-		$this->load->view('fontend/layout', $data);
-	}
-	public function checkout()
-	{
-		$data['title'] = 'checkout';
-		$data['img_url'] = $this->db->query("select * from tbl_content")->row()->soft_url;
-		$data['cartItems'] = $this->cart->contents();
-		$data['cartTotalwithShipping'] = $this->cart->total() + 100;
-		$data['front_content'] = 'customer/checkout';
+		$data['title'] = '404 Page Not Found';
+		$data['iurl'] = $this->website->Software_Url;
+		$data['front_content'] = 'page/error_404';
 		$this->load->view('fontend/layout', $data);
 	}
 }

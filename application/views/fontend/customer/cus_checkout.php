@@ -244,15 +244,15 @@
                 })
             },
             async saveOrder() {
-                if (this.customer.customer_name == '') {
+                if (!this.customer.customer_name || this.customer.customer_name.toString().trim() === '') {
                     toastr.error('আপনার নাম লিখুন');
                     return;
                 }
-                if (this.customer.customer_mobile == '') {
+                if (!this.customer.customer_mobile || this.customer.customer_mobile.toString().trim() === '') {
                     toastr.error('আপনার মোবাইল নাম্বার লিখুন');
                     return;
                 }
-                if (this.customer.customer_address == '') {
+                if (!this.customer.customer_address || this.customer.customer_address.toString().trim() === '') {
                     toastr.error('আপনার ঠিকানা লিখুন');
                     return;
                 }

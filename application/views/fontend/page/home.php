@@ -276,6 +276,32 @@
                         item.cat_image = this.img_url + item.Category_Image;
                         return item;
                     });
+                    this.$nextTick(() => {
+                        $(".topcategory").owlCarousel({
+                            margin: 15,
+                            loop: true,
+                            dots: false,
+                            autoplay: true,
+                            autoplayTimeout: 6000,
+                            autoplayHoverPause: true,
+                            responsiveClass: true,
+                            responsive: {
+                                0: {
+                                    items: 2,
+                                    nav: true,
+                                },
+                                600: {
+                                    items: 5,
+                                    nav: false,
+                                },
+                                1000: {
+                                    items: 8,
+                                    nav: false,
+                                    loop: true,
+                                },
+                            },
+                        });
+                    });
                 })
             },
             async getTrendingPros() {

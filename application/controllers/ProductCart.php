@@ -151,9 +151,28 @@ class ProductCart extends CI_Controller
             $this->db->trans_begin();
             $data = json_decode($this->input->raw_input_stream);
 
+            $customerName = trim($data->customer->customer_name ?? '');
+            $customerMobile = trim($data->customer->customer_mobile ?? '');
+            $customerAddress = trim($data->customer->customer_address ?? '');
+
+            if ($customerName == '') {
+                echo json_encode(['success' => false, 'message' => 'আপনার নাম লিখুন!']);
+                return;
+            }
+            if ($customerMobile == '') {
+                echo json_encode(['success' => false, 'message' => 'আপনার মোবাইল নাম্বার লিখুন!']);
+                return;
+            }
+            if (!preg_match('/^01[3-9]\d{8}$/', $customerMobile)) {
+                echo json_encode(['success' => false, 'message' => 'একটি সঠিক মোবাইল নাম্বার লিখুন!']);
+                return;
+            }
+            if ($customerAddress == '') {
+                echo json_encode(['success' => false, 'message' => 'আপনার ঠিকানা লিখুন!']);
+                return;
+            }
 
             $customerId = $data->customer->customer_id;
-
 
             if (isset($data->customer) && $customerId == '') {
                 $customerMobile = $data->customer->customer_mobile;
@@ -321,25 +340,6 @@ class ProductCart extends CI_Controller
 
 
 
-    function saveCartDetails()
-    {
-        $productID = $this->input->post('id');
-        $productQnty = $this->input->post('qnty');
-
-        $product = $this->ct->find($productID);
-
-        $insert_data = array(
-            'id' => $product->Product_SlNo,
-            'name' => $product->Product_Name,
-            'price' => $product->Product_SellingPrice,
-            'image' => $product->Product_Image,
-            'qty' => $productQnty
-        );
-
-        $this->cart->insert($insert_data);
-
-        echo $fefe = count($this->cart->contents());
-    }
 
     function updateItemQty()
     {

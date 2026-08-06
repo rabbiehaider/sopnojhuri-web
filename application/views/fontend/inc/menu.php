@@ -74,8 +74,8 @@ foreach ($categories as $cat) {
     </div>
 
     <div class="mobile-search">
-        <form action="https://www.ozybd.com/search">
-            <input type="text" placeholder="Search Product ... " value="" class="msearch_keyword msearch_click"
+        <form action="<?= base_url('shop') ?>">
+            <input type="text" placeholder="Search Product ... " value="" class="msearch_keyword"
                 name="keyword" />
             <button><i class="fa fa-search"></i></button>
 
@@ -166,8 +166,8 @@ foreach ($categories as $cat) {
                                 <a href="/"><img src="<?php echo $iurl . $mwebsite->Header_Logo ?>" alt="<?php echo $mwebsite->Website_Name ?>" /></a>
                             </div>
                             <div class="main-search">
-                                <form action="https://www.ozybd.com/search">
-                                    <input type="text" placeholder="Search Product..." class="search_keyword search_click" name="keyword" />
+                                <form action="<?= base_url('shop') ?>">
+                                    <input type="text" placeholder="Search Product..." class="search_keyword" name="keyword" />
                                     <button>
                                         <i style="color: #fff;" class="fa fa-search"></i>
                                     </button>
