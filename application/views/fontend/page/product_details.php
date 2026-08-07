@@ -137,29 +137,6 @@
                                                         </div>
                                                     </div>
 
-                                                    <!-- <div class="row">
-                                                    <div class="col-sm-6">
-                                                        <h4 class="font-weight-bold">
-                                                            <a class="btn btn-dark w-100 call_now_btn" target="_blank"
-                                                                href="https://m.me/sopnojhuribd/">
-                                                                <img src="<?php echo base_url('assets/fontend/') ?>frontEnd/images/messenger.png"
-                                                                    alt="">
-                                                                Chat with us
-                                                            </a>
-                                                        </h4>
-                                                    </div>
-                                                    <div class="col-sm-6">
-                                                        <h4 class="font-weight-bold mt-2">
-                                                            <a class="btn btn-success w-100 call_now_btn"
-                                                                target="_blank" href="https://wa.me/8801877702077">
-                                                                <img src="<?php echo base_url('assets/fontend/') ?>frontEnd/images/whatsapp.png"
-                                                                    alt="">
-                                                                Whatsapp Us
-                                                            </a>
-                                                        </h4>
-                                                    </div>
-                                                </div> -->
-
                                                     <div class="mt-md-2 mt-2">
                                                         <div class="del_charge_area">
                                                             <div class="alert alert-info text-xs">

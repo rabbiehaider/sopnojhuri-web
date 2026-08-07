@@ -80,7 +80,7 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="copyright">
-                        <p>Copyright © <?= date('Y'); ?> SopnoJhuri. All Rights Reserved. Design & Developed By <a href="<?= $fwebsite->Developer_Url ?>" target="_blank"><?= $fwebsite->Developed_By ?></a></p>
+                        <p>Copyright © <?= date('Y'); ?> <?= $fwebsite->Website_Name ?>. All Rights Reserved. Design & Developed By <a href="<?= $fwebsite->Developer_Url ?>" target="_blank"><?= $fwebsite->Developed_By ?></a></p>
                     </div>
                 </div>
             </div>
@@ -112,7 +112,7 @@
 
         <li class="mobile_home">
             <a href="/">
-                <img src="<?= $iurl . $fwebsite->Mobile_Logo ?>" alt="<?= $fwebsite->Website_Name ?>" />
+                <img src="<?= $iurl . $fwebsite->Mobile_Logo ?>" alt="<?= $fwebsite->Website_Name ?>" style="    border-radius: 50%;" />
                 <!-- <span><i class="fa-solid fa-home"></i></span> <span>Home</span> -->
             </a>
         </li>

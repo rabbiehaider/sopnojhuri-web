@@ -1,3 +1,4 @@
+<?php $wab = $this->db->query("SELECT * FROM tbl_website_profile LIMIT 1")->row(); ?>
 <div id="content">
     <section class="comn_sec">
         <div class="container">
@@ -29,22 +30,22 @@
 
     <section class="contact-section">
         <div class="container">
-            
+
             <div class="row">
                 <div class="col-sm-6">
                     <div class="cont_item">
-                        <a href="tel:01870977634">
+                        <a href="tel:<?= $wab->Website_Mobile ?>">
                             <i data-feather="phone"></i>
-                            01870977634
+                            <?= $wab->Website_Mobile ?>
                         </a>
                     </div>
                 </div>
 
                 <div class="col-sm-6">
                     <div class="cont_item">
-                        <a href="#">
+                        <a href="mailto:<?= $wab->Website_Email ?>">
                             <i data-feather="mail"></i>
-                            sopnojhuribd@gmail.com
+                            <?= $wab->Website_Email ?>
                         </a>
                     </div>
                 </div>
@@ -57,8 +58,7 @@
                 <div class="col-sm-10">
                     <div class="contact-form">
                         <h5 class="account-title">অথবা </h5>
-                        <form action="https://sopnojhuri.com/" method="POST" class="row" enctype="multipart/form-data" data-parsley-validate="">
-                            <input type="hidden" name="_token" value="YwG9TspG3r18gVyNm4lWRAnZP3vmxP80Um42TCFK">
+                        <form action="<?= base_url() ?>" method="POST" class="row" enctype="multipart/form-data" data-parsley-validate="">
                             <div class="col-sm-6">
                                 <div class="form-group mb-3">
                                     <label for="name">সম্পূর্ণ নাম *</label>

@@ -13,7 +13,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com/" />
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="true" />
     <link rel="shortcut icon" href="<?= $iurl . $website->Fav_Logo ?>" alt="<?= $website->Website_Name ?>" />
-    <meta name="author" content="SopnoJhuri" />
+    <meta name="author" content="<?= $website->Website_Name ?>" />
     <link rel="canonical" href="<?= current_url(); ?>" />
     <meta name="app-url" content="<?= base_url(); ?>" />
     <meta name="robots" content="index, follow" />
@@ -385,7 +385,7 @@
                 "sku": "<?= $product->Product_SlNo; ?>",
                 "brand": {
                     "@type": "Brand",
-                    "name": "<?= $product->Manufacturer_Name ?? 'SopnoJhuri'; ?>"
+                    "name": "<?= $product->Manufacturer_Name ?? $website->Website_Name; ?>"
                 },
                 "offers": {
                     "@type": "Offer",
